@@ -38,6 +38,9 @@ Everything degrades gracefully: a card with no metafields still shows image, tit
 | Price | Cheapest variant; "Was" shown when it has a compare-at price; $0 products show "See details" (editable) |
 | Product page accordions | Description, plus metafields `custom.whats_included`, `custom.itinerary`, `custom.good_to_know` (rich text or multi-line text) |
 | Itinerary timeline | Metafield `custom.itinerary_days` (multi-line text), one day per line as `Day label \| Title \| Description` |
+| Trip FAQs | Metafield `custom.faqs`, one per line as `Question \| Answer`. General FAQs are blocks on the section, shared by every product |
+| Trip stats | Metafield `custom.stats`, one per line as `Value \| Label`, e.g. `4 \| days` |
+| What's included | Metafields `custom.included` and `custom.not_included`, one item per line. Prefix an item with an icon name and a pipe (`plane \| Return airfare`) to change its icon |
 
 Create the metafield definitions in Shopify admin → Settings → Custom data → Products (namespace `custom`, keys above).
 
@@ -48,7 +51,7 @@ Create the metafield definitions in Shopify admin → Settings → Custom data �
 3. Photos for the three feature tiles, the destination tiles (collection images) and the "Book with confidence" panel.
 4. Menus: `main-menu` for the header/footer "Experiences" column, `footer` for the "Help" column.
 5. Partner logos (Jetset Vacations, Expedia Cruises, The Nation Network, Fairmont…) in the partner logo strip.
-6. Metafields listed above on each experience. The `custom.itinerary_days` definition already exists on the demo store (Settings, Custom data, Products) and is filled for both demo experiences.
+6. Metafields listed above on each experience. The `custom.itinerary_days`, `custom.faqs`, `custom.stats`, `custom.included` and `custom.not_included` definitions already exist on the demo store (Settings, Custom data, Products) and are filled for both demo experiences.
 
 ## Deliberate differences from Contiki
 
@@ -82,3 +85,9 @@ Then `shopify theme check`. The demo store is `tnn-nationexperiences.myshopify.c
 | stock-jasper.jpg | unsplash.com/photos/tYZH_KWl_IM |
 | stock-stadium-seats.jpg | unsplash.com/photos/HDwBnsB9Tkc |
 | stock-road-trip.jpg | unsplash.com/photos/C9DziWnywgo |
+
+## Page width
+
+Page width is set to **narrow** in theme settings, which is 1440px in Horizon despite the name. That matches Contiki's content column. The wide option is 2400px and stretches long-form copy past a readable line length on large monitors.
+
+Long-form text also caps its own measure at 68 characters (`ch` units) in the timeline and FAQ sections, so a single long sentence cannot run the full width of the page whatever the page width setting is.
