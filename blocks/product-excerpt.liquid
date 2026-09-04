@@ -11,7 +11,7 @@
   if product != blank
     assign text = product.metafields.custom.short_description | strip
     if text == blank
-      assign text = product.description | strip_html | strip_newlines | truncatewords: s.max_words
+      assign text = product.description | replace: '</', ' </' | strip_html | strip_newlines | strip | truncatewords: s.max_words
     endif
   elsif request.design_mode
     assign text = 'A one-line hook for this experience, pulled from the short description metafield or the start of the description.'
