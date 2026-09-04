@@ -1,0 +1,36 @@
+{%- doc -%}
+  Brand tokens for the Nation Experiences (Contiki-inspired) layer.
+  Derived from the colour palette so the whole site recolours from one setting:
+  palette colour 1 = accent, colour 2 = borders, colour 3 = light surface.
+{%- enddoc -%}
+
+{%- liquid
+  assign accent = settings.color_palette.color1 | default: '#D2FF28'
+  assign accent_brightness = accent | color_brightness
+  if accent_brightness > 140
+    assign accent_contrast = settings.color_palette.foreground
+  else
+    assign accent_contrast = settings.color_palette.background
+  endif
+  assign accent_rgb = accent | color_to_rgb | remove: 'rgb(' | remove: ')'
+  assign accent_hover = accent | color_darken: 8
+  assign brand_border = settings.color_palette.color2 | default: '#E4E4E4'
+  assign brand_surface = settings.color_palette.color3 | default: '#F5F5F5'
+  assign brand_alert = settings.badge_sale_background_color | default: '#FF1E37'
+-%}
+
+{% style %}
+  :root {
+    --brand-accent: {{ accent }};
+    --brand-accent-rgb: {{ accent_rgb }};
+    --brand-accent-contrast: {{ accent_contrast }};
+    --brand-accent-hover: {{ accent_hover }};
+    --brand-border: {{ brand_border }};
+    --brand-surface: {{ brand_surface }};
+    --brand-alert: {{ brand_alert }};
+    --brand-card-radius: {{ settings.card_corner_radius | default: 8 }}px;
+    --brand-card-shadow: 0 2px 14px rgb(0 0 0 / 0.08);
+    --brand-card-shadow-hover: 0 12px 28px rgb(0 0 0 / 0.14);
+    --brand-card-pad: 16px;
+  }
+{% endstyle %}
