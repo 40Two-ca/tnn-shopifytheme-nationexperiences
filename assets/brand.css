@@ -184,3 +184,73 @@ footer .footer-utilities a {
 .email-signup__input {
   font-family: var(--font-body--family);
 }
+
+/* ---------------------------------------------------------------------------
+   Trip inclusions
+   Rendered by both the trip-inclusions block and the trip-overview section, so
+   the styles live here rather than in either one's scoped stylesheet.
+   --------------------------------------------------------------------------- */
+
+.trip-inclusions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.trip-inclusions__heading {
+  margin: 0;
+}
+
+.trip-inclusions__list {
+  display: grid;
+  gap: 0.6rem;
+  margin: 0;
+  padding: 0;
+}
+
+.trip-inclusions__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  max-width: 60ch;
+  font-size: 0.9375rem;
+  line-height: 1.45;
+}
+
+.trip-inclusions__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-block-start: -0.05rem;
+  border-radius: 50%;
+  background: var(--brand-accent);
+  color: var(--brand-accent-contrast);
+}
+
+.trip-inclusions__icon svg {
+  width: 0.9rem;
+  height: 0.9rem;
+}
+
+.trip-inclusions__item--excluded {
+  color: rgb(var(--color-foreground-rgb) / 0.7);
+}
+
+.trip-inclusions__dash {
+  flex: none;
+  width: 0.75rem;
+  height: 2px;
+  margin-block-start: 0.65rem;
+  background: rgb(var(--color-foreground-rgb) / 0.35);
+}
+
+.trip-inclusions__excluded {
+  margin-block-start: 0.25rem;
+}
+
+.trip-inclusions__excluded .details__header {
+  padding-block: 0.75rem;
+}

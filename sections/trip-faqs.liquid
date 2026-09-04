@@ -100,9 +100,16 @@
           >
             {%- for block in section.blocks -%}
               {%- if block.settings.question != blank and block.settings.answer != blank -%}
-                <div {{ block.shopify_attributes }}>
-                  {% render 'trip-details-row', heading: block.settings.question, content: block.settings.answer %}
-                </div>
+                {% comment %}
+                  No wrapper element here: the dividers between rows come from
+                  accordion-custom:not(:first-child), which only matches when the
+                  rows are direct siblings. The editor attributes go on the row.
+                {% endcomment %}
+                {% render 'trip-details-row',
+                  heading: block.settings.question,
+                  content: block.settings.answer,
+                  attributes: block.shopify_attributes
+                %}
               {%- endif -%}
             {%- endfor -%}
           </div>

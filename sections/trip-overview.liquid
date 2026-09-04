@@ -1,0 +1,186 @@
+{%- comment -%}
+  Trip overview: the long-form description beside the inclusions lists.
+
+  This content used to sit in the product details column next to the price. A
+  trip banner is a wide, short image, so a tall booking column left a large
+  empty space under it. Moving the reading material into its own full-width
+  section keeps the booking column close to the height of the image and gives
+  the description a sensible measure, which is also how Contiki lays out a tour.
+
+  The description comes from the product. The lists come from the metafields
+  custom.included and custom.not_included, shared with the trip-inclusions block.
+{%- endcomment -%}
+
+{%- liquid
+  assign s = section.settings
+
+  assign overview = ''
+  if product != blank
+    assign overview = product.description
+  endif
+
+  capture inclusions
+    render 'trip-inclusions-lists',
+      product: product,
+      included_heading: s.included_heading,
+      excluded_heading: s.excluded_heading,
+      heading_class: 'h6'
+  endcapture
+  assign has_inclusions = inclusions | strip
+
+  if s.background_color != blank
+    render 'contrast-override', background_color: s.background_color, section_id: section.id
+  endif
+-%}
+
+{%- if overview != blank or has_inclusions != blank -%}
+  <div
+    class="section-background{% if s.background_color != blank %} color-custom-{{ section.id }}{% endif %}"
+  ></div>
+  <div
+    class="section section--{{ s.section_width }} spacing-style trip-overview{% if s.background_color != blank %} color-custom-{{ section.id }}{% endif %}"
+    style="{% render 'spacing-style', settings: s %}"
+  >
+    <div class="trip-overview__grid{% if overview != blank and has_inclusions != blank %} trip-overview__grid--pair{% endif %}">
+      {%- if overview != blank -%}
+        <div class="trip-overview__main">
+          {%- if s.eyebrow != blank -%}
+            <p class="brand-eyebrow">{{ s.eyebrow }}</p>
+          {%- endif -%}
+          {%- if s.heading != blank -%}
+            <h2 class="h4 trip-overview__heading">{{ s.heading }}</h2>
+          {%- endif -%}
+          <div class="rte trip-overview__body">{{ overview }}</div>
+        </div>
+      {%- endif -%}
+
+      {%- if has_inclusions != blank -%}
+        <aside class="trip-overview__aside">
+          <div class="trip-inclusions">{{ inclusions }}</div>
+        </aside>
+      {%- endif -%}
+    </div>
+  </div>
+{%- endif -%}
+
+{% stylesheet %}
+  .trip-overview__grid {
+    display: grid;
+    gap: 2rem;
+  }
+
+  @media screen and (min-width: 990px) {
+    .trip-overview__grid--pair {
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+      gap: 3.5rem;
+      align-items: start;
+    }
+  }
+
+  .trip-overview__main,
+  .trip-overview__aside {
+    min-width: 0;
+  }
+
+  .trip-overview__heading {
+    margin: 0 0 0.75rem;
+  }
+
+  /* Cap the measure so the description stays readable at any page width. */
+  .trip-overview__body {
+    max-width: 68ch;
+  }
+
+  .trip-overview__body > :first-child {
+    margin-block-start: 0;
+  }
+
+  .trip-overview__aside {
+    padding: clamp(1.25rem, 3vw, 1.75rem);
+    border-radius: calc(var(--brand-card-radius) * 2);
+    background: var(--brand-surface);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Trip overview",
+  "tag": "section",
+  "class": "section-wrapper",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Shows the product description beside the lists from the metafields custom.included and custom.not_included."
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "The trip"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "About this trip"
+    },
+    {
+      "type": "text",
+      "id": "included_heading",
+      "label": "Included heading",
+      "default": "What's included"
+    },
+    {
+      "type": "text",
+      "id": "excluded_heading",
+      "label": "Not included heading",
+      "default": "What's not included"
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "Width",
+      "options": [
+        { "value": "page-width", "label": "Page" },
+        { "value": "full-width", "label": "Full" }
+      ],
+      "default": "page-width"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 24
+    }
+  ],
+  "presets": [
+    {
+      "name": "Trip overview",
+      "category": "Nation Experiences"
+    }
+  ]
+}
+{% endschema %}

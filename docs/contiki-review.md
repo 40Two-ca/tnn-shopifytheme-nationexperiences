@@ -21,7 +21,7 @@ Compared against: https://nationexperiences.ca (Dawn 12, black header, Jost, eve
 | Destinations | Photo tiles per region + "See all trips" | New `destination-tiles` section (falls back to all collections) |
 | Book with confidence | Four check-marked reassurances + FIND OUT MORE, with a photo | New `trust-points` section |
 | As seen in | Grey logo strip | New `partner-logos` section |
-| Tour page | Photo hero, badge, title, meta row (days / country / cities), rating, "FROM $2,495" + deposit line, lime PICK DATES, then What's included, Itinerary, Reviews, FAQs accordions | `templates/product.json`: badge, title, meta, price, "Book now", `trip-details` accordion (Overview / What's included / Itinerary / Good to know) |
+| Tour page | Photo hero, badge, title, meta row (days / country / cities), rating, "FROM $2,495" + deposit line, lime PICK DATES, then What's included, Itinerary, Reviews, FAQs accordions | `templates/product.json`: a short booking column (badge, title, meta, stats, price, "Book now"), then full-width `trip-overview`, `trip-timeline`, `trust-points` and `trip-faqs` sections |
 | Itinerary rail | Vertical day-by-day list with markers, "Day 1" over the place name, each day expandable | `trip-timeline` section: markers on a rail, day label, title and description |
 | Listing page | Title hero, left filter sidebar, trip cards | `templates/collection.json`: vertical filters, trip cards |
 | Footer | Dark, three link columns, newsletter, legal row | Dark footer, two menu columns, newsletter, socials, legal row |
@@ -91,3 +91,24 @@ Then `shopify theme check`. The demo store is `tnn-nationexperiences.myshopify.c
 Page width is set to **narrow** in theme settings, which is 1440px in Horizon despite the name. That matches Contiki's content column. The wide option is 2400px and stretches long-form copy past a readable line length on large monitors.
 
 Long-form text also caps its own measure at 68 characters (`ch` units) in the timeline and FAQ sections, so a single long sentence cannot run the full width of the page whatever the page width setting is.
+
+## Product page layout
+
+Trip artwork is a wide banner, roughly two to one. In Horizon's product layout the
+image sits in a 2fr column and the booking details in a 1fr column, so a banner is
+always short while the details column is tall. Anything long in that column leaves a
+block of empty space under the image, and no page width or column ratio fixes it:
+a wider image column makes the image shorter, a narrower one makes the details taller.
+
+So the booking column holds only what someone needs in order to book: badge, title,
+trip meta, stats, price and the buy buttons. That comes out close to the height of the
+banner. The reading material moved into full-width sections underneath, which is also
+how Contiki orders a tour page:
+
+1. `trip-overview` - the product description beside What's included / What's not included
+2. `trip-timeline` - the day-by-day itinerary
+3. `trust-points`
+4. `trip-faqs` - trip FAQs from the metafield beside the general FAQs
+
+If a trip ever ships with tall portrait photography instead of a banner, blocks can move
+back into the booking column without any code change.

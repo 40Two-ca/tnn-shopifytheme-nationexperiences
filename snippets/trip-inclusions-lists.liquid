@@ -1,0 +1,130 @@
+{%- doc -%}
+  "What's included" and "What's not included" lists for a trip.
+
+  Reads two product metafields, one item per line:
+    custom.included      e.g. `plane | Return airfare from Edmonton`
+    custom.not_included  e.g. `Travel insurance`
+
+  The part before the pipe is an optional icon name from the theme's icon set
+  (plane, map_pin, price_tag and so on). With no pipe the line is the item text and a
+  check mark is used. "Not included" items always use a plain dash.
+
+  Renders nothing when both metafields are empty, so callers can use it directly.
+  Styles live in assets/brand.css because both a block and a section render this.
+
+  @param {product} product - The trip
+  @param {string} [included_heading] - Heading above the included list
+  @param {string} [excluded_heading] - Heading on the "not included" row
+  @param {string} [heading_class] - Type class for the included heading, defaults to h5
+{%- enddoc -%}
+
+{%- liquid
+  assign raw_included = ''
+  assign raw_excluded = ''
+  if product != blank
+    assign raw_included = product.metafields.custom.included
+    assign raw_excluded = product.metafields.custom.not_included
+  endif
+
+  assign included_lines = raw_included | strip | newline_to_br | split: '<br />'
+  assign excluded_lines = raw_excluded | strip | newline_to_br | split: '<br />'
+
+  assign has_included = false
+  if raw_included != blank
+    assign has_included = true
+  endif
+  assign has_excluded = false
+  if raw_excluded != blank
+    assign has_excluded = true
+  endif
+
+  assign included_title_class = heading_class | default: 'h5'
+
+  # Icons the theme actually ships. An unknown name renders nothing and would
+  # leave an empty circle, so anything off this list falls back to a check mark.
+  assign known_icons = 'apple,banana,bottle,box,carrot,chat_bubble,check_box,clipboard,dairy,dairy_free,dryer,eye,fire,gluten_free,heart,iron,leaf,leather,lightning_bolt,lipstick,lock,map_pin,nut_free,pants,paw_print,pepper,perfume,plane,plant,price_tag,question_mark,recycle,return,ruler,serving_dish,shirt,shoe,silhouette,snowflake,star,stopwatch,truck,washing' | split: ','
+-%}
+
+{%- if has_included or has_excluded -%}
+  {%- if has_included -%}
+    {%- if included_heading != blank -%}
+      <h3 class="{{ included_title_class }} trip-inclusions__heading">{{ included_heading }}</h3>
+    {%- endif -%}
+    <ul class="trip-inclusions__list list-unstyled">
+      {%- for line in included_lines -%}
+        {%- liquid
+          assign row = line | strip_html | strip
+          if row == blank
+            continue
+          endif
+          assign parts = row | split: '|'
+          if parts.size > 1
+            assign icon_name = parts[0] | strip
+            assign item_text = parts[1] | strip
+          else
+            assign icon_name = 'check_box'
+            assign item_text = parts[0] | strip
+          endif
+          unless known_icons contains icon_name
+            assign icon_name = 'check_box'
+          endunless
+          if item_text == blank
+            continue
+          endif
+        -%}
+        <li class="trip-inclusions__item">
+          <span class="trip-inclusions__icon" aria-hidden="true">
+            <svg viewBox="0 0 20 20" fill="currentColor" focusable="false">
+              {%- render 'icon', icon: icon_name -%}
+            </svg>
+          </span>
+          <span>{{ item_text }}</span>
+        </li>
+      {%- endfor -%}
+    </ul>
+  {%- endif -%}
+
+  {%- if has_excluded -%}
+    {%- capture excluded_content -%}
+      <ul class="trip-inclusions__list trip-inclusions__list--excluded list-unstyled">
+        {%- for line in excluded_lines -%}
+          {%- liquid
+            assign row = line | strip_html | strip
+            if row == blank
+              continue
+            endif
+            assign parts = row | split: '|'
+            if parts.size > 1
+              assign item_text = parts[1] | strip
+            else
+              assign item_text = parts[0] | strip
+            endif
+            if item_text == blank
+              continue
+            endif
+          -%}
+          <li class="trip-inclusions__item trip-inclusions__item--excluded">
+            <span class="trip-inclusions__dash" aria-hidden="true"></span>
+            <span>{{ item_text }}</span>
+          </li>
+        {%- endfor -%}
+      </ul>
+    {%- endcapture -%}
+
+    <div
+      class="accordion accordion--caret accordion--dividers trip-inclusions__excluded"
+      style="
+        --summary-font-family: var(--font-h6--family);
+        --summary-font-style: var(--font-h6--style);
+        --summary-font-weight: 700;
+        --summary-font-size: 0.9375rem;
+        --summary-font-line-height: 1.4;
+        --summary-font-case: none;
+      "
+    >
+      {% render 'trip-details-row', heading: excluded_heading, content: excluded_content %}
+    </div>
+  {%- endif -%}
+
+  {% render 'accordion-styles' %}
+{%- endif -%}

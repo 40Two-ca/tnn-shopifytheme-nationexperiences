@@ -4,6 +4,12 @@
   @param {string} heading - Row heading
   @param {string} content - HTML content for the row
   @param {boolean} [open] - Open by default
+  @param {string} [attributes] - Extra HTML attributes for the row, e.g. block.shopify_attributes
+
+  Rows must stay direct siblings inside their `.accordion--dividers` wrapper: the
+  divider between rows is drawn with `accordion-custom:not(:first-child)`, so any
+  wrapper element around a row silently removes every divider in the group. Pass
+  `attributes` instead of wrapping the row.
 {%- enddoc -%}
 
 {%- capture row -%}
@@ -12,6 +18,7 @@
     {% if open %}
       open
     {% endif %}
+    {{ attributes }}
   >
     <summary class="details__header">
       {{ heading }}
