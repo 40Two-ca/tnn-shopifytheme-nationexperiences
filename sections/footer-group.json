@@ -81,7 +81,7 @@
                     "inverse": true,
                     "font": "heading",
                     "unit": "pixel",
-                    "pixel_height": 36,
+                    "pixel_height": 40,
                     "percent_width": 100,
                     "custom_mobile_size": false,
                     "unit_mobile": "pixel",
@@ -103,7 +103,7 @@
                     "alignment": "left",
                     "type_preset": "paragraph",
                     "font": "var(--font-body--family)",
-                    "font_size": "0.9375rem",
+                    "font_size": "0.875rem",
                     "line_height": "normal",
                     "letter_spacing": "normal",
                     "case": "none",
@@ -128,7 +128,11 @@
                   "blocks": {}
                 }
               },
-              "block_order": ["logo", "tagline", "social"]
+              "block_order": [
+                "logo",
+                "tagline",
+                "social"
+              ]
             },
             "menu_experiences": {
               "type": "menu",
@@ -234,7 +238,7 @@
                     "alignment": "left",
                     "type_preset": "paragraph",
                     "font": "var(--font-body--family)",
-                    "font_size": "0.9375rem",
+                    "font_size": "0.875rem",
                     "line_height": "normal",
                     "letter_spacing": "normal",
                     "case": "none",
@@ -276,13 +280,24 @@
                   "blocks": {}
                 }
               },
-              "block_order": ["heading", "text", "signup"]
+              "block_order": [
+                "heading",
+                "text",
+                "signup"
+              ]
             }
           },
-          "block_order": ["brand", "menu_experiences", "menu_help", "newsletter"]
+          "block_order": [
+            "brand",
+            "menu_experiences",
+            "menu_help",
+            "newsletter"
+          ]
         }
       },
-      "block_order": ["columns"],
+      "block_order": [
+        "columns"
+      ],
       "name": "t:names.footer",
       "settings": {
         "section_width": "page-width",
@@ -322,7 +337,11 @@
           "blocks": {}
         }
       },
-      "block_order": ["copyright", "policies", "social"],
+      "block_order": [
+        "copyright",
+        "policies",
+        "social"
+      ],
       "name": "t:names.utilities",
       "settings": {
         "section_width": "page-width",
@@ -335,5 +354,8 @@
       }
     }
   },
-  "order": ["footer", "utilities"]
+  "order": [
+    "footer",
+    "utilities"
+  ]
 }

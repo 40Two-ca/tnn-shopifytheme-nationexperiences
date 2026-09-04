@@ -208,7 +208,7 @@
                 "input_text_color": "{{ settings.color_palette.foreground }}",
                 "input_border_color": "{{ settings.color_palette.foreground }}",
                 "border_width": 1,
-                "border_radius": 100,
+                "border_radius": 50,
                 "padding-block-start": 4,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
@@ -224,7 +224,7 @@
                     "input_text_color": "{{ settings.color_palette.foreground }}",
                     "input_border_color": "{{ settings.color_palette.foreground }}",
                     "border_width": 1,
-                    "border_radius": 100
+                    "border_radius": 50
                   },
                   "blocks": {}
                 },
@@ -302,7 +302,7 @@
         "desktop_media_position": "left",
         "equal_columns": false,
         "limit_details_width": false,
-        "gap": 56,
+        "gap": 48,
         "enable_sticky_add_to_cart": true,
         "background_color": "{{ settings.color_palette.background }}",
         "padding-block-start": 24,
@@ -341,7 +341,12 @@
           }
         }
       },
-      "block_order": ["point_1", "point_2", "point_3", "point_4"],
+      "block_order": [
+        "point_1",
+        "point_2",
+        "point_3",
+        "point_4"
+      ],
       "settings": {
         "eyebrow": "",
         "heading": "Book with confidence",
@@ -517,13 +522,24 @@
                   "blocks": {}
                 }
               },
-              "block_order": ["price", "button"]
+              "block_order": [
+                "price",
+                "button"
+              ]
             }
           },
-          "block_order": ["gallery", "badge", "title", "meta", "footer"]
+          "block_order": [
+            "gallery",
+            "badge",
+            "title",
+            "meta",
+            "footer"
+          ]
         }
       },
-      "block_order": ["header"],
+      "block_order": [
+        "header"
+      ],
       "name": "t:names.product_recommendations",
       "settings": {
         "product": "{{ closest.product }}",
@@ -545,5 +561,9 @@
       }
     }
   },
-  "order": ["main", "trust", "recommendations"]
+  "order": [
+    "main",
+    "trust",
+    "recommendations"
+  ]
 }

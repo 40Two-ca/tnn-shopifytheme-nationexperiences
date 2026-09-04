@@ -74,7 +74,11 @@
           "blocks": {}
         }
       },
-      "block_order": ["heading", "subheading", "button"],
+      "block_order": [
+        "heading",
+        "subheading",
+        "button"
+      ],
       "name": "t:names.hero",
       "settings": {
         "media_type_1": "image",
@@ -103,7 +107,7 @@
         "blurred_reflection": false,
         "reflection_opacity": 75,
         "padding-block-start": 96,
-        "padding-block-end": 132
+        "padding-block-end": 100
       }
     },
     "trip_finder": {
@@ -114,7 +118,7 @@
         "show_when": true,
         "when_label": "When do you want to go?",
         "button_label": "Search",
-        "overlap": 44,
+        "overlap": 48,
         "section_width": "page-width",
         "padding-block-start": 0,
         "padding-block-end": 0
@@ -146,7 +150,11 @@
           }
         }
       },
-      "block_order": ["tile_1", "tile_2", "tile_3"],
+      "block_order": [
+        "tile_1",
+        "tile_2",
+        "tile_3"
+      ],
       "settings": {
         "eyebrow": "Why the Nation?",
         "heading": "Fan travel, done properly",
@@ -269,7 +277,11 @@
               "blocks": {}
             }
           },
-          "block_order": ["eyebrow", "title", "subtitle"]
+          "block_order": [
+            "eyebrow",
+            "title",
+            "subtitle"
+          ]
         },
         "static-product-card": {
           "type": "_product-card",
@@ -412,10 +424,20 @@
                   "blocks": {}
                 }
               },
-              "block_order": ["price", "button"]
+              "block_order": [
+                "price",
+                "button"
+              ]
             }
           },
-          "block_order": ["gallery", "badge", "title", "meta", "excerpt", "footer"]
+          "block_order": [
+            "gallery",
+            "badge",
+            "title",
+            "meta",
+            "excerpt",
+            "footer"
+          ]
         },
         "view_all": {
           "type": "button",
@@ -436,7 +458,9 @@
           "blocks": {}
         }
       },
-      "block_order": ["view_all"],
+      "block_order": [
+        "view_all"
+      ],
       "name": "t:names.product_list",
       "settings": {
         "collection": "all",
@@ -489,7 +513,11 @@
           }
         }
       },
-      "block_order": ["quote_1", "quote_2", "quote_3"],
+      "block_order": [
+        "quote_1",
+        "quote_2",
+        "quote_3"
+      ],
       "settings": {
         "eyebrow": "Rated 5 stars by the Nation",
         "heading": "Trusted by fans across the country",
@@ -549,7 +577,12 @@
           }
         }
       },
-      "block_order": ["point_1", "point_2", "point_3", "point_4"],
+      "block_order": [
+        "point_1",
+        "point_2",
+        "point_3",
+        "point_4"
+      ],
       "settings": {
         "eyebrow": "",
         "heading": "Book with confidence",
@@ -564,12 +597,37 @@
     "partners": {
       "type": "partner-logos",
       "blocks": {
-        "logo_1": { "type": "logo", "settings": { "name": "The Nation Network" } },
-        "logo_2": { "type": "logo", "settings": { "name": "Jetset Vacations" } },
-        "logo_3": { "type": "logo", "settings": { "name": "Expedia Cruises" } },
-        "logo_4": { "type": "logo", "settings": { "name": "Fairmont Jasper Park Lodge" } }
+        "logo_1": {
+          "type": "logo",
+          "settings": {
+            "name": "The Nation Network"
+          }
+        },
+        "logo_2": {
+          "type": "logo",
+          "settings": {
+            "name": "Jetset Vacations"
+          }
+        },
+        "logo_3": {
+          "type": "logo",
+          "settings": {
+            "name": "Expedia Cruises"
+          }
+        },
+        "logo_4": {
+          "type": "logo",
+          "settings": {
+            "name": "Fairmont Jasper Park Lodge"
+          }
+        }
       },
-      "block_order": ["logo_1", "logo_2", "logo_3", "logo_4"],
+      "block_order": [
+        "logo_1",
+        "logo_2",
+        "logo_3",
+        "logo_4"
+      ],
       "settings": {
         "heading": "Trusted partners",
         "logo_height": 40,
@@ -580,5 +638,14 @@
       }
     }
   },
-  "order": ["hero", "trip_finder", "feature_tiles", "upcoming", "testimonials", "destinations", "trust", "partners"]
+  "order": [
+    "hero",
+    "trip_finder",
+    "feature_tiles",
+    "upcoming",
+    "testimonials",
+    "destinations",
+    "trust",
+    "partners"
+  ]
 }
