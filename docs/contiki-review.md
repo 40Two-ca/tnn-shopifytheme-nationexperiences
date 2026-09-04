@@ -53,3 +53,13 @@ Create the metafield definitions in Shopify admin → Settings → Custom data �
 - No "Add to compare", "Quick view", live chat or account tiers: those are Contiki platform features, not theme work.
 - The trip finder searches Shopify (destination → collection, keyword/month → product search) rather than a booking engine.
 - Accent colour ships as a volt green next to Contiki's lime; change palette colour 1 to recolour the whole site.
+
+## Before pushing
+
+The store syncs `main` through Shopify's GitHub integration, which rejects JSON template values outside a setting's range and reports only the first error per file. Run the validator first:
+
+```bash
+python scripts/validate_templates.py
+```
+
+Then `shopify theme check`. The demo store is `tnn-nationexperiences.myshopify.com`; the synced theme sits under Online Store → Themes → Draft themes (preview it from its … menu).
