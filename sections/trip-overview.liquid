@@ -1,6 +1,11 @@
 {%- comment -%}
   Trip overview: the long-form description beside the inclusions lists.
 
+  Shopify's GitHub sync only sends the files a push changed, so this file has to
+  reach the theme in a commit of its own before templates/product.json can name
+  it. A template that names a section the theme does not have fails validation
+  and the whole template is dropped.
+
   This content used to sit in the product details column next to the price. A
   trip banner is a wide, short image, so a tall booking column left a large
   empty space under it. Moving the reading material into its own full-width
