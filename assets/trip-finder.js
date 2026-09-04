@@ -1,9 +1,9 @@
 /**
  * Trip finder search bar.
  *
- * Turns the Contiki-style "Where / What / When" bar into Shopify navigation:
- * - a destination alone goes straight to that collection
- * - a keyword and/or month (plus the destination name, if chosen) becomes a product search
+ * Three text boxes (where / what / when) become Shopify navigation:
+ * - a destination that matches a collection name (with nothing else typed) goes to that collection
+ * - otherwise every non-empty box is joined into one product search
  * - an empty form goes to the all-products collection
  */
 class TripFinder extends HTMLElement {
@@ -26,26 +26,38 @@ class TripFinder extends HTMLElement {
     });
   };
 
+  /**
+   * Find the collection URL whose title matches the typed destination.
+   * @param {HTMLInputElement | null} input
+   */
+  matchingCollectionUrl(input) {
+    if (!input?.list) return '';
+    const typed = input.value.trim().toLowerCase();
+    if (!typed) return '';
+    const option = Array.from(input.list.options).find((item) => item.value.trim().toLowerCase() === typed);
+    return option?.dataset.url ?? '';
+  }
+
   /** @param {SubmitEvent} event */
   handleSubmit = (event) => {
     const form = /** @type {HTMLFormElement} */ (event.currentTarget);
-    const destination = /** @type {HTMLSelectElement | null} */ (form.querySelector('[name="destination"]'));
+    const destination = /** @type {HTMLInputElement | null} */ (form.querySelector('[name="destination"]'));
     const keywordInput = /** @type {HTMLInputElement | null} */ (form.querySelector('[name="q"]'));
-    const when = /** @type {HTMLSelectElement | null} */ (form.querySelector('[name="when"]'));
+    const when = /** @type {HTMLInputElement | null} */ (form.querySelector('[name="when"]'));
 
+    const where = destination?.value.trim() ?? '';
     const keyword = keywordInput?.value.trim() ?? '';
-    const month = when?.value ?? '';
-    const destinationUrl = destination?.value ?? '';
-    const destinationLabel = destination?.selectedOptions[0]?.dataset.label ?? '';
+    const month = when?.value.trim() ?? '';
+    const collectionUrl = this.matchingCollectionUrl(destination);
 
-    if (!keyword && !month) {
+    if (!keyword && !month && (collectionUrl || !where)) {
       event.preventDefault();
-      window.location.assign(destinationUrl || form.dataset.fallbackUrl || '/collections/all');
+      window.location.assign(collectionUrl || form.dataset.fallbackUrl || '/collections/all');
       return;
     }
 
     if (keywordInput) {
-      keywordInput.value = [keyword, month, destinationLabel].filter(Boolean).join(' ');
+      keywordInput.value = [keyword, month, where].filter(Boolean).join(' ');
     }
 
     for (const control of [destination, when]) {

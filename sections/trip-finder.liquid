@@ -44,19 +44,21 @@
           {%- render 'icon', icon: 'map_pin' -%}
         </svg>
         <span class="visually-hidden">{{ s.where_label }}</span>
-        <select name="destination" class="trip-finder__control trip-finder__select">
-          <option value="">{{ s.where_label }}</option>
+        <input
+          class="trip-finder__control"
+          type="text"
+          name="destination"
+          list="trip-finder-destinations-{{ section.id }}"
+          placeholder="{{ s.where_label | escape }}"
+          autocomplete="off"
+        >
+        <datalist id="trip-finder-destinations-{{ section.id }}">
           {%- for collection in destinations limit: 40 -%}
             {%- unless collection.handle == 'all' or collection.handle == 'frontpage' -%}
-              <option value="{{ collection.url }}" data-label="{{ collection.title | escape }}">
-                {{- collection.title -}}
-              </option>
+              <option value="{{ collection.title | escape }}" data-url="{{ collection.url }}"></option>
             {%- endunless -%}
           {%- endfor -%}
-        </select>
-        <svg class="trip-finder__caret" viewBox="0 0 10 6" fill="none" aria-hidden="true" focusable="false">
-          <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+        </datalist>
       </label>
 
       <label class="trip-finder__field">
@@ -79,18 +81,22 @@
             <path fill-rule="evenodd" d="M6 1.5a.5.5 0 0 1 .5.5v1h7V2a.5.5 0 0 1 1 0v1H16a1.5 1.5 0 0 1 1.5 1.5v12A1.5 1.5 0 0 1 16 18H4a1.5 1.5 0 0 1-1.5-1.5v-12A1.5 1.5 0 0 1 4 3h1.5V2a.5.5 0 0 1 .5-.5ZM3.5 7.5v9a.5.5 0 0 0 .5.5h12a.5.5 0 0 0 .5-.5v-9h-13Zm13-1v-2a.5.5 0 0 0-.5-.5H4a.5.5 0 0 0-.5.5v2h13Z"/>
           </svg>
           <span class="visually-hidden">{{ s.when_label }}</span>
-          <select name="when" class="trip-finder__control trip-finder__select">
-            <option value="">{{ s.when_label }}</option>
+          <input
+            class="trip-finder__control"
+            type="text"
+            name="when"
+            list="trip-finder-months-{{ section.id }}"
+            placeholder="{{ s.when_label | escape }}"
+            autocomplete="off"
+          >
+          <datalist id="trip-finder-months-{{ section.id }}">
             {%- for month in months -%}
               {%- assign month_name = month | strip -%}
               {%- if month_name != blank -%}
-                <option value="{{ month_name | escape }}">{{ month_name }}</option>
+                <option value="{{ month_name | escape }}"></option>
               {%- endif -%}
             {%- endfor -%}
-          </select>
-          <svg class="trip-finder__caret" viewBox="0 0 10 6" fill="none" aria-hidden="true" focusable="false">
-            <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
+          </datalist>
         </label>
       {%- endif -%}
 
@@ -181,26 +187,11 @@
   }
 
   .trip-finder__control::-webkit-search-decoration,
-  .trip-finder__control::-webkit-search-cancel-button {
+  .trip-finder__control::-webkit-search-cancel-button,
+  .trip-finder__control::-webkit-calendar-picker-indicator,
+  .trip-finder__control::-webkit-list-button {
     -webkit-appearance: none;
-  }
-
-  .trip-finder__select {
-    padding-inline-end: 1.5rem;
-    cursor: pointer;
-  }
-
-  .trip-finder__select:has(option:checked[value='']) {
-    color: rgb(var(--color-foreground-rgb) / 0.62);
-  }
-
-  .trip-finder__caret {
-    position: absolute;
-    right: 1rem;
-    width: 10px;
-    height: 6px;
-    pointer-events: none;
-    opacity: 0.6;
+    display: none;
   }
 
   .trip-finder__submit {
@@ -242,13 +233,13 @@
   "settings": [
     {
       "type": "paragraph",
-      "content": "A destination goes to its collection. A keyword or month runs a product search. Place it directly under the hero and use the overlap to float it over the photo."
+      "content": "Three text boxes. A destination that matches a collection name goes to that collection; anything else runs a product search. Place it directly under the hero and use the overlap to float it over the photo."
     },
     {
       "type": "collection_list",
       "id": "collection_list",
-      "label": "Destinations",
-      "info": "Leave empty to list every collection.",
+      "label": "Destination suggestions",
+      "info": "Offered as you type. Leave empty to suggest every collection.",
       "limit": 20
     },
     {
@@ -266,7 +257,7 @@
     {
       "type": "checkbox",
       "id": "show_when",
-      "label": "Show the month picker",
+      "label": "Show the month box",
       "default": true
     },
     {
@@ -278,8 +269,8 @@
     {
       "type": "textarea",
       "id": "months",
-      "label": "Month options",
-      "info": "Comma separated. Searched as keywords.",
+      "label": "Month suggestions",
+      "info": "Comma separated. Offered as you type and searched as keywords.",
       "default": "January, February, March, April, May, June, July, August, September, October, November, December"
     },
     {
