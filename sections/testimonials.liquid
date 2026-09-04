@@ -20,7 +20,7 @@
     {%- if s.eyebrow != blank -%}
       <p class="brand-eyebrow testimonials__eyebrow">
         <svg class="testimonials__star" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" focusable="false">
-          {%- render 'icon', icon: 'star' -%}
+          <path d="M10 1.6l2.47 5.3 5.8.7-4.28 3.98 1.13 5.74L10 14.46l-5.12 2.86 1.13-5.74L1.73 7.6l5.8-.7L10 1.6z"/>
         </svg>
         {{ s.eyebrow }}
       </p>
@@ -46,7 +46,7 @@
               aria-hidden="true"
               focusable="false"
             >
-              {%- render 'icon', icon: 'star' -%}
+              <path d="M10 1.6l2.47 5.3 5.8.7-4.28 3.98 1.13 5.74L10 14.46l-5.12 2.86 1.13-5.74L1.73 7.6l5.8-.7L10 1.6z"/>
             </svg>
           {%- endfor -%}
         </div>
