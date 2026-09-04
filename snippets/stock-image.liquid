@@ -12,35 +12,57 @@
 {%- liquid
   assign file = ''
   assign alt = ''
+  assign width = 0
+  assign height = 0
   case key
     when 'crowd'
+      assign width = 2000
+      assign height = 1333
       assign file = 'stock-hero-crowd.jpg'
       assign alt = 'Fans cheering in a packed stadium'
     when 'arena'
+      assign width = 1600
+      assign height = 1200
       assign file = 'stock-arena.jpg'
       assign alt = 'Hockey game under way in a full arena'
     when 'airport'
+      assign width = 1600
+      assign height = 1067
       assign file = 'stock-airport.jpg'
       assign alt = 'Travellers walking through a sunlit airport terminal'
     when 'fans'
+      assign width = 1600
+      assign height = 1200
       assign file = 'stock-fans.jpg'
       assign alt = 'Friends celebrating in a crowd at night'
     when 'toronto'
+      assign width = 1200
+      assign height = 1500
       assign file = 'stock-toronto.jpg'
       assign alt = 'Toronto skyline and CN Tower at night'
     when 'edmonton'
+      assign width = 1200
+      assign height = 1500
       assign file = 'stock-edmonton.jpg'
       assign alt = 'Edmonton skyline at night'
     when 'calgary'
+      assign width = 1200
+      assign height = 1500
       assign file = 'stock-calgary.jpg'
       assign alt = 'Calgary skyline and the Saddledome'
     when 'jasper'
+      assign width = 1200
+      assign height = 1500
       assign file = 'stock-jasper.jpg'
       assign alt = 'Snow-covered mountains and a lake in the Rockies'
     when 'stadium_seats'
+      assign width = 1400
+      assign height = 1866
       assign file = 'stock-stadium-seats.jpg'
       assign alt = 'Fans in the stands at a hockey game'
     when 'road_trip'
+      assign width = 1600
+      assign height = 1200
       assign file = 'stock-road-trip.jpg'
       assign alt = 'Highway through a snowy mountain forest'
   endcase
@@ -52,6 +74,8 @@
     src="{{ file | asset_url }}"
     alt="{{ alt }}"
     class="{{ class }}"
+    width="{{ width }}"
+    height="{{ height }}"
     loading="{{ loading }}"
     decoding="async"
     {% if sizes != blank %}sizes="{{ sizes }}"{% endif %}
