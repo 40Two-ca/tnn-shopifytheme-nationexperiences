@@ -290,3 +290,22 @@ footer .footer-utilities a {
 .product-details .variant-option legend {
   font-size: 0.8125rem;
 }
+
+/* ---------------------------------------------------------------------------
+   The lead product image keeps its own shape
+   Trip artwork is not one shape. The Toronto banner is about 1.8:1, the Jasper
+   poster is square. A single landscape frame is right for the supporting photos,
+   because a tidy grid needs them to match, but it cut half the Jasper poster off.
+
+   So the first image sizes to its own ratio, which the gallery already exposes
+   as --ratio on each image wrapper, and every image after it keeps the frame set
+   in the theme editor.
+   --------------------------------------------------------------------------- */
+
+.product-information__media .media-gallery__grid > li:first-child {
+  aspect-ratio: auto;
+}
+
+.product-information__media .media-gallery__grid > li:first-child .product-media {
+  aspect-ratio: var(--ratio, var(--gallery-aspect-ratio, 2/1));
+}

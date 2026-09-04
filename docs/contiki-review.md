@@ -124,6 +124,18 @@ how Contiki orders a tour page:
 If a trip ever ships with tall portrait photography instead of a banner, blocks can move
 back into the booking column without any code change.
 
+### Gallery shapes
+
+Trip artwork is not one shape. The Toronto banner is roughly 1.8:1, the Jasper
+poster is square. The supporting photos have to match each other or the grid
+looks ragged, so the gallery frame is set to landscape in the theme editor, but
+that frame cut half the Jasper poster off.
+
+The lead image therefore sizes to its own ratio and everything after it uses the
+frame. That is a CSS rule in `assets/brand.css` keyed to the `--ratio` variable
+the gallery already puts on each image wrapper, so it needs no per-product
+setting and no second product template.
+
 ### Variants and price
 
 The Toronto trip carries three options, matching the live site: Package Type
