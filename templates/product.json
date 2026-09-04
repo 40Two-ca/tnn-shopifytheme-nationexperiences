@@ -253,6 +253,17 @@
               "settings": {
                 "size": "medium"
               }
+            },
+            "pay_later": {
+              "type": "pay-later",
+              "settings": {
+                "provider": "Afterpay",
+                "decal": "Buy now, pay later",
+                "instalments": 4,
+                "note": "Demo only. Not connected to checkout.",
+                "button_background": "#b2fce4",
+                "button_text": "#0a0a0a"
+              }
             }
           },
           "block_order": [
@@ -265,7 +276,8 @@
             "price",
             "note",
             "variant_picker",
-            "buy_buttons"
+            "buy_buttons",
+            "pay_later"
           ]
         }
       },
