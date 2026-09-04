@@ -1,32 +1,24 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */{
+{
   "sections": {
-    "hero_jVaWmY": {
+    "hero": {
       "type": "hero",
       "blocks": {
-        "text_YLPk4p": {
+        "heading": {
           "type": "text",
           "name": "t:names.heading",
           "settings": {
-            "text": "<p>Browse our latest products</p>",
+            "text": "<h1>The Nation travels together</h1>",
             "text_color": "{{ settings.color_palette.background }}",
-            "width": "fit-content",
+            "width": "100%",
             "max_width": "normal",
-            "alignment": "left",
-            "type_preset": "h2",
-            "font": "var(--font-body--family)",
+            "alignment": "center",
+            "type_preset": "h1",
+            "font": "var(--font-heading--family)",
             "font_size": "1rem",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
+            "line_height": "tight",
+            "letter_spacing": "tight",
+            "case": "uppercase",
+            "wrap": "balance",
             "background": false,
             "background_color": "#00000026",
             "corner_radius": 0,
@@ -37,17 +29,43 @@
           },
           "blocks": {}
         },
-        "button_H9gpTf": {
+        "subheading": {
+          "type": "text",
+          "name": "t:names.text",
+          "settings": {
+            "text": "<p>Game days, road trips and once-in-a-lifetime events, booked in one place.</p>",
+            "text_color": "{{ settings.color_palette.background }}",
+            "width": "100%",
+            "max_width": "narrow",
+            "alignment": "center",
+            "type_preset": "custom",
+            "font": "var(--font-body--family)",
+            "font_size": "1.25rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 4,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "button": {
           "type": "button",
           "name": "t:names.button",
           "settings": {
-            "label": "Shop all",
+            "label": "View experiences",
             "link": "shopify://collections/all",
             "open_in_new_tab": false,
-            "style_class": "button-custom",
-            "custom_button_background": "rgba(0,0,0,0)",
-            "custom_button_text": "{{ settings.color_palette.background }}",
-            "custom_button_border": "{{ settings.color_palette.background }}",
+            "style_class": "button",
+            "custom_button_background": "{{ settings.color_palette.color1 }}",
+            "custom_button_text": "{{ settings.color_palette.foreground }}",
+            "custom_button_border": "{{ settings.color_palette.color1 }}",
             "width": "fit-content",
             "custom_width": 100,
             "width_mobile": "fit-content",
@@ -56,10 +74,7 @@
           "blocks": {}
         }
       },
-      "block_order": [
-        "text_YLPk4p",
-        "button_H9gpTf"
-      ],
+      "block_order": ["heading", "subheading", "button"],
       "name": "t:names.hero",
       "settings": {
         "media_type_1": "image",
@@ -71,27 +86,79 @@
         "open_in_new_tab": false,
         "content_direction": "column",
         "vertical_on_mobile": true,
-        "horizontal_alignment": "space-between",
-        "vertical_alignment": "flex-end",
-        "align_baseline": true,
+        "horizontal_alignment": "center",
+        "vertical_alignment": "center",
+        "align_baseline": false,
         "horizontal_alignment_flex_direction_column": "center",
-        "vertical_alignment_flex_direction_column": "flex-end",
-        "gap": 24,
-        "section_width": "page-width",
-        "section_height": "medium",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 16,
+        "section_width": "full-width",
+        "section_height": "large",
         "section_height_custom": 50,
         "background_color": "rgba(0,0,0,0)",
         "toggle_overlay": true,
-        "overlay_color": "#12121266",
+        "overlay_color": "#0a0a0a73",
         "overlay_style": "solid",
-        "gradient_direction": "to bottom",
+        "gradient_direction": "to top",
         "blurred_reflection": false,
         "reflection_opacity": 75,
-        "padding-block-start": 100,
-        "padding-block-end": 72
+        "padding-block-start": 96,
+        "padding-block-end": 132
       }
     },
-    "product_list_fa6P9H": {
+    "trip_finder": {
+      "type": "trip-finder",
+      "settings": {
+        "where_label": "Where do you want to go?",
+        "what_label": "What do you want to see?",
+        "show_when": true,
+        "when_label": "When do you want to go?",
+        "button_label": "Search",
+        "overlap": 44,
+        "section_width": "page-width",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "feature_tiles": {
+      "type": "feature-tiles",
+      "blocks": {
+        "tile_1": {
+          "type": "tile",
+          "settings": {
+            "heading": "Game days, road trips and once-in-a-lifetime events",
+            "text": "From Rogers Place to Toronto and Jasper, the Nation goes where the story is.",
+            "link": "shopify://collections/all"
+          }
+        },
+        "tile_2": {
+          "type": "tile",
+          "settings": {
+            "heading": "Tickets, transport and stays in one booking",
+            "text": "One checkout. No juggling flights, hotels and seats."
+          }
+        },
+        "tile_3": {
+          "type": "tile",
+          "settings": {
+            "heading": "Travel with a Nation host and fans who get it",
+            "text": "Every trip is run by the Nation Network crew and packed with fans."
+          }
+        }
+      },
+      "block_order": ["tile_1", "tile_2", "tile_3"],
+      "settings": {
+        "eyebrow": "Why the Nation?",
+        "heading": "Fan travel, done properly",
+        "subheading": "Tickets, transport, stays and the people who make it a trip.",
+        "columns": 3,
+        "ratio": "4 / 3",
+        "section_width": "page-width",
+        "padding-block-start": 72,
+        "padding-block-end": 40
+      }
+    },
+    "upcoming": {
       "type": "product-list",
       "blocks": {
         "static-header": {
@@ -99,14 +166,14 @@
           "name": "t:names.header",
           "static": true,
           "settings": {
-            "content_direction": "row",
-            "vertical_on_mobile": false,
-            "horizontal_alignment": "space-between",
-            "vertical_alignment": "flex-end",
-            "align_baseline": true,
-            "horizontal_alignment_flex_direction_column": "flex-start",
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "center",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "center",
             "vertical_alignment_flex_direction_column": "center",
-            "gap": 12,
+            "gap": 8,
             "width": "fill",
             "custom_width": 100,
             "width_mobile": "fill",
@@ -121,21 +188,72 @@
             "border_opacity": 100,
             "border_radius": 0,
             "padding-block-start": 0,
-            "padding-block-end": 0,
+            "padding-block-end": 8,
             "padding-inline-start": 0,
             "padding-inline-end": 0
           },
           "blocks": {
-            "product_list_text_YFtzcL": {
+            "eyebrow": {
+              "type": "_product-list-text",
+              "name": "t:names.text",
+              "settings": {
+                "text": "<p>Upcoming</p>",
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "center",
+                "type_preset": "h6",
+                "font": "var(--font-subheading--family)",
+                "font_size": "0.75rem",
+                "line_height": "normal",
+                "letter_spacing": "loose",
+                "case": "uppercase",
+                "wrap": "pretty",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "title": {
               "type": "_product-list-text",
               "name": "t:names.collection_title",
               "settings": {
-                "text": "<h3>{{ closest.collection.title }}</h3>",
-                "width": "fit-content",
+                "text": "<h2>Experiences the Nation is booking</h2>",
+                "width": "100%",
                 "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "h4",
+                "alignment": "center",
+                "type_preset": "h2",
+                "font": "var(--font-heading--family)",
+                "font_size": "1rem",
+                "line_height": "tight",
+                "letter_spacing": "tight",
+                "case": "none",
+                "wrap": "balance",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "subtitle": {
+              "type": "_product-list-text",
+              "name": "t:names.text",
+              "settings": {
+                "text": "<p>Game days, tournaments and trips with fellow fans.</p>",
+                "width": "100%",
+                "max_width": "narrow",
+                "alignment": "center",
+                "type_preset": "custom",
                 "font": "var(--font-body--family)",
+                "font_size": "1.125rem",
                 "line_height": "normal",
                 "letter_spacing": "normal",
                 "case": "none",
@@ -149,48 +267,32 @@
                 "padding-inline-end": 0
               },
               "blocks": {}
-            },
-            "product_list_button_MWeP9V": {
-              "type": "_product-list-button",
-              "name": "t:names.product_list_button",
-              "settings": {
-                "label": "View all",
-                "open_in_new_tab": false,
-                "style_class": "link",
-                "width": "fit-content",
-                "custom_width": 100,
-                "width_mobile": "fit-content",
-                "custom_width_mobile": 100
-              },
-              "blocks": {}
             }
           },
-          "block_order": [
-            "product_list_text_YFtzcL",
-            "product_list_button_MWeP9V"
-          ]
+          "block_order": ["eyebrow", "title", "subtitle"]
         },
         "static-product-card": {
           "type": "_product-card",
           "name": "t:names.product_card",
           "static": true,
           "settings": {
-            "product_card_gap": 4,
+            "product_card_gap": 10,
+            "background_color": "{{ settings.color_palette.background }}",
             "border": "none",
             "border_width": 1,
             "border_opacity": 100,
-            "border_radius": 0,
+            "border_radius": 8,
             "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
+            "padding-block-end": 16,
+            "padding-inline-start": 16,
+            "padding-inline-end": 16
           },
           "blocks": {
-            "product_card_gallery_677WP3": {
+            "gallery": {
               "type": "_product-card-gallery",
               "name": "t:names.product_card_media",
               "settings": {
-                "image_ratio": "adapt",
+                "image_ratio": "landscape",
                 "border": "none",
                 "border_width": 1,
                 "border_opacity": 100,
@@ -202,84 +304,281 @@
               },
               "blocks": {}
             },
-            "product_title_YXxMTj": {
+            "badge": {
+              "type": "trip-badge",
+              "settings": {
+                "label_override": "",
+                "style": "accent",
+                "placement": "on_image"
+              },
+              "blocks": {}
+            },
+            "title": {
               "type": "product-title",
               "name": "t:names.product_title",
               "settings": {
                 "width": "100%",
                 "max_width": "normal",
                 "alignment": "left",
-                "type_preset": "rte",
-                "font": "var(--font-body--family)",
+                "type_preset": "h4",
+                "font": "var(--font-heading--family)",
                 "font_size": "1rem",
-                "line_height": "normal",
+                "line_height": "tight",
                 "letter_spacing": "normal",
                 "case": "none",
                 "wrap": "pretty",
                 "background": false,
                 "background_color": "#00000026",
                 "corner_radius": 0,
-                "padding-block-start": 4,
+                "padding-block-start": 6,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
                 "padding-inline-end": 0
               },
               "blocks": {}
             },
-            "price_JQzVV4": {
-              "type": "price",
-              "name": "t:names.product_price",
+            "meta": {
+              "type": "trip-meta",
               "settings": {
-                "show_sale_price_first": true,
-                "show_installments": false,
-                "show_tax_info": false,
-                "type_preset": "h6",
-                "width": "100%",
-                "alignment": "left",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "padding-block-start": 0,
+                "show_duration": true,
+                "show_location": true,
+                "show_dates": true,
+                "show_group": false,
+                "size": "small"
+              },
+              "blocks": {}
+            },
+            "excerpt": {
+              "type": "product-excerpt",
+              "settings": {
+                "max_words": 22,
+                "clamp": true,
+                "lines": 2
+              },
+              "blocks": {}
+            },
+            "footer": {
+              "type": "_product-card-group",
+              "name": "t:names.group",
+              "settings": {
+                "content_direction": "row",
+                "vertical_on_mobile": false,
+                "horizontal_alignment": "space-between",
+                "vertical_alignment": "flex-end",
+                "align_baseline": false,
+                "horizontal_alignment_flex_direction_column": "flex-start",
+                "vertical_alignment_flex_direction_column": "center",
+                "gap": 12,
+                "width": "fill",
+                "custom_width": 100,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "height": "fit",
+                "custom_height": 100,
+                "background_media": "none",
+                "video_position": "cover",
+                "background_image_position": "cover",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "padding-block-start": 8,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
                 "padding-inline-end": 0
               },
-              "blocks": {}
+              "blocks": {
+                "price": {
+                  "type": "trip-price",
+                  "settings": {
+                    "prefix": "From",
+                    "suffix": "",
+                    "show_compare": true,
+                    "compare_label": "Was",
+                    "zero_price_text": "See details",
+                    "size": "medium",
+                    "alignment": "left"
+                  },
+                  "blocks": {}
+                },
+                "button": {
+                  "type": "product-link-button",
+                  "settings": {
+                    "label": "View trip",
+                    "sold_out_label": "Sold out",
+                    "style_class": "button",
+                    "full_width": false
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": ["price", "button"]
             }
           },
-          "block_order": [
-            "product_card_gallery_677WP3",
-            "product_title_YXxMTj",
-            "price_JQzVV4"
-          ]
+          "block_order": ["gallery", "badge", "title", "meta", "excerpt", "footer"]
+        },
+        "view_all": {
+          "type": "button",
+          "name": "t:names.button",
+          "settings": {
+            "label": "View all experiences",
+            "link": "shopify://collections/all",
+            "open_in_new_tab": false,
+            "style_class": "button-secondary",
+            "custom_button_background": "{{ settings.color_palette.foreground }}",
+            "custom_button_text": "{{ settings.color_palette.background }}",
+            "custom_button_border": "{{ settings.color_palette.background }}",
+            "width": "fit-content",
+            "custom_width": 100,
+            "width_mobile": "fit-content",
+            "custom_width_mobile": 100
+          },
+          "blocks": {}
         }
       },
+      "block_order": ["view_all"],
       "name": "t:names.product_list",
       "settings": {
         "collection": "all",
-        "layout_type": "grid",
-        "carousel_on_mobile": false,
+        "layout_type": "carousel",
+        "carousel_on_mobile": true,
         "max_products": 8,
-        "columns": 4,
-        "mobile_columns": "2",
+        "columns": 3,
+        "mobile_columns": "1",
         "mobile_card_size": "60cqw",
-        "columns_gap": 8,
+        "columns_gap": 24,
         "rows_gap": 24,
-        "icons_style": "arrow",
-        "icons_shape": "none",
+        "icons_style": "chevron",
+        "icons_shape": "circle",
         "section_width": "page-width",
-        "horizontal_alignment": "flex-start",
-        "gap": 28,
+        "horizontal_alignment": "center",
+        "gap": 32,
         "background_color": "{{ settings.color_palette.background }}",
-        "padding-block-start": 48,
-        "padding-block-end": 48
+        "padding-block-start": 40,
+        "padding-block-end": 72
+      }
+    },
+    "testimonials": {
+      "type": "testimonials",
+      "blocks": {
+        "quote_1": {
+          "type": "quote",
+          "settings": {
+            "rating": 5,
+            "quote": "Best weekend of the year. Everything was sorted, we just showed up and cheered.",
+            "author": "Chris",
+            "context": "Nation Vacation: Edmonton to Toronto"
+          }
+        },
+        "quote_2": {
+          "type": "quote",
+          "settings": {
+            "rating": 5,
+            "quote": "Pond hockey at Jasper with the whole crew. Unreal setting, unreal people.",
+            "author": "Amy",
+            "context": "Jasper Pond Hockey Tournament"
+          }
+        },
+        "quote_3": {
+          "type": "quote",
+          "settings": {
+            "rating": 5,
+            "quote": "Great value and zero stress. Already looking at the next one.",
+            "author": "Steven",
+            "context": "Game day experience"
+          }
+        }
+      },
+      "block_order": ["quote_1", "quote_2", "quote_3"],
+      "settings": {
+        "eyebrow": "Rated 5 stars by the Nation",
+        "heading": "Trusted by fans across the country",
+        "subheading": "",
+        "button_label": "Read all reviews",
+        "section_width": "page-width",
+        "background_color": "{{ settings.color_palette.color3 }}",
+        "padding-block-start": 72,
+        "padding-block-end": 72
+      }
+    },
+    "destinations": {
+      "type": "destination-tiles",
+      "settings": {
+        "eyebrow": "Destinations",
+        "heading": "Where the Nation goes",
+        "subheading": "Pick a city, a rink or a road trip.",
+        "columns": 4,
+        "rows": 1,
+        "ratio": "4 / 5",
+        "show_count": true,
+        "button_label": "See all experiences",
+        "section_width": "page-width",
+        "padding-block-start": 72,
+        "padding-block-end": 40
+      }
+    },
+    "trust": {
+      "type": "trust-points",
+      "blocks": {
+        "point_1": {
+          "type": "point",
+          "settings": {
+            "icon": "lock",
+            "text": "Secure checkout, powered by Shopify"
+          }
+        },
+        "point_2": {
+          "type": "point",
+          "settings": {
+            "icon": "check_box",
+            "text": "Tickets, transport and stays in one booking"
+          }
+        },
+        "point_3": {
+          "type": "point",
+          "settings": {
+            "icon": "chat_bubble",
+            "text": "A Nation host on every trip"
+          }
+        },
+        "point_4": {
+          "type": "point",
+          "settings": {
+            "icon": "heart",
+            "text": "Fans travelling with fans"
+          }
+        }
+      },
+      "block_order": ["point_1", "point_2", "point_3", "point_4"],
+      "settings": {
+        "eyebrow": "",
+        "heading": "Book with confidence",
+        "text": "<p>Real people, real answers. Every experience is run by the Nation team, so if plans change you talk to us, not a call centre.</p>",
+        "button_label": "Find out more",
+        "image_position": "right",
+        "section_width": "page-width",
+        "padding-block-start": 40,
+        "padding-block-end": 40
+      }
+    },
+    "partners": {
+      "type": "partner-logos",
+      "blocks": {
+        "logo_1": { "type": "logo", "settings": { "name": "The Nation Network" } },
+        "logo_2": { "type": "logo", "settings": { "name": "Jetset Vacations" } },
+        "logo_3": { "type": "logo", "settings": { "name": "Expedia Cruises" } },
+        "logo_4": { "type": "logo", "settings": { "name": "Fairmont Jasper Park Lodge" } }
+      },
+      "block_order": ["logo_1", "logo_2", "logo_3", "logo_4"],
+      "settings": {
+        "heading": "Trusted partners",
+        "logo_height": 40,
+        "grayscale": true,
+        "section_width": "page-width",
+        "padding-block-start": 40,
+        "padding-block-end": 64
       }
     }
   },
-  "order": [
-    "hero_jVaWmY",
-    "product_list_fa6P9H"
-  ]
+  "order": ["hero", "trip_finder", "feature_tiles", "upcoming", "testimonials", "destinations", "trust", "partners"]
 }
