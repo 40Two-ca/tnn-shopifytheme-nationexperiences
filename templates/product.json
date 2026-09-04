@@ -279,18 +279,33 @@
                 "padding-inline-end": 0
               },
               "blocks": {}
+            },
+            "stats": {
+              "type": "trip-stats",
+              "settings": {
+                "size": "medium"
+              }
+            },
+            "inclusions": {
+              "type": "trip-inclusions",
+              "settings": {
+                "included_heading": "What's included",
+                "excluded_heading": "What's not included"
+              }
             }
           },
           "block_order": [
             "badge",
             "title",
             "meta",
+            "stats",
             "excerpt",
             "divider_top",
             "price",
             "note",
             "variant_picker",
             "buy_buttons",
+            "inclusions",
             "divider_bottom",
             "details"
           ]

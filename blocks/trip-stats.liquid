@@ -1,0 +1,138 @@
+{%- doc -%}
+  Big-number stats row for a trip (Contiki's "11 days / 1 country / 5 cities").
+
+  Reads the product metafield custom.stats: one stat per line, `Value | Label`.
+
+    4 | days
+    1 | city
+    3 | nights
+
+  Falls back to a demo row in the theme editor so the block is visible while designing.
+{%- enddoc -%}
+
+{%- liquid
+  assign product = closest.product
+  assign s = block.settings
+
+  assign raw_stats = ''
+  if product != blank
+    assign raw_stats = product.metafields.custom.stats
+  endif
+  assign stat_lines = raw_stats | strip | newline_to_br | split: '<br />'
+
+  assign has_stats = false
+  if raw_stats != blank
+    assign has_stats = true
+  endif
+-%}
+
+{%- if has_stats -%}
+  <dl class="trip-stats trip-stats--{{ s.size }}" {{ block.shopify_attributes }}>
+    {%- for line in stat_lines -%}
+      {%- liquid
+        assign row = line | strip_html | strip
+        if row == blank
+          continue
+        endif
+        assign parts = row | split: '|'
+        assign value = parts[0] | strip
+        assign label = parts[1] | strip
+        if value == blank
+          continue
+        endif
+      -%}
+      <div class="trip-stats__item">
+        <dt class="trip-stats__value">{{ value }}</dt>
+        {%- if label != blank -%}
+          <dd class="trip-stats__label">{{ label }}</dd>
+        {%- endif -%}
+      </div>
+    {%- endfor -%}
+  </dl>
+{%- elsif request.design_mode -%}
+  <dl class="trip-stats trip-stats--{{ s.size }}" {{ block.shopify_attributes }}>
+    <div class="trip-stats__item">
+      <dt class="trip-stats__value">4</dt>
+      <dd class="trip-stats__label">days</dd>
+    </div>
+    <div class="trip-stats__item">
+      <dt class="trip-stats__value">1</dt>
+      <dd class="trip-stats__label">city</dd>
+    </div>
+    <div class="trip-stats__item">
+      <dt class="trip-stats__value">3</dt>
+      <dd class="trip-stats__label">nights</dd>
+    </div>
+  </dl>
+{%- endif -%}
+
+{% stylesheet %}
+  .trip-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 2.25rem;
+    margin: 0;
+    padding: 0;
+  }
+
+  .trip-stats__item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+  }
+
+  .trip-stats__value {
+    margin: 0;
+    font-family: var(--font-heading--family);
+    font-weight: var(--font-heading--weight);
+    font-size: 1.75rem;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+
+  .trip-stats--large .trip-stats__value {
+    font-size: 2.25rem;
+  }
+
+  .trip-stats--small .trip-stats__value {
+    font-size: 1.375rem;
+  }
+
+  .trip-stats__label {
+    margin: 0;
+    font-family: var(--font-subheading--family);
+    font-weight: 500;
+    font-size: 0.875rem;
+    line-height: 1.3;
+    color: rgb(var(--color-foreground-rgb) / 0.62);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Trip stats",
+  "tag": null,
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Reads the product metafield custom.stats: one stat per line, written as \"Value | Label\", for example \"4 | days\"."
+    },
+    {
+      "type": "select",
+      "id": "size",
+      "label": "Size",
+      "options": [
+        { "value": "small", "label": "Small" },
+        { "value": "medium", "label": "Medium" },
+        { "value": "large", "label": "Large" }
+      ],
+      "default": "medium"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Trip stats"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,214 @@
+{%- doc -%}
+  "What's included" and "What's not included" lists (Contiki's inclusions block).
+
+  Reads two product metafields, one item per line:
+    custom.included      e.g. `plane | Return airfare from Edmonton`
+    custom.not_included  e.g. `Travel insurance`
+
+  The part before the pipe is an optional icon name from the theme's icon set
+  (plane, bed, ticket and so on). With no pipe the line is the item text and a
+  check mark is used. "Not included" items always use a plain dash.
+{%- enddoc -%}
+
+{%- liquid
+  assign product = closest.product
+  assign s = block.settings
+
+  assign raw_included = ''
+  assign raw_excluded = ''
+  if product != blank
+    assign raw_included = product.metafields.custom.included
+    assign raw_excluded = product.metafields.custom.not_included
+  endif
+
+  assign included_lines = raw_included | strip | newline_to_br | split: '<br />'
+  assign excluded_lines = raw_excluded | strip | newline_to_br | split: '<br />'
+
+  assign has_included = false
+  if raw_included != blank
+    assign has_included = true
+  endif
+  assign has_excluded = false
+  if raw_excluded != blank
+    assign has_excluded = true
+  endif
+-%}
+
+{%- if has_included or has_excluded -%}
+  <div class="trip-inclusions" {{ block.shopify_attributes }}>
+    {%- if has_included -%}
+      {%- if s.included_heading != blank -%}
+        <h3 class="h5 trip-inclusions__heading">{{ s.included_heading }}</h3>
+      {%- endif -%}
+      <ul class="trip-inclusions__list list-unstyled">
+        {%- for line in included_lines -%}
+          {%- liquid
+            assign row = line | strip_html | strip
+            if row == blank
+              continue
+            endif
+            assign parts = row | split: '|'
+            if parts.size > 1
+              assign icon_name = parts[0] | strip
+              assign item_text = parts[1] | strip
+            else
+              assign icon_name = 'check_box'
+              assign item_text = parts[0] | strip
+            endif
+            if item_text == blank
+              continue
+            endif
+          -%}
+          <li class="trip-inclusions__item">
+            <span class="trip-inclusions__icon" aria-hidden="true">
+              <svg viewBox="0 0 20 20" fill="currentColor" focusable="false">
+                {%- render 'icon', icon: icon_name -%}
+              </svg>
+            </span>
+            <span>{{ item_text }}</span>
+          </li>
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+
+    {%- if has_excluded -%}
+      {%- capture excluded_content -%}
+        <ul class="trip-inclusions__list trip-inclusions__list--excluded list-unstyled">
+          {%- for line in excluded_lines -%}
+            {%- liquid
+              assign row = line | strip_html | strip
+              if row == blank
+                continue
+              endif
+              assign parts = row | split: '|'
+              if parts.size > 1
+                assign item_text = parts[1] | strip
+              else
+                assign item_text = parts[0] | strip
+              endif
+              if item_text == blank
+                continue
+              endif
+            -%}
+            <li class="trip-inclusions__item trip-inclusions__item--excluded">
+              <span class="trip-inclusions__dash" aria-hidden="true"></span>
+              <span>{{ item_text }}</span>
+            </li>
+          {%- endfor -%}
+        </ul>
+      {%- endcapture -%}
+
+      <div
+        class="accordion accordion--caret accordion--dividers trip-inclusions__excluded"
+        style="
+          --summary-font-family: var(--font-h6--family);
+          --summary-font-style: var(--font-h6--style);
+          --summary-font-weight: 700;
+          --summary-font-size: 0.9375rem;
+          --summary-font-line-height: 1.4;
+          --summary-font-case: none;
+        "
+      >
+        {% render 'trip-details-row', heading: s.excluded_heading, content: excluded_content %}
+      </div>
+    {%- endif -%}
+  </div>
+
+  {% render 'accordion-styles' %}
+{%- endif -%}
+
+{% stylesheet %}
+  .trip-inclusions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .trip-inclusions__heading {
+    margin: 0;
+  }
+
+  .trip-inclusions__list {
+    display: grid;
+    gap: 0.6rem;
+    margin: 0;
+    padding: 0;
+  }
+
+  .trip-inclusions__item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.65rem;
+    max-width: 60ch;
+    font-size: 0.9375rem;
+    line-height: 1.45;
+  }
+
+  .trip-inclusions__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: none;
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-block-start: -0.05rem;
+    border-radius: 50%;
+    background: var(--brand-accent);
+    color: var(--brand-accent-contrast);
+  }
+
+  .trip-inclusions__icon svg {
+    width: 0.9rem;
+    height: 0.9rem;
+  }
+
+  .trip-inclusions__item--excluded {
+    color: rgb(var(--color-foreground-rgb) / 0.7);
+  }
+
+  .trip-inclusions__dash {
+    flex: none;
+    width: 0.75rem;
+    height: 2px;
+    margin-block-start: 0.65rem;
+    background: rgb(var(--color-foreground-rgb) / 0.35);
+  }
+
+  .trip-inclusions__excluded {
+    margin-block-start: 0.25rem;
+  }
+
+  .trip-inclusions__excluded .details__header {
+    padding-block: 0.75rem;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "What's included",
+  "tag": null,
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Reads the product metafields custom.included and custom.not_included: one item per line. Start a line with an icon name and a pipe to change the icon, for example \"plane | Return airfare from Edmonton\"."
+    },
+    {
+      "type": "text",
+      "id": "included_heading",
+      "label": "Included heading",
+      "default": "What's included"
+    },
+    {
+      "type": "text",
+      "id": "excluded_heading",
+      "label": "Not included heading",
+      "default": "What's not included"
+    }
+  ],
+  "presets": [
+    {
+      "name": "What's included"
+    }
+  ]
+}
+{% endschema %}
