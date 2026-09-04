@@ -53,6 +53,10 @@ Create the metafield definitions in Shopify admin → Settings → Custom data �
 5. Partner logos (Jetset Vacations, Expedia Cruises, The Nation Network, Fairmont…) in the partner logo strip.
 6. Metafields listed above on each experience. The `custom.itinerary_days`, `custom.faqs`, `custom.stats`, `custom.included` and `custom.not_included` definitions already exist on the demo store (Settings, Custom data, Products) and are filled for both demo experiences.
 
+7. Alt text on the three stock photos added to the Toronto trip (Toronto skyline, arena, fans). The admin was returning errors on that product's page when they went up, so it was not set.
+8. Real prices for the eight Toronto variants. The demo uses $3,099 flight/single, $2,799 flight/double, $2,299 land/single, $1,999 land/double, and a $500 deposit on every combination. Every variant is stocked at 50.
+9. The Afterpay button on the trip page is a demo placeholder and takes no payment. Install the provider's Shopify app and swap in their app block, or remove the `pay-later` block, before this store goes live.
+
 ## Deliberate differences from Contiki
 
 - No "Add to compare", "Quick view", live chat or account tiers: those are Contiki platform features, not theme work.
@@ -119,3 +123,27 @@ how Contiki orders a tour page:
 
 If a trip ever ships with tall portrait photography instead of a banner, blocks can move
 back into the booking column without any code change.
+
+### Variants and price
+
+The Toronto trip carries three options, matching the live site: Package Type
+(flight or land), Occupancy (single or double) and Payment (pay in full or a
+non-refundable deposit). That last one changes what the headline price should
+be: a deposit is the cheapest variant, so a "From" price reads as $500 for a
+$3,099 trip. The `trip-price` block therefore takes a **Price shown** setting.
+Cards use the lowest price, the trip page uses the selected variant.
+
+Blocks that show variant-specific content have to follow the picker themselves.
+Horizon morphs only the variant picker and leaves everything else to listen for
+the product select event, so `assets/variant-refresh.js` does that swap
+generically: wrap the block's markup in `<variant-refresh
+data-block-id="{{ block.id }}">` and it re-renders. Both `trip-price` and
+`pay-later` use it.
+
+### Buy now, pay later
+
+The `pay-later` block draws a payment pill, a decal and the instalment amount
+worked out from the selected variant. **It is a demo placeholder and takes no
+payment.** The real button is installed by the provider's own Shopify app,
+which renders it from the cart and handles approval and settlement. Replace or
+remove this block before launch.
