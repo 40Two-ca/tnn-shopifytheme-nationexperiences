@@ -254,3 +254,39 @@ footer .footer-utilities a {
 .trip-inclusions__excluded .details__header {
   padding-block: 0.75rem;
 }
+
+/* ---------------------------------------------------------------------------
+   Condensed variant buttons
+   A trip has three option groups with long values, and at Horizon's default
+   size each value is a full-width pill, so the booking column spends six rows
+   on the picker. Narrowing the minimum column width lets two sit side by side,
+   and the smaller type and padding take the rest of the height back.
+
+   --variant-ch is set per fieldset from the longest option value, in a style
+   tag inside the page, so overriding it needs more than one class here.
+   --------------------------------------------------------------------------- */
+
+.product-details .variant-option--buttons {
+  --variant-ch: 9em;
+
+  gap: 0.5rem;
+}
+
+.product-details .variant-option--buttons .variant-option__button-label {
+  min-height: 2.75rem;
+  padding-block: 0.4rem;
+  padding-inline: 0.85rem;
+  font-size: 0.875rem;
+  line-height: 1.25;
+  /* The base rule sets nowrap, which would clip a long value in a half-width pill. */
+  white-space: normal;
+}
+
+.product-details .variant-option--buttons .variant-option__button-label__text {
+  text-wrap: balance;
+}
+
+.product-details .variant-option__label,
+.product-details .variant-option legend {
+  font-size: 0.8125rem;
+}
