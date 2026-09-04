@@ -46,7 +46,8 @@ def check_blocks(where, blocks, order, local_block_defs):
         if b.get('blocks'):
             check_blocks(f"{where}/{bid}", b['blocks'], b.get('block_order', []), {})
 def check_file(path):
-    d = json.load(open(path, encoding='utf-8'))
+    raw = open(path, encoding='utf-8').read()
+    d = json.loads(raw[raw.index('{'):])  # templates may start with a /* comment */ header
     for sid, sec in d['sections'].items():
         stype = sec['type']
         schema = section_schemas.get(stype)
@@ -54,7 +55,8 @@ def check_file(path):
         check_settings(f"{path}/{sid}({stype})", schema.get('settings', []), sec.get('settings', {}))
         local = {b['type']: b for b in schema.get('blocks', []) if b.get('settings') is not None}
         check_blocks(f"{path}/{sid}", sec.get('blocks', {}), sec.get('block_order', []), local)
-for f in ['templates/index.json','templates/collection.json','templates/product.json','sections/header-group.json','sections/footer-group.json']:
+for f in sorted(glob.glob(f"{ROOT}/templates/*.json") + glob.glob(f"{ROOT}/sections/*.json")):
+    f = os.path.relpath(f, ROOT).replace(os.sep, '/')
     check_file(f"{ROOT}/{f}")
 # settings_data vs settings_schema
 ss = json.load(open(f"{ROOT}/config/settings_schema.json", encoding='utf-8'))
