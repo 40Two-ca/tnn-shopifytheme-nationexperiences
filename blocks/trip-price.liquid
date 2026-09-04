@@ -35,8 +35,9 @@
   endif
 -%}
 
-<div
+<variant-refresh
   class="trip-price trip-price--{{ s.size }} trip-price--align-{{ s.alignment }}"
+  data-block-id="{{ block.id }}"
   {{ block.shopify_attributes }}
 >
   {%- if product != blank and price == 0 -%}
@@ -58,7 +59,7 @@
       {%- endif -%}
     </span>
   {%- endif -%}
-</div>
+</variant-refresh>
 
 {% stylesheet %}
   .trip-price {

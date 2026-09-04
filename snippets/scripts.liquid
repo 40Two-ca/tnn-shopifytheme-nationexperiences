@@ -182,6 +182,15 @@
   type="module"
   fetchpriority="low"
 ></script>
+{% comment %}
+  Keeps the Nation Experiences blocks that show variant-specific content in step
+  with the variant picker. See assets/variant-refresh.js.
+{% endcomment %}
+<script
+  src="{{ 'variant-refresh.js' | asset_url }}"
+  type="module"
+  fetchpriority="low"
+></script>
 <script
   src="{{ 'product-sku.js' | asset_url }}"
   type="module"

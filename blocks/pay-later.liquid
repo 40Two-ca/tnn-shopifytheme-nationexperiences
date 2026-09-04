@@ -23,7 +23,7 @@
 -%}
 
 {%- if amount > 0 -%}
-  <div class="pay-later" {{ block.shopify_attributes }}>
+  <variant-refresh class="pay-later" data-block-id="{{ block.id }}" {{ block.shopify_attributes }}>
     <div class="pay-later__row">
       <span
         class="pay-later__button"
@@ -38,7 +38,7 @@
       {{- instalments }} interest-free payments of {{ amount | money }}
       {%- if s.note != blank %} <span class="pay-later__note">{{ s.note }}</span>{% endif -%}
     </p>
-  </div>
+  </variant-refresh>
 {%- endif -%}
 
 {% stylesheet %}
