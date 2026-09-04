@@ -185,6 +185,7 @@
   }
 
   .trip-timeline__title {
+    max-width: 40ch;
     margin: 0;
     font-family: var(--font-heading--family);
     font-weight: var(--font-heading--weight);
@@ -194,6 +195,8 @@
   }
 
   .trip-timeline__text {
+    /* Cap the measure: without this a one-line day runs the full width of the page. */
+    max-width: 68ch;
     margin: 0.15rem 0 0;
     font-size: 0.9375rem;
     line-height: 1.5;
