@@ -22,6 +22,7 @@ Compared against: https://nationexperiences.ca (Dawn 12, black header, Jost, eve
 | Book with confidence | Four check-marked reassurances + FIND OUT MORE, with a photo | New `trust-points` section |
 | As seen in | Grey logo strip | New `partner-logos` section |
 | Tour page | Photo hero, badge, title, meta row (days / country / cities), rating, "FROM $2,495" + deposit line, lime PICK DATES, then What's included, Itinerary, Reviews, FAQs accordions | `templates/product.json`: badge, title, meta, price, "Book now", `trip-details` accordion (Overview / What's included / Itinerary / Good to know) |
+| Itinerary rail | Vertical day-by-day list with markers, "Day 1" over the place name, each day expandable | `trip-timeline` section: markers on a rail, day label, title and description |
 | Listing page | Title hero, left filter sidebar, trip cards | `templates/collection.json`: vertical filters, trip cards |
 | Footer | Dark, three link columns, newsletter, legal row | Dark footer, two menu columns, newsletter, socials, legal row |
 
@@ -36,6 +37,7 @@ Everything degrades gracefully: a card with no metafields still shows image, tit
 | One-line hook | Metafield `custom.short_description` → first words of the description |
 | Price | Cheapest variant; "Was" shown when it has a compare-at price; $0 products show "See details" (editable) |
 | Product page accordions | Description, plus metafields `custom.whats_included`, `custom.itinerary`, `custom.good_to_know` (rich text or multi-line text) |
+| Itinerary timeline | Metafield `custom.itinerary_days` (multi-line text), one day per line as `Day label \| Title \| Description` |
 
 Create the metafield definitions in Shopify admin → Settings → Custom data → Products (namespace `custom`, keys above).
 
@@ -46,7 +48,7 @@ Create the metafield definitions in Shopify admin → Settings → Custom data �
 3. Photos for the three feature tiles, the destination tiles (collection images) and the "Book with confidence" panel.
 4. Menus: `main-menu` for the header/footer "Experiences" column, `footer` for the "Help" column.
 5. Partner logos (Jetset Vacations, Expedia Cruises, The Nation Network, Fairmont…) in the partner logo strip.
-6. Metafields listed above on each experience.
+6. Metafields listed above on each experience. The `custom.itinerary_days` definition already exists on the demo store (Settings, Custom data, Products) and is filled for both demo experiences.
 
 ## Deliberate differences from Contiki
 
