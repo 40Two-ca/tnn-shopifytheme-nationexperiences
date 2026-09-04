@@ -737,25 +737,29 @@
         "logo_1": {
           "type": "logo",
           "settings": {
-            "name": "The Nation Network"
+            "name": "The Nation Network",
+            "link": "https://thenationnetwork.com/?utm_source=nationexperiences&utm_medium=referral&utm_campaign=partner-logos&utm_content=the-nation-network"
           }
         },
         "logo_2": {
           "type": "logo",
           "settings": {
-            "name": "Jetset Vacations"
+            "name": "jetSet Parking",
+            "link": "https://www.jetsetparking.com/yeg/?utm_source=nationexperiences&utm_medium=referral&utm_campaign=partner-logos&utm_content=jetset-parking"
           }
         },
         "logo_3": {
           "type": "logo",
           "settings": {
-            "name": "Expedia Cruises"
+            "name": "Expedia Cruises",
+            "link": "https://www.expediacruises.ca/en-CA/200019?utm_source=nationexperiences&utm_medium=referral&utm_campaign=partner-logos&utm_content=expedia-cruises"
           }
         },
         "logo_4": {
           "type": "logo",
           "settings": {
-            "name": "Fairmont Jasper Park Lodge"
+            "name": "Fairmont Jasper Park Lodge",
+            "link": "https://www.fairmont.com/en/hotels/jasper/fairmont-jasper-park-lodge.html?utm_source=nationexperiences&utm_medium=referral&utm_campaign=partner-logos&utm_content=fairmont-jasper-park-lodge"
           }
         }
       },

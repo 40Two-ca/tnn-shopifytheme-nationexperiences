@@ -25,7 +25,7 @@
       {%- assign logo = block.settings -%}
       <li class="partner-logos__item" {{ block.shopify_attributes }}>
         {%- if logo.link != blank -%}
-          <a class="partner-logos__link" href="{{ logo.link }}">
+          <a class="partner-logos__link" href="{{ logo.link }}" target="_blank" rel="noopener noreferrer">
         {%- endif -%}
         {%- if logo.image != blank -%}
           {{
@@ -37,6 +37,7 @@
           <span class="partner-logos__placeholder">{{ logo.name | default: 'Partner' }}</span>
         {%- endif -%}
         {%- if logo.link != blank -%}
+            <span class="visually-hidden">{{ 'accessibility.new_window' | t }}</span>
           </a>
         {%- endif -%}
       </li>
@@ -204,7 +205,7 @@
       "category": "Nation Experiences",
       "blocks": [
         { "type": "logo", "settings": { "name": "The Nation Network" } },
-        { "type": "logo", "settings": { "name": "Jetset Vacations" } },
+        { "type": "logo", "settings": { "name": "jetSet Parking" } },
         { "type": "logo", "settings": { "name": "Expedia Cruises" } },
         { "type": "logo", "settings": { "name": "Fairmont Jasper Park Lodge" } }
       ]
