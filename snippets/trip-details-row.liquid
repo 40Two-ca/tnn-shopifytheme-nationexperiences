@@ -1,0 +1,38 @@
+{%- doc -%}
+  One accordion row for the trip-details block.
+
+  @param {string} heading - Row heading
+  @param {string} content - HTML content for the row
+  @param {boolean} [open] - Open by default
+{%- enddoc -%}
+
+{%- capture row -%}
+  <details
+    class="details"
+    {% if open %}
+      open
+    {% endif %}
+  >
+    <summary class="details__header">
+      {{ heading }}
+      <span class="svg-wrapper icon-caret icon-animated">
+        {{- 'icon-caret.svg' | inline_asset_content -}}
+      </span>
+      <span class="svg-wrapper icon-plus">
+        {{- 'icon-plus.svg' | inline_asset_content -}}
+      </span>
+    </summary>
+
+    <div class="details-content">
+      <div class="rte trip-details__content">
+        {{ content }}
+      </div>
+    </div>
+  </details>
+{%- endcapture -%}
+
+{% render 'accordion-custom-component',
+  children: row,
+  open_by_default_on_desktop: open,
+  open_by_default_on_mobile: open
+%}

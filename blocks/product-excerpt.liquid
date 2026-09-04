@@ -1,0 +1,89 @@
+{%- doc -%}
+  One-line hook for trip cards. Uses the product metafield custom.short_description,
+  otherwise the first words of the product description.
+{%- enddoc -%}
+
+{%- liquid
+  assign product = closest.product
+  assign s = block.settings
+  assign text = ''
+
+  if product != blank
+    assign text = product.metafields.custom.short_description | strip
+    if text == blank
+      assign text = product.description | strip_html | strip_newlines | truncatewords: s.max_words
+    endif
+  elsif request.design_mode
+    assign text = 'A one-line hook for this experience, pulled from the short description metafield or the start of the description.'
+  endif
+-%}
+
+{%- if text != blank -%}
+  <p
+    class="trip-excerpt{% if s.clamp %} trip-excerpt--clamp{% endif %}"
+    style="--trip-excerpt-lines: {{ s.lines }};"
+    {{ block.shopify_attributes }}
+  >
+    {{- text -}}
+  </p>
+{%- endif -%}
+
+{% stylesheet %}
+  .trip-excerpt {
+    margin: 0;
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    color: rgb(var(--color-foreground-rgb) / 0.75);
+    text-wrap: pretty;
+  }
+
+  .trip-excerpt--clamp {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: var(--trip-excerpt-lines, 2);
+    overflow: hidden;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Short description",
+  "tag": null,
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Uses the product metafield custom.short_description, or the start of the description."
+    },
+    {
+      "type": "range",
+      "id": "max_words",
+      "label": "Maximum words from the description",
+      "min": 8,
+      "max": 60,
+      "step": 2,
+      "default": 22
+    },
+    {
+      "type": "checkbox",
+      "id": "clamp",
+      "label": "Limit the number of lines",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "lines",
+      "label": "Lines",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "default": 2,
+      "visible_if": "{{ block.settings.clamp }}"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Short description"
+    }
+  ]
+}
+{% endschema %}

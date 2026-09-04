@@ -1,0 +1,352 @@
+{%- comment -%}
+  Contiki-style trip finder bar (Where / What / When + Search) that overlaps the hero.
+  Destination goes to a collection, keyword and month run a product search. See assets/trip-finder.js.
+{%- endcomment -%}
+
+<script src="{{ 'trip-finder.js' | asset_url }}" type="module" fetchpriority="low"></script>
+
+{%- liquid
+  assign s = section.settings
+
+  if s.collection_list != blank
+    assign destinations = s.collection_list
+  else
+    assign destinations = collections
+  endif
+
+  assign months = s.months | split: ','
+
+  if s.background_color != blank
+    render 'contrast-override', background_color: s.background_color, section_id: section.id
+  endif
+-%}
+
+<div
+  class="section-background{% if s.background_color != blank %} color-custom-{{ section.id }}{% endif %}"
+></div>
+<div
+  class="section section--{{ s.section_width }} spacing-style trip-finder{% if s.background_color != blank %} color-custom-{{ section.id }}{% endif %}"
+  style="{% render 'spacing-style', settings: s %} --trip-finder-overlap: {{ s.overlap }}px;"
+>
+  <trip-finder class="trip-finder__wrapper">
+    <form
+      class="trip-finder__form{% unless s.show_when %} trip-finder__form--no-when{% endunless %}"
+      action="{{ routes.search_url }}"
+      method="get"
+      role="search"
+      data-fallback-url="{{ routes.all_products_collection_url }}"
+    >
+      <input type="hidden" name="type" value="product">
+      <input type="hidden" name="options[prefix]" value="last">
+
+      <label class="trip-finder__field">
+        <svg class="trip-finder__icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" focusable="false">
+          {%- render 'icon', icon: 'map_pin' -%}
+        </svg>
+        <span class="visually-hidden">{{ s.where_label }}</span>
+        <select name="destination" class="trip-finder__control trip-finder__select">
+          <option value="">{{ s.where_label }}</option>
+          {%- for collection in destinations limit: 40 -%}
+            {%- unless collection.handle == 'all' or collection.handle == 'frontpage' -%}
+              <option value="{{ collection.url }}" data-label="{{ collection.title | escape }}">
+                {{- collection.title -}}
+              </option>
+            {%- endunless -%}
+          {%- endfor -%}
+        </select>
+        <svg class="trip-finder__caret" viewBox="0 0 10 6" fill="none" aria-hidden="true" focusable="false">
+          <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </label>
+
+      <label class="trip-finder__field">
+        <svg class="trip-finder__icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" focusable="false">
+          {%- render 'icon', icon: 'star' -%}
+        </svg>
+        <span class="visually-hidden">{{ s.what_label }}</span>
+        <input
+          class="trip-finder__control"
+          type="search"
+          name="q"
+          placeholder="{{ s.what_label | escape }}"
+          autocomplete="off"
+        >
+      </label>
+
+      {%- if s.show_when -%}
+        <label class="trip-finder__field">
+          <svg class="trip-finder__icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" focusable="false">
+            <path fill-rule="evenodd" d="M6 1.5a.5.5 0 0 1 .5.5v1h7V2a.5.5 0 0 1 1 0v1H16a1.5 1.5 0 0 1 1.5 1.5v12A1.5 1.5 0 0 1 16 18H4a1.5 1.5 0 0 1-1.5-1.5v-12A1.5 1.5 0 0 1 4 3h1.5V2a.5.5 0 0 1 .5-.5ZM3.5 7.5v9a.5.5 0 0 0 .5.5h12a.5.5 0 0 0 .5-.5v-9h-13Zm13-1v-2a.5.5 0 0 0-.5-.5H4a.5.5 0 0 0-.5.5v2h13Z"/>
+          </svg>
+          <span class="visually-hidden">{{ s.when_label }}</span>
+          <select name="when" class="trip-finder__control trip-finder__select">
+            <option value="">{{ s.when_label }}</option>
+            {%- for month in months -%}
+              {%- assign month_name = month | strip -%}
+              {%- if month_name != blank -%}
+                <option value="{{ month_name | escape }}">{{ month_name }}</option>
+              {%- endif -%}
+            {%- endfor -%}
+          </select>
+          <svg class="trip-finder__caret" viewBox="0 0 10 6" fill="none" aria-hidden="true" focusable="false">
+            <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </label>
+      {%- endif -%}
+
+      <button type="submit" class="button trip-finder__submit">{{ s.button_label }}</button>
+    </form>
+  </trip-finder>
+</div>
+
+{% stylesheet %}
+  .trip-finder {
+    position: relative;
+    z-index: 3;
+  }
+
+  @media screen and (min-width: 750px) {
+    .trip-finder {
+      margin-block-start: calc(-1 * var(--trip-finder-overlap, 0px));
+    }
+  }
+
+  .trip-finder__wrapper {
+    display: block;
+    width: 100%;
+  }
+
+  .trip-finder__form {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr 1fr auto;
+    align-items: stretch;
+    padding: 8px;
+    background: var(--color-background);
+    border-radius: 14px;
+    box-shadow: 0 10px 32px rgb(0 0 0 / 0.18);
+  }
+
+  .trip-finder__form--no-when {
+    grid-template-columns: 1.1fr 1fr auto;
+  }
+
+  .trip-finder__field {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    min-height: 3.25rem;
+    padding-inline: 1rem;
+    border-inline-end: 1px solid var(--brand-border);
+    border-radius: 8px;
+    transition: background-color var(--hover-transition-duration) var(--hover-transition-timing);
+  }
+
+  .trip-finder__field:last-of-type {
+    border-inline-end: 0;
+  }
+
+  .trip-finder__field:focus-within {
+    background: var(--brand-surface);
+  }
+
+  .trip-finder__icon {
+    flex: none;
+    width: 1.1rem;
+    height: 1.1rem;
+    color: rgb(var(--color-foreground-rgb) / 0.6);
+  }
+
+  .trip-finder__control {
+    width: 100%;
+    min-width: 0;
+    padding-block: 0.5rem;
+    border: 0;
+    background: transparent;
+    color: var(--color-foreground);
+    font-family: var(--font-body--family);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+
+  .trip-finder__control::placeholder {
+    color: rgb(var(--color-foreground-rgb) / 0.62);
+    opacity: 1;
+  }
+
+  .trip-finder__control:focus {
+    outline: none;
+  }
+
+  .trip-finder__control::-webkit-search-decoration,
+  .trip-finder__control::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+  }
+
+  .trip-finder__select {
+    padding-inline-end: 1.5rem;
+    cursor: pointer;
+  }
+
+  .trip-finder__select:has(option:checked[value='']) {
+    color: rgb(var(--color-foreground-rgb) / 0.62);
+  }
+
+  .trip-finder__caret {
+    position: absolute;
+    right: 1rem;
+    width: 10px;
+    height: 6px;
+    pointer-events: none;
+    opacity: 0.6;
+  }
+
+  .trip-finder__submit {
+    align-self: center;
+    margin-inline-start: 8px;
+    white-space: nowrap;
+  }
+
+  @media screen and (max-width: 749px) {
+    .trip-finder__form,
+    .trip-finder__form--no-when {
+      grid-template-columns: 1fr;
+      gap: 4px;
+      padding: 12px;
+    }
+
+    .trip-finder__field {
+      border-inline-end: 0;
+      border-block-end: 1px solid var(--brand-border);
+      border-radius: 0;
+    }
+
+    .trip-finder__field:last-of-type {
+      border-block-end: 0;
+    }
+
+    .trip-finder__submit {
+      width: 100%;
+      margin: 8px 0 0;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Trip finder",
+  "tag": "section",
+  "class": "section-wrapper",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "A destination goes to its collection. A keyword or month runs a product search. Place it directly under the hero and use the overlap to float it over the photo."
+    },
+    {
+      "type": "collection_list",
+      "id": "collection_list",
+      "label": "Destinations",
+      "info": "Leave empty to list every collection.",
+      "limit": 20
+    },
+    {
+      "type": "text",
+      "id": "where_label",
+      "label": "Destination placeholder",
+      "default": "Where do you want to go?"
+    },
+    {
+      "type": "text",
+      "id": "what_label",
+      "label": "Keyword placeholder",
+      "default": "What do you want to see?"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_when",
+      "label": "Show the month picker",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "when_label",
+      "label": "Month placeholder",
+      "default": "When do you want to go?"
+    },
+    {
+      "type": "textarea",
+      "id": "months",
+      "label": "Month options",
+      "info": "Comma separated. Searched as keywords.",
+      "default": "January, February, March, April, May, June, July, August, September, October, November, December"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Search"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "overlap",
+      "label": "Overlap the section above",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 44
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "Width",
+      "options": [
+        { "value": "page-width", "label": "Page" },
+        { "value": "full-width", "label": "Full" }
+      ],
+      "default": "page-width"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Trip finder",
+      "category": "Nation Experiences"
+    }
+  ]
+}
+{% endschema %}

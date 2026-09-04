@@ -1,0 +1,299 @@
+{%- comment -%}
+  Social proof row: rating eyebrow, heading, quote cards and a reviews button.
+{%- endcomment -%}
+
+{%- liquid
+  assign s = section.settings
+  if s.background_color != blank
+    render 'contrast-override', background_color: s.background_color, section_id: section.id
+  endif
+-%}
+
+<div
+  class="section-background{% if s.background_color != blank %} color-custom-{{ section.id }}{% endif %}"
+></div>
+<div
+  class="section section--{{ s.section_width }} spacing-style testimonials{% if s.background_color != blank %} color-custom-{{ section.id }}{% endif %}"
+  style="{% render 'spacing-style', settings: s %}"
+>
+  <div class="brand-section-header">
+    {%- if s.eyebrow != blank -%}
+      <p class="brand-eyebrow testimonials__eyebrow">
+        <svg class="testimonials__star" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" focusable="false">
+          {%- render 'icon', icon: 'star' -%}
+        </svg>
+        {{ s.eyebrow }}
+      </p>
+    {%- endif -%}
+    {%- if s.heading != blank -%}
+      <h2 class="h2">{{ s.heading }}</h2>
+    {%- endif -%}
+    {%- if s.subheading != blank -%}
+      <p class="brand-subheading">{{ s.subheading }}</p>
+    {%- endif -%}
+  </div>
+
+  <div class="testimonials__grid">
+    {%- for block in section.blocks -%}
+      {%- assign q = block.settings -%}
+      <figure class="testimonial" {{ block.shopify_attributes }}>
+        <div class="testimonial__rating" aria-label="{{ q.rating }} out of 5">
+          {%- for i in (1..5) -%}
+            <svg
+              class="testimonial__star{% if i > q.rating %} testimonial__star--empty{% endif %}"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+              aria-hidden="true"
+              focusable="false"
+            >
+              {%- render 'icon', icon: 'star' -%}
+            </svg>
+          {%- endfor -%}
+        </div>
+        <blockquote class="testimonial__quote">
+          {{ q.quote }}
+        </blockquote>
+        <figcaption class="testimonial__meta">
+          {%- if q.author != blank -%}
+            <span class="testimonial__author">{{ q.author }}</span>
+          {%- endif -%}
+          {%- if q.context != blank -%}
+            <span class="testimonial__context">{{ q.context }}</span>
+          {%- endif -%}
+        </figcaption>
+      </figure>
+    {%- endfor -%}
+  </div>
+
+  {%- if s.button_label != blank -%}
+    <div class="testimonials__footer">
+      <a
+        class="button-secondary"
+        {% if s.button_link != blank %}
+          href="{{ s.button_link }}"
+        {% else %}
+          role="link" aria-disabled="true"
+        {% endif %}
+      >
+        {{- s.button_label -}}
+      </a>
+    </div>
+  {%- endif -%}
+</div>
+
+{% stylesheet %}
+  .testimonials__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .testimonials__star {
+    width: 0.9rem;
+    height: 0.9rem;
+    color: var(--color-foreground);
+  }
+
+  .testimonials__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+  }
+
+  @media screen and (max-width: 989px) {
+    .testimonials__grid {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+  }
+
+  .testimonial {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 0;
+    padding: 1.75rem;
+    border-radius: var(--brand-card-radius);
+    background: var(--color-background);
+    color: var(--color-foreground);
+    box-shadow: var(--brand-card-shadow);
+  }
+
+  .testimonial__rating {
+    display: inline-flex;
+    gap: 2px;
+  }
+
+  .testimonial__star {
+    width: 1.05rem;
+    height: 1.05rem;
+    color: var(--color-foreground);
+  }
+
+  .testimonial__star--empty {
+    opacity: 0.2;
+  }
+
+  .testimonial__quote {
+    margin: 0;
+    font-size: 1.0625rem;
+    line-height: 1.5;
+    text-wrap: pretty;
+  }
+
+  .testimonial__quote::before {
+    content: open-quote;
+  }
+
+  .testimonial__quote::after {
+    content: close-quote;
+  }
+
+  .testimonial__meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    margin-block-start: auto;
+    font-size: 0.875rem;
+  }
+
+  .testimonial__author {
+    font-family: var(--font-subheading--family);
+    font-weight: 700;
+  }
+
+  .testimonial__context {
+    color: rgb(var(--color-foreground-rgb) / 0.62);
+  }
+
+  .testimonials__footer {
+    display: flex;
+    justify-content: center;
+    margin-block-start: 2rem;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Testimonials",
+  "tag": "section",
+  "class": "section-wrapper",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Rated 5 stars by the Nation"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Trusted by fans across the country"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Read all reviews"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "Width",
+      "options": [
+        { "value": "page-width", "label": "Page" },
+        { "value": "full-width", "label": "Full" }
+      ],
+      "default": "page-width"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#f5f5f5"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    }
+  ],
+  "blocks": [
+    {
+      "type": "quote",
+      "name": "Quote",
+      "settings": [
+        {
+          "type": "range",
+          "id": "rating",
+          "label": "Rating",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "default": 5
+        },
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Quote",
+          "default": "Best weekend of the year. Everything was sorted, we just showed up and cheered."
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Name",
+          "default": "A Nation traveller"
+        },
+        {
+          "type": "text",
+          "id": "context",
+          "label": "Trip or event",
+          "default": "Nation Vacation"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "Testimonials",
+      "category": "Nation Experiences",
+      "blocks": [
+        { "type": "quote", "settings": { "quote": "Best weekend of the year. Everything was sorted, we just showed up and cheered.", "author": "Chris", "context": "Nation Vacation: Edmonton to Toronto" } },
+        { "type": "quote", "settings": { "quote": "Pond hockey at Jasper with the whole crew. Unreal setting, unreal people.", "author": "Amy", "context": "Jasper Pond Hockey Tournament" } },
+        { "type": "quote", "settings": { "quote": "Great value and zero stress. Already looking at the next one.", "author": "Steven", "context": "Game day experience" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

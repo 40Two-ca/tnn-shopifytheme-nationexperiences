@@ -1,0 +1,324 @@
+{%- comment -%}
+  "Where the Nation goes": photo tiles per collection (Contiki's destinations grid).
+  Uses the chosen collections, or every collection when none are picked.
+{%- endcomment -%}
+
+{%- liquid
+  assign s = section.settings
+
+  if s.collection_list != blank
+    assign tiles = s.collection_list
+  else
+    assign tiles = collections
+  endif
+
+  assign max_tiles = s.columns | times: s.rows
+
+  if s.background_color != blank
+    render 'contrast-override', background_color: s.background_color, section_id: section.id
+  endif
+-%}
+
+<div
+  class="section-background{% if s.background_color != blank %} color-custom-{{ section.id }}{% endif %}"
+></div>
+<div
+  class="section section--{{ s.section_width }} spacing-style destination-tiles{% if s.background_color != blank %} color-custom-{{ section.id }}{% endif %}"
+  style="{% render 'spacing-style', settings: s %} --destination-tiles-columns: {{ s.columns }}; --destination-tiles-ratio: {{ s.ratio }};"
+>
+  {%- if s.eyebrow != blank or s.heading != blank or s.subheading != blank -%}
+    <div class="brand-section-header">
+      {%- if s.eyebrow != blank -%}
+        <p class="brand-eyebrow">{{ s.eyebrow }}</p>
+      {%- endif -%}
+      {%- if s.heading != blank -%}
+        <h2 class="h2">{{ s.heading }}</h2>
+      {%- endif -%}
+      {%- if s.subheading != blank -%}
+        <p class="brand-subheading">{{ s.subheading }}</p>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+
+  <div class="destination-tiles__grid">
+    {%- assign rendered = 0 -%}
+    {%- for collection in tiles -%}
+      {%- if rendered >= max_tiles -%}
+        {%- break -%}
+      {%- endif -%}
+      {%- if s.collection_list == blank -%}
+        {%- if collection.handle == 'all' or collection.handle == 'frontpage' -%}
+          {%- continue -%}
+        {%- endif -%}
+      {%- endif -%}
+      {%- assign rendered = rendered | plus: 1 -%}
+      {%- assign placeholder_index = rendered | modulo: 6 | plus: 1 -%}
+      <a class="destination-tile" href="{{ collection.url }}">
+        {%- if collection.featured_image != blank -%}
+          {{
+            collection.featured_image
+            | image_url: width: 1200
+            | image_tag:
+              widths: '300, 450, 600, 900, 1200',
+              sizes: '(min-width: 990px) 25vw, (min-width: 750px) 50vw, 100vw',
+              class: 'destination-tile__image',
+              loading: 'lazy'
+          }}
+        {%- else -%}
+          {{ 'collection-' | append: placeholder_index | placeholder_svg_tag: 'destination-tile__image destination-tile__image--placeholder' }}
+        {%- endif -%}
+        <span class="destination-tile__overlay"></span>
+        <span class="destination-tile__content">
+          <span class="destination-tile__title">{{ collection.title }}</span>
+          {%- if s.show_count and collection.products_count > 0 -%}
+            <span class="destination-tile__count">
+              {{ collection.products_count }}
+              {% if collection.products_count == 1 %}experience{% else %}experiences{% endif %}
+            </span>
+          {%- endif -%}
+        </span>
+      </a>
+    {%- endfor -%}
+
+    {%- if rendered == 0 -%}
+      {%- for i in (1..4) -%}
+        <div class="destination-tile">
+          {{ 'collection-' | append: i | placeholder_svg_tag: 'destination-tile__image destination-tile__image--placeholder' }}
+          <span class="destination-tile__overlay"></span>
+          <span class="destination-tile__content">
+            <span class="destination-tile__title">Destination</span>
+          </span>
+        </div>
+      {%- endfor -%}
+    {%- endif -%}
+  </div>
+
+  {%- if s.button_label != blank -%}
+    <div class="destination-tiles__footer">
+      <a
+        class="button"
+        {% if s.button_link != blank %}
+          href="{{ s.button_link }}"
+        {% else %}
+          href="{{ routes.all_products_collection_url }}"
+        {% endif %}
+      >
+        {{- s.button_label -}}
+      </a>
+    </div>
+  {%- endif -%}
+</div>
+
+{% stylesheet %}
+  .destination-tiles__grid {
+    display: grid;
+    grid-template-columns: repeat(var(--destination-tiles-columns, 4), minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  @media screen and (max-width: 989px) {
+    .destination-tiles__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media screen and (max-width: 479px) {
+    .destination-tiles__grid {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+  }
+
+  .destination-tile {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    aspect-ratio: var(--destination-tiles-ratio, 4 / 5);
+    border-radius: var(--brand-card-radius);
+    background: var(--color-foreground);
+    color: #fff;
+    text-decoration: none;
+    box-shadow: var(--brand-card-shadow);
+  }
+
+  .destination-tile__image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+
+  .destination-tile__image--placeholder {
+    background: #d9d9d9;
+  }
+
+  .destination-tile:hover .destination-tile__image {
+    transform: scale(1.05);
+  }
+
+  .destination-tile__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgb(0 0 0 / 0.75) 0%, rgb(0 0 0 / 0.15) 50%, rgb(0 0 0 / 0) 100%);
+  }
+
+  .destination-tile__content {
+    position: absolute;
+    inset-inline: 0;
+    inset-block-end: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 1.25rem;
+  }
+
+  .destination-tile__title {
+    font-family: var(--font-heading--family);
+    font-weight: var(--font-heading--weight);
+    font-size: 1.375rem;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+  }
+
+  .destination-tile__count {
+    font-family: var(--font-subheading--family);
+    font-weight: 600;
+    font-size: 0.8125rem;
+    color: rgb(255 255 255 / 0.8);
+  }
+
+  .destination-tiles__footer {
+    display: flex;
+    justify-content: center;
+    margin-block-start: 2rem;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Destination tiles",
+  "tag": "section",
+  "class": "section-wrapper",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Destinations"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Where the Nation goes"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Pick a city, a rink or a road trip."
+    },
+    {
+      "type": "collection_list",
+      "id": "collection_list",
+      "label": "Collections",
+      "info": "Leave empty to show every collection.",
+      "limit": 12
+    },
+    {
+      "type": "range",
+      "id": "columns",
+      "label": "Columns on desktop",
+      "min": 2,
+      "max": 5,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "rows",
+      "label": "Maximum rows",
+      "min": 1,
+      "max": 3,
+      "step": 1,
+      "default": 1
+    },
+    {
+      "type": "select",
+      "id": "ratio",
+      "label": "Tile shape",
+      "options": [
+        { "value": "4 / 5", "label": "Portrait" },
+        { "value": "1 / 1", "label": "Square" },
+        { "value": "4 / 3", "label": "Landscape" }
+      ],
+      "default": "4 / 5"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_count",
+      "label": "Show number of experiences",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "See all experiences"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "Width",
+      "options": [
+        { "value": "page-width", "label": "Page" },
+        { "value": "full-width", "label": "Full" }
+      ],
+      "default": "page-width"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    }
+  ],
+  "presets": [
+    {
+      "name": "Destination tiles",
+      "category": "Nation Experiences"
+    }
+  ]
+}
+{% endschema %}

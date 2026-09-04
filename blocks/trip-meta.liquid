@@ -1,0 +1,187 @@
+{%- doc -%}
+  Contiki-style icon meta row for trips: duration, location, dates and group size.
+  Values come from product metafields (custom.duration, custom.location, custom.dates,
+  custom.group_size) or product tags (duration:3 days, location:Jasper AB, dates:Jan 22-24, group:Small group).
+  Items with no value are skipped; the block renders nothing when every item is empty.
+{%- enddoc -%}
+
+{%- liquid
+  assign product = closest.product
+  assign s = block.settings
+
+  assign duration = ''
+  assign location = ''
+  assign dates = ''
+  assign group = ''
+
+  if product != blank
+    assign duration = product.metafields.custom.duration | strip
+    assign location = product.metafields.custom.location | strip
+    assign dates = product.metafields.custom.dates | strip
+    assign group = product.metafields.custom.group_size | strip
+
+    for tag in product.tags
+      if duration == blank and tag contains 'duration:'
+        assign duration = tag | remove_first: 'duration:' | strip
+      elsif location == blank and tag contains 'location:'
+        assign location = tag | remove_first: 'location:' | strip
+      elsif dates == blank and tag contains 'dates:'
+        assign dates = tag | remove_first: 'dates:' | strip
+      elsif group == blank and tag contains 'group:'
+        assign group = tag | remove_first: 'group:' | strip
+      endif
+    endfor
+  elsif request.design_mode
+    assign duration = '3 days'
+    assign location = 'Jasper, AB'
+    assign dates = 'Jan 22-24'
+    assign group = 'Group trip'
+  endif
+
+  unless s.show_duration
+    assign duration = ''
+  endunless
+  unless s.show_location
+    assign location = ''
+  endunless
+  unless s.show_dates
+    assign dates = ''
+  endunless
+  unless s.show_group
+    assign group = ''
+  endunless
+
+  assign has_meta = false
+  if duration != blank or location != blank or dates != blank or group != blank
+    assign has_meta = true
+  endif
+-%}
+
+{%- if has_meta -%}
+  <ul class="trip-meta trip-meta--{{ s.size }} list-unstyled" {{ block.shopify_attributes }}>
+    {%- if duration != blank -%}
+      <li class="trip-meta__item">
+        <svg class="trip-meta__icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" focusable="false">
+          {%- render 'icon', icon: 'stopwatch' -%}
+        </svg>
+        <span>{{ duration }}</span>
+      </li>
+    {%- endif -%}
+    {%- if location != blank -%}
+      <li class="trip-meta__item">
+        <svg class="trip-meta__icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" focusable="false">
+          {%- render 'icon', icon: 'map_pin' -%}
+        </svg>
+        <span>{{ location }}</span>
+      </li>
+    {%- endif -%}
+    {%- if dates != blank -%}
+      <li class="trip-meta__item">
+        <svg class="trip-meta__icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" focusable="false">
+          <path fill-rule="evenodd" d="M6 1.5a.5.5 0 0 1 .5.5v1h7V2a.5.5 0 0 1 1 0v1H16a1.5 1.5 0 0 1 1.5 1.5v12A1.5 1.5 0 0 1 16 18H4a1.5 1.5 0 0 1-1.5-1.5v-12A1.5 1.5 0 0 1 4 3h1.5V2a.5.5 0 0 1 .5-.5ZM3.5 7.5v9a.5.5 0 0 0 .5.5h12a.5.5 0 0 0 .5-.5v-9h-13Zm13-1v-2a.5.5 0 0 0-.5-.5H4a.5.5 0 0 0-.5.5v2h13Z"/>
+        </svg>
+        <span>{{ dates }}</span>
+      </li>
+    {%- endif -%}
+    {%- if group != blank -%}
+      <li class="trip-meta__item">
+        <svg class="trip-meta__icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" focusable="false">
+          {%- render 'icon', icon: 'silhouette' -%}
+        </svg>
+        <span>{{ group }}</span>
+      </li>
+    {%- endif -%}
+  </ul>
+{%- elsif request.design_mode -%}
+  <ul class="trip-meta list-unstyled" hidden {{ block.shopify_attributes }}></ul>
+{%- endif -%}
+
+{% stylesheet %}
+  .trip-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 1rem;
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-subheading--family);
+    font-weight: 500;
+    font-size: 0.8125rem;
+    line-height: 1.3;
+    color: rgb(var(--color-foreground-rgb) / 0.8);
+  }
+
+  .trip-meta--medium {
+    font-size: 0.9375rem;
+    gap: 0.5rem 1.25rem;
+  }
+
+  .trip-meta__item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .trip-meta__icon {
+    width: 1em;
+    height: 1em;
+    flex: none;
+    color: var(--color-foreground);
+  }
+
+  .trip-meta--medium .trip-meta__icon {
+    width: 1.1em;
+    height: 1.1em;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Trip details row",
+  "tag": null,
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Reads product metafields custom.duration, custom.location, custom.dates and custom.group_size, or tags such as duration:3 days."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_duration",
+      "label": "Show duration",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_location",
+      "label": "Show location",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_dates",
+      "label": "Show dates",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_group",
+      "label": "Show group size",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "size",
+      "label": "Size",
+      "options": [
+        { "value": "small", "label": "Small" },
+        { "value": "medium", "label": "Medium" }
+      ],
+      "default": "small"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Trip details row"
+    }
+  ]
+}
+{% endschema %}

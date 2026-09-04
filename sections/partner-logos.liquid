@@ -1,0 +1,214 @@
+{%- comment -%}
+  "As seen with" partner logo strip.
+{%- endcomment -%}
+
+{%- liquid
+  assign s = section.settings
+  if s.background_color != blank
+    render 'contrast-override', background_color: s.background_color, section_id: section.id
+  endif
+-%}
+
+<div
+  class="section-background{% if s.background_color != blank %} color-custom-{{ section.id }}{% endif %}"
+></div>
+<div
+  class="section section--{{ s.section_width }} spacing-style partner-logos{% if s.background_color != blank %} color-custom-{{ section.id }}{% endif %}{% if s.grayscale %} partner-logos--grayscale{% endif %}"
+  style="{% render 'spacing-style', settings: s %} --partner-logo-height: {{ s.logo_height }}px;"
+>
+  {%- if s.heading != blank -%}
+    <p class="brand-eyebrow partner-logos__heading">{{ s.heading }}</p>
+  {%- endif -%}
+
+  <ul class="partner-logos__list list-unstyled">
+    {%- for block in section.blocks -%}
+      {%- assign logo = block.settings -%}
+      <li class="partner-logos__item" {{ block.shopify_attributes }}>
+        {%- if logo.link != blank -%}
+          <a class="partner-logos__link" href="{{ logo.link }}">
+        {%- endif -%}
+        {%- if logo.image != blank -%}
+          {{
+            logo.image
+            | image_url: width: 600
+            | image_tag: widths: '200, 300, 400, 600', class: 'partner-logos__image', loading: 'lazy'
+          }}
+        {%- else -%}
+          <span class="partner-logos__placeholder">{{ logo.name | default: 'Partner' }}</span>
+        {%- endif -%}
+        {%- if logo.link != blank -%}
+          </a>
+        {%- endif -%}
+      </li>
+    {%- endfor -%}
+  </ul>
+</div>
+
+{% stylesheet %}
+  .partner-logos__heading {
+    margin: 0 0 1.5rem;
+    text-align: center;
+  }
+
+  .partner-logos__list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem 3.5rem;
+    margin: 0;
+    padding: 0;
+  }
+
+  .partner-logos__item {
+    display: inline-flex;
+    align-items: center;
+    height: var(--partner-logo-height, 40px);
+  }
+
+  .partner-logos__link {
+    display: inline-flex;
+    align-items: center;
+    height: 100%;
+  }
+
+  .partner-logos__image {
+    width: auto;
+    height: var(--partner-logo-height, 40px);
+    max-width: 200px;
+    object-fit: contain;
+  }
+
+  .partner-logos--grayscale .partner-logos__image {
+    filter: grayscale(1);
+    opacity: 0.65;
+    transition: opacity var(--hover-transition-duration) var(--hover-transition-timing),
+      filter var(--hover-transition-duration) var(--hover-transition-timing);
+  }
+
+  .partner-logos--grayscale .partner-logos__item:hover .partner-logos__image {
+    filter: none;
+    opacity: 1;
+  }
+
+  .partner-logos__placeholder {
+    display: inline-flex;
+    align-items: center;
+    height: 100%;
+    padding-inline: 1rem;
+    border: 1px dashed var(--brand-border);
+    border-radius: 6px;
+    font-family: var(--font-subheading--family);
+    font-weight: 600;
+    font-size: 0.875rem;
+    color: rgb(var(--color-foreground-rgb) / 0.5);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Partner logos",
+  "tag": "section",
+  "class": "section-wrapper",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Trusted partners"
+    },
+    {
+      "type": "range",
+      "id": "logo_height",
+      "label": "Logo height",
+      "min": 24,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "checkbox",
+      "id": "grayscale",
+      "label": "Show logos in grey until hovered",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "Width",
+      "options": [
+        { "value": "page-width", "label": "Page" },
+        { "value": "full-width", "label": "Full" }
+      ],
+      "default": "page-width"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 56
+    }
+  ],
+  "blocks": [
+    {
+      "type": "logo",
+      "name": "Logo",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Logo"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Name",
+          "info": "Shown until a logo is uploaded."
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 10,
+  "presets": [
+    {
+      "name": "Partner logos",
+      "category": "Nation Experiences",
+      "blocks": [
+        { "type": "logo", "settings": { "name": "The Nation Network" } },
+        { "type": "logo", "settings": { "name": "Jetset Vacations" } },
+        { "type": "logo", "settings": { "name": "Expedia Cruises" } },
+        { "type": "logo", "settings": { "name": "Fairmont Jasper Park Lodge" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

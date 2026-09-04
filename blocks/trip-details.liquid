@@ -1,0 +1,212 @@
+{%- doc -%}
+  Contiki-style trip detail accordions for the product page. Rows only render when they have content:
+  Overview (description), What's included (custom.whats_included), Itinerary (custom.itinerary),
+  Good to know (custom.good_to_know). Metafields can be rich text or multi-line text.
+{%- enddoc -%}
+
+{%- liquid
+  assign product = closest.product
+  assign s = block.settings
+
+  assign overview = ''
+  if s.show_overview
+    assign overview = product.description
+  endif
+
+  assign included = ''
+  assign itinerary = ''
+  assign good_to_know = ''
+
+  if product != blank
+    if s.show_included and product.metafields.custom.whats_included != blank
+      capture included
+        echo product.metafields.custom.whats_included | metafield_tag
+      endcapture
+    endif
+    if s.show_itinerary and product.metafields.custom.itinerary != blank
+      capture itinerary
+        echo product.metafields.custom.itinerary | metafield_tag
+      endcapture
+    endif
+    if s.show_good_to_know and product.metafields.custom.good_to_know != blank
+      capture good_to_know
+        echo product.metafields.custom.good_to_know | metafield_tag
+      endcapture
+    endif
+  elsif request.design_mode
+    assign overview = '<p>The trip overview appears here. Add product metafields custom.whats_included, custom.itinerary and custom.good_to_know to fill the other rows.</p>'
+    assign included = '<p>Return coach transport, two nights hotel, game tickets and a Nation host.</p>'
+    assign itinerary = '<p><strong>Day 1</strong> Depart Edmonton. <strong>Day 2</strong> Game day. <strong>Day 3</strong> Head home.</p>'
+  endif
+-%}
+
+<div
+  class="accordion accordion--{{ block.id }} accordion--caret accordion--dividers trip-details spacing-style"
+  style="
+    --summary-font-family: var(--font-h5--family);
+    --summary-font-style: var(--font-h5--style);
+    --summary-font-weight: 700;
+    --summary-font-size: var(--font-h5--size);
+    --summary-font-line-height: var(--font-h5--line-height);
+    --summary-font-case: var(--font-h5--case);
+    {% render 'spacing-style', settings: s %}
+  "
+  {{ block.shopify_attributes }}
+>
+  {%- if overview != blank -%}
+    {% render 'trip-details-row', heading: s.overview_label, content: overview, open: s.open_first %}
+  {%- endif -%}
+  {%- if included != blank -%}
+    {% render 'trip-details-row', heading: s.included_label, content: included %}
+  {%- endif -%}
+  {%- if itinerary != blank -%}
+    {% render 'trip-details-row', heading: s.itinerary_label, content: itinerary %}
+  {%- endif -%}
+  {%- if good_to_know != blank -%}
+    {% render 'trip-details-row', heading: s.good_to_know_label, content: good_to_know %}
+  {%- endif -%}
+</div>
+
+{% render 'accordion-styles' %}
+
+{% stylesheet %}
+  .trip-details__content {
+    padding-block-end: 0.5rem;
+  }
+
+  .trip-details__content > :first-child {
+    margin-block-start: 0;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Trip details",
+  "tag": null,
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Accordion rows for the experience. Rows without content are hidden."
+    },
+    {
+      "type": "checkbox",
+      "id": "open_first",
+      "label": "Open the first row by default",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Overview"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_overview",
+      "label": "Show the product description",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "overview_label",
+      "label": "Heading",
+      "default": "Overview"
+    },
+    {
+      "type": "header",
+      "content": "What's included"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_included",
+      "label": "Show metafield custom.whats_included",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "included_label",
+      "label": "Heading",
+      "default": "What's included"
+    },
+    {
+      "type": "header",
+      "content": "Itinerary"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_itinerary",
+      "label": "Show metafield custom.itinerary",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "itinerary_label",
+      "label": "Heading",
+      "default": "Itinerary"
+    },
+    {
+      "type": "header",
+      "content": "Good to know"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_good_to_know",
+      "label": "Show metafield custom.good_to_know",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "good_to_know_label",
+      "label": "Heading",
+      "default": "Good to know"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Top",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Bottom",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-inline-start",
+      "label": "Left",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-inline-end",
+      "label": "Right",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Trip details"
+    }
+  ]
+}
+{% endschema %}

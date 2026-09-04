@@ -1,0 +1,122 @@
+{%- doc -%}
+  Highlight badge for trip cards and product pages ("Popular", "New", "Selling fast").
+  Label priority: block override → product metafield custom.badge → product tag prefixed with "badge:".
+  Renders nothing when there is no label (except a hidden hook in the theme editor).
+{%- enddoc -%}
+
+{%- liquid
+  assign product = closest.product
+  assign label = block.settings.label_override | strip
+
+  if label == blank and product != blank
+    assign label = product.metafields.custom.badge | strip
+  endif
+
+  if label == blank and product != blank
+    for tag in product.tags
+      if tag contains 'badge:'
+        assign label = tag | remove_first: 'badge:' | strip
+        break
+      endif
+    endfor
+  endif
+
+  if label == blank and product == blank and request.design_mode
+    assign label = 'Popular'
+  endif
+-%}
+
+{%- if label != blank -%}
+  <span
+    class="trip-badge trip-badge--{{ block.settings.style }} trip-badge--{{ block.settings.placement }}"
+    {{ block.shopify_attributes }}
+  >
+    {{- label -}}
+  </span>
+{%- elsif request.design_mode -%}
+  <span class="trip-badge trip-badge--empty" hidden {{ block.shopify_attributes }}></span>
+{%- endif -%}
+
+{% stylesheet %}
+  .trip-badge {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    padding: 0.5em 0.95em;
+    border-radius: 100px;
+    font-family: var(--font-subheading--family);
+    font-weight: 700;
+    font-size: 0.6875rem;
+    line-height: 1;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .trip-badge--accent {
+    background: var(--brand-accent);
+    color: var(--brand-accent-contrast);
+  }
+
+  .trip-badge--dark {
+    background: var(--color-foreground);
+    color: var(--color-background);
+  }
+
+  .trip-badge--light {
+    background: var(--color-background);
+    color: var(--color-foreground);
+    box-shadow: 0 1px 6px rgb(0 0 0 / 0.16);
+  }
+
+  .trip-badge--on_image {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 2;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Trip badge",
+  "tag": null,
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Shows the product's badge metafield (custom.badge) or a tag like badge:Popular. Leave the override empty to use those."
+    },
+    {
+      "type": "text",
+      "id": "label_override",
+      "label": "Label override"
+    },
+    {
+      "type": "select",
+      "id": "style",
+      "label": "Style",
+      "options": [
+        { "value": "accent", "label": "Accent" },
+        { "value": "dark", "label": "Dark" },
+        { "value": "light", "label": "Light" }
+      ],
+      "default": "accent"
+    },
+    {
+      "type": "select",
+      "id": "placement",
+      "label": "Placement",
+      "options": [
+        { "value": "on_image", "label": "Over the image (cards)" },
+        { "value": "inline", "label": "Inline" }
+      ],
+      "default": "inline"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Trip badge"
+    }
+  ]
+}
+{% endschema %}

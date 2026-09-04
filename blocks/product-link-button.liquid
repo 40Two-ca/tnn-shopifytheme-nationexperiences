@@ -1,0 +1,82 @@
+{%- doc -%}
+  "View trip" pill button that links to the product. Intended for product cards,
+  where the whole card is already a link but a visible call to action is wanted.
+{%- enddoc -%}
+
+{%- liquid
+  assign product = closest.product
+  assign s = block.settings
+  assign label = s.label
+
+  if product != blank and product.available == false and s.sold_out_label != blank
+    assign label = s.sold_out_label
+  endif
+-%}
+
+<a
+  class="trip-link-button {{ s.style_class }}{% if s.full_width %} trip-link-button--full{% endif %}"
+  {% if product != blank %}
+    href="{{ product.url }}"
+  {% else %}
+    role="link"
+    aria-disabled="true"
+  {% endif %}
+  {{ block.shopify_attributes }}
+>
+  {{- label -}}
+</a>
+
+{% stylesheet %}
+  .trip-link-button {
+    position: relative;
+    z-index: 2;
+    width: fit-content;
+    white-space: nowrap;
+  }
+
+  .trip-link-button--full {
+    width: 100%;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "View trip button",
+  "tag": null,
+  "settings": [
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Label",
+      "default": "View trip"
+    },
+    {
+      "type": "text",
+      "id": "sold_out_label",
+      "label": "Label when sold out",
+      "default": "Sold out"
+    },
+    {
+      "type": "select",
+      "id": "style_class",
+      "label": "Style",
+      "options": [
+        { "value": "button", "label": "Primary" },
+        { "value": "button-secondary", "label": "Secondary" }
+      ],
+      "default": "button"
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Full width",
+      "default": false
+    }
+  ],
+  "presets": [
+    {
+      "name": "View trip button"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,189 @@
+{%- doc -%}
+  Contiki-style "From $X" price for trip cards and product pages.
+  Uses the cheapest variant. Shows a "Was" price when that variant has a compare-at price.
+  Products priced at $0 (registration placeholders) show configurable text instead.
+{%- enddoc -%}
+
+{%- liquid
+  assign product = closest.product
+  assign s = block.settings
+
+  assign price = product.price_min
+  assign compare = product.compare_at_price_min
+
+  if settings.currency_code_enabled_product_cards
+    assign price_html = price | money_with_currency
+    assign compare_html = compare | money_with_currency
+  else
+    assign price_html = price | money
+    assign compare_html = compare | money
+  endif
+
+  if product == blank
+    assign price_html = 199900 | money
+  endif
+-%}
+
+<div
+  class="trip-price trip-price--{{ s.size }} trip-price--align-{{ s.alignment }}"
+  {{ block.shopify_attributes }}
+>
+  {%- if product != blank and price == 0 -%}
+    <span class="trip-price__text">{{ s.zero_price_text }}</span>
+  {%- else -%}
+    {%- if s.show_compare and product != blank and compare > price -%}
+      <span class="trip-price__was">
+        <span class="trip-price__label">{{ s.compare_label }}</span>
+        <s>{{ compare_html }}</s>
+      </span>
+    {%- endif -%}
+    <span class="trip-price__from">
+      {%- if s.prefix != blank -%}
+        <span class="trip-price__label">{{ s.prefix }}</span>
+      {%- endif -%}
+      <span class="trip-price__amount">{{ price_html }}</span>
+      {%- if s.suffix != blank -%}
+        <span class="trip-price__suffix">{{ s.suffix }}</span>
+      {%- endif -%}
+    </span>
+  {%- endif -%}
+</div>
+
+{% stylesheet %}
+  .trip-price {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    line-height: 1.2;
+  }
+
+  .trip-price--align-right {
+    align-items: flex-end;
+    text-align: right;
+  }
+
+  .trip-price--align-center {
+    align-items: center;
+    text-align: center;
+  }
+
+  .trip-price__label {
+    font-family: var(--font-subheading--family);
+    font-weight: 600;
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgb(var(--color-foreground-rgb) / 0.62);
+  }
+
+  .trip-price__from {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+  }
+
+  .trip-price__amount {
+    font-family: var(--font-heading--family);
+    font-weight: var(--font-heading--weight);
+    font-size: 1.25rem;
+    letter-spacing: -0.01em;
+  }
+
+  .trip-price--large .trip-price__amount {
+    font-size: 2rem;
+  }
+
+  .trip-price--small .trip-price__amount {
+    font-size: 1.0625rem;
+  }
+
+  .trip-price__was {
+    display: inline-flex;
+    gap: 0.35rem;
+    font-size: 0.8125rem;
+    color: rgb(var(--color-foreground-rgb) / 0.62);
+  }
+
+  .trip-price__was .trip-price__label {
+    font-size: 0.6875rem;
+  }
+
+  .trip-price__suffix {
+    font-size: 0.8125rem;
+    color: rgb(var(--color-foreground-rgb) / 0.62);
+  }
+
+  .trip-price__text {
+    font-family: var(--font-subheading--family);
+    font-weight: 600;
+    font-size: 0.9375rem;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Trip price",
+  "tag": null,
+  "settings": [
+    {
+      "type": "text",
+      "id": "prefix",
+      "label": "Label before the price",
+      "default": "From"
+    },
+    {
+      "type": "text",
+      "id": "suffix",
+      "label": "Text after the price",
+      "info": "For example \"per person\""
+    },
+    {
+      "type": "checkbox",
+      "id": "show_compare",
+      "label": "Show the compare-at price when there is one",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "compare_label",
+      "label": "Compare-at label",
+      "default": "Was"
+    },
+    {
+      "type": "text",
+      "id": "zero_price_text",
+      "label": "Text for $0 products",
+      "default": "See details",
+      "info": "Shown instead of a price for registration-only experiences."
+    },
+    {
+      "type": "select",
+      "id": "size",
+      "label": "Size",
+      "options": [
+        { "value": "small", "label": "Small" },
+        { "value": "medium", "label": "Medium" },
+        { "value": "large", "label": "Large" }
+      ],
+      "default": "medium"
+    },
+    {
+      "type": "select",
+      "id": "alignment",
+      "label": "Alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Trip price"
+    }
+  ]
+}
+{% endschema %}
