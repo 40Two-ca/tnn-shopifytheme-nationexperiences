@@ -1,15 +1,26 @@
 {%- doc -%}
   Contiki-style "From $X" price for trip cards and product pages.
-  Uses the cheapest variant. Shows a "Was" price when that variant has a compare-at price.
-  Products priced at $0 (registration placeholders) show configurable text instead.
+
+  "Lowest price" suits a card, where a "From" price is what a browser wants.
+  "Selected variant" suits a product page with a variant picker: on a trip whose
+  payment options include a deposit the cheapest variant is not the price of the
+  trip, so "From $500" would be misleading. Shows a "Was" price when there is a
+  compare-at price. Products priced at $0 (registration placeholders) show
+  configurable text instead.
 {%- enddoc -%}
 
 {%- liquid
   assign product = closest.product
   assign s = block.settings
 
-  assign price = product.price_min
-  assign compare = product.compare_at_price_min
+  if s.price_source == 'selected'
+    assign variant = product.selected_or_first_available_variant
+    assign price = variant.price
+    assign compare = variant.compare_at_price
+  else
+    assign price = product.price_min
+    assign compare = product.compare_at_price_min
+  endif
 
   if settings.currency_code_enabled_product_cards
     assign price_html = price | money_with_currency
@@ -126,6 +137,17 @@
   "name": "Trip price",
   "tag": null,
   "settings": [
+    {
+      "type": "select",
+      "id": "price_source",
+      "label": "Price shown",
+      "info": "Use the selected variant on a product page whose payment options include a deposit, so the price is not the deposit.",
+      "options": [
+        { "value": "lowest", "label": "Lowest price" },
+        { "value": "selected", "label": "Selected variant" }
+      ],
+      "default": "lowest"
+    },
     {
       "type": "text",
       "id": "prefix",
