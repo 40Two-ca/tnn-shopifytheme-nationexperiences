@@ -1,0 +1,154 @@
+{%- doc -%}
+  Buy now, pay later button and decal for the booking column.
+
+  This is a demo placeholder, not a payment method. Nothing is wired to
+  checkout: the real button is installed by the provider's own Shopify app,
+  which renders it from the cart and handles approval and settlement. Keep this
+  block out of a live theme, or replace it with the provider's app block.
+
+  The instalment amount is the selected variant's price divided by the number of
+  instalments, so it follows the variant picker.
+{%- enddoc -%}
+
+{%- liquid
+  assign product = closest.product
+  assign s = block.settings
+  assign variant = product.selected_or_first_available_variant
+
+  assign instalments = s.instalments | at_least: 2
+  assign amount = 0
+  if variant.price > 0
+    assign amount = variant.price | times: 1.00 | divided_by: instalments | round
+  endif
+-%}
+
+{%- if amount > 0 -%}
+  <div class="pay-later" {{ block.shopify_attributes }}>
+    <div class="pay-later__row">
+      <span
+        class="pay-later__button"
+        style="--pay-later-bg: {{ s.button_background }}; --pay-later-fg: {{ s.button_text }};"
+      >{{ s.provider }}</span>
+      {%- if s.decal != blank -%}
+        <span class="pay-later__decal">{{ s.decal }}</span>
+      {%- endif -%}
+    </div>
+
+    <p class="pay-later__terms">
+      {{- instalments }} interest-free payments of {{ amount | money }}
+      {%- if s.note != blank %} <span class="pay-later__note">{{ s.note }}</span>{% endif -%}
+    </p>
+  </div>
+{%- endif -%}
+
+{% stylesheet %}
+  .pay-later {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .pay-later__row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .pay-later__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.6rem 1.5rem;
+    border-radius: 999px;
+    background: var(--pay-later-bg, #b2fce4);
+    color: var(--pay-later-fg, #0a0a0a);
+    font-family: var(--font-subheading--family);
+    font-weight: 700;
+    font-size: 0.9375rem;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+
+  .pay-later__decal {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.45rem 0.85rem;
+    border: var(--style-border-width) solid rgb(var(--color-foreground-rgb) / 0.25);
+    border-radius: 999px;
+    font-family: var(--font-subheading--family);
+    font-weight: 700;
+    font-size: 0.6875rem;
+    line-height: 1.2;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .pay-later__terms {
+    margin: 0;
+    font-size: 0.8125rem;
+    line-height: 1.45;
+    color: rgb(var(--color-foreground-rgb) / 0.7);
+  }
+
+  .pay-later__note {
+    display: block;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Buy now, pay later",
+  "tag": null,
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "A visual placeholder only. It does not take a payment and is not connected to checkout. Install the provider's own Shopify app before launch and use their app block instead."
+    },
+    {
+      "type": "text",
+      "id": "provider",
+      "label": "Button label",
+      "default": "Afterpay"
+    },
+    {
+      "type": "text",
+      "id": "decal",
+      "label": "Decal",
+      "default": "Buy now, pay later"
+    },
+    {
+      "type": "range",
+      "id": "instalments",
+      "label": "Payments",
+      "min": 2,
+      "max": 12,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "text",
+      "id": "note",
+      "label": "Small print",
+      "default": "Demo only. Not connected to checkout."
+    },
+    {
+      "type": "color",
+      "id": "button_background",
+      "label": "Button background",
+      "default": "#b2fce4"
+    },
+    {
+      "type": "color",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "#0a0a0a"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Buy now, pay later"
+    }
+  ]
+}
+{% endschema %}
