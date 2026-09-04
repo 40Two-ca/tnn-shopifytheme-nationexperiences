@@ -130,13 +130,14 @@
             "price": {
               "type": "trip-price",
               "settings": {
-                "prefix": "From",
-                "suffix": "",
+                "prefix": "",
+                "suffix": "per person",
                 "show_compare": true,
                 "compare_label": "Was",
                 "zero_price_text": "Registration only. See details below.",
                 "size": "large",
-                "alignment": "left"
+                "alignment": "left",
+                "price_source": "selected"
               },
               "blocks": {}
             },
