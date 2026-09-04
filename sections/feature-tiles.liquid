@@ -58,7 +58,8 @@
               loading: 'lazy'
           }}
         {%- else -%}
-          {{ 'hero-apparel-' | append: placeholder_index | placeholder_svg_tag: 'feature-tile__image feature-tile__image--placeholder' }}
+          {%- assign fallback_svg = 'hero-apparel-' | append: placeholder_index -%}
+          {% render 'stock-image', key: tile.stock_image, class: 'feature-tile__image', fallback: fallback_svg %}
         {%- endif -%}
         <div class="feature-tile__overlay"></div>
         <div class="feature-tile__content">
@@ -248,6 +249,25 @@
           "type": "image_picker",
           "id": "image",
           "label": "Image"
+        },
+        {
+          "type": "select",
+          "id": "stock_image",
+          "label": "Stock photo (used until an image is picked)",
+          "options": [
+            { "value": "none", "label": "None" },
+            { "value": "crowd", "label": "Fans cheering" },
+            { "value": "arena", "label": "Hockey arena" },
+            { "value": "fans", "label": "Friends celebrating" },
+            { "value": "stadium_seats", "label": "Stadium seats" },
+            { "value": "road_trip", "label": "Mountain road trip" },
+            { "value": "jasper", "label": "Jasper" },
+            { "value": "toronto", "label": "Toronto" },
+            { "value": "edmonton", "label": "Edmonton" },
+            { "value": "calgary", "label": "Calgary" },
+            { "value": "airport", "label": "Airport" }
+          ],
+          "default": "none"
         },
         {
           "type": "text",

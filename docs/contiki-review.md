@@ -63,3 +63,20 @@ python scripts/validate_templates.py
 ```
 
 Then `shopify theme check`. The demo store is `tnn-nationexperiences.myshopify.com`; the synced theme sits under Online Store → Themes → Draft themes (preview it from its … menu).
+
+## Stock photos
+
+`assets/stock-*.jpg` are Unsplash photos (Unsplash License, free to use) bundled as placeholders. Sections show them only until a real image is picked in the editor. Replace them with Nation Experiences photography before launch.
+
+| File | Unsplash photo |
+| --- | --- |
+| stock-hero-crowd.jpg | unsplash.com/photos/WrNbw7UeNqI |
+| stock-arena.jpg | unsplash.com/photos/HwZTYUkIP6c |
+| stock-airport.jpg | unsplash.com/photos/rUXh5USKfUQ |
+| stock-fans.jpg | unsplash.com/photos/U4KutCl_GKg |
+| stock-toronto.jpg | unsplash.com/photos/s0grRYEDaL4 |
+| stock-edmonton.jpg | unsplash.com/photos/kczeUEAhDZI |
+| stock-calgary.jpg | unsplash.com/photos/_QOR7cwVDik |
+| stock-jasper.jpg | unsplash.com/photos/tYZH_KWl_IM |
+| stock-stadium-seats.jpg | unsplash.com/photos/HDwBnsB9Tkc |
+| stock-road-trip.jpg | unsplash.com/photos/C9DziWnywgo |

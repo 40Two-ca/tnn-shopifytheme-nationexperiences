@@ -1,0 +1,61 @@
+{%- doc -%}
+  Renders one of the bundled stock photos (assets/stock-*.jpg) as a placeholder until a real image is picked.
+  The photos are Unsplash-licensed and listed in docs/contiki-review.md.
+
+  @param {string} key - Stock image key (crowd, arena, airport, fans, toronto, edmonton, calgary, jasper, stadium_seats, road_trip) or 'none'
+  @param {string} [class] - CSS classes for the <img>
+  @param {string} [fallback] - placeholder_svg_tag name used when the key is 'none' or unknown
+  @param {string} [loading] - loading attribute (default lazy)
+  @param {string} [sizes] - sizes attribute
+{%- enddoc -%}
+
+{%- liquid
+  assign file = ''
+  assign alt = ''
+  case key
+    when 'crowd'
+      assign file = 'stock-hero-crowd.jpg'
+      assign alt = 'Fans cheering in a packed stadium'
+    when 'arena'
+      assign file = 'stock-arena.jpg'
+      assign alt = 'Hockey game under way in a full arena'
+    when 'airport'
+      assign file = 'stock-airport.jpg'
+      assign alt = 'Travellers walking through a sunlit airport terminal'
+    when 'fans'
+      assign file = 'stock-fans.jpg'
+      assign alt = 'Friends celebrating in a crowd at night'
+    when 'toronto'
+      assign file = 'stock-toronto.jpg'
+      assign alt = 'Toronto skyline and CN Tower at night'
+    when 'edmonton'
+      assign file = 'stock-edmonton.jpg'
+      assign alt = 'Edmonton skyline at night'
+    when 'calgary'
+      assign file = 'stock-calgary.jpg'
+      assign alt = 'Calgary skyline and the Saddledome'
+    when 'jasper'
+      assign file = 'stock-jasper.jpg'
+      assign alt = 'Snow-covered mountains and a lake in the Rockies'
+    when 'stadium_seats'
+      assign file = 'stock-stadium-seats.jpg'
+      assign alt = 'Fans in the stands at a hockey game'
+    when 'road_trip'
+      assign file = 'stock-road-trip.jpg'
+      assign alt = 'Highway through a snowy mountain forest'
+  endcase
+  assign loading = loading | default: 'lazy'
+-%}
+
+{%- if file != blank -%}
+  <img
+    src="{{ file | asset_url }}"
+    alt="{{ alt }}"
+    class="{{ class }}"
+    loading="{{ loading }}"
+    decoding="async"
+    {% if sizes != blank %}sizes="{{ sizes }}"{% endif %}
+  >
+{%- elsif fallback != blank -%}
+  {{ fallback | placeholder_svg_tag: class }}
+{%- endif -%}

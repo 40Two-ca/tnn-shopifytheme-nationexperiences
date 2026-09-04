@@ -16,7 +16,15 @@
   class="section section--{{ s.section_width }} spacing-style trust-points{% if s.background_color != blank %} color-custom-{{ section.id }}{% endif %}"
   style="{% render 'spacing-style', settings: s %}"
 >
-  <div class="trust-points__inner trust-points__inner--image-{{ s.image_position }}{% if s.image == blank %} trust-points__inner--no-image{% endif %}">
+  {%- liquid
+    assign has_media = false
+    if s.image != blank
+      assign has_media = true
+    elsif s.stock_image != blank and s.stock_image != 'none'
+      assign has_media = true
+    endif
+  -%}
+  <div class="trust-points__inner trust-points__inner--image-{{ s.image_position }}{% unless has_media %} trust-points__inner--no-image{% endunless %}">
     <div class="trust-points__content">
       {%- if s.eyebrow != blank -%}
         <p class="brand-eyebrow">{{ s.eyebrow }}</p>
@@ -68,6 +76,10 @@
             class: 'trust-points__image',
             loading: 'lazy'
         }}
+      </div>
+    {%- elsif has_media -%}
+      <div class="trust-points__media">
+        {% render 'stock-image', key: s.stock_image, class: 'trust-points__image' %}
       </div>
     {%- endif -%}
   </div>
@@ -213,6 +225,25 @@
       "type": "image_picker",
       "id": "image",
       "label": "Image"
+    },
+    {
+      "type": "select",
+      "id": "stock_image",
+      "label": "Stock photo (used until an image is picked)",
+      "options": [
+            { "value": "none", "label": "None" },
+            { "value": "crowd", "label": "Fans cheering" },
+            { "value": "arena", "label": "Hockey arena" },
+            { "value": "fans", "label": "Friends celebrating" },
+            { "value": "stadium_seats", "label": "Stadium seats" },
+            { "value": "road_trip", "label": "Mountain road trip" },
+            { "value": "jasper", "label": "Jasper" },
+            { "value": "toronto", "label": "Toronto" },
+            { "value": "edmonton", "label": "Edmonton" },
+            { "value": "calgary", "label": "Calgary" },
+            { "value": "airport", "label": "Airport" }
+          ],
+      "default": "none"
     },
     {
       "type": "select",

@@ -55,29 +55,116 @@
           },
           "blocks": {}
         },
-        "button": {
-          "type": "button",
-          "name": "t:names.button",
+        "eyebrow": {
+          "type": "text",
+          "name": "t:names.text",
           "settings": {
-            "label": "View experiences",
-            "link": "shopify://collections/all",
-            "open_in_new_tab": false,
-            "style_class": "button",
-            "custom_button_background": "{{ settings.color_palette.color1 }}",
-            "custom_button_text": "{{ settings.color_palette.foreground }}",
-            "custom_button_border": "{{ settings.color_palette.color1 }}",
+            "text": "<p>Fan travel by The Nation Network</p>",
+            "text_color": "{{ settings.color_palette.color1 }}",
+            "type_preset": "h6",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "center",
+            "font": "var(--font-subheading--family)",
+            "font_size": "0.75rem",
+            "line_height": "normal",
+            "letter_spacing": "loose",
+            "case": "uppercase",
+            "wrap": "pretty",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 4,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "buttons": {
+          "type": "group",
+          "name": "t:names.group",
+          "settings": {
+            "content_direction": "row",
+            "vertical_on_mobile": false,
+            "horizontal_alignment": "center",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "center",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 12,
             "width": "fit-content",
             "custom_width": 100,
             "width_mobile": "fit-content",
-            "custom_width_mobile": 100
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "open_in_new_tab": false,
+            "padding-block-start": 4,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
           },
-          "blocks": {}
+          "blocks": {
+            "primary": {
+              "type": "button",
+              "name": "t:names.button",
+              "settings": {
+                "label": "View experiences",
+                "link": "shopify://collections/all",
+                "open_in_new_tab": false,
+                "style_class": "button",
+                "custom_button_background": "{{ settings.color_palette.color1 }}",
+                "custom_button_text": "{{ settings.color_palette.foreground }}",
+                "custom_button_border": "{{ settings.color_palette.color1 }}",
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100
+              },
+              "blocks": {}
+            },
+            "secondary": {
+              "type": "button",
+              "name": "t:names.button",
+              "settings": {
+                "label": "Nation Vacation: Toronto",
+                "link": "shopify://products/nation-vacation-edmonton-to-toronto-2026",
+                "open_in_new_tab": false,
+                "style_class": "button-custom",
+                "custom_button_background": "rgba(0,0,0,0)",
+                "custom_button_text": "{{ settings.color_palette.background }}",
+                "custom_button_border": "{{ settings.color_palette.background }}",
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "primary",
+            "secondary"
+          ]
         }
       },
       "block_order": [
+        "eyebrow",
         "heading",
         "subheading",
-        "button"
+        "buttons"
       ],
       "name": "t:names.hero",
       "settings": {
@@ -101,13 +188,14 @@
         "section_height_custom": 50,
         "background_color": "rgba(0,0,0,0)",
         "toggle_overlay": true,
-        "overlay_color": "#0a0a0a73",
+        "overlay_color": "#0a0a0a8c",
         "overlay_style": "solid",
         "gradient_direction": "to top",
         "blurred_reflection": false,
         "reflection_opacity": 75,
-        "padding-block-start": 96,
-        "padding-block-end": 100
+        "padding-block-start": 88,
+        "padding-block-end": 100,
+        "stock_image": "crowd"
       }
     },
     "trip_finder": {
@@ -132,21 +220,24 @@
           "settings": {
             "heading": "Game days, road trips and once-in-a-lifetime events",
             "text": "From Rogers Place to Toronto and Jasper, the Nation goes where the story is.",
-            "link": "shopify://collections/all"
+            "link": "shopify://collections/all",
+            "stock_image": "arena"
           }
         },
         "tile_2": {
           "type": "tile",
           "settings": {
             "heading": "Tickets, transport and stays in one booking",
-            "text": "One checkout. No juggling flights, hotels and seats."
+            "text": "One checkout. No juggling flights, hotels and seats.",
+            "stock_image": "airport"
           }
         },
         "tile_3": {
           "type": "tile",
           "settings": {
             "heading": "Travel with a Nation host and fans who get it",
-            "text": "Every trip is run by the Nation Network crew and packed with fans."
+            "text": "Every trip is run by the Nation Network crew and packed with fans.",
+            "stock_image": "fans"
           }
         }
       },
@@ -538,12 +629,56 @@
         "columns": 4,
         "rows": 1,
         "ratio": "4 / 5",
-        "show_count": true,
+        "show_count": false,
         "button_label": "See all experiences",
         "section_width": "page-width",
         "padding-block-start": 72,
         "padding-block-end": 40
-      }
+      },
+      "blocks": {
+        "toronto": {
+          "type": "destination",
+          "settings": {
+            "title": "Toronto",
+            "subtitle": "Nation Vacation",
+            "stock_image": "toronto",
+            "link": "shopify://products/nation-vacation-edmonton-to-toronto-2026"
+          }
+        },
+        "edmonton": {
+          "type": "destination",
+          "settings": {
+            "title": "Edmonton",
+            "subtitle": "Home games",
+            "stock_image": "edmonton",
+            "link": "shopify://collections/all"
+          }
+        },
+        "calgary": {
+          "type": "destination",
+          "settings": {
+            "title": "Calgary",
+            "subtitle": "Battle of Alberta",
+            "stock_image": "calgary",
+            "link": "shopify://collections/all"
+          }
+        },
+        "jasper": {
+          "type": "destination",
+          "settings": {
+            "title": "Jasper",
+            "subtitle": "Pond hockey",
+            "stock_image": "jasper",
+            "link": "shopify://products/2027-jasper-pond-hockey-tournament"
+          }
+        }
+      },
+      "block_order": [
+        "toronto",
+        "edmonton",
+        "calgary",
+        "jasper"
+      ]
     },
     "trust": {
       "type": "trust-points",
@@ -591,7 +726,9 @@
         "image_position": "right",
         "section_width": "page-width",
         "padding-block-start": 40,
-        "padding-block-end": 40
+        "padding-block-end": 40,
+        "stock_image": "stadium_seats",
+        "button_link": "shopify://collections/all"
       }
     },
     "partners": {

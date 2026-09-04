@@ -327,7 +327,7 @@
   {{ media_slot_2 }}
 
   {% if media_count == 0 %}
-    {{ 'hero-apparel-1' | placeholder_svg_tag: 'hero__media' }}
+    {% render 'stock-image', key: section.settings.stock_image, class: 'hero__media', fallback: 'hero-apparel-1', loading: 'eager' %}
   {%- endif -%}
 {% endcapture %}
 
@@ -359,7 +359,7 @@
     }}
   {% endif %}
   {% if media_count == 0 %}
-    {{ 'hero-apparel-1' | placeholder_svg_tag: 'hero__media' }}
+    {% render 'stock-image', key: section.settings.stock_image, class: 'hero__media', fallback: 'hero-apparel-1', loading: 'eager' %}
   {% endif %}
 {% endcapture %}
 
@@ -443,7 +443,7 @@
             }}
         {% endif %}
         {% if media_count == 0 %}
-          {{ 'hero-apparel-1' | placeholder_svg_tag: 'hero__media' }}
+          {% render 'stock-image', key: section.settings.stock_image, class: 'hero__media', fallback: 'hero-apparel-1', loading: 'eager' %}
         {% endif %}
       {% endif %}
     {% endif %}
@@ -802,6 +802,25 @@
     {
       "type": "header",
       "content": "t:content.media_1"
+    },
+    {
+      "type": "select",
+      "id": "stock_image",
+      "label": "Stock photo (used until an image is picked)",
+      "options": [
+        { "value": "none", "label": "None" },
+        { "value": "crowd", "label": "Fans cheering" },
+        { "value": "arena", "label": "Hockey arena" },
+        { "value": "fans", "label": "Friends celebrating" },
+        { "value": "stadium_seats", "label": "Stadium seats" },
+        { "value": "road_trip", "label": "Mountain road trip" },
+        { "value": "jasper", "label": "Jasper" },
+        { "value": "toronto", "label": "Toronto" },
+        { "value": "edmonton", "label": "Edmonton" },
+        { "value": "calgary", "label": "Calgary" },
+        { "value": "airport", "label": "Airport" }
+      ],
+      "default": "none"
     },
     {
       "type": "select",
