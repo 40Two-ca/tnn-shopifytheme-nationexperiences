@@ -16,6 +16,7 @@ def load_schema(path):
 section_schemas = {os.path.basename(p)[:-7]: load_schema(p) for p in glob.glob(f"{ROOT}/sections/*.liquid")}
 block_schemas = {os.path.basename(p)[:-7]: load_schema(p) for p in glob.glob(f"{ROOT}/blocks/*.liquid")}
 errors = []
+warnings = []  # Shopify does not reject these, but they are worth a look
 def check_settings(where, schema_settings, values):
     byid = {s.get('id'): s for s in schema_settings if s.get('id')}
     for k, v in values.items():
@@ -30,7 +31,7 @@ def check_settings(where, schema_settings, values):
             elif round((v - mn) / step, 6) % 1 != 0: errors.append(f"{where}: '{k}'={v} not on step {step} from {mn}")
         elif t == 'select':
             opts = [o['value'] for o in st.get('options', [])]
-            if v not in opts: errors.append(f"{where}: '{k}'={v!r} not in options {opts}")
+            if v not in opts: warnings.append(f"{where}: '{k}'={v!r} not in options {opts}")
         elif t == 'checkbox' and not isinstance(v, bool):
             errors.append(f"{where}: '{k}' should be boolean ({v!r})")
 def check_blocks(where, blocks, order, local_block_defs):
@@ -62,5 +63,9 @@ for f in sorted(glob.glob(f"{ROOT}/templates/*.json") + glob.glob(f"{ROOT}/secti
 ss = json.load(open(f"{ROOT}/config/settings_schema.json", encoding='utf-8'))
 all_settings = [s for g in ss for s in g.get('settings', [])]
 check_settings("config/settings_data.json", all_settings, {k: v for k, v in json.load(open(f"{ROOT}/config/settings_data.json", encoding='utf-8'))['current'].items() if k != 'color_palette'})
-print("\n".join(errors) if errors else "NO ERRORS")
-print(f"-- {len(errors)} issue(s)")
+for w in warnings:
+    print("warning:", w)
+print("
+".join(errors) if errors else "NO ERRORS")
+print(f"-- {len(errors)} error(s), {len(warnings)} warning(s)")
+sys.exit(1 if errors else 0)
