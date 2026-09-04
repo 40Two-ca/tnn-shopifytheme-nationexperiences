@@ -6,7 +6,7 @@
     custom.not_included  e.g. `Travel insurance`
 
   The part before the pipe is an optional icon name from the theme's icon set
-  (plane, bed, ticket and so on). With no pipe the line is the item text and a
+  (plane, map_pin, price_tag and so on). With no pipe the line is the item text and a
   check mark is used. "Not included" items always use a plain dash.
 {%- enddoc -%}
 
@@ -32,6 +32,10 @@
   if raw_excluded != blank
     assign has_excluded = true
   endif
+
+  # Icons the theme actually ships. An unknown name renders nothing and would
+  # leave an empty circle, so anything off this list falls back to a check mark.
+  assign known_icons = 'apple,banana,bottle,box,carrot,chat_bubble,check_box,clipboard,dairy,dairy_free,dryer,eye,fire,gluten_free,heart,iron,leaf,leather,lightning_bolt,lipstick,lock,map_pin,nut_free,pants,paw_print,pepper,perfume,plane,plant,price_tag,question_mark,recycle,return,ruler,serving_dish,shirt,shoe,silhouette,snowflake,star,stopwatch,truck,washing' | split: ','
 -%}
 
 {%- if has_included or has_excluded -%}
@@ -55,6 +59,9 @@
               assign icon_name = 'check_box'
               assign item_text = parts[0] | strip
             endif
+            unless known_icons contains icon_name
+              assign icon_name = 'check_box'
+            endunless
             if item_text == blank
               continue
             endif
