@@ -248,49 +248,10 @@
               },
               "block_order": []
             },
-            "divider_bottom": {
-              "type": "_divider",
-              "name": "t:names.divider",
-              "settings": {
-                "thickness": 1,
-                "corner_radius": "square",
-                "divider_color": "{{ settings.color_palette.color2 }}",
-                "width_percent": 100,
-                "padding-block-start": 8,
-                "padding-block-end": 0
-              },
-              "blocks": {}
-            },
-            "details": {
-              "type": "trip-details",
-              "settings": {
-                "open_first": true,
-                "show_overview": true,
-                "overview_label": "Overview",
-                "show_included": true,
-                "included_label": "What's included",
-                "show_itinerary": true,
-                "itinerary_label": "Itinerary",
-                "show_good_to_know": true,
-                "good_to_know_label": "Good to know",
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
             "stats": {
               "type": "trip-stats",
               "settings": {
                 "size": "medium"
-              }
-            },
-            "inclusions": {
-              "type": "trip-inclusions",
-              "settings": {
-                "included_heading": "What's included",
-                "excluded_heading": "What's not included"
               }
             }
           },
@@ -304,10 +265,7 @@
             "price",
             "note",
             "variant_picker",
-            "buy_buttons",
-            "inclusions",
-            "divider_bottom",
-            "details"
+            "buy_buttons"
           ]
         }
       },
@@ -650,10 +608,23 @@
         "padding-block-start": 40,
         "padding-block-end": 56
       }
+    },
+    "overview": {
+      "type": "trip-overview",
+      "settings": {
+        "eyebrow": "The trip",
+        "heading": "About this trip",
+        "included_heading": "What's included",
+        "excluded_heading": "What's not included",
+        "section_width": "page-width",
+        "padding-block-start": 24,
+        "padding-block-end": 24
+      }
     }
   },
   "order": [
     "main",
+    "overview",
     "timeline",
     "trust",
     "faqs",
