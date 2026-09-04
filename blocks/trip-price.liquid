@@ -20,6 +20,27 @@
   else
     assign price = product.price_min
     assign compare = product.compare_at_price_min
+
+    # A deposit is the cheapest variant on a trip that offers one, and "From $500"
+    # for a $3,099 trip is not a price anyone can book. Skip those variants so the
+    # "from" price is the cheapest a whole trip actually costs.
+    assign skip = s.exclude_option_value | strip
+    if skip != blank
+      assign lowest = -1
+      assign lowest_compare = 0
+      for v in product.variants
+        unless v.title contains skip
+          if lowest == -1 or v.price < lowest
+            assign lowest = v.price
+            assign lowest_compare = v.compare_at_price
+          endif
+        endunless
+      endfor
+      unless lowest == -1
+        assign price = lowest
+        assign compare = lowest_compare
+      endunless
+    endif
   endif
 
   if settings.currency_code_enabled_product_cards
@@ -148,6 +169,13 @@
         { "value": "selected", "label": "Selected variant" }
       ],
       "default": "lowest"
+    },
+    {
+      "type": "text",
+      "id": "exclude_option_value",
+      "label": "Leave out variants containing",
+      "info": "Applies to the lowest price only, so a deposit variant does not become the \"from\" price. Clear it to use every variant.",
+      "default": "Deposit"
     },
     {
       "type": "text",
