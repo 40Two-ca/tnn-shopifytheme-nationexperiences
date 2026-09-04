@@ -1,0 +1,269 @@
+{%- comment -%}
+  Trip FAQs and General FAQs (Contiki's two FAQ blocks on a tour page).
+
+  Trip FAQs come from the product metafield custom.faqs: one question per line,
+  written as `Question | Answer`.
+
+    Do I have to fly with the group? | No. The land package covers everything but the flights.
+
+  General FAQs are section blocks, so the same set shows on every product.
+  Each group hides itself when it has nothing to show.
+{%- endcomment -%}
+
+{%- liquid
+  assign s = section.settings
+
+  assign raw_faqs = ''
+  if product != blank
+    assign raw_faqs = product.metafields.custom.faqs
+  endif
+  assign faq_lines = raw_faqs | strip | newline_to_br | split: '<br />'
+
+  assign has_trip_faqs = false
+  if raw_faqs != blank
+    assign has_trip_faqs = true
+  endif
+
+  assign has_general_faqs = false
+  if section.blocks.size > 0
+    assign has_general_faqs = true
+  endif
+
+  if s.background_color != blank
+    render 'contrast-override', background_color: s.background_color, section_id: section.id
+  endif
+
+  capture accordion_style
+    echo '--summary-font-family: var(--font-h6--family);'
+    echo '--summary-font-style: var(--font-h6--style);'
+    echo '--summary-font-weight: 700;'
+    echo '--summary-font-size: 1rem;'
+    echo '--summary-font-line-height: 1.4;'
+    echo '--summary-font-case: none;'
+  endcapture
+-%}
+
+{%- if has_trip_faqs or has_general_faqs -%}
+  <div
+    class="section-background{% if s.background_color != blank %} color-custom-{{ section.id }}{% endif %}"
+  ></div>
+  <div
+    class="section section--{{ s.section_width }} spacing-style trip-faqs{% if s.background_color != blank %} color-custom-{{ section.id }}{% endif %}"
+    style="{% render 'spacing-style', settings: s %}"
+  >
+    {%- if s.eyebrow != blank -%}
+      <p class="brand-eyebrow trip-faqs__eyebrow">{{ s.eyebrow }}</p>
+    {%- endif -%}
+
+    <div class="trip-faqs__groups{% if has_trip_faqs and has_general_faqs %} trip-faqs__groups--pair{% endif %}">
+      {%- if has_trip_faqs -%}
+        <section class="trip-faqs__group">
+          {%- if s.trip_heading != blank -%}
+            <h2 class="h4 trip-faqs__heading">{{ s.trip_heading }}</h2>
+          {%- endif -%}
+          <div
+            class="accordion accordion--caret accordion--dividers"
+            style="{{ accordion_style }}"
+          >
+            {%- for line in faq_lines -%}
+              {%- liquid
+                assign row = line | strip_html | strip
+                if row == blank
+                  continue
+                endif
+                assign parts = row | split: '|'
+                assign question = parts[0] | strip
+                assign answer = parts[1] | strip
+                if question == blank or answer == blank
+                  continue
+                endif
+                capture answer_html
+                  echo '<p>'
+                  echo answer
+                  echo '</p>'
+                endcapture
+              -%}
+              {% render 'trip-details-row', heading: question, content: answer_html %}
+            {%- endfor -%}
+          </div>
+        </section>
+      {%- endif -%}
+
+      {%- if has_general_faqs -%}
+        <section class="trip-faqs__group">
+          {%- if s.general_heading != blank -%}
+            <h2 class="h4 trip-faqs__heading">{{ s.general_heading }}</h2>
+          {%- endif -%}
+          <div
+            class="accordion accordion--caret accordion--dividers"
+            style="{{ accordion_style }}"
+          >
+            {%- for block in section.blocks -%}
+              {%- if block.settings.question != blank and block.settings.answer != blank -%}
+                <div {{ block.shopify_attributes }}>
+                  {% render 'trip-details-row', heading: block.settings.question, content: block.settings.answer %}
+                </div>
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+        </section>
+      {%- endif -%}
+    </div>
+
+    {%- if s.button_label != blank and s.button_link != blank -%}
+      <div class="trip-faqs__footer">
+        <a class="button-secondary" href="{{ s.button_link }}">{{ s.button_label }}</a>
+      </div>
+    {%- endif -%}
+  </div>
+{%- endif -%}
+
+{% comment %} The rows use the shared accordion classes, so pull their styles in here too. {% endcomment %}
+{% render 'accordion-styles' %}
+
+{% stylesheet %}
+  .trip-faqs__eyebrow {
+    margin: 0 0 1.25rem;
+  }
+
+  .trip-faqs__groups {
+    display: grid;
+    gap: 2.5rem;
+  }
+
+  @media screen and (min-width: 990px) {
+    .trip-faqs__groups--pair {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 3rem;
+      align-items: start;
+    }
+  }
+
+  .trip-faqs__group {
+    min-width: 0;
+  }
+
+  .trip-faqs__heading {
+    margin: 0 0 0.75rem;
+  }
+
+  /*
+    The accordion rows come from the shared trip-details-row snippet, which wraps
+    each row in its own <accordion-custom>. Dividers there are drawn per row, so
+    the group reads as one list.
+  */
+  .trip-faqs .details__header {
+    padding-block: 1rem;
+  }
+
+  .trip-faqs__footer {
+    margin-block-start: 2rem;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Trip FAQs",
+  "tag": "section",
+  "class": "section-wrapper",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Trip FAQs come from the product metafield custom.faqs: one per line, written as \"Question | Answer\". General FAQs are the blocks below and show on every product."
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Good to know"
+    },
+    {
+      "type": "text",
+      "id": "trip_heading",
+      "label": "Trip FAQ heading",
+      "default": "Trip FAQs"
+    },
+    {
+      "type": "text",
+      "id": "general_heading",
+      "label": "General FAQ heading",
+      "default": "General FAQs"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "Width",
+      "options": [
+        { "value": "page-width", "label": "Page" },
+        { "value": "full-width", "label": "Full" }
+      ],
+      "default": "page-width"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 56
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "General FAQ",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "Who runs these trips?"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 16,
+  "presets": [
+    {
+      "name": "Trip FAQs",
+      "category": "Nation Experiences"
+    }
+  ]
+}
+{% endschema %}

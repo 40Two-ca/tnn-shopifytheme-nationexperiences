@@ -571,12 +571,77 @@
         "padding-block-start": 24,
         "padding-block-end": 40
       }
+    },
+    "faqs": {
+      "type": "trip-faqs",
+      "blocks": {
+        "faq_who": {
+          "type": "faq",
+          "settings": {
+            "question": "Who runs these trips?",
+            "answer": "<p>Nation Experiences is The Nation Network's travel and events brand. Every experience is planned and hosted by the Nation team, with established travel partners handling flights, hotels and ground transport.</p>"
+          }
+        },
+        "faq_fan": {
+          "type": "faq",
+          "settings": {
+            "question": "Do I need to be a die-hard fan to come?",
+            "answer": "<p>Not at all. Plenty of travellers come for the trip as much as the game. You will be with a group that makes it easy to join in, whether you watch every shift or you are there for the city and the people.</p>"
+          }
+        },
+        "faq_solo": {
+          "type": "faq",
+          "settings": {
+            "question": "Can I book on my own?",
+            "answer": "<p>Yes, lots of people do. Choose single occupancy if you would rather not share a room, or tell us you are happy to be paired up and we will match you with another traveller.</p>"
+          }
+        },
+        "faq_pay": {
+          "type": "faq",
+          "settings": {
+            "question": "How do I pay, and can I pay over time?",
+            "answer": "<p>Checkout is handled by Shopify and accepts major credit cards and the express wallets you already use. Where a trip offers a deposit, that option appears at checkout with the balance due date shown on the product page.</p>"
+          }
+        },
+        "faq_cancel": {
+          "type": "faq",
+          "settings": {
+            "question": "What happens if I need to cancel?",
+            "answer": "<p>Deposits are non-refundable, and the rest depends on the airline, hotel and suppliers for that specific trip. Get in touch as early as you can and we will walk through the options with you.</p>"
+          }
+        },
+        "faq_contact": {
+          "type": "faq",
+          "settings": {
+            "question": "How do I reach a real person?",
+            "answer": "<p>Use the contact page and the Nation Experiences team will get back to you. We would rather answer a question before you book than after.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_who",
+        "faq_fan",
+        "faq_solo",
+        "faq_pay",
+        "faq_cancel",
+        "faq_contact"
+      ],
+      "settings": {
+        "eyebrow": "Good to know",
+        "trip_heading": "Trip FAQs",
+        "general_heading": "General FAQs",
+        "button_label": "",
+        "section_width": "page-width",
+        "padding-block-start": 40,
+        "padding-block-end": 56
+      }
     }
   },
   "order": [
     "main",
     "timeline",
     "trust",
+    "faqs",
     "recommendations"
   ]
 }
