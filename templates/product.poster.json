@@ -1,0 +1,646 @@
+{
+  "sections": {
+    "main": {
+      "type": "product-information",
+      "blocks": {
+        "media-gallery": {
+          "type": "_product-media-gallery",
+          "static": true,
+          "settings": {
+            "media_presentation": "grid",
+            "media_columns": "one",
+            "image_gap": 8,
+            "large_first_image": false,
+            "icons_style": "chevron",
+            "slideshow_controls_style": "thumbnails",
+            "slideshow_mobile_controls_style": "dots",
+            "thumbnail_position": "bottom",
+            "thumbnail_width": 72,
+            "thumbnail_radius": 6,
+            "aspect_ratio": "adapt",
+            "constrain_to_viewport": true,
+            "media_fit": "contain",
+            "media_radius": 12,
+            "extend_media": false,
+            "zoom": true,
+            "video_loop": false,
+            "hide_variants": false,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "product-details": {
+          "type": "_product-details",
+          "static": true,
+          "settings": {
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "details_position": "flex-start",
+            "gap": 18,
+            "sticky_details_desktop": true,
+            "background_media": "none",
+            "background_color": "",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_color": "",
+            "border_radius": 0,
+            "padding-block-start": 8,
+            "padding-block-end": 24,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "badge": {
+              "type": "trip-badge",
+              "settings": {
+                "label_override": "",
+                "style": "accent",
+                "placement": "inline"
+              },
+              "blocks": {}
+            },
+            "title": {
+              "type": "text",
+              "name": "t:names.product_title",
+              "settings": {
+                "text": "<h1>{{ closest.product.title }}</h1>",
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "h2",
+                "font": "var(--font-heading--family)",
+                "font_size": "1rem",
+                "line_height": "tight",
+                "letter_spacing": "tight",
+                "case": "none",
+                "wrap": "balance",
+                "text_color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "meta": {
+              "type": "trip-meta",
+              "settings": {
+                "show_duration": true,
+                "show_location": true,
+                "show_dates": true,
+                "show_group": true,
+                "size": "medium"
+              },
+              "blocks": {}
+            },
+            "excerpt": {
+              "type": "product-excerpt",
+              "settings": {
+                "max_words": 30,
+                "clamp": false,
+                "lines": 3
+              },
+              "blocks": {}
+            },
+            "divider_top": {
+              "type": "_divider",
+              "name": "t:names.divider",
+              "settings": {
+                "thickness": 1,
+                "corner_radius": "square",
+                "divider_color": "{{ settings.color_palette.color2 }}",
+                "width_percent": 100,
+                "padding-block-start": 4,
+                "padding-block-end": 4
+              },
+              "blocks": {}
+            },
+            "price": {
+              "type": "trip-price",
+              "settings": {
+                "prefix": "",
+                "suffix": "per person",
+                "show_compare": true,
+                "compare_label": "Was",
+                "zero_price_text": "Registration only. See details below.",
+                "size": "large",
+                "alignment": "left",
+                "price_source": "selected"
+              },
+              "blocks": {}
+            },
+            "note": {
+              "type": "text",
+              "name": "t:names.text",
+              "settings": {
+                "text": "<p>Prices in CAD. Secure checkout powered by Shopify.</p>",
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "custom",
+                "font": "var(--font-body--family)",
+                "font_size": "0.875rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 4,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "variant_picker": {
+              "type": "variant-picker",
+              "settings": {
+                "variant_style": "buttons",
+                "show_swatches": false,
+                "option_label_text_color": "",
+                "variant_style_class": "default",
+                "custom_variant_background": "{{ settings.color_palette.background }}",
+                "custom_variant_text": "{{ settings.color_palette.foreground }}",
+                "custom_variant_border": "{{ settings.color_palette.foreground }}",
+                "selected_variant_style_class": "default",
+                "custom_selected_variant_background": "{{ settings.color_palette.foreground }}",
+                "custom_selected_variant_text": "{{ settings.color_palette.background }}",
+                "custom_selected_variant_border": "{{ settings.color_palette.foreground }}",
+                "alignment": "left",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "buy_buttons": {
+              "type": "buy-buttons",
+              "settings": {
+                "stacking": true,
+                "text_color": "",
+                "show_pickup_availability": false,
+                "gift_card_form": true,
+                "recipient_button_style": "default",
+                "recipient_button_background": "{{ settings.color_palette.background }}",
+                "recipient_button_text": "{{ settings.color_palette.foreground }}",
+                "recipient_button_border": "{{ settings.color_palette.foreground }}",
+                "selected_recipient_button_style": "default",
+                "selected_recipient_button_background": "{{ settings.color_palette.foreground }}",
+                "selected_recipient_button_text": "{{ settings.color_palette.background }}",
+                "selected_recipient_button_border": "{{ settings.color_palette.foreground }}",
+                "input_style": "default",
+                "input_background_color": "{{ settings.color_palette.background }}",
+                "input_text_color": "{{ settings.color_palette.foreground }}",
+                "input_border_color": "{{ settings.color_palette.foreground }}",
+                "border_width": 1,
+                "border_radius": 50,
+                "padding-block-start": 4,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "quantity": {
+                  "type": "quantity",
+                  "static": true,
+                  "settings": {
+                    "input_style": "default",
+                    "input_background_color": "{{ settings.color_palette.background }}",
+                    "input_text_color": "{{ settings.color_palette.foreground }}",
+                    "input_border_color": "{{ settings.color_palette.foreground }}",
+                    "border_width": 1,
+                    "border_radius": 50
+                  },
+                  "blocks": {}
+                },
+                "add-to-cart": {
+                  "type": "add-to-cart",
+                  "static": true,
+                  "settings": {
+                    "style_class": "button",
+                    "custom_button_background": "{{ settings.color_palette.color1 }}",
+                    "custom_button_text": "{{ settings.color_palette.foreground }}",
+                    "custom_button_border": "{{ settings.color_palette.color1 }}"
+                  },
+                  "blocks": {}
+                },
+                "accelerated-checkout": {
+                  "type": "accelerated-checkout",
+                  "static": true,
+                  "settings": {},
+                  "blocks": {}
+                }
+              },
+              "block_order": []
+            },
+            "stats": {
+              "type": "trip-stats",
+              "settings": {
+                "size": "medium"
+              }
+            },
+            "pay_later": {
+              "type": "pay-later",
+              "settings": {
+                "provider": "Afterpay",
+                "decal": "Buy now, pay later",
+                "instalments": 4,
+                "note": "Demo only. Not connected to checkout.",
+                "button_background": "#b2fce4",
+                "button_text": "#0a0a0a"
+              }
+            }
+          },
+          "block_order": [
+            "badge",
+            "title",
+            "meta",
+            "stats",
+            "excerpt",
+            "divider_top",
+            "price",
+            "note",
+            "variant_picker",
+            "buy_buttons",
+            "pay_later"
+          ]
+        }
+      },
+      "block_order": [],
+      "settings": {
+        "content_width": "content-center-aligned",
+        "desktop_media_position": "left",
+        "equal_columns": false,
+        "limit_details_width": false,
+        "gap": 40,
+        "enable_sticky_add_to_cart": true,
+        "background_color": "{{ settings.color_palette.background }}",
+        "padding-block-start": 24,
+        "padding-block-end": 48
+      }
+    },
+    "trust": {
+      "type": "trust-points",
+      "blocks": {
+        "point_1": {
+          "type": "point",
+          "settings": {
+            "icon": "lock",
+            "text": "Secure checkout, powered by Shopify"
+          }
+        },
+        "point_2": {
+          "type": "point",
+          "settings": {
+            "icon": "check_box",
+            "text": "Tickets, transport and stays in one booking"
+          }
+        },
+        "point_3": {
+          "type": "point",
+          "settings": {
+            "icon": "chat_bubble",
+            "text": "A Nation host on every trip"
+          }
+        },
+        "point_4": {
+          "type": "point",
+          "settings": {
+            "icon": "question_mark",
+            "text": "Questions? Talk to the Nation team"
+          }
+        }
+      },
+      "block_order": [
+        "point_1",
+        "point_2",
+        "point_3",
+        "point_4"
+      ],
+      "settings": {
+        "eyebrow": "",
+        "heading": "Book with confidence",
+        "text": "<p>Every experience is run by the Nation team. If plans change you talk to us, not a call centre.</p>",
+        "button_label": "",
+        "image_position": "right",
+        "section_width": "page-width",
+        "padding-block-start": 16,
+        "padding-block-end": 40
+      }
+    },
+    "recommendations": {
+      "type": "product-recommendations",
+      "blocks": {
+        "header": {
+          "type": "text",
+          "name": "t:names.header",
+          "settings": {
+            "text": "<h3>More experiences</h3>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h3",
+            "font": "var(--font-heading--family)",
+            "font_size": "1rem",
+            "line_height": "tight",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "text_color": "",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "static-product-card": {
+          "type": "_product-card",
+          "name": "t:names.product_card",
+          "static": true,
+          "settings": {
+            "product_card_gap": 10,
+            "background_color": "{{ settings.color_palette.background }}",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_color": "",
+            "border_radius": 8,
+            "padding-block-start": 0,
+            "padding-block-end": 16,
+            "padding-inline-start": 16,
+            "padding-inline-end": 16
+          },
+          "blocks": {
+            "gallery": {
+              "type": "_product-card-gallery",
+              "name": "t:names.product_card_media",
+              "settings": {
+                "image_ratio": "landscape",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_color": "",
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "badge": {
+              "type": "trip-badge",
+              "settings": {
+                "label_override": "",
+                "style": "accent",
+                "placement": "on_image"
+              },
+              "blocks": {}
+            },
+            "title": {
+              "type": "product-title",
+              "name": "t:names.product_title",
+              "settings": {
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "h4",
+                "font": "var(--font-heading--family)",
+                "font_size": "1rem",
+                "line_height": "tight",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 6,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "meta": {
+              "type": "trip-meta",
+              "settings": {
+                "show_duration": true,
+                "show_location": true,
+                "show_dates": true,
+                "show_group": false,
+                "size": "small"
+              },
+              "blocks": {}
+            },
+            "footer": {
+              "type": "_product-card-group",
+              "name": "t:names.group",
+              "settings": {
+                "content_direction": "row",
+                "vertical_on_mobile": false,
+                "horizontal_alignment": "space-between",
+                "vertical_alignment": "flex-end",
+                "align_baseline": false,
+                "horizontal_alignment_flex_direction_column": "flex-start",
+                "vertical_alignment_flex_direction_column": "center",
+                "gap": 12,
+                "width": "fill",
+                "custom_width": 100,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "height": "fit",
+                "custom_height": 100,
+                "background_media": "none",
+                "video_position": "cover",
+                "background_image_position": "cover",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "padding-block-start": 8,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "price": {
+                  "type": "trip-price",
+                  "settings": {
+                    "prefix": "From",
+                    "suffix": "",
+                    "show_compare": true,
+                    "compare_label": "Was",
+                    "zero_price_text": "See details",
+                    "size": "medium",
+                    "alignment": "left"
+                  },
+                  "blocks": {}
+                },
+                "button": {
+                  "type": "product-link-button",
+                  "settings": {
+                    "label": "View trip",
+                    "sold_out_label": "Sold out",
+                    "style_class": "button",
+                    "full_width": false
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "price",
+                "button"
+              ]
+            }
+          },
+          "block_order": [
+            "gallery",
+            "badge",
+            "title",
+            "meta",
+            "footer"
+          ]
+        }
+      },
+      "block_order": [
+        "header"
+      ],
+      "name": "t:names.product_recommendations",
+      "settings": {
+        "product": "{{ closest.product }}",
+        "recommendation_type": "related",
+        "layout_type": "carousel",
+        "carousel_on_mobile": true,
+        "max_products": 6,
+        "columns": 3,
+        "mobile_columns": "1",
+        "columns_gap": 24,
+        "rows_gap": 24,
+        "icons_style": "chevron",
+        "icons_shape": "circle",
+        "section_width": "page-width",
+        "gap": 28,
+        "background_color": "{{ settings.color_palette.background }}",
+        "padding-block-start": 40,
+        "padding-block-end": 72
+      }
+    },
+    "timeline": {
+      "type": "trip-timeline",
+      "settings": {
+        "eyebrow": "Itinerary",
+        "heading": "The weekend at a glance",
+        "subheading": "",
+        "button_label": "",
+        "section_width": "page-width",
+        "padding-block-start": 24,
+        "padding-block-end": 40
+      }
+    },
+    "faqs": {
+      "type": "trip-faqs",
+      "blocks": {
+        "faq_who": {
+          "type": "faq",
+          "settings": {
+            "question": "Who runs these trips?",
+            "answer": "<p>Nation Experiences is The Nation Network's travel and events brand. Every experience is planned and hosted by the Nation team, with established travel partners handling flights, hotels and ground transport.</p>"
+          }
+        },
+        "faq_fan": {
+          "type": "faq",
+          "settings": {
+            "question": "Do I need to be a die-hard fan to come?",
+            "answer": "<p>Not at all. Plenty of travellers come for the trip as much as the game. You will be with a group that makes it easy to join in, whether you watch every shift or you are there for the city and the people.</p>"
+          }
+        },
+        "faq_solo": {
+          "type": "faq",
+          "settings": {
+            "question": "Can I book on my own?",
+            "answer": "<p>Yes, lots of people do. Choose single occupancy if you would rather not share a room, or tell us you are happy to be paired up and we will match you with another traveller.</p>"
+          }
+        },
+        "faq_pay": {
+          "type": "faq",
+          "settings": {
+            "question": "How do I pay, and can I pay over time?",
+            "answer": "<p>Checkout is handled by Shopify and accepts major credit cards and the express wallets you already use. Where a trip offers a deposit, that option appears at checkout with the balance due date shown on the product page.</p>"
+          }
+        },
+        "faq_cancel": {
+          "type": "faq",
+          "settings": {
+            "question": "What happens if I need to cancel?",
+            "answer": "<p>Deposits are non-refundable, and the rest depends on the airline, hotel and suppliers for that specific trip. Get in touch as early as you can and we will walk through the options with you.</p>"
+          }
+        },
+        "faq_contact": {
+          "type": "faq",
+          "settings": {
+            "question": "How do I reach a real person?",
+            "answer": "<p>Use the contact page and the Nation Experiences team will get back to you. We would rather answer a question before you book than after.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_who",
+        "faq_fan",
+        "faq_solo",
+        "faq_pay",
+        "faq_cancel",
+        "faq_contact"
+      ],
+      "settings": {
+        "eyebrow": "Good to know",
+        "trip_heading": "Trip FAQs",
+        "general_heading": "General FAQs",
+        "button_label": "",
+        "section_width": "page-width",
+        "padding-block-start": 40,
+        "padding-block-end": 56
+      }
+    },
+    "overview": {
+      "type": "trip-overview",
+      "settings": {
+        "eyebrow": "The trip",
+        "heading": "About this trip",
+        "included_heading": "What's included",
+        "excluded_heading": "What's not included",
+        "section_width": "page-width",
+        "padding-block-start": 24,
+        "padding-block-end": 24
+      }
+    }
+  },
+  "order": [
+    "main",
+    "overview",
+    "timeline",
+    "trust",
+    "faqs",
+    "recommendations"
+  ]
+}
