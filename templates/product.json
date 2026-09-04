@@ -559,10 +559,23 @@
         "padding-block-start": 40,
         "padding-block-end": 72
       }
+    },
+    "timeline": {
+      "type": "trip-timeline",
+      "settings": {
+        "eyebrow": "Itinerary",
+        "heading": "The weekend at a glance",
+        "subheading": "",
+        "button_label": "",
+        "section_width": "page-width",
+        "padding-block-start": 24,
+        "padding-block-end": 40
+      }
     }
   },
   "order": [
     "main",
+    "timeline",
     "trust",
     "recommendations"
   ]
