@@ -1,4 +1,7 @@
-"""Validate JSON templates and section groups against section/block schemas.
+"""Pre-push checks for the theme.
+
+Validates JSON templates and section groups against section/block schemas, and
+checks Liquid files for multi-line tags inside a {% liquid %} block.
 
 Shopify's GitHub theme sync rejects JSON files whose values fall outside a
 range setting's min/max/step, and it only reports the first problem per file.
@@ -90,6 +93,31 @@ def check_file(path):
 
 for path in sorted(glob.glob(f"{ROOT}/templates/*.json") + glob.glob(f"{ROOT}/sections/*.json")):
     check_file(path)
+
+
+LIQUID_BLOCK = re.compile(r'{%-?\s*liquid\b(.*?)-?%}', re.S)
+
+
+def check_liquid_tags(path):
+    """Inside a {% liquid %} block every line is its own tag, so a tag whose
+    arguments run onto the next line is a syntax error there. Shopify rejects
+    the file on sync ("Unknown tag 'product'"); theme check does not catch it."""
+    source = open(path, encoding='utf-8').read()
+    label = os.path.relpath(path, ROOT).replace(os.sep, '/')
+    for match in LIQUID_BLOCK.finditer(source):
+        first_line = source[:match.start()].count(chr(10)) + 1
+        for offset, line in enumerate(match.group(1).split(chr(10))):
+            stripped = line.split('#')[0].strip()
+            if stripped.endswith(','):
+                errors.append(
+                    f"{label}:{first_line + offset}: tag arguments continue onto the "
+                    f"next line inside a liquid tag ({stripped!r}); move the tag out "
+                    f"of the liquid block")
+
+
+for folder in ('sections', 'blocks', 'snippets', 'layout'):
+    for liquid_path in sorted(glob.glob(f"{ROOT}/{folder}/*.liquid")):
+        check_liquid_tags(liquid_path)
 
 settings_schema = json.load(open(f"{ROOT}/config/settings_schema.json", encoding='utf-8'))
 all_settings = [s for group in settings_schema for s in group.get('settings', [])]

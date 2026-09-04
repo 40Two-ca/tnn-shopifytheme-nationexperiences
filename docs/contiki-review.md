@@ -67,7 +67,14 @@ The store syncs `main` through Shopify's GitHub integration, which rejects JSON 
 python scripts/validate_templates.py
 ```
 
-Then `shopify theme check`. The demo store is `tnn-nationexperiences.myshopify.com`; the synced theme sits under Online Store → Themes → Draft themes (preview it from its … menu).
+Then `shopify theme check`. The demo store is `tnn-nationexperiences.myshopify.com`; the synced theme sits under Online Store > Themes > Draft themes (preview it from its ... menu).
+
+Two sync rules cost a lot of time on this theme, so the validator now checks both:
+
+- **A new section and a template that uses it cannot go up in the same push.** The template is validated against the section files already on the theme, so it is rejected with "Section type 'x' does not refer to an existing section file". Push the section first, then the template.
+- **Inside a `{% liquid %}` block every line is its own tag.** A `render` with its arguments spread over several lines is a syntax error there, reported as "Unknown tag" for the first argument name. Theme check does not catch it. Keep such tags outside the `liquid` block.
+
+When a push does not show up, read the sync log: Online Store > Themes, then **View logs** under the draft theme. It names the file and the reason. It is the fastest way to find out what was rejected.
 
 ## Stock photos
 

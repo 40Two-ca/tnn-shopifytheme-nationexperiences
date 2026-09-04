@@ -6,16 +6,19 @@
   for the same reason.
 {%- enddoc -%}
 
-{%- liquid
-  capture lists
-    render 'trip-inclusions-lists',
-      product: closest.product,
-      included_heading: block.settings.included_heading,
-      excluded_heading: block.settings.excluded_heading
-  endcapture
+{%- comment -%}
+  Every line inside a {% liquid %} tag is its own tag, so a render with its
+  arguments across several lines is a syntax error there. This one stays out.
+{%- endcomment -%}
+{%- capture lists -%}
+  {% render 'trip-inclusions-lists',
+    product: closest.product,
+    included_heading: block.settings.included_heading,
+    excluded_heading: block.settings.excluded_heading
+  %}
+{%- endcapture -%}
 
-  assign has_lists = lists | strip
--%}
+{%- assign has_lists = lists | strip -%}
 
 {%- if has_lists != blank -%}
   <div class="trip-inclusions" {{ block.shopify_attributes }}>

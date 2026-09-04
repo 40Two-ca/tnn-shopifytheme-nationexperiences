@@ -23,14 +23,22 @@
   if product != blank
     assign overview = product.description
   endif
+-%}
 
-  capture inclusions
-    render 'trip-inclusions-lists',
-      product: product,
-      included_heading: s.included_heading,
-      excluded_heading: s.excluded_heading,
-      heading_class: 'h6'
-  endcapture
+{%- comment -%}
+  Every line inside a {% liquid %} tag is its own tag, so a render with its
+  arguments across several lines is a syntax error there. This one stays out.
+{%- endcomment -%}
+{%- capture inclusions -%}
+  {% render 'trip-inclusions-lists',
+    product: product,
+    included_heading: s.included_heading,
+    excluded_heading: s.excluded_heading,
+    heading_class: 'h6'
+  %}
+{%- endcapture -%}
+
+{%- liquid
   assign has_inclusions = inclusions | strip
 
   if s.background_color != blank
