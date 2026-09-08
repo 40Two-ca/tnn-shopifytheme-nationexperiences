@@ -73,9 +73,19 @@ python scripts/validate_templates.py
 
 Then `shopify theme check`. The demo store is `tnn-nationexperiences.myshopify.com`, and the synced theme is the **live** one, so a push lands on the storefront itself (behind the store password). `shopify theme list --store tnn-nationexperiences` shows which theme is live.
 
-Two sync rules cost a lot of time on this theme, so the validator now checks both:
+These sync rules cost a lot of time on this theme. The validator checks the
+first two; the others are rejections to recognise by eye, since only the sync
+log names them:
 
+- **A template carrying more blocks than the section's `max_blocks` is rejected.**
+  Raise the limit, push the section, then push the template.
 - **A new section and a template that uses it cannot go up in the same push.** The template is validated against the section files already on the theme, so it is rejected with "Section type 'x' does not refer to an existing section file". Push the section first, then the template.
+- **A section group will not take a new nested block.** Changing settings on
+  blocks a section group already has is accepted; adding one — a text block to
+  the footer's brand column, say — is rejected, and the whole file bounces with
+  it, so the settings changes riding along in that push are lost too. Put the
+  content in a setting on an existing block, or add the block in the theme
+  editor and let the sync commit it back.
 - **Inside a `{% liquid %}` block every line is its own tag.** A `render` with its arguments spread over several lines is a syntax error there, reported as "Unknown tag" for the first argument name. Theme check does not catch it. Keep such tags outside the `liquid` block.
 
 When a push does not show up, read the sync log: Online Store > Themes, then **View logs** under the live theme. It names the file and the reason. It is the fastest way to find out what was rejected.
