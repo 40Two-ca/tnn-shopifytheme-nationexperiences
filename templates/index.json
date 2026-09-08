@@ -330,46 +330,43 @@
     "brands": {
       "type": "feature-tiles",
       "blocks": {
-        "tile_hockey": {
+        "tile_1": {
           "type": "tile",
           "settings": {
-            "heading": "Hockey",
-            "text": "Six team sites, two national brands, thirty-plus shows a week.",
-            "link": "/pages/hockey",
-            "stock_image": "arena",
-            "bundled": ""
+            "heading": "Daily Faceoff",
+            "text": "Breaking news, lineups, player updates and fantasy hockey resources for NHL fans.",
+            "link": "/pages/daily-faceoff",
+            "stock_image": "arena"
           }
         },
-        "tile_baseball": {
+        "tile_2": {
           "type": "tile",
           "settings": {
-            "heading": "Baseball",
-            "text": "BlueJaysNation and its daily audio.",
-            "link": "/pages/baseball",
-            "stock_image": "none",
-            "bundled": "photo-giving-2"
+            "heading": "The Nations",
+            "text": "Fan-first digital hubs for the Oilers, Flames, Canucks, Leafs, Blue Jays and Raptors.",
+            "stock_image": "airport",
+            "link": "/pages/the-nations"
           }
         },
-        "tile_more": {
+        "tile_3": {
           "type": "tile",
           "settings": {
-            "heading": "More sports",
-            "text": "Basketball and tennis, with room to grow.",
-            "link": "/pages/more-sports",
-            "stock_image": "none",
-            "bundled": "photo-events-1"
+            "heading": "Hockey Fights",
+            "text": "The definitive archive of hockeyâ€™s grittiest moments, with stats, video and forums.",
+            "stock_image": "fans",
+            "link": "/pages/hockey-fights"
           }
         }
       },
       "block_order": [
-        "tile_hockey",
-        "tile_baseball",
-        "tile_more"
+        "tile_1",
+        "tile_2",
+        "tile_3"
       ],
       "settings": {
-        "eyebrow": "By sport",
-        "heading": "Find your sport",
-        "subheading": "Editorial, podcasts and social, for the team you actually follow.",
+        "eyebrow": "Our brands",
+        "heading": "Three brands, one network",
+        "subheading": "Breaking news, analysis, fantasy projections and betting insights.",
         "columns": 3,
         "ratio": "4 / 3",
         "section_width": "page-width",
@@ -1451,6 +1448,57 @@
         "stock_image": "stadium_seats",
         "button_link": "/pages/partner-with-us"
       }
+    },
+    "sports": {
+      "type": "feature-tiles",
+      "blocks": {
+        "tile_hockey": {
+          "type": "tile",
+          "settings": {
+            "heading": "Hockey",
+            "text": "Six team sites, two national brands, thirty-plus shows a week.",
+            "link": "/pages/hockey",
+            "stock_image": "arena",
+            "bundled": ""
+          }
+        },
+        "tile_baseball": {
+          "type": "tile",
+          "settings": {
+            "heading": "Baseball",
+            "text": "BlueJaysNation and its daily audio.",
+            "link": "/pages/baseball",
+            "stock_image": "none",
+            "bundled": "photo-giving-2"
+          }
+        },
+        "tile_more": {
+          "type": "tile",
+          "settings": {
+            "heading": "More sports",
+            "text": "Basketball and tennis, with room to grow.",
+            "link": "/pages/more-sports",
+            "stock_image": "none",
+            "bundled": "photo-events-1"
+          }
+        }
+      },
+      "block_order": [
+        "tile_hockey",
+        "tile_baseball",
+        "tile_more"
+      ],
+      "settings": {
+        "eyebrow": "By sport",
+        "heading": "Find your sport",
+        "subheading": "Editorial, podcasts and social, for the team you actually follow.",
+        "columns": 3,
+        "ratio": "4 / 3",
+        "section_width": "page-width",
+        "padding-block-start": 56,
+        "padding-block-end": 56,
+        "background_color": "{{ settings.color_palette.color3 }}"
+      }
     }
   },
   "order": [
@@ -1458,6 +1506,7 @@
     "network_stats",
     "channels",
     "brands",
+    "sports",
     "mosaic",
     "upcoming",
     "partners",
