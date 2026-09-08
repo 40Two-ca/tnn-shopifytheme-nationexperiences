@@ -181,6 +181,27 @@ def check_bundled_images():
 
 check_bundled_images()
 
+# UTF-8 text decoded as Windows-1252 and re-encoded leaves these behind. It
+# happened here: a curly apostrophe in the home page's Hockey Fights tile became
+# "a<euro>(tm)" and shipped to the live storefront, because nothing looked for it.
+MOJIBAKE = ('â€', 'Ã©', 'Ã¨', 'Â ', '�')
+
+
+def check_mojibake():
+    for path in sorted(glob.glob(f"{ROOT}/templates/*.json") + glob.glob(f"{ROOT}/sections/*.json")):
+        label = os.path.relpath(path, ROOT).replace(os.sep, '/')
+        text = open(path, encoding='utf-8').read()
+        for sequence in MOJIBAKE:
+            index = text.find(sequence)
+            if index != -1:
+                errors.append(
+                    f"{label}: mis-encoded text near {text[max(0, index - 30):index + 10]!r} "
+                    f"-- read the source as UTF-8 rather than the system locale")
+                break
+
+
+check_mojibake()
+
 settings_schema = json.load(open(f"{ROOT}/config/settings_schema.json", encoding='utf-8'))
 all_settings = [s for group in settings_schema for s in group.get('settings', [])]
 current = json.load(open(f"{ROOT}/config/settings_data.json", encoding='utf-8'))['current']
