@@ -1,0 +1,566 @@
+{
+  "sections": {
+    "header": {
+      "type": "section",
+      "blocks": {
+        "title": {
+          "type": "text",
+          "name": "Title",
+          "settings": {
+            "text": "<h1>Beyond The Game</h1>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h1",
+            "font": "var(--font-heading--family)",
+            "line_height": "tight",
+            "letter_spacing": "tight",
+            "case": "uppercase",
+            "wrap": "balance"
+          },
+          "blocks": {}
+        },
+        "intro": {
+          "type": "text",
+          "name": "Intro",
+          "settings": {
+            "text": "<p>The Nation Network is more than what happens on the ice. Fans travel with us, wear our gear, turn up to our events and back the causes we back.</p>",
+            "width": "100%",
+            "max_width": "narrow",
+            "alignment": "left",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "title",
+        "intro"
+      ],
+      "settings": {
+        "content_direction": "column",
+        "gap": 16,
+        "section_width": "page-width",
+        "padding-block-start": 56,
+        "padding-block-end": 16
+      }
+    },
+    "travel": {
+      "type": "story-strand",
+      "blocks": {
+        "photo_1": {
+          "type": "photo",
+          "settings": {
+            "bundled": "photo-travel-1",
+            "alt": "Fans with an OilersNation flag outside the arena before a road game"
+          }
+        },
+        "photo_2": {
+          "type": "photo",
+          "settings": {
+            "bundled": "photo-travel-2",
+            "alt": "Four fans with hockey sticks on a frozen mountain lake"
+          }
+        },
+        "photo_3": {
+          "type": "photo",
+          "settings": {
+            "bundled": "photo-travel-3",
+            "alt": "A Nation Vacation group outside Climate Pledge Arena"
+          }
+        },
+        "photo_4": {
+          "type": "photo",
+          "settings": {
+            "bundled": "photo-travel-4",
+            "alt": "Fans in Oilers jerseys gathered outside their Las Vegas hotel"
+          }
+        }
+      },
+      "block_order": [
+        "photo_1",
+        "photo_2",
+        "photo_3",
+        "photo_4"
+      ],
+      "settings": {
+        "eyebrow": "#NationVacation",
+        "heading": "Travel",
+        "body": "<p>Our travel series brings the most diehard fans to NHL road games and events in a unique and authentic way. Nation Vacations offer the ultimate travel experience for those seeking memorable and immersive sports experiences. With a focus on curated itineraries, unique destinations, premier game tickets, and a group of like-minded fans, every trip is a one-of-a-kind, hell of a good time.</p>",
+        "button_label": "See upcoming trips",
+        "button_link": "/pages/experiences",
+        "button_style": "button",
+        "media_position": "right",
+        "ratio": "1",
+        "media_fit": "cover",
+        "section_width": "page-width",
+        "padding-block-start": 56,
+        "padding-block-end": 56
+      }
+    },
+    "gear": {
+      "type": "story-strand",
+      "blocks": {
+        "photo_1": {
+          "type": "photo",
+          "settings": {
+            "bundled": "photo-gear-1",
+            "alt": "A fan wearing a Nation hoodie"
+          }
+        },
+        "photo_2": {
+          "type": "photo",
+          "settings": {
+            "bundled": "photo-gear-2",
+            "alt": "An OilersNation cap worn by the water"
+          }
+        },
+        "photo_3": {
+          "type": "photo",
+          "settings": {
+            "bundled": "photo-gear-3",
+            "alt": "A Nation cap and tee against a brick wall"
+          }
+        },
+        "photo_4": {
+          "type": "photo",
+          "settings": {
+            "bundled": "photo-gear-4",
+            "alt": "A CanucksArmy snapback cap"
+          }
+        }
+      },
+      "block_order": [
+        "photo_1",
+        "photo_2",
+        "photo_3",
+        "photo_4"
+      ],
+      "settings": {
+        "eyebrow": "Nation Gear",
+        "heading": "Gear",
+        "body": "<p>Nation Gear takes fan merchandise to the next level with a range of unique and exclusive products fans cannot find anywhere else. Whether it is a limited-edition garment or a special edition item commemorating a significant moment for the team, the merchandise reflects the passion and dedication shared by fans.</p>",
+        "button_label": "Shop Nation Gear",
+        "button_link": "/collections/all",
+        "button_style": "button-secondary",
+        "media_position": "left",
+        "ratio": "1",
+        "media_fit": "cover",
+        "section_width": "page-width",
+        "background_color": "{{ settings.color_palette.color3 }}",
+        "padding-block-start": 56,
+        "padding-block-end": 56
+      }
+    },
+    "events": {
+      "type": "story-strand",
+      "blocks": {
+        "photo_1": {
+          "type": "photo",
+          "settings": {
+            "bundled": "photo-events-1",
+            "alt": "A host with a microphone in front of a watch-party crowd"
+          }
+        },
+        "photo_2": {
+          "type": "photo",
+          "settings": {
+            "bundled": "photo-events-2",
+            "alt": "Four hosts recording a live show in front of a mural"
+          }
+        },
+        "photo_3": {
+          "type": "photo",
+          "settings": {
+            "bundled": "photo-events-3",
+            "alt": "Fans in Oilers jerseys at a Nation Network event"
+          }
+        },
+        "photo_4": {
+          "type": "photo",
+          "settings": {
+            "bundled": "photo-events-4",
+            "alt": "The Hello & Welcome show recorded in front of an audience"
+          }
+        }
+      },
+      "block_order": [
+        "photo_1",
+        "photo_2",
+        "photo_3",
+        "photo_4"
+      ],
+      "settings": {
+        "eyebrow": "Live events",
+        "heading": "Live Events",
+        "body": "<p>With a passion for connecting with sports fans in person, we curate and host live events that bring fans closer to the sports they love. From watch parties and meet-and-greets to interactive experiences and panel discussions, these events are an opportunity for fans to engage with each other and celebrate the sports they are passionate about, together.</p>",
+        "media_position": "right",
+        "ratio": "1",
+        "media_fit": "cover",
+        "section_width": "page-width",
+        "padding-block-start": 56,
+        "padding-block-end": 56
+      }
+    },
+    "giving": {
+      "type": "story-strand",
+      "blocks": {
+        "photo_1": {
+          "type": "photo",
+          "settings": {
+            "bundled": "photo-giving-1",
+            "alt": "Two volunteers at a Free Play for Kids fundraiser"
+          }
+        },
+        "photo_2": {
+          "type": "photo",
+          "settings": {
+            "bundled": "photo-giving-2",
+            "alt": "A youth ball team lined up on the diamond at RE/MAX Field"
+          }
+        }
+      },
+      "block_order": [
+        "photo_1",
+        "photo_2"
+      ],
+      "settings": {
+        "eyebrow": "Giving back",
+        "heading": "Giving Back",
+        "body": "<p>Whether it is supporting youth sports programs, promoting inclusivity in sports, or contributing to causes that benefit the community, we understand the importance of using our platform to make a difference. Through our actions, The Nation Network demonstrates a belief in the power of sports to uplift communities.</p>",
+        "media_position": "left",
+        "ratio": "4 / 3",
+        "media_fit": "cover",
+        "section_width": "page-width",
+        "background_color": "{{ settings.color_palette.color3 }}",
+        "padding-block-start": 56,
+        "padding-block-end": 56
+      }
+    },
+    "trips": {
+      "type": "product-list",
+      "blocks": {
+        "static-header": {
+          "type": "_product-list-content",
+          "name": "t:names.header",
+          "static": true,
+          "settings": {
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "center",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "center",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 8,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 8,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "eyebrow": {
+              "type": "_product-list-text",
+              "name": "t:names.text",
+              "settings": {
+                "text": "<p>Nation Vacations</p>",
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "center",
+                "type_preset": "h6",
+                "font": "var(--font-subheading--family)",
+                "font_size": "0.75rem",
+                "line_height": "normal",
+                "letter_spacing": "loose",
+                "case": "uppercase",
+                "wrap": "pretty",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "title": {
+              "type": "_product-list-text",
+              "name": "t:names.collection_title",
+              "settings": {
+                "text": "<h2>Trips the Nation is booking now</h2>",
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "center",
+                "type_preset": "h2",
+                "font": "var(--font-heading--family)",
+                "font_size": "1rem",
+                "line_height": "tight",
+                "letter_spacing": "tight",
+                "case": "none",
+                "wrap": "balance",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "subtitle": {
+              "type": "_product-list-text",
+              "name": "t:names.text",
+              "settings": {
+                "text": "<p>Road games, tournaments and once-in-a-lifetime events, booked in one place.</p>",
+                "width": "100%",
+                "max_width": "narrow",
+                "alignment": "center",
+                "type_preset": "custom",
+                "font": "var(--font-body--family)",
+                "font_size": "1.125rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "eyebrow",
+            "title",
+            "subtitle"
+          ]
+        },
+        "static-product-card": {
+          "type": "_product-card",
+          "name": "t:names.product_card",
+          "static": true,
+          "settings": {
+            "product_card_gap": 10,
+            "background_color": "{{ settings.color_palette.background }}",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 8,
+            "padding-block-start": 0,
+            "padding-block-end": 16,
+            "padding-inline-start": 16,
+            "padding-inline-end": 16
+          },
+          "blocks": {
+            "gallery": {
+              "type": "_product-card-gallery",
+              "name": "t:names.product_card_media",
+              "settings": {
+                "image_ratio": "landscape",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "badge": {
+              "type": "trip-badge",
+              "settings": {
+                "label_override": "",
+                "style": "accent",
+                "placement": "on_image"
+              },
+              "blocks": {}
+            },
+            "title": {
+              "type": "product-title",
+              "name": "t:names.product_title",
+              "settings": {
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "h4",
+                "font": "var(--font-heading--family)",
+                "font_size": "1rem",
+                "line_height": "tight",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 6,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "meta": {
+              "type": "trip-meta",
+              "settings": {
+                "show_duration": true,
+                "show_location": true,
+                "show_dates": true,
+                "show_group": false,
+                "size": "small"
+              },
+              "blocks": {}
+            },
+            "excerpt": {
+              "type": "product-excerpt",
+              "settings": {
+                "max_words": 22,
+                "clamp": true,
+                "lines": 2
+              },
+              "blocks": {}
+            },
+            "footer": {
+              "type": "_product-card-group",
+              "name": "t:names.group",
+              "settings": {
+                "content_direction": "row",
+                "vertical_on_mobile": false,
+                "horizontal_alignment": "space-between",
+                "vertical_alignment": "flex-end",
+                "align_baseline": false,
+                "horizontal_alignment_flex_direction_column": "flex-start",
+                "vertical_alignment_flex_direction_column": "center",
+                "gap": 12,
+                "width": "fill",
+                "custom_width": 100,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "height": "fit",
+                "custom_height": 100,
+                "background_media": "none",
+                "video_position": "cover",
+                "background_image_position": "cover",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "padding-block-start": 8,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "price": {
+                  "type": "trip-price",
+                  "settings": {
+                    "prefix": "From",
+                    "suffix": "",
+                    "show_compare": true,
+                    "compare_label": "Was",
+                    "zero_price_text": "See details",
+                    "size": "medium",
+                    "alignment": "left"
+                  },
+                  "blocks": {}
+                },
+                "button": {
+                  "type": "product-link-button",
+                  "settings": {
+                    "label": "View trip",
+                    "sold_out_label": "Sold out",
+                    "style_class": "button",
+                    "full_width": false
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "price",
+                "button"
+              ]
+            }
+          },
+          "block_order": [
+            "gallery",
+            "badge",
+            "title",
+            "meta",
+            "excerpt",
+            "footer"
+          ]
+        },
+        "view_all": {
+          "type": "button",
+          "name": "t:names.button",
+          "settings": {
+            "label": "View all experiences",
+            "link": "shopify://collections/all",
+            "open_in_new_tab": false,
+            "style_class": "button-secondary",
+            "custom_button_background": "{{ settings.color_palette.foreground }}",
+            "custom_button_text": "{{ settings.color_palette.background }}",
+            "custom_button_border": "{{ settings.color_palette.background }}",
+            "width": "fit-content",
+            "custom_width": 100,
+            "width_mobile": "fit-content",
+            "custom_width_mobile": 100
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "view_all"
+      ],
+      "name": "t:names.product_list",
+      "settings": {
+        "collection": "all",
+        "layout_type": "carousel",
+        "carousel_on_mobile": true,
+        "max_products": 8,
+        "columns": 3,
+        "mobile_columns": "1",
+        "mobile_card_size": "60cqw",
+        "columns_gap": 24,
+        "rows_gap": 24,
+        "icons_style": "chevron",
+        "icons_shape": "circle",
+        "section_width": "page-width",
+        "horizontal_alignment": "center",
+        "gap": 32,
+        "background_color": "{{ settings.color_palette.background }}",
+        "padding-block-start": 40,
+        "padding-block-end": 72
+      }
+    }
+  },
+  "order": [
+    "header",
+    "travel",
+    "gear",
+    "events",
+    "giving",
+    "trips"
+  ]
+}
