@@ -1,0 +1,271 @@
+{%- comment -%}
+  A strand of copy beside a grid of photos, alternating sides down a page. This
+  is the marketing site's "SectionWithGrid" and "SectionWithLaptop" pattern:
+  Beyond The Game runs four of them (travel, gear, events, giving back), and the
+  brand pages use the same shape with screenshots instead of photography.
+{%- endcomment -%}
+
+{%- liquid
+  assign s = section.settings
+  if s.background_color != blank
+    render 'contrast-override', background_color: s.background_color, section_id: section.id
+  endif
+
+  assign media_columns = 2
+  if section.blocks.size == 1
+    assign media_columns = 1
+  endif
+-%}
+
+<div
+  class="section-background{% if s.background_color != blank %} color-custom-{{ section.id }}{% endif %}"
+></div>
+<div
+  class="section section--{{ s.section_width }} spacing-style story-strand{% if s.background_color != blank %} color-custom-{{ section.id }}{% endif %}"
+  style="
+    {% render 'spacing-style', settings: s %}
+    --strand-media-columns: {{ media_columns }};
+    --strand-media-ratio: {{ s.ratio }};
+    --strand-media-fit: {{ s.media_fit }};
+  "
+>
+  <div class="story-strand__grid story-strand__grid--media-{{ s.media_position }}">
+    <div class="story-strand__copy">
+      {%- if s.eyebrow != blank -%}
+        <p class="brand-eyebrow">{{ s.eyebrow }}</p>
+      {%- endif -%}
+      {%- if s.heading != blank -%}
+        <h2 class="h3 story-strand__heading">{{ s.heading }}</h2>
+      {%- endif -%}
+      {%- if s.body != blank -%}
+        <div class="rte story-strand__body">{{ s.body }}</div>
+      {%- endif -%}
+      {%- if s.button_label != blank and s.button_link != blank -%}
+        <div class="story-strand__actions">
+          <a class="{{ s.button_style }}" href="{{ s.button_link }}">{{ s.button_label }}</a>
+        </div>
+      {%- endif -%}
+    </div>
+
+    {%- if section.blocks.size > 0 -%}
+      <ul class="story-strand__media list-unstyled">
+        {%- for block in section.blocks -%}
+          {%- assign photo = block.settings -%}
+          <li class="story-strand__frame" {{ block.shopify_attributes }}>
+            {%- if photo.image != blank -%}
+              {{
+                photo.image
+                | image_url: width: 1200
+                | image_tag:
+                  widths: '300, 400, 600, 800, 1200',
+                  sizes: '(min-width: 750px) 25vw, 50vw',
+                  class: 'story-strand__image',
+                  loading: 'lazy',
+                  alt: photo.alt
+              }}
+            {%- else -%}
+              {%- capture bundled -%}
+                {%- render 'bundled-image', key: photo.bundled, class: 'story-strand__image', alt: photo.alt -%}
+              {%- endcapture -%}
+              {%- assign bundled = bundled | strip -%}
+              {%- if bundled != blank -%}
+                {{ bundled }}
+              {%- else -%}
+                {{ 'lifestyle-1' | placeholder_svg_tag: 'story-strand__image' }}
+              {%- endif -%}
+            {%- endif -%}
+          </li>
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+  </div>
+</div>
+
+{% stylesheet %}
+  .story-strand__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 48px;
+  }
+
+  .story-strand__grid--media-left .story-strand__copy {
+    order: 2;
+  }
+
+  .story-strand__heading {
+    margin: 0;
+  }
+
+  .story-strand__body {
+    /* Long copy caps its own measure so a strand stays readable at full width. */
+    max-width: 62ch;
+    margin-block-start: 1rem;
+  }
+
+  .story-strand__actions {
+    margin-block-start: 1.75rem;
+  }
+
+  .story-strand__media {
+    display: grid;
+    grid-template-columns: repeat(var(--strand-media-columns, 2), minmax(0, 1fr));
+    gap: 16px;
+    margin: 0;
+    padding: 0;
+  }
+
+  .story-strand__frame {
+    display: flex;
+    overflow: hidden;
+    aspect-ratio: var(--strand-media-ratio, 1);
+    border-radius: var(--brand-card-radius);
+    background: var(--brand-surface);
+  }
+
+  .story-strand__image {
+    width: 100%;
+    height: 100%;
+    object-fit: var(--strand-media-fit, cover);
+  }
+
+  @media screen and (max-width: 989px) {
+    .story-strand__grid {
+      gap: 32px;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .story-strand__grid {
+      grid-template-columns: 1fr;
+    }
+
+    /* Stacked, the copy always leads: a heading under its photos reads as a caption. */
+    .story-strand__grid--media-left .story-strand__copy {
+      order: initial;
+    }
+
+    .story-strand__media {
+      gap: 12px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Story strand",
+  "tag": "section",
+  "class": "section-wrapper",
+  "max_blocks": 6,
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Travel" },
+    { "type": "richtext", "id": "body", "label": "Body" },
+    { "type": "text", "id": "button_label", "label": "Button label" },
+    { "type": "url", "id": "button_link", "label": "Button link" },
+    {
+      "type": "select",
+      "id": "button_style",
+      "label": "Button style",
+      "options": [
+        { "value": "button", "label": "Primary" },
+        { "value": "button-secondary", "label": "Outline" }
+      ],
+      "default": "button"
+    },
+    { "type": "header", "content": "Media" },
+    {
+      "type": "select",
+      "id": "media_position",
+      "label": "Media side on desktop",
+      "options": [
+        { "value": "right", "label": "Right" },
+        { "value": "left", "label": "Left" }
+      ],
+      "default": "right"
+    },
+    {
+      "type": "select",
+      "id": "ratio",
+      "label": "Frame shape",
+      "options": [
+        { "value": "1", "label": "Square" },
+        { "value": "4 / 3", "label": "Landscape" },
+        { "value": "3 / 4", "label": "Portrait" }
+      ],
+      "default": "1"
+    },
+    {
+      "type": "select",
+      "id": "media_fit",
+      "label": "How the image fills the frame",
+      "info": "Use Contain for screenshots and logos, Cover for photography.",
+      "options": [
+        { "value": "cover", "label": "Cover" },
+        { "value": "contain", "label": "Contain" }
+      ],
+      "default": "cover"
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "Width",
+      "options": [
+        { "value": "page-width", "label": "Page" },
+        { "value": "full-width", "label": "Full" }
+      ],
+      "default": "page-width"
+    },
+    { "type": "color", "id": "background_color", "label": "Background color" },
+    { "type": "header", "content": "Padding" },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    }
+  ],
+  "blocks": [
+    {
+      "type": "photo",
+      "name": "Photo",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        {
+          "type": "text",
+          "id": "bundled",
+          "label": "Bundled photo",
+          "info": "Staging only: the name of a photo shipped in assets/, e.g. photo-travel-1. Ignored once an image is picked. See docs/tnn-amalgamation-plan.md."
+        },
+        { "type": "text", "id": "alt", "label": "Alt text" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Story strand",
+      "category": "The Nation Network",
+      "blocks": [
+        { "type": "photo" },
+        { "type": "photo" },
+        { "type": "photo" },
+        { "type": "photo" }
+      ]
+    }
+  ]
+}
+{% endschema %}

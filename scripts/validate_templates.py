@@ -132,6 +132,7 @@ BUNDLED_FAMILIES = {
     'brand-mosaic': ('tile', 'brand'),
     'partner-logos': ('logo', 'partner'),
     'leadership-grid': ('person', 'team'),
+    'story-strand': ('photo', None),
 }
 
 
@@ -158,6 +159,15 @@ def check_bundled_images():
                     continue
                 values = block.get('settings', {})
                 if values.get('image'):
+                    continue
+                if prefix is None:
+                    # story-strand names its bundled photo outright rather than
+                    # deriving it from a block name.
+                    key = values.get('bundled', '')
+                    if key and key not in keys:
+                        warnings.append(
+                            f"{label}/{section.get('type')}: bundled photo {key!r} does not exist; "
+                            f"the frame will fall back to a placeholder")
                     continue
                 name = values.get('name', '')
                 handle = re.sub(r'[^a-z0-9]+', '-', name.lower()).strip('-')

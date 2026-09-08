@@ -64,6 +64,59 @@ TEAM_TITLE_FIXES = {
 LOGO_MAX = (480, 480)
 PARTNER_MAX = (520, 320)
 PORTRAIT = 560
+PHOTO_MAX = (1000, 1000)
+SCREENSHOT_MAX = (780, 780)
+
+# Beyond The Game runs four strands, each beside a small grid of photos. The
+# source folders hold 36 shots between them; these are the picks and the alt text
+# after looking through all of them on a contact sheet. Giving Back gets two
+# rather than four: of its four photos one is a dog with no visible connection to
+# the story, so it is left out until the client supplies more.
+PAGE_PHOTOS = [
+    ("travel-1", "assets/images/beyondthegame/travel/2.jpg",
+     "Fans with an OilersNation flag outside the arena before a road game"),
+    ("travel-2", "assets/images/beyondthegame/travel/9.jpg",
+     "Four fans with hockey sticks on a frozen mountain lake"),
+    ("travel-3", "assets/images/beyondthegame/travel/11.jpg",
+     "A Nation Vacation group outside Climate Pledge Arena"),
+    ("travel-4", "assets/images/beyondthegame/travel/5.jpg",
+     "Fans in Oilers jerseys gathered outside their Las Vegas hotel"),
+    ("events-1", "assets/images/beyondthegame/events/1.jpg",
+     "A host with a microphone in front of a watch-party crowd"),
+    ("events-2", "assets/images/beyondthegame/events/6.jpg",
+     "Four hosts recording a live show in front of a mural"),
+    ("events-3", "assets/images/beyondthegame/events/9.jpg",
+     "Fans in Oilers jerseys at a Nation Network event"),
+    ("events-4", "assets/images/beyondthegame/events/12.jpg",
+     "The Hello & Welcome show recorded in front of an audience"),
+    ("gear-1", "assets/images/beyondthegame/gear/3.png", "A fan wearing a Nation hoodie"),
+    ("gear-2", "assets/images/beyondthegame/gear/5.jpg", "An OilersNation cap worn by the water"),
+    ("gear-3", "assets/images/beyondthegame/gear/6.jpg", "A Nation cap and tee against a brick wall"),
+    ("gear-4", "assets/images/beyondthegame/gear/1.png", "A CanucksArmy snapback cap"),
+    ("giving-1", "assets/images/beyondthegame/giving/2.jpg",
+     "Two volunteers at a Free Play for Kids fundraiser"),
+    ("giving-2", "assets/images/beyondthegame/giving/4.jpg",
+     "A youth ball team lined up on the diamond at RE/MAX Field"),
+]
+
+# Site and show screenshots in their device frames, for the brand pages.
+PAGE_SCREENSHOTS = [
+    ("site-oilersnation", "assets/images/design/laptopwidget/laptop/oilers-nation.png", "OilersNation on a laptop"),
+    ("site-canucksarmy", "assets/images/design/laptopwidget/cellphone/ca-mobile.png", "CanucksArmy on a phone"),
+    ("site-theleafsnation", "assets/images/design/laptopwidget/cellphone/tln-mobile.png", "TheLeafsNation on a phone"),
+    ("site-flamesnation", "assets/images/design/laptopwidget/laptop/fn-laptop.png", "FlamesNation on a laptop"),
+    ("show-thesheet", "assets/images/design/laptopwidget/laptop/thesheet-laptop.png", "The Sheet on a laptop"),
+    ("show-hello-and-welcome", "assets/images/design/laptopwidget/cellphone/hellowandwelcome-cellphone.png", "Hello & Welcome on a phone"),
+    ("show-barnburner", "assets/images/design/laptopwidget/laptop/barnburner-laptop.png", "Barn Burner on a laptop"),
+    ("show-oilersnation-everyday", "assets/images/design/laptopwidget/cellphone/oilers-nation-everyday.png", "OilersNation Everyday on a phone"),
+    ("social-oilersnation-x", "assets/images/design/laptopwidget/laptop/on-twitter.png", "OilersNation on X"),
+    ("social-oilersnation-tiktok", "assets/images/design/laptopwidget/cellphone/oilers-nation-tiktok.png", "OilersNation on TikTok"),
+    ("social-oilersnation-facebook", "assets/images/design/laptopwidget/laptop/oilers-nation-facebook.png", "OilersNation on Facebook"),
+    # Named ca-twitter-laptop.png in the source, but the screenshot is the
+    # Instagram profile. Checked rather than trusted.
+    ("social-canucksarmy-instagram", "assets/images/design/laptopwidget/laptop/ca-twitter-laptop.png",
+     "The CanucksArmy Instagram profile"),
+]
 
 
 def slug(text: str) -> str:
@@ -214,6 +267,23 @@ def write_logo(src_path: str, dest_stem: str, box) -> tuple:
     return os.path.basename(dest), image.width, image.height
 
 
+def write_photo(src_path: str, dest_stem: str, box) -> tuple:
+    """Write one page photo or screenshot as JPEG and return (filename, w, h).
+
+    The sources run to 5MB apiece straight off a phone. Photography does not
+    need an alpha channel and the frames it sits in are opaque, so anything with
+    transparency (the product shots) is composited onto white rather than kept
+    as a PNG that would be several times the size.
+    """
+    image = Image.open(src_path).convert("RGBA")
+    image.thumbnail(box, Image.LANCZOS)
+    flattened = Image.new("RGB", image.size, (255, 255, 255))
+    flattened.paste(image, mask=image.getchannel("A"))
+    dest = dest_stem + ".jpg"
+    flattened.save(dest, quality=82, optimize=True, progressive=True)
+    return os.path.basename(dest), image.width, image.height
+
+
 def write_portrait(src_path: str, dest_path: str) -> tuple:
     image = Image.open(src_path).convert("RGB")
     side = min(image.size)
@@ -336,7 +406,7 @@ def main() -> int:
         return print("no marketing-site repo at %s" % source) or 2
 
     assets = os.path.join(REPO, "assets")
-    clean(assets, ("brand-", "partner-", "team-"))
+    clean(assets, ("brand-", "partner-", "team-", "photo-"))
 
     entries = write_identity(source, assets)
     blocks = {"mosaic": [], "partners": [], "team": []}
@@ -376,6 +446,18 @@ def main() -> int:
         })
     print("team: %d portraits" % len(team))
 
+    for family, rows, box in (("photo", PAGE_PHOTOS, PHOTO_MAX), ("photo", PAGE_SCREENSHOTS, SCREENSHOT_MAX)):
+        for handle, relative, label in rows:
+            source_file = os.path.join(source, relative)
+            if not os.path.exists(source_file):
+                print("  ! missing %s" % relative)
+                continue
+            filename, width, height = write_photo(
+                source_file, os.path.join(assets, "%s-%s" % (family, handle)), box
+            )
+            entries.append(("%s-%s" % (family, handle), filename, label, width, height))
+    print("page imagery: %d photos, %d screenshots" % (len(PAGE_PHOTOS), len(PAGE_SCREENSHOTS)))
+
     write_snippet(os.path.join(REPO, "snippets", "bundled-image.liquid"), entries)
 
     if args.blocks_out:
@@ -385,7 +467,7 @@ def main() -> int:
     total = sum(
         os.path.getsize(os.path.join(assets, f))
         for f in os.listdir(assets)
-        if f.startswith(("brand-", "partner-", "team-", "tnn-"))
+        if f.startswith(("brand-", "partner-", "team-", "photo-", "tnn-"))
     )
     print("bundled %.1f MB of imagery" % (total / 1024.0 / 1024.0))
     return 0
