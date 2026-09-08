@@ -34,3 +34,26 @@
     --brand-card-pad: 16px;
   }
 {% endstyle %}
+
+{%- comment -%}
+  AXIS Extra Bold is the network's display face. It is not in Shopify's font
+  library, so it ships in assets/ and overrides --font-heading--family here.
+  This snippet renders after theme-styles-variables, so the override wins
+  without touching the theme settings.
+{%- endcomment -%}
+
+{% style %}
+  @font-face {
+    font-family: 'AXIS';
+    src: url({{ 'axis-extra-bold.woff2' | asset_url }}) format('woff2');
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  :root {
+    --font-heading--family: 'AXIS', {{ settings.type_heading_font.family }},
+      {{ settings.type_heading_font.fallback_families }};
+    --font-heading--weight: 800;
+  }
+{% endstyle %}
