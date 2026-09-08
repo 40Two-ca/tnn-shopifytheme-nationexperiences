@@ -1,0 +1,248 @@
+{%- comment -%}
+  The platform row from thenationnetwork.com ("Distribution channels").
+  Solid circular tiles, one per platform, using Horizon's icon set.
+{%- endcomment -%}
+
+{%- liquid
+  assign s = section.settings
+  if s.background_color != blank
+    render 'contrast-override', background_color: s.background_color, section_id: section.id
+  endif
+-%}
+
+<div
+  class="section-background{% if s.background_color != blank %} color-custom-{{ section.id }}{% endif %}"
+></div>
+<div
+  class="section section--{{ s.section_width }} spacing-style distribution-channels{% if s.background_color != blank %} color-custom-{{ section.id }}{% endif %}"
+  style="{% render 'spacing-style', settings: s %} --channel-size: {{ s.icon_size }}px;"
+>
+  {%- if s.eyebrow != blank or s.heading != blank -%}
+    <div class="brand-section-header">
+      {%- if s.eyebrow != blank -%}
+        <p class="brand-eyebrow">{{ s.eyebrow }}</p>
+      {%- endif -%}
+      {%- if s.heading != blank -%}
+        <h2 class="distribution-channels__heading">{{ s.heading }}</h2>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+
+  <ul class="distribution-channels__list list-unstyled">
+    {%- for block in section.blocks -%}
+      {%- assign channel = block.settings -%}
+      <li class="distribution-channels__item" {{ block.shopify_attributes }}>
+        <a
+          class="distribution-channels__link"
+          {% if channel.link != blank %}
+            href="{{ channel.link }}"
+            target="_blank"
+            rel="noopener noreferrer"
+          {% else %}
+            href="#"
+            aria-disabled="true"
+            onclick="return false;"
+          {% endif %}
+          aria-label="{{ channel.label | default: channel.platform | capitalize }}"
+        >
+          {%- if channel.image != blank -%}
+            {{
+              channel.image
+              | image_url: width: 160
+              | image_tag: widths: '40, 80, 120, 160', class: 'distribution-channels__image', loading: 'lazy', alt: ''
+            }}
+          {%- else -%}
+            <svg
+              class="distribution-channels__icon"
+              aria-hidden="true"
+              focusable="false"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+            >
+              {%- render 'icon', icon: channel.platform -%}
+            </svg>
+          {%- endif -%}
+        </a>
+        {%- if s.show_labels and channel.label != blank -%}
+          <span class="distribution-channels__label">{{ channel.label }}</span>
+        {%- endif -%}
+      </li>
+    {%- endfor -%}
+  </ul>
+</div>
+
+{% stylesheet %}
+  .distribution-channels__heading {
+    margin: 0;
+  }
+
+  .distribution-channels__list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 1.25rem;
+    margin: 0;
+    padding: 0;
+  }
+
+  .distribution-channels__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .distribution-channels__link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--channel-size, 56px);
+    height: var(--channel-size, 56px);
+    border-radius: 50%;
+    background: var(--color-foreground);
+    color: var(--color-background);
+    transition: transform var(--hover-transition-duration) var(--hover-transition-timing),
+      background-color var(--hover-transition-duration) var(--hover-transition-timing),
+      color var(--hover-transition-duration) var(--hover-transition-timing);
+  }
+
+  .distribution-channels__link:hover {
+    background: var(--brand-accent);
+    color: var(--brand-accent-contrast);
+    transform: translateY(-2px);
+  }
+
+  .distribution-channels__link[aria-disabled='true'] {
+    opacity: 0.35;
+    pointer-events: none;
+  }
+
+  .distribution-channels__icon {
+    width: 52%;
+    height: 52%;
+    fill: currentColor;
+  }
+
+  .distribution-channels__image {
+    width: 52%;
+    height: 52%;
+    object-fit: contain;
+  }
+
+  .distribution-channels__label {
+    font-family: var(--font-subheading--family);
+    font-weight: 700;
+    font-size: 0.6875rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgb(var(--color-foreground-rgb) / 0.6);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Distribution channels",
+  "tag": "section",
+  "class": "section-wrapper",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Distribution channels" },
+    { "type": "checkbox", "id": "show_labels", "label": "Show labels under icons", "default": false },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "label": "Icon size",
+      "min": 36,
+      "max": 88,
+      "step": 4,
+      "unit": "px",
+      "default": 56
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "Width",
+      "options": [
+        { "value": "page-width", "label": "Page" },
+        { "value": "full-width", "label": "Full" }
+      ],
+      "default": "page-width"
+    },
+    { "type": "color", "id": "background_color", "label": "Background color" },
+    { "type": "header", "content": "Padding" },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 56
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 56
+    }
+  ],
+  "blocks": [
+    {
+      "type": "channel",
+      "name": "Channel",
+      "settings": [
+        {
+          "type": "select",
+          "id": "platform",
+          "label": "Platform",
+          "options": [
+            { "value": "facebook", "label": "Facebook" },
+            { "value": "x", "label": "X" },
+            { "value": "youtube", "label": "YouTube" },
+            { "value": "instagram", "label": "Instagram" },
+            { "value": "tiktok", "label": "TikTok" },
+            { "value": "spotify", "label": "Spotify" },
+            { "value": "apple", "label": "Apple Podcasts" },
+            { "value": "linkedin", "label": "LinkedIn" },
+            { "value": "twitch", "label": "Twitch" },
+            { "value": "reddit", "label": "Reddit" },
+            { "value": "threads", "label": "Threads" },
+            { "value": "bluesky", "label": "Bluesky" }
+          ],
+          "default": "youtube"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Custom icon",
+          "info": "Overrides the platform icon. Use for channels with no built-in icon, e.g. web."
+        },
+        { "type": "text", "id": "label", "label": "Label" },
+        { "type": "url", "id": "link", "label": "Link" }
+      ]
+    }
+  ],
+  "max_blocks": 12,
+  "presets": [
+    {
+      "name": "Distribution channels",
+      "category": "The Nation Network",
+      "blocks": [
+        { "type": "channel", "settings": { "platform": "facebook", "label": "Facebook" } },
+        { "type": "channel", "settings": { "platform": "x", "label": "X" } },
+        { "type": "channel", "settings": { "platform": "youtube", "label": "YouTube" } },
+        { "type": "channel", "settings": { "platform": "instagram", "label": "Instagram" } },
+        { "type": "channel", "settings": { "platform": "tiktok", "label": "TikTok" } },
+        { "type": "channel", "settings": { "platform": "apple", "label": "Apple Podcasts" } },
+        { "type": "channel", "settings": { "platform": "spotify", "label": "Spotify" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -7,7 +7,7 @@
           "type": "text",
           "name": "t:names.heading",
           "settings": {
-            "text": "<h1>The Nation Network</h1>",
+            "text": "<h1>The Nation travels together</h1>",
             "text_color": "{{ settings.color_palette.background }}",
             "width": "100%",
             "max_width": "normal",
@@ -33,7 +33,7 @@
           "type": "text",
           "name": "t:names.text",
           "settings": {
-            "text": "<p>Our content speaks for sports fans in the pub, the locker room, at home and in the office.</p>",
+            "text": "<p>Game days, road trips and once-in-a-lifetime events, booked in one place.</p>",
             "text_color": "{{ settings.color_palette.background }}",
             "width": "100%",
             "max_width": "narrow",
@@ -59,7 +59,7 @@
           "type": "text",
           "name": "t:names.text",
           "settings": {
-            "text": "<p>Independent sports media</p>",
+            "text": "<p>Fan travel by The Nation Network</p>",
             "text_color": "{{ settings.color_palette.color1 }}",
             "type_preset": "h6",
             "width": "100%",
@@ -121,8 +121,8 @@
               "type": "button",
               "name": "t:names.button",
               "settings": {
-                "label": "Partner with us",
-                "link": "/pages/partner-with-us",
+                "label": "View experiences",
+                "link": "shopify://collections/all",
                 "open_in_new_tab": false,
                 "style_class": "button",
                 "custom_button_background": "{{ settings.color_palette.color1 }}",
@@ -139,8 +139,8 @@
               "type": "button",
               "name": "t:names.button",
               "settings": {
-                "label": "Beyond the game",
-                "link": "/pages/beyond-the-game",
+                "label": "Nation Vacation: Toronto",
+                "link": "shopify://products/nation-vacation-edmonton-to-toronto-2026",
                 "open_in_new_tab": false,
                 "style_class": "button-custom",
                 "custom_button_background": "rgba(0,0,0,0)",
@@ -198,163 +198,46 @@
         "stock_image": "crowd"
       }
     },
-    "network_stats": {
-      "type": "network-stats",
+    "trip_finder": {
+      "type": "trip-finder",
       "settings": {
-        "eyebrow": "Our audience",
-        "heading": "The leading destination for unbiased sports coverage",
-        "subheading": "A diverse range of content across all major forms of media, from real-time updates to comprehensive analysis, fantasy predictions and betting insights.",
-        "animate": true,
-        "duration": 1800,
-        "footnote": "",
+        "where_label": "Where do you want to go?",
+        "what_label": "What do you want to see?",
+        "show_when": true,
+        "when_label": "When do you want to go?",
+        "button_label": "Search",
+        "overlap": 48,
         "section_width": "page-width",
-        "background_color": "",
-        "padding-block-start": 88,
-        "padding-block-end": 56
-      },
-      "blocks": {
-        "pageviews": {
-          "type": "stat",
-          "settings": {
-            "value": "166",
-            "suffix": "M+",
-            "decimals": 0,
-            "label": "Annual web page views"
-          }
-        },
-        "streams": {
-          "type": "stat",
-          "settings": {
-            "value": "57",
-            "suffix": "M+",
-            "decimals": 0,
-            "label": "Annual show streams"
-          }
-        },
-        "social": {
-          "type": "stat",
-          "settings": {
-            "value": "1.62",
-            "suffix": "M+",
-            "decimals": 2,
-            "label": "Social media followers"
-          }
-        }
-      },
-      "block_order": [
-        "pageviews",
-        "streams",
-        "social"
-      ]
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
     },
-    "channels": {
-      "type": "distribution-channels",
-      "settings": {
-        "eyebrow": "",
-        "heading": "Distribution channels",
-        "show_labels": false,
-        "icon_size": 56,
-        "section_width": "page-width",
-        "background_color": "",
-        "padding-block-start": 24,
-        "padding-block-end": 64
-      },
-      "blocks": {
-        "facebook": {
-          "type": "channel",
-          "settings": {
-            "platform": "facebook",
-            "label": "Facebook",
-            "link": ""
-          }
-        },
-        "x": {
-          "type": "channel",
-          "settings": {
-            "platform": "x",
-            "label": "X",
-            "link": ""
-          }
-        },
-        "youtube": {
-          "type": "channel",
-          "settings": {
-            "platform": "youtube",
-            "label": "YouTube",
-            "link": ""
-          }
-        },
-        "instagram": {
-          "type": "channel",
-          "settings": {
-            "platform": "instagram",
-            "label": "Instagram",
-            "link": ""
-          }
-        },
-        "tiktok": {
-          "type": "channel",
-          "settings": {
-            "platform": "tiktok",
-            "label": "TikTok",
-            "link": ""
-          }
-        },
-        "apple": {
-          "type": "channel",
-          "settings": {
-            "platform": "apple",
-            "label": "Apple Podcasts",
-            "link": ""
-          }
-        },
-        "spotify": {
-          "type": "channel",
-          "settings": {
-            "platform": "spotify",
-            "label": "Spotify",
-            "link": ""
-          }
-        }
-      },
-      "block_order": [
-        "facebook",
-        "x",
-        "youtube",
-        "instagram",
-        "tiktok",
-        "apple",
-        "spotify"
-      ]
-    },
-    "brands": {
+    "feature_tiles": {
       "type": "feature-tiles",
       "blocks": {
         "tile_1": {
           "type": "tile",
           "settings": {
-            "heading": "Daily Faceoff",
-            "text": "Breaking news, lineups, player updates and fantasy hockey resources for NHL fans.",
-            "link": "/pages/daily-faceoff",
+            "heading": "Game days, road trips and once-in-a-lifetime events",
+            "text": "From Rogers Place to Toronto and Jasper, the Nation goes where the story is.",
+            "link": "shopify://collections/all",
             "stock_image": "arena"
           }
         },
         "tile_2": {
           "type": "tile",
           "settings": {
-            "heading": "The Nations",
-            "text": "Fan-first digital hubs for the Oilers, Flames, Canucks, Leafs, Blue Jays and Raptors.",
-            "stock_image": "airport",
-            "link": "/pages/the-nations"
+            "heading": "Tickets, transport and stays in one booking",
+            "text": "One checkout. No juggling flights, hotels and seats.",
+            "stock_image": "airport"
           }
         },
         "tile_3": {
           "type": "tile",
           "settings": {
-            "heading": "Hockey Fights",
-            "text": "The definitive archive of hockey’s grittiest moments, with stats, video and forums.",
-            "stock_image": "fans",
-            "link": "/pages/hockey-fights"
+            "heading": "Travel with a Nation host and fans who get it",
+            "text": "Every trip is run by the Nation Network crew and packed with fans.",
+            "stock_image": "fans"
           }
         }
       },
@@ -364,110 +247,15 @@
         "tile_3"
       ],
       "settings": {
-        "eyebrow": "Our brands",
-        "heading": "Three brands, one network",
-        "subheading": "Breaking news, analysis, fantasy projections and betting insights.",
+        "eyebrow": "Why the Nation?",
+        "heading": "Fan travel, done properly",
+        "subheading": "Tickets, transport, stays and the people who make it a trip.",
         "columns": 3,
         "ratio": "4 / 3",
         "section_width": "page-width",
         "padding-block-start": 72,
         "padding-block-end": 40
       }
-    },
-    "mosaic": {
-      "type": "brand-mosaic",
-      "settings": {
-        "eyebrow": "",
-        "heading": "Sports content for everyone",
-        "subheading": "",
-        "columns": 6,
-        "columns_mobile": 3,
-        "ratio": "4 / 3",
-        "gap": 0,
-        "open_in_new_tab": true,
-        "button_label": "",
-        "button_link": "",
-        "section_width": "page-width",
-        "background_color": "",
-        "padding-block-start": 40,
-        "padding-block-end": 72
-      },
-      "blocks": {
-        "dfo": {
-          "type": "tile",
-          "settings": {
-            "name": "Daily Faceoff",
-            "link": "https://dailyfaceoff.com/",
-            "tile_color": ""
-          }
-        },
-        "hf": {
-          "type": "tile",
-          "settings": {
-            "name": "Hockey Fights",
-            "link": "https://hockeyfights.com/",
-            "tile_color": ""
-          }
-        },
-        "oilers": {
-          "type": "tile",
-          "settings": {
-            "name": "Oilers Nation",
-            "link": "https://oilersnation.com/",
-            "tile_color": ""
-          }
-        },
-        "flames": {
-          "type": "tile",
-          "settings": {
-            "name": "Flames Nation",
-            "link": "https://flamesnation.ca/",
-            "tile_color": ""
-          }
-        },
-        "canucks": {
-          "type": "tile",
-          "settings": {
-            "name": "Canucks Army",
-            "link": "https://canucksarmy.com/",
-            "tile_color": ""
-          }
-        },
-        "leafs": {
-          "type": "tile",
-          "settings": {
-            "name": "The Leafs Nation",
-            "link": "https://theleafsnation.com/",
-            "tile_color": ""
-          }
-        },
-        "jays": {
-          "type": "tile",
-          "settings": {
-            "name": "Blue Jays Nation",
-            "link": "https://bluejaysnation.com/",
-            "tile_color": ""
-          }
-        },
-        "raptors": {
-          "type": "tile",
-          "settings": {
-            "name": "Raptors Republic",
-            "link": "https://raptorsrepublic.com/",
-            "tile_color": ""
-          }
-        }
-      },
-      "block_order": [
-        "dfo",
-        "hf",
-        "oilers",
-        "flames",
-        "canucks",
-        "leafs",
-        "jays",
-        "raptors"
-      ]
     },
     "upcoming": {
       "type": "product-list",
@@ -508,7 +296,7 @@
               "type": "_product-list-text",
               "name": "t:names.text",
               "settings": {
-                "text": "<p>Beyond the game</p>",
+                "text": "<p>Upcoming</p>",
                 "width": "100%",
                 "max_width": "normal",
                 "alignment": "center",
@@ -558,7 +346,7 @@
               "type": "_product-list-text",
               "name": "t:names.text",
               "settings": {
-                "text": "<p>Road trips, tournaments and game days, booked in one place.</p>",
+                "text": "<p>Game days, tournaments and trips with fellow fans.</p>",
                 "width": "100%",
                 "max_width": "narrow",
                 "alignment": "center",
@@ -785,6 +573,164 @@
         "padding-block-end": 72
       }
     },
+    "testimonials": {
+      "type": "testimonials",
+      "blocks": {
+        "quote_1": {
+          "type": "quote",
+          "settings": {
+            "rating": 5,
+            "quote": "Best weekend of the year. Everything was sorted, we just showed up and cheered.",
+            "author": "Chris",
+            "context": "Nation Vacation: Edmonton to Toronto"
+          }
+        },
+        "quote_2": {
+          "type": "quote",
+          "settings": {
+            "rating": 5,
+            "quote": "Pond hockey at Jasper with the whole crew. Unreal setting, unreal people.",
+            "author": "Amy",
+            "context": "Jasper Pond Hockey Tournament"
+          }
+        },
+        "quote_3": {
+          "type": "quote",
+          "settings": {
+            "rating": 5,
+            "quote": "Great value and zero stress. Already looking at the next one.",
+            "author": "Steven",
+            "context": "Game day experience"
+          }
+        }
+      },
+      "block_order": [
+        "quote_1",
+        "quote_2",
+        "quote_3"
+      ],
+      "settings": {
+        "eyebrow": "Rated 5 stars by the Nation",
+        "heading": "Trusted by fans across the country",
+        "subheading": "",
+        "button_label": "Read all reviews",
+        "section_width": "page-width",
+        "background_color": "{{ settings.color_palette.color3 }}",
+        "padding-block-start": 72,
+        "padding-block-end": 72
+      }
+    },
+    "destinations": {
+      "type": "destination-tiles",
+      "settings": {
+        "eyebrow": "Destinations",
+        "heading": "Where the Nation goes",
+        "subheading": "Pick a city, a rink or a road trip.",
+        "columns": 4,
+        "rows": 1,
+        "ratio": "4 / 5",
+        "show_count": false,
+        "button_label": "See all experiences",
+        "section_width": "page-width",
+        "padding-block-start": 72,
+        "padding-block-end": 40
+      },
+      "blocks": {
+        "toronto": {
+          "type": "destination",
+          "settings": {
+            "title": "Toronto",
+            "subtitle": "Nation Vacation",
+            "stock_image": "toronto",
+            "link": "shopify://products/nation-vacation-edmonton-to-toronto-2026"
+          }
+        },
+        "edmonton": {
+          "type": "destination",
+          "settings": {
+            "title": "Edmonton",
+            "subtitle": "Home games",
+            "stock_image": "edmonton",
+            "link": "shopify://collections/all"
+          }
+        },
+        "calgary": {
+          "type": "destination",
+          "settings": {
+            "title": "Calgary",
+            "subtitle": "Battle of Alberta",
+            "stock_image": "calgary",
+            "link": "shopify://collections/all"
+          }
+        },
+        "jasper": {
+          "type": "destination",
+          "settings": {
+            "title": "Jasper",
+            "subtitle": "Pond hockey",
+            "stock_image": "jasper",
+            "link": "shopify://products/2027-jasper-pond-hockey-tournament"
+          }
+        }
+      },
+      "block_order": [
+        "toronto",
+        "edmonton",
+        "calgary",
+        "jasper"
+      ]
+    },
+    "trust": {
+      "type": "trust-points",
+      "blocks": {
+        "point_1": {
+          "type": "point",
+          "settings": {
+            "icon": "lock",
+            "text": "Secure checkout, powered by Shopify"
+          }
+        },
+        "point_2": {
+          "type": "point",
+          "settings": {
+            "icon": "check_box",
+            "text": "Tickets, transport and stays in one booking"
+          }
+        },
+        "point_3": {
+          "type": "point",
+          "settings": {
+            "icon": "chat_bubble",
+            "text": "A Nation host on every trip"
+          }
+        },
+        "point_4": {
+          "type": "point",
+          "settings": {
+            "icon": "heart",
+            "text": "Fans travelling with fans"
+          }
+        }
+      },
+      "block_order": [
+        "point_1",
+        "point_2",
+        "point_3",
+        "point_4"
+      ],
+      "settings": {
+        "eyebrow": "",
+        "heading": "Book with confidence",
+        "text": "<p>Real people, real answers. Every experience is run by the Nation team, so if plans change you talk to us, not a call centre.</p>",
+        "button_label": "Find out more",
+        "image_position": "right",
+        "section_width": "page-width",
+        "padding-block-start": 40,
+        "padding-block-end": 40,
+        "stock_image": "stadium_seats",
+        "button_link": "shopify://collections/all"
+      }
+    },
     "partners": {
       "type": "partner-logos",
       "blocks": {
@@ -824,153 +770,23 @@
         "logo_4"
       ],
       "settings": {
-        "heading": "Our advertising partners",
+        "heading": "Trusted partners",
         "logo_height": 40,
         "grayscale": true,
         "section_width": "page-width",
-        "padding-block-start": 56,
-        "padding-block-end": 64
-      }
-    },
-    "leadership": {
-      "type": "leadership-grid",
-      "settings": {
-        "eyebrow": "Our team",
-        "heading": "The people behind the network",
-        "subheading": "",
-        "columns": 3,
-        "ratio": "4 / 5",
-        "section_width": "page-width",
-        "background_color": "{{ settings.color_palette.color3 }}",
-        "padding-block-start": 72,
-        "padding-block-end": 72
-      },
-      "blocks": {
-        "p1": {
-          "type": "person",
-          "settings": {
-            "name": "Name",
-            "title": "Title",
-            "bio": "",
-            "link": ""
-          }
-        },
-        "p2": {
-          "type": "person",
-          "settings": {
-            "name": "Name",
-            "title": "Title",
-            "bio": "",
-            "link": ""
-          }
-        },
-        "p3": {
-          "type": "person",
-          "settings": {
-            "name": "Name",
-            "title": "Title",
-            "bio": "",
-            "link": ""
-          }
-        },
-        "p4": {
-          "type": "person",
-          "settings": {
-            "name": "Name",
-            "title": "Title",
-            "bio": "",
-            "link": ""
-          }
-        },
-        "p5": {
-          "type": "person",
-          "settings": {
-            "name": "Name",
-            "title": "Title",
-            "bio": "",
-            "link": ""
-          }
-        },
-        "p6": {
-          "type": "person",
-          "settings": {
-            "name": "Name",
-            "title": "Title",
-            "bio": "",
-            "link": ""
-          }
-        }
-      },
-      "block_order": [
-        "p1",
-        "p2",
-        "p3",
-        "p4",
-        "p5",
-        "p6"
-      ]
-    },
-    "cta": {
-      "type": "trust-points",
-      "blocks": {
-        "point_1": {
-          "type": "point",
-          "settings": {
-            "icon": "lock",
-            "text": "Secure checkout, powered by Shopify"
-          }
-        },
-        "point_2": {
-          "type": "point",
-          "settings": {
-            "icon": "check_box",
-            "text": "Tickets, transport and stays in one booking"
-          }
-        },
-        "point_3": {
-          "type": "point",
-          "settings": {
-            "icon": "chat_bubble",
-            "text": "A Nation host on every trip"
-          }
-        },
-        "point_4": {
-          "type": "point",
-          "settings": {
-            "icon": "heart",
-            "text": "Fans travelling with fans"
-          }
-        }
-      },
-      "block_order": [
-        "point_1",
-        "point_2",
-        "point_3",
-        "point_4"
-      ],
-      "settings": {
-        "eyebrow": "Partner with us",
-        "heading": "Connect your brand directly with sports fans",
-        "text": "<p>10+ fan-driven websites, 28+ unique podcasts, a powerful social presence, and standout digital and live events. We build campaigns around your objectives rather than selling a package.</p>",
-        "button_label": "Start a conversation",
-        "image_position": "right",
-        "section_width": "page-width",
         "padding-block-start": 40,
-        "padding-block-end": 40,
-        "stock_image": "stadium_seats",
-        "button_link": "/pages/partner-with-us"
+        "padding-block-end": 64
       }
     }
   },
   "order": [
     "hero",
-    "network_stats",
-    "channels",
-    "brands",
-    "mosaic",
+    "trip_finder",
+    "feature_tiles",
     "upcoming",
-    "partners",
-    "leadership",
-    "cta"
+    "testimonials",
+    "destinations",
+    "trust",
+    "partners"
   ]
 }
