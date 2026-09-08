@@ -1,201 +1,71 @@
 {
   "sections": {
     "hero": {
-      "type": "hero",
+      "type": "hero-rotator",
       "blocks": {
-        "heading": {
-          "type": "text",
-          "name": "t:names.heading",
+        "slide_1": {
+          "type": "slide",
           "settings": {
-            "text": "<h1>The Nation Network</h1>",
-            "text_color": "{{ settings.color_palette.background }}",
-            "width": "100%",
-            "max_width": "normal",
-            "alignment": "center",
-            "type_preset": "h1",
-            "font": "var(--font-heading--family)",
-            "font_size": "1rem",
-            "line_height": "tight",
-            "letter_spacing": "tight",
-            "case": "uppercase",
-            "wrap": "balance",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
+            "bundled": "photo-hero-studio-two",
+            "alt": "Two hosts recording in the studio under neon signs"
+          }
         },
-        "subheading": {
-          "type": "text",
-          "name": "t:names.text",
+        "slide_2": {
+          "type": "slide",
           "settings": {
-            "text": "<p>Our content speaks for sports fans in the pub, the locker room, at home and in the office.</p>",
-            "text_color": "{{ settings.color_palette.background }}",
-            "width": "100%",
-            "max_width": "narrow",
-            "alignment": "center",
-            "type_preset": "custom",
-            "font": "var(--font-body--family)",
-            "font_size": "1.25rem",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 4,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
+            "bundled": "photo-hero-fans-vegas",
+            "alt": "A large group of fans with an OilersNation flag outside T-Mobile Arena"
+          }
         },
-        "eyebrow": {
-          "type": "text",
-          "name": "t:names.text",
+        "slide_3": {
+          "type": "slide",
           "settings": {
-            "text": "<p>Independent sports media</p>",
-            "text_color": "{{ settings.color_palette.color1 }}",
-            "type_preset": "h6",
-            "width": "100%",
-            "max_width": "normal",
-            "alignment": "center",
-            "font": "var(--font-subheading--family)",
-            "font_size": "0.75rem",
-            "line_height": "normal",
-            "letter_spacing": "loose",
-            "case": "uppercase",
-            "wrap": "pretty",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 4,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
+            "bundled": "photo-hero-cap",
+            "alt": "A fan laughing in an OilersNation cap against a brick wall"
+          }
         },
-        "buttons": {
-          "type": "group",
-          "name": "t:names.group",
+        "slide_4": {
+          "type": "slide",
           "settings": {
-            "content_direction": "row",
-            "vertical_on_mobile": false,
-            "horizontal_alignment": "center",
-            "vertical_alignment": "center",
-            "align_baseline": false,
-            "horizontal_alignment_flex_direction_column": "center",
-            "vertical_alignment_flex_direction_column": "center",
-            "gap": 12,
-            "width": "fit-content",
-            "custom_width": 100,
-            "width_mobile": "fit-content",
-            "custom_width_mobile": 100,
-            "height": "fit",
-            "custom_height": 100,
-            "background_media": "none",
-            "video_position": "cover",
-            "background_image_position": "cover",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_radius": 0,
-            "toggle_overlay": false,
-            "overlay_color": "#00000026",
-            "overlay_style": "solid",
-            "gradient_direction": "to top",
-            "open_in_new_tab": false,
-            "padding-block-start": 4,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {
-            "primary": {
-              "type": "button",
-              "name": "t:names.button",
-              "settings": {
-                "label": "Partner with us",
-                "link": "/pages/partner-with-us",
-                "open_in_new_tab": false,
-                "style_class": "button",
-                "custom_button_background": "{{ settings.color_palette.color1 }}",
-                "custom_button_text": "{{ settings.color_palette.foreground }}",
-                "custom_button_border": "{{ settings.color_palette.color1 }}",
-                "width": "fit-content",
-                "custom_width": 100,
-                "width_mobile": "fit-content",
-                "custom_width_mobile": 100
-              },
-              "blocks": {}
-            },
-            "secondary": {
-              "type": "button",
-              "name": "t:names.button",
-              "settings": {
-                "label": "Beyond the game",
-                "link": "/pages/beyond-the-game",
-                "open_in_new_tab": false,
-                "style_class": "button-custom",
-                "custom_button_background": "rgba(0,0,0,0)",
-                "custom_button_text": "{{ settings.color_palette.background }}",
-                "custom_button_border": "{{ settings.color_palette.background }}",
-                "width": "fit-content",
-                "custom_width": 100,
-                "width_mobile": "fit-content",
-                "custom_width_mobile": 100
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "primary",
-            "secondary"
-          ]
+            "bundled": "photo-hero-studio-three",
+            "alt": "Three hosts recording a show together in the studio"
+          }
+        },
+        "slide_5": {
+          "type": "slide",
+          "settings": {
+            "bundled": "photo-hero-sekeres-price",
+            "alt": "The Sekeres & Price hosts at their desk on set"
+          }
+        },
+        "slide_6": {
+          "type": "slide",
+          "settings": {
+            "bundled": "photo-hero-the-sheet-live",
+            "alt": "The Sheet recorded live on stage in front of an audience"
+          }
         }
       },
       "block_order": [
-        "eyebrow",
-        "heading",
-        "subheading",
-        "buttons"
+        "slide_1",
+        "slide_2",
+        "slide_3",
+        "slide_4",
+        "slide_5",
+        "slide_6"
       ],
-      "name": "t:names.hero",
       "settings": {
-        "media_type_1": "image",
-        "media_type_2": "image",
-        "stack_media_on_mobile": false,
-        "custom_mobile_media": false,
-        "media_type_1_mobile": "image",
-        "media_type_2_mobile": "image",
-        "open_in_new_tab": false,
-        "content_direction": "column",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "center",
-        "vertical_alignment": "center",
-        "align_baseline": false,
-        "horizontal_alignment_flex_direction_column": "center",
-        "vertical_alignment_flex_direction_column": "center",
-        "gap": 16,
-        "section_width": "full-width",
-        "section_height": "large",
-        "section_height_custom": 50,
-        "background_color": "rgba(0,0,0,0)",
-        "toggle_overlay": true,
-        "overlay_color": "#0a0a0a8c",
-        "overlay_style": "solid",
-        "gradient_direction": "to top",
-        "blurred_reflection": false,
-        "reflection_opacity": 75,
-        "padding-block-start": 88,
-        "padding-block-end": 100,
-        "stock_image": "crowd"
+        "eyebrow": "Independent sports media",
+        "heading": "The Nation Network",
+        "subheading": "Our content speaks for sports fans in the pub, the locker room, at home and in the office.",
+        "button_label": "Partner with us",
+        "button_link": "/pages/partner-with-us",
+        "button_style": "button",
+        "text_align": "left",
+        "interval": 3,
+        "height": 600,
+        "overlay": 45,
+        "section_width": "full-width"
       }
     },
     "network_stats": {
