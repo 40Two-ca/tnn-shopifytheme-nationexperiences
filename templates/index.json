@@ -1330,8 +1330,8 @@
             "heading": "Hockey",
             "text": "Six team sites, two national brands, thirty-plus shows a week.",
             "link": "/pages/hockey",
-            "stock_image": "arena",
-            "bundled": ""
+            "stock_image": "none",
+            "bundled": "photo-travel-2"
           }
         },
         "tile_baseball": {
@@ -1350,8 +1350,8 @@
             "heading": "More sports",
             "text": "Basketball and tennis, with room to grow.",
             "link": "/pages/more-sports",
-            "stock_image": "none",
-            "bundled": "photo-events-1"
+            "stock_image": "stadium_seats",
+            "bundled": ""
           }
         }
       },
