@@ -7,6 +7,18 @@
   if block_settings.inverse and settings.logo_inverse
     assign image = settings.logo_inverse
   endif
+
+  # No logo has been uploaded to this store, so fall back to the network
+  # wordmark bundled in assets/ -- the white one wherever the block is set to
+  # inverse, since that is a dark surface. Theme settings > Logo overrides it.
+  assign bundled_key = ''
+  if image == blank
+    assign bundled_key = 'identity-wordmark'
+    if block_settings.inverse
+      assign bundled_key = 'identity-wordmark-white'
+    endif
+    assign bundled_ratio = 3.46
+  endif
 %}
 
 {%- if image -%}
@@ -36,6 +48,9 @@
     {% else %}
       {% if image %}
         --logo-width: {{ image.width | times: 1.00 | divided_by: image.height | times: block_settings.pixel_height }}px;
+      {% elsif bundled_key != blank %}
+        --logo-width: {{ bundled_ratio | times: block_settings.pixel_height }}px;
+        --logo-height: {{ block_settings.pixel_height }}px;
       {% else %}
         --logo-width: {{ shop.name.size | times: 0.65 }}em;
         --logo-height: {{ block_settings.pixel_height }}px;
@@ -49,6 +64,9 @@
       {% else %}
         {% if image %}
           --logo-width-mobile: {{ image.width | times: 1.00 | divided_by: image.height | times: block_settings.pixel_height_mobile }}px;
+          {% elsif bundled_key != blank %}
+            --logo-width-mobile: {{ bundled_ratio | times: block_settings.pixel_height_mobile }}px;
+            --logo-height-mobile: {{ block_settings.pixel_height_mobile }}px;
           {% else %}
             --logo-width-mobile: {{ shop.name.size | times: 0.65 }}em;
             --logo-height-mobile: {{ block_settings.pixel_height_mobile }}px;
@@ -62,6 +80,10 @@
   {% if logo_image %}
     <div class="logo-block__image-wrapper">
       {{ logo_image }}
+    </div>
+  {% elsif bundled_key != blank %}
+    <div class="logo-block__image-wrapper">
+      {% render 'bundled-image', key: bundled_key, class: 'logo-block__image', alt: shop.name %}
     </div>
   {% else %}
     {% render 'jumbo-text', text: shop.name %}
