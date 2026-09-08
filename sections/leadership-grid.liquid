@@ -1,0 +1,297 @@
+{%- comment -%}
+  Leadership / team cards, ported from thenationnetwork.com.
+  Also reusable for hosts and on-air talent on brand pages.
+{%- endcomment -%}
+
+{%- liquid
+  assign s = section.settings
+  if s.background_color != blank
+    render 'contrast-override', background_color: s.background_color, section_id: section.id
+  endif
+-%}
+
+<div
+  class="section-background{% if s.background_color != blank %} color-custom-{{ section.id }}{% endif %}"
+></div>
+<div
+  class="section section--{{ s.section_width }} spacing-style leadership-grid{% if s.background_color != blank %} color-custom-{{ section.id }}{% endif %}"
+  style="
+    {% render 'spacing-style', settings: s %}
+    --leadership-columns: {{ s.columns }};
+    --leadership-ratio: {{ s.ratio }};
+  "
+>
+  {%- if s.eyebrow != blank or s.heading != blank or s.subheading != blank -%}
+    <div class="brand-section-header">
+      {%- if s.eyebrow != blank -%}
+        <p class="brand-eyebrow">{{ s.eyebrow }}</p>
+      {%- endif -%}
+      {%- if s.heading != blank -%}
+        <h2 class="leadership-grid__heading">{{ s.heading }}</h2>
+      {%- endif -%}
+      {%- if s.subheading != blank -%}
+        <p class="brand-subheading">{{ s.subheading }}</p>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+
+  <ul class="leadership-grid__list list-unstyled">
+    {%- for block in section.blocks -%}
+      {%- assign person = block.settings -%}
+      <li class="leadership-grid__item" {{ block.shopify_attributes }}>
+        <figure class="leadership-card">
+          <div class="leadership-card__media">
+            {%- if person.image != blank -%}
+              {{
+                person.image
+                | image_url: width: 800
+                | image_tag: widths: '200, 300, 400, 600, 800', class: 'leadership-card__image', loading: 'lazy', alt: person.name
+              }}
+            {%- else -%}
+              <span class="leadership-card__placeholder" aria-hidden="true">
+                {{ person.name | slice: 0, 1 }}
+              </span>
+            {%- endif -%}
+          </div>
+          <figcaption class="leadership-card__body">
+            {%- if person.name != blank -%}
+              <p class="leadership-card__name">{{ person.name }}</p>
+            {%- endif -%}
+            {%- if person.title != blank -%}
+              <p class="leadership-card__title">{{ person.title }}</p>
+            {%- endif -%}
+            {%- if person.bio != blank -%}
+              <div class="leadership-card__bio">{{ person.bio }}</div>
+            {%- endif -%}
+            {%- if person.link != blank -%}
+              <a class="leadership-card__link" href="{{ person.link }}" target="_blank" rel="noopener noreferrer">
+                <svg
+                  class="leadership-card__icon"
+                  aria-hidden="true"
+                  focusable="false"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                >
+                  {%- render 'icon', icon: 'linkedin' -%}
+                </svg>
+                <span class="visually-hidden">{{ person.name }} on LinkedIn</span>
+              </a>
+            {%- endif -%}
+          </figcaption>
+        </figure>
+      </li>
+    {%- endfor -%}
+  </ul>
+</div>
+
+{% stylesheet %}
+  .leadership-grid__heading {
+    margin: 0;
+  }
+
+  .leadership-grid__list {
+    display: grid;
+    grid-template-columns: repeat(var(--leadership-columns, 3), minmax(0, 1fr));
+    gap: 2.5rem 2rem;
+    margin: 0;
+    padding: 0;
+  }
+
+  .leadership-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 0;
+    height: 100%;
+  }
+
+  .leadership-card__media {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: var(--leadership-ratio, 1);
+    overflow: hidden;
+    border-radius: var(--brand-card-radius);
+    background: var(--brand-surface);
+  }
+
+  .leadership-card__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .leadership-card__placeholder {
+    font-family: var(--font-heading--family);
+    font-weight: 800;
+    font-size: 2.5rem;
+    color: rgb(var(--color-foreground-rgb) / 0.25);
+  }
+
+  .leadership-card__body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .leadership-card__name {
+    margin: 0;
+    font-family: var(--font-heading--family);
+    font-weight: 700;
+    font-size: 1.0625rem;
+    line-height: 1.2;
+  }
+
+  .leadership-card__title {
+    margin: 0;
+    font-family: var(--font-subheading--family);
+    font-weight: 700;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgb(var(--color-foreground-rgb) / 0.6);
+  }
+
+  .leadership-card__bio {
+    margin-block-start: 0.5rem;
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    color: rgb(var(--color-foreground-rgb) / 0.75);
+  }
+
+  .leadership-card__bio > :first-child {
+    margin-block-start: 0;
+  }
+
+  .leadership-card__bio > :last-child {
+    margin-block-end: 0;
+  }
+
+  .leadership-card__link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    margin-block-start: 0.5rem;
+    border-radius: 50%;
+    background: var(--color-foreground);
+    color: var(--color-background);
+    transition: background-color var(--hover-transition-duration) var(--hover-transition-timing),
+      color var(--hover-transition-duration) var(--hover-transition-timing);
+  }
+
+  .leadership-card__link:hover {
+    background: var(--brand-accent);
+    color: var(--brand-accent-contrast);
+  }
+
+  .leadership-card__icon {
+    width: 55%;
+    height: 55%;
+    fill: currentColor;
+  }
+
+  @media screen and (max-width: 989px) {
+    .leadership-grid__list {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media screen and (max-width: 599px) {
+    .leadership-grid__list {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Leadership grid",
+  "tag": "section",
+  "class": "section-wrapper",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Our leadership" },
+    { "type": "text", "id": "subheading", "label": "Subheading" },
+    {
+      "type": "range",
+      "id": "columns",
+      "label": "Columns",
+      "min": 2,
+      "max": 6,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "select",
+      "id": "ratio",
+      "label": "Portrait shape",
+      "options": [
+        { "value": "1", "label": "Square" },
+        { "value": "4 / 5", "label": "Portrait" },
+        { "value": "3 / 4", "label": "Tall" }
+      ],
+      "default": "4 / 5"
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "Width",
+      "options": [
+        { "value": "page-width", "label": "Page" },
+        { "value": "full-width", "label": "Full" }
+      ],
+      "default": "page-width"
+    },
+    { "type": "color", "id": "background_color", "label": "Background color" },
+    { "type": "header", "content": "Padding" },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 72
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 72
+    }
+  ],
+  "blocks": [
+    {
+      "type": "person",
+      "name": "Person",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Photo" },
+        { "type": "text", "id": "name", "label": "Name" },
+        { "type": "text", "id": "title", "label": "Title" },
+        { "type": "richtext", "id": "bio", "label": "Bio" },
+        { "type": "url", "id": "link", "label": "LinkedIn" }
+      ]
+    }
+  ],
+  "max_blocks": 24,
+  "presets": [
+    {
+      "name": "Leadership grid",
+      "category": "The Nation Network",
+      "blocks": [
+        { "type": "person", "settings": { "name": "Name", "title": "Title" } },
+        { "type": "person", "settings": { "name": "Name", "title": "Title" } },
+        { "type": "person", "settings": { "name": "Name", "title": "Title" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
