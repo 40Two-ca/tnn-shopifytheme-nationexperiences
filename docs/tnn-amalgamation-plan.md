@@ -24,13 +24,13 @@ experiences, one collection, two stock pages.
 | WordPress | Shopify | Built with |
 |---|---|---|
 | `/` | `/` | `templates/index.json` — **done** |
-| `/beyond-the-game` | `/pages/beyond-the-game` | `feature-tiles` + `product-list` + galleries |
-| `/brands/daily-faceoff` | `/pages/daily-faceoff` | `media-with-content` + show grid |
-| `/brands/the-nations` | `/pages/the-nations` | `brand-mosaic` + `media-with-content` |
-| `/brands/hockey-fights` | `/pages/hockey-fights` | `media-with-content` |
-| `/partner-with-us` | `/pages/partner-with-us` | `trust-points` + `network-stats` + Typeform |
-| `/work-with-us` | `/pages/work-with-us` | three-route CTA (reuse `feature-tiles`) |
-| `/work-with-us/creator`, `/inquiry` | `/pages/...` | Shopify contact form or Typeform |
+| `/beyond-the-game` | `/pages/beyond-the-game` | `story-strand` × 4 + `product-list` — **done** |
+| `/brands/daily-faceoff` | `/pages/daily-faceoff` | `story-strand` × 6 + `network-stats` — **done** |
+| `/brands/the-nations` | `/pages/the-nations` | `brand-mosaic` + `story-strand` × 3 — **done** |
+| `/brands/hockey-fights` | `/pages/hockey-fights` | `story-strand` + `network-stats` — **done** |
+| `/partner-with-us` | `/pages/partner-with-us` | `story-strand` + `network-stats` + `partner-logos` + Typeform — **done** |
+| `/work-with-us` | `/pages/work-with-us` | three-route `feature-tiles` — **done** |
+| `/work-with-us/creator`, `/inquiry` | `/pages/contact` for now | Shopify contact form or Typeform — undecided |
 | `/press-releases/*` | `/blogs/news/*` | native blog |
 | — | `/collections/experiences` | trips |
 | — | `/collections/nation-gear` | merch |
@@ -119,7 +119,11 @@ mosaic's own limit.
    slot, so someone has left. The live WordPress site sits behind a bot check
    that blocks reading it from here — the client should confirm the six people
    and the 19 unlinked show tiles.
-3. **Page templates** for each row of the map above.
+3. **Acast players and the enquiry forms.** The brand pages carried an embedded
+   podcast player per show; six iframes on one page is a decision about page
+   weight and consent, so the strands ship with copy and screenshots instead.
+   The creator and general-enquiry routes ran on Mailgun and reCAPTCHA in the
+   Next repo and now point at `/pages/contact` as a placeholder.
 4. **Navigation.** Main menu → Our Brands (dropdown), Beyond The Game,
    Experiences, Shop, Partner With Us, Contact. Footer → brands, company,
    legal, LinkedIn, Better Collective attribution.
@@ -131,6 +135,40 @@ mosaic's own limit.
    `URL redirects` (bulk CSV import). Non-negotiable: these are indexed pages.
 8. **Analytics.** GA4 + Search Console on the new property; the network runs 15
    GA4 properties, so confirm which one this rolls into.
+
+## The pages need creating in admin
+
+A page template renders nothing until a Page record points at it, and none of
+these exist on the store yet — the catalogue has only Contact and Your Privacy
+Choices. Each row below is **Content → Pages → Add page**, with the title typed
+exactly as given so Shopify generates the handle the templates link to, and the
+**Template** set to the matching entry:
+
+| Title | Handle it should generate | Template |
+| --- | --- | --- |
+| Experiences | `experiences` | `page.experiences` |
+| Beyond The Game | `beyond-the-game` | `page.beyond-the-game` |
+| The Nations | `the-nations` | `page.the-nations` |
+| Daily Faceoff | `daily-faceoff` | `page.daily-faceoff` |
+| Hockey Fights | `hockey-fights` | `page.hockey-fights` |
+| Partner With Us | `partner-with-us` | `page.partner-with-us` |
+| Work With Us | `work-with-us` | `page.work-with-us` |
+
+Leave the body content empty: every page's copy is in its template, so anything
+typed here renders as well and would duplicate it. New pages default to
+**Hidden**, so each needs setting to Visible.
+
+The handles matter beyond tidiness — the home page's brand tiles link to
+`/pages/daily-faceoff`, `/pages/the-nations` and `/pages/hockey-fights`, its
+partner CTA to `/pages/partner-with-us`, and Beyond The Game's travel strand to
+`/pages/experiences`. A handle that does not match is a dead link.
+
+Two things worth knowing before starting. Shopify builds the Template dropdown
+from the **published** theme, and the GitHub-connected theme here is a draft, so
+the new templates may not be offered until it is published — if they are
+missing, publish first, or expect to come back and set them. And this cannot be
+done from an agent: the current admin is built from web components in shadow
+DOM, and neither typing nor clicking reaches them through browser automation.
 
 ## Cutover blockers
 
@@ -150,7 +188,7 @@ These are decisions, not code.
 ## Order of work
 
 1. ~~Brand foundation and assets~~ — done, bar the photography.
-2. Page templates and navigation.
+2. ~~Page templates~~ — done; the Page records and the two menus are admin work.
 3. Forms and blog.
 4. Plan upgrade, redirect map, staging review on a preview theme.
 5. DNS cutover, then remove the storefront password.
