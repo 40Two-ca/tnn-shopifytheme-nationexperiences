@@ -1,0 +1,366 @@
+{
+  "sections": {
+    "header": {
+      "type": "section",
+      "blocks": {
+        "title": {
+          "type": "text",
+          "name": "Title",
+          "settings": {
+            "text": "<h1>Partner With Us</h1>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h1",
+            "font": "var(--font-heading--family)",
+            "line_height": "tight",
+            "letter_spacing": "tight",
+            "case": "uppercase",
+            "wrap": "balance"
+          },
+          "blocks": {}
+        },
+        "intro": {
+          "type": "text",
+          "name": "Intro",
+          "settings": {
+            "text": "<p>Looking to connect your brand directly with sports fans? Let's talk.</p>",
+            "width": "100%",
+            "max_width": "narrow",
+            "alignment": "left",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "title",
+        "intro"
+      ],
+      "settings": {
+        "content_direction": "column",
+        "gap": 16,
+        "section_width": "page-width",
+        "padding-block-start": 56,
+        "padding-block-end": 16
+      }
+    },
+    "pitch": {
+      "type": "story-strand",
+      "blocks": {
+        "photo_1": {
+          "type": "photo",
+          "settings": {
+            "bundled": "photo-events-1",
+            "alt": "A host with a microphone in front of a watch-party crowd"
+          }
+        },
+        "photo_2": {
+          "type": "photo",
+          "settings": {
+            "bundled": "photo-events-3",
+            "alt": "Fans in Oilers jerseys at a Nation Network event"
+          }
+        }
+      },
+      "block_order": [
+        "photo_1",
+        "photo_2"
+      ],
+      "settings": {
+        "eyebrow": "Who we are",
+        "heading": "Part of Better Collective",
+        "body": "<p>At The Nation Network we connect brands with some of the most passionate sports fans across North America. With 10+ fan-driven websites, 28+ unique podcasts, a powerful social presence and standout digital and live events, we know how to create impact and drive real engagement. Whether you are looking to grow your brand, reach a targeted sports audience, host memorable events or co-create content that actually resonates, we are here to make it happen.</p>",
+        "media_position": "right",
+        "ratio": "1",
+        "media_fit": "cover",
+        "section_width": "page-width",
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      }
+    },
+    "audience": {
+      "type": "network-stats",
+      "settings": {
+        "eyebrow": "The audience",
+        "heading": "Reach fans who actually turn up",
+        "subheading": "Across 10+ fan-driven websites, 28+ podcasts and a social presence in every major feed.",
+        "animate": true,
+        "duration": 1800,
+        "footnote": "",
+        "section_width": "page-width",
+        "background_color": "",
+        "padding-block-start": 88,
+        "padding-block-end": 56
+      },
+      "blocks": {
+        "pageviews": {
+          "type": "stat",
+          "settings": {
+            "value": "166",
+            "suffix": "M+",
+            "decimals": 0,
+            "label": "Annual web page views"
+          }
+        },
+        "streams": {
+          "type": "stat",
+          "settings": {
+            "value": "57",
+            "suffix": "M+",
+            "decimals": 0,
+            "label": "Annual show streams"
+          }
+        },
+        "social": {
+          "type": "stat",
+          "settings": {
+            "value": "1.62",
+            "suffix": "M+",
+            "decimals": 2,
+            "label": "Social media followers"
+          }
+        }
+      },
+      "block_order": [
+        "pageviews",
+        "streams",
+        "social"
+      ]
+    },
+    "advertisers": {
+      "type": "partner-logos",
+      "blocks": {
+        "logo_betway": {
+          "type": "logo",
+          "settings": {
+            "name": "Betway",
+            "link": ""
+          }
+        },
+        "logo_boston_pizza": {
+          "type": "logo",
+          "settings": {
+            "name": "Boston Pizza",
+            "link": ""
+          }
+        },
+        "logo_skip_the_dishes": {
+          "type": "logo",
+          "settings": {
+            "name": "Skip The Dishes",
+            "link": ""
+          }
+        },
+        "logo_bet365": {
+          "type": "logo",
+          "settings": {
+            "name": "Bet365",
+            "link": ""
+          }
+        },
+        "logo_montanas": {
+          "type": "logo",
+          "settings": {
+            "name": "Montanas",
+            "link": ""
+          }
+        },
+        "logo_adidas": {
+          "type": "logo",
+          "settings": {
+            "name": "Adidas",
+            "link": ""
+          }
+        },
+        "logo_ufc": {
+          "type": "logo",
+          "settings": {
+            "name": "UFC",
+            "link": ""
+          }
+        },
+        "logo_jasper_canada": {
+          "type": "logo",
+          "settings": {
+            "name": "Jasper Canada",
+            "link": ""
+          }
+        },
+        "logo_doordash": {
+          "type": "logo",
+          "settings": {
+            "name": "Doordash",
+            "link": ""
+          }
+        },
+        "logo_wendy_s": {
+          "type": "logo",
+          "settings": {
+            "name": "Wendy's",
+            "link": ""
+          }
+        },
+        "logo_seagrams": {
+          "type": "logo",
+          "settings": {
+            "name": "Seagrams",
+            "link": ""
+          }
+        },
+        "logo_booster_juice": {
+          "type": "logo",
+          "settings": {
+            "name": "Booster Juice",
+            "link": ""
+          }
+        },
+        "logo_telus": {
+          "type": "logo",
+          "settings": {
+            "name": "Telus",
+            "link": ""
+          }
+        },
+        "logo_servus_credit_union": {
+          "type": "logo",
+          "settings": {
+            "name": "Servus Credit Union",
+            "link": ""
+          }
+        },
+        "logo_finning": {
+          "type": "logo",
+          "settings": {
+            "name": "Finning",
+            "link": ""
+          }
+        },
+        "logo_jp_wisers": {
+          "type": "logo",
+          "settings": {
+            "name": "JP Wisers",
+            "link": ""
+          }
+        },
+        "logo_yeti": {
+          "type": "logo",
+          "settings": {
+            "name": "Yeti",
+            "link": ""
+          }
+        },
+        "logo_odd_brewing_company": {
+          "type": "logo",
+          "settings": {
+            "name": "Odd Brewing Company",
+            "link": ""
+          }
+        },
+        "logo_greta": {
+          "type": "logo",
+          "settings": {
+            "name": "Greta",
+            "link": ""
+          }
+        },
+        "logo_fanduel": {
+          "type": "logo",
+          "settings": {
+            "name": "FanDuel",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "logo_betway",
+        "logo_boston_pizza",
+        "logo_skip_the_dishes",
+        "logo_bet365",
+        "logo_montanas",
+        "logo_adidas",
+        "logo_ufc",
+        "logo_jasper_canada",
+        "logo_doordash",
+        "logo_wendy_s",
+        "logo_seagrams",
+        "logo_booster_juice",
+        "logo_telus",
+        "logo_servus_credit_union",
+        "logo_finning",
+        "logo_jp_wisers",
+        "logo_yeti",
+        "logo_odd_brewing_company",
+        "logo_greta",
+        "logo_fanduel"
+      ],
+      "settings": {
+        "heading": "Brands we have worked with",
+        "logo_height": 40,
+        "grayscale": true,
+        "section_width": "page-width",
+        "padding-block-start": 56,
+        "padding-block-end": 64
+      }
+    },
+    "cta": {
+      "type": "trust-points",
+      "blocks": {
+        "point_1": {
+          "type": "point",
+          "settings": {
+            "icon": "silhouette",
+            "text": "10+ fan-driven websites across North America"
+          }
+        },
+        "point_2": {
+          "type": "point",
+          "settings": {
+            "icon": "chat_bubble",
+            "text": "28+ podcasts and shows, every week"
+          }
+        },
+        "point_3": {
+          "type": "point",
+          "settings": {
+            "icon": "star",
+            "text": "Campaigns and content built with you, not templated"
+          }
+        },
+        "point_4": {
+          "type": "point",
+          "settings": {
+            "icon": "heart",
+            "text": "Digital and live events, run end to end"
+          }
+        }
+      },
+      "block_order": [
+        "point_1",
+        "point_2",
+        "point_3",
+        "point_4"
+      ],
+      "settings": {
+        "eyebrow": "Let's talk",
+        "heading": "Tell us what you are trying to do",
+        "text": "<p>We do not believe in one-size-fits-all. We work closely with our partners to build smart, creative campaigns that deliver real results. Sound like a good fit?</p>",
+        "button_label": "Fill out the form",
+        "image_position": "right",
+        "section_width": "page-width",
+        "padding-block-start": 40,
+        "padding-block-end": 40,
+        "stock_image": "stadium_seats",
+        "button_link": "https://bettercollective.typeform.com/to/B1jqDVvz"
+      }
+    }
+  },
+  "order": [
+    "header",
+    "pitch",
+    "audience",
+    "advertisers",
+    "cta"
+  ]
+}

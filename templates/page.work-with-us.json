@@ -1,0 +1,104 @@
+{
+  "sections": {
+    "header": {
+      "type": "section",
+      "blocks": {
+        "title": {
+          "type": "text",
+          "name": "Title",
+          "settings": {
+            "text": "<h1>Work With Us</h1>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h1",
+            "font": "var(--font-heading--family)",
+            "line_height": "tight",
+            "letter_spacing": "tight",
+            "case": "uppercase",
+            "wrap": "balance"
+          },
+          "blocks": {}
+        },
+        "intro": {
+          "type": "text",
+          "name": "Intro",
+          "settings": {
+            "text": "<p>We would love to talk to you.</p>",
+            "width": "100%",
+            "max_width": "narrow",
+            "alignment": "left",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "title",
+        "intro"
+      ],
+      "settings": {
+        "content_direction": "column",
+        "gap": 16,
+        "section_width": "page-width",
+        "padding-block-start": 56,
+        "padding-block-end": 16
+      }
+    },
+    "routes": {
+      "type": "feature-tiles",
+      "blocks": {
+        "tile_brand": {
+          "type": "tile",
+          "settings": {
+            "heading": "I am a Brand",
+            "text": "Advertising, sponsorship and campaigns built with our audiences.",
+            "link": "https://bettercollective.typeform.com/to/B1jqDVvz",
+            "stock_image": "none",
+            "bundled": "photo-events-2"
+          }
+        },
+        "tile_creator": {
+          "type": "tile",
+          "settings": {
+            "heading": "I am a Creator",
+            "text": "Hosting, writing or making something with the network.",
+            "link": "/pages/contact",
+            "stock_image": "none",
+            "bundled": "photo-travel-1"
+          }
+        },
+        "tile_inquiry": {
+          "type": "tile",
+          "settings": {
+            "heading": "General enquiries",
+            "text": "Anything else, including press and partnerships.",
+            "link": "/pages/contact",
+            "stock_image": "none",
+            "bundled": "photo-giving-2"
+          }
+        }
+      },
+      "block_order": [
+        "tile_brand",
+        "tile_creator",
+        "tile_inquiry"
+      ],
+      "settings": {
+        "eyebrow": "Work with us",
+        "heading": "Which of these are you?",
+        "subheading": "Pick the one that fits and we will get you to the right people.",
+        "columns": 3,
+        "ratio": "4 / 3",
+        "section_width": "page-width",
+        "padding-block-start": 72,
+        "padding-block-end": 40
+      }
+    }
+  },
+  "order": [
+    "header",
+    "routes"
+  ]
+}
