@@ -132,7 +132,9 @@ mosaic's own limit.
 5. **Forms.** The Typeform embeds and the two `work-with-us` API routes
    (Mailgun + reCAPTCHA in the Next repo) have no Shopify equivalent. Either
    keep Typeform or rebuild on Shopify's contact form.
-6. **Blog** for press releases, plus authors and tags.
+6. **Blog.** The templates are branded and the two press releases are converted
+   and waiting in `docs/press-releases/`. What is left is admin: create the
+   `news` blog and paste each article in, per that folder's README.
 7. **Redirect map.** Drafted — see below. Still needs checking against what is
    actually indexed before import.
 8. **Analytics.** GA4 + Search Console on the new property; the network runs 15
@@ -291,6 +293,35 @@ Every `/pages/*` destination depends on its Page record existing, and the three
 `/blogs/news` rows depend on the blog and both articles, which is plan item 6.
 Importing before those exist turns a 404 on the old URL into a 404 on the new
 one.
+
+## The press-release blog
+
+`templates/blog.json` and `templates/article.json` now use the heading face —
+uppercase on the blog index like the other page headers, sentence case on an
+article, because a press-release headline runs long and uppercase at H1 scale
+swamps the page. Nothing else needed changing: Horizon's `.blog-post-content`
+already caps its own measure and centres it, so long-form copy reads properly
+without a rule from this theme.
+
+The articles themselves are admin data and Shopify has no CSV import for them,
+so `scripts/build_press_releases.py` converts the two releases from the old
+repo's JSX into paste-ready HTML:
+
+```bash
+python scripts/build_press_releases.py
+```
+
+It writes `docs/press-releases/<handle>.html` plus a README giving each
+article's title, handle, date, tags, excerpt and featured-image note. The
+handles matter: `docs/redirects.csv` points the old `/press-releases/<slug>`
+URLs at `/blogs/news/<slug>`, so a mismatch is a dead redirect.
+
+Two things about that conversion worth knowing. It is a regex transform over
+JSX rather than a parser, so it was checked by reading the output: no JSX leaked
+through, the tag set is down to a/em/h2/li/p/strong/ul, and every tag balances.
+And the longer release mixes straight quotes with curly ones in the original —
+that inconsistency is carried across as-is rather than guessed at, since fixing
+it means deciding which quotes were meant to be which.
 
 ## Cutover blockers
 
