@@ -133,8 +133,8 @@ mosaic's own limit.
    (Mailgun + reCAPTCHA in the Next repo) have no Shopify equivalent. Either
    keep Typeform or rebuild on Shopify's contact form.
 6. **Blog** for press releases, plus authors and tags.
-7. **Redirect map.** Every WordPress URL → its Shopify path, loaded via
-   `URL redirects` (bulk CSV import). Non-negotiable: these are indexed pages.
+7. **Redirect map.** Drafted — see below. Still needs checking against what is
+   actually indexed before import.
 8. **Analytics.** GA4 + Search Console on the new property; the network runs 15
    GA4 properties, so confirm which one this rolls into.
 
@@ -242,6 +242,55 @@ Template dropdown offers every one of them. Nothing needs publishing first.
 This cannot be done from an agent, though: the current admin is built from web
 components in shadow DOM, and neither typing nor clicking reaches them through
 browser automation.
+
+## Redirect map
+
+`docs/redirects.csv` holds 22 redirects in the format Shopify's bulk importer
+takes (Online Store → Navigation → URL redirects → Import). Regenerate it with:
+
+```bash
+python scripts/build_redirects.py
+python scripts/build_redirects.py --trailing-slash   # if the live site serves "/path/"
+```
+
+The mapping is mostly one-to-one, with three judgement calls: the four case
+studies and `/brands/case-studies` go to Partner With Us, because that is where
+the partner-facing argument now lives; `/our-team` goes to the home page,
+because leadership is a section there rather than a page of its own; and the two
+`work-with-us` form routes go to the contact page until the Typeform-or-Shopify
+decision is made.
+
+### What this map cannot know
+
+The live site is WordPress and cannot be read from here — it sits behind a bot
+check that blocks automated requests, in a plain fetch and in a real browser
+both. So the inventory comes from the `thenationnetwork-www` repo instead: its
+route files plus its own `app/sitemap.ts`. Those two disagree — the sitemap
+publishes `/brands/case-studies`, `/brands/our-team` and `/brands/work-with-us`
+while the routes are `/case-studies`, `/our-team`, `/work-with-us` — so both
+shapes are in the CSV. A redirect nobody ever requests costs nothing; a missing
+one loses a page.
+
+Three things to settle before importing:
+
+1. **Diff against reality.** The live `sitemap.xml`, or better the Search
+   Console page list for the property, is the only authoritative inventory.
+   Anything there and not in the CSV needs a row — particularly the press
+   releases, whose slugs here come from directory names in the old repo and may
+   not match the WordPress permalinks at all.
+2. **Trailing slashes.** WordPress commonly serves `/beyond-the-game/`. If the
+   live URLs carry the slash, regenerate with `--trailing-slash`. Whether
+   Shopify treats the two forms as one redirect is not something this repo can
+   answer, so check one by hand after importing.
+3. **`/survey-terms` is deliberately absent.** It is legal copy for a survey,
+   and sending it to the home page would be misleading, so it will 404 visibly
+   until it gets a page or a policy to point at. That is the intended behaviour,
+   not an oversight.
+
+Every `/pages/*` destination depends on its Page record existing, and the three
+`/blogs/news` rows depend on the blog and both articles, which is plan item 6.
+Importing before those exist turns a 404 on the old URL into a 404 on the new
+one.
 
 ## Cutover blockers
 
