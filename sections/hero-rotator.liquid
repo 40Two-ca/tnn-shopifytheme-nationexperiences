@@ -90,9 +90,14 @@
     {%- if s.subheading != blank -%}
       <p class="hero-rotator__subheading">{{ s.subheading }}</p>
     {%- endif -%}
-    {%- if s.button_label != blank and s.button_link != blank -%}
+    {%- if s.button_label != blank or s.button_2_label != blank -%}
       <div class="hero-rotator__actions">
-        <a class="{{ s.button_style }}" href="{{ s.button_link }}">{{ s.button_label }}</a>
+        {%- if s.button_label != blank and s.button_link != blank -%}
+          <a class="{{ s.button_style }}" href="{{ s.button_link }}">{{ s.button_label }}</a>
+        {%- endif -%}
+        {%- if s.button_2_label != blank and s.button_2_link != blank -%}
+          <a class="button-secondary" href="{{ s.button_2_link }}">{{ s.button_2_label }}</a>
+        {%- endif -%}
       </div>
     {%- endif -%}
   </div>
@@ -197,6 +202,9 @@
   }
 
   .hero-rotator__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
     margin-block-start: 0.75rem;
   }
 
@@ -240,6 +248,8 @@
     },
     { "type": "text", "id": "button_label", "label": "Button label" },
     { "type": "url", "id": "button_link", "label": "Button link" },
+    { "type": "text", "id": "button_2_label", "label": "Second button label" },
+    { "type": "url", "id": "button_2_link", "label": "Second button link" },
     {
       "type": "select",
       "id": "button_style",
