@@ -58,16 +58,67 @@ they are available in the editor on any template.
 
 The trip-led home page is preserved verbatim as `templates/page.experiences.json`.
 
+## Brand foundation — done
+
+The first two items are built. `AXIS Extra Bold` is the heading face
+(`snippets/brand-variables.liquid`), and the palette needed nothing: white
+ground, near-black text, lime accent is already the network's.
+
+The rest of the identity now ships in the theme rather than waiting on an
+upload, because Shopify's `image_picker` settings can only point at Shopify
+Files and this store has none:
+
+| Asset | File | Wired as |
+| --- | --- | --- |
+| Wordmark, recoloured near-black for the white header | `assets/tnn-wordmark.png` | fallback in `blocks/_header-logo.liquid` |
+| Wordmark, white | `assets/tnn-wordmark-white.png` | for dark surfaces |
+| App icon | `assets/tnn-icon.png` | favicon fallback in `layout/theme.liquid` and `layout/password.liquid` |
+| Share card | `assets/tnn-og-image.png` | `og:image` fallback in `snippets/meta-tags.liquid` |
+
+Each is a fallback: anything uploaded in theme settings wins, and these stop
+rendering. The brand only ships a white-on-transparent wordmark, so the dark
+one is generated from its alpha mask — the artwork is flat white, so nothing is
+lost. The recolour happens in the build script, not by hand.
+
+### Bundled brand imagery
+
+`scripts/build_bundled_images.py` pulls the logos, advertiser marks and staff
+portraits out of `thenationnetwork-www`, downscales them to tile size and
+generates `snippets/bundled-image.liquid`. Run it when the source art changes:
+
+```bash
+python scripts/build_bundled_images.py
+```
+
+It parses `brands.ts`, `advertisers.ts` and `staff.ts` rather than restating
+them, so the theme cannot drift from the old site's data, and it picks a format
+per image (SVG through, PNG where transparency matters, JPEG for the solid
+photographic tiles): 4.4MB of source art lands as 1.8MB.
+
+Sections resolve a bundled image from the block's own **name**, handleized —
+a tile named "Daily Faceoff" gets `assets/brand-daily-faceoff.svg`. There is no
+extra setting to keep in step, but renaming a block does drop its logo back to
+a text placeholder, so `scripts/validate_templates.py` warns when a block name
+has no bundled image behind it.
+
+Two logo notes worth keeping: the `_new.png` nation marks are dark on
+transparency and vanish on their own dark brand colour, so those four tiles use
+the older light variants or the SVG; and Warmies is dropped for the same reason
+with no legible combination available, which lands the wall on 48 tiles — the
+mosaic's own limit.
+
 ## Still to do
 
-1. **Brand foundation.** Load `AXIS Extra Bold.woff2` as a `@font-face` in
-   `assets/` and point `--font-heading--family` at it; today the theme is on
-   Archivo/Jost. Set the palette to the network's black/white rather than the
-   Experiences lime (`color1: #d2ff28`) — or decide the lime is the unified
-   accent. Header logo, favicon, OG image.
-2. **Assets.** Import the 266 images and the show/advertiser logos from
-   `thenationnetwork-www/assets/images/` into Shopify Files, then wire them into
-   the mosaic, partner and leadership blocks. Currently all placeholders.
+1. **Real photography.** Everything above is the network's own artwork, but the
+   three brand tiles on the home page and the trip pages still use Unsplash
+   placeholders from `assets/stock-*.jpg`. The `beyondthegame`, `casestudies`
+   and `playmaker` folders in the old repo hold 266 images that have not been
+   sorted through yet.
+2. **Confirm the roster.** The six leadership names, titles and portraits come
+   from the old repo, last touched December 2025, and `frontPageOrder` skips a
+   slot, so someone has left. The live WordPress site sits behind a bot check
+   that blocks reading it from here — the client should confirm the six people
+   and the 19 unlinked show tiles.
 3. **Page templates** for each row of the map above.
 4. **Navigation.** Main menu → Our Brands (dropdown), Beyond The Game,
    Experiences, Shop, Partner With Us, Contact. Footer → brands, company,
@@ -98,7 +149,7 @@ These are decisions, not code.
 
 ## Order of work
 
-1. Brand foundation and assets — everything else looks wrong without it.
+1. ~~Brand foundation and assets~~ — done, bar the photography.
 2. Page templates and navigation.
 3. Forms and blog.
 4. Plan upgrade, redirect map, staging review on a preview theme.
