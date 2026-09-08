@@ -66,6 +66,25 @@ PARTNER_MAX = (520, 320)
 PORTRAIT = 560
 PHOTO_MAX = (1000, 1000)
 SCREENSHOT_MAX = (780, 780)
+# Hero photography goes full-bleed, so it needs more pixels than a tile -- but
+# six of them load on one page, so not many more.
+HERO_MAX = (1600, 1600)
+
+# The six the marketing site rotated behind its headline.
+HERO_PHOTOS = [
+    ("hero-studio-two", "assets/images/design/herospinner/1.jpg",
+     "Two hosts recording in the studio under neon signs"),
+    ("hero-fans-vegas", "assets/images/design/herospinner/2.jpg",
+     "A large group of fans with an OilersNation flag outside T-Mobile Arena"),
+    ("hero-cap", "assets/images/design/herospinner/3.jpg",
+     "A fan laughing in an OilersNation cap against a brick wall"),
+    ("hero-studio-three", "assets/images/design/herospinner/4.jpg",
+     "Three hosts recording a show together in the studio"),
+    ("hero-sekeres-price", "assets/images/design/herospinner/5.jpg",
+     "The Sekeres & Price hosts at their desk on set"),
+    ("hero-the-sheet-live", "assets/images/design/herospinner/6.jpg",
+     "The Sheet recorded live on stage in front of an audience"),
+]
 
 # Beyond The Game runs four strands, each beside a small grid of photos. The
 # source folders hold 36 shots between them; these are the picks and the alt text
@@ -294,7 +313,8 @@ def write_photo(src_path: str, dest_stem: str, box) -> tuple:
     flattened = Image.new("RGB", image.size, (255, 255, 255))
     flattened.paste(image, mask=image.getchannel("A"))
     dest = dest_stem + ".jpg"
-    flattened.save(dest, quality=82, optimize=True, progressive=True)
+    quality = 78 if max(box) > 1200 else 82
+    flattened.save(dest, quality=quality, optimize=True, progressive=True)
     return os.path.basename(dest), image.width, image.height
 
 
@@ -460,7 +480,9 @@ def main() -> int:
         })
     print("team: %d portraits" % len(team))
 
-    for family, rows, box in (("photo", PAGE_PHOTOS, PHOTO_MAX), ("photo", PAGE_SCREENSHOTS, SCREENSHOT_MAX)):
+    for family, rows, box in (("photo", PAGE_PHOTOS, PHOTO_MAX),
+                              ("photo", PAGE_SCREENSHOTS, SCREENSHOT_MAX),
+                              ("photo", HERO_PHOTOS, HERO_MAX)):
         for handle, relative, label in rows:
             source_file = os.path.join(source, relative)
             if not os.path.exists(source_file):
@@ -470,7 +492,8 @@ def main() -> int:
                 source_file, os.path.join(assets, "%s-%s" % (family, handle)), box
             )
             entries.append(("%s-%s" % (family, handle), filename, label, width, height))
-    print("page imagery: %d photos, %d screenshots" % (len(PAGE_PHOTOS), len(PAGE_SCREENSHOTS)))
+    print("page imagery: %d photos, %d screenshots, %d hero" % (
+        len(PAGE_PHOTOS), len(PAGE_SCREENSHOTS), len(HERO_PHOTOS)))
 
     write_snippet(os.path.join(REPO, "snippets", "bundled-image.liquid"), entries)
 

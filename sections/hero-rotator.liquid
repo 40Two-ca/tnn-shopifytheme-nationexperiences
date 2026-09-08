@@ -1,0 +1,331 @@
+{%- comment -%}
+  The marketing site's hero: one fixed headline over photography that rotates
+  behind it, darkened so the type reads. The original ran Splide with autoplay
+  on a 2.5s interval and a 1s transition, no arrows, no pagination and no drag —
+  nothing a visitor can steer — so this is a CSS crossfade rather than a
+  slideshow with controls, and it ships no JavaScript at all.
+
+  The keyframes depend on how many slides there are, so they are generated per
+  section below. `prefers-reduced-motion` drops to the first slide, still.
+{%- endcomment -%}
+
+{%- liquid
+  assign s = section.settings
+  assign count = section.blocks.size
+
+  # Seconds each slide holds, plus the crossfade, as percentages of one cycle.
+  assign hold = s.interval
+  assign fade = 1
+  assign cycle = hold | times: count
+  assign hold_pct = 100.0 | divided_by: count | round: 3
+  assign fade_pct = 100.0 | times: fade | divided_by: cycle | round: 3
+  assign fade_out_pct = hold_pct | plus: fade_pct | round: 3
+-%}
+
+{%- if count > 1 -%}
+  {% style %}
+    @keyframes hero-rotator-{{ section.id }} {
+      0% { opacity: 0; }
+      {{ fade_pct }}% { opacity: 1; }
+      {{ hold_pct }}% { opacity: 1; }
+      {{ fade_out_pct }}% { opacity: 0; }
+      100% { opacity: 0; }
+    }
+  {% endstyle %}
+{%- endif -%}
+
+<div
+  class="section section--{{ s.section_width }} hero-rotator"
+  style="
+    --rotator-height: {{ s.height }}px;
+    --rotator-overlay: {{ s.overlay | divided_by: 100.0 }};
+    --rotator-cycle: {{ cycle }}s;
+  "
+>
+  <ul class="hero-rotator__slides list-unstyled">
+    {%- for block in section.blocks -%}
+      {%- liquid
+        assign slide = block.settings
+        assign loading = 'lazy'
+        if forloop.first
+          assign loading = 'eager'
+        endif
+        assign delay = forloop.index0 | times: hold
+      -%}
+      <li
+        class="hero-rotator__slide{% if count > 1 %} hero-rotator__slide--rotating{% endif %}"
+        style="animation-name: hero-rotator-{{ section.id }}; animation-delay: {{ delay }}s;"
+        {{ block.shopify_attributes }}
+      >
+        {%- if slide.image != blank -%}
+          {{
+            slide.image
+            | image_url: width: 2000
+            | image_tag:
+              widths: '600, 900, 1200, 1600, 2000',
+              sizes: '100vw',
+              class: 'hero-rotator__image',
+              loading: loading,
+              alt: slide.alt
+          }}
+        {%- else -%}
+          {% render 'bundled-image',
+            key: slide.bundled,
+            class: 'hero-rotator__image',
+            alt: slide.alt,
+            loading: loading
+          %}
+        {%- endif -%}
+      </li>
+    {%- endfor -%}
+  </ul>
+
+  <div class="hero-rotator__content hero-rotator__content--{{ s.text_align }}">
+    {%- if s.eyebrow != blank -%}
+      <p class="hero-rotator__eyebrow">{{ s.eyebrow }}</p>
+    {%- endif -%}
+    {%- if s.heading != blank -%}
+      <h1 class="hero-rotator__heading">{{ s.heading }}</h1>
+    {%- endif -%}
+    {%- if s.subheading != blank -%}
+      <p class="hero-rotator__subheading">{{ s.subheading }}</p>
+    {%- endif -%}
+    {%- if s.button_label != blank and s.button_link != blank -%}
+      <div class="hero-rotator__actions">
+        <a class="{{ s.button_style }}" href="{{ s.button_link }}">{{ s.button_label }}</a>
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{% stylesheet %}
+  .hero-rotator {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: min(var(--rotator-height, 600px), 82svh);
+    overflow: hidden;
+    background: #0b0b0b;
+    padding-block: 0;
+  }
+
+  .hero-rotator__slides {
+    position: absolute;
+    inset: 0;
+    margin: 0;
+    padding: 0;
+  }
+
+  .hero-rotator__slide {
+    position: absolute;
+    inset: 0;
+  }
+
+  /* Every slide but the first starts hidden, so nothing stacks before the
+     animation takes over — and so a single-slide hero just shows its photo. */
+  .hero-rotator__slide--rotating {
+    opacity: 0;
+    animation-duration: var(--rotator-cycle, 15s);
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-fill-mode: both;
+  }
+
+  .hero-rotator__slide:first-child {
+    opacity: 1;
+  }
+
+  .hero-rotator__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .hero-rotator::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgb(0 0 0 / var(--rotator-overlay, 0.45));
+  }
+
+  .hero-rotator__content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    width: 100%;
+    max-width: 46rem;
+    padding-inline: var(--padding-inline, 5vw);
+    color: #fff;
+  }
+
+  .hero-rotator__content--center {
+    margin-inline: auto;
+    text-align: center;
+    align-items: center;
+  }
+
+  .hero-rotator__eyebrow {
+    margin: 0;
+    font-family: var(--font-subheading--family);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--brand-accent, #d2ff28);
+  }
+
+  .hero-rotator__heading {
+    margin: 0;
+    font-family: var(--font-heading--family);
+    font-size: clamp(2.5rem, 7vw, 5rem);
+    line-height: 0.95;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    text-wrap: balance;
+    color: #fff;
+  }
+
+  .hero-rotator__subheading {
+    margin: 0;
+    max-width: 42ch;
+    font-size: 1.0625rem;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  .hero-rotator__actions {
+    margin-block-start: 0.75rem;
+  }
+
+  @media screen and (max-width: 749px) {
+    .hero-rotator {
+      height: min(var(--rotator-height, 600px), 74svh);
+    }
+
+    .hero-rotator__subheading {
+      font-size: 1rem;
+    }
+  }
+
+  /* Someone who has asked for less motion gets the first photo and nothing
+     moving behind the headline. */
+  @media (prefers-reduced-motion: reduce) {
+    .hero-rotator__slide--rotating {
+      animation: none;
+    }
+
+    .hero-rotator__slide:not(:first-child) {
+      display: none;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Hero rotator",
+  "tag": "section",
+  "class": "section-wrapper",
+  "max_blocks": 8,
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Independent sports media" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "The Nation Network" },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Our content speaks for sports fans in the pub, the locker room, at home and in the office."
+    },
+    { "type": "text", "id": "button_label", "label": "Button label" },
+    { "type": "url", "id": "button_link", "label": "Button link" },
+    {
+      "type": "select",
+      "id": "button_style",
+      "label": "Button style",
+      "options": [
+        { "value": "button", "label": "Primary" },
+        { "value": "button-secondary", "label": "Outline" }
+      ],
+      "default": "button"
+    },
+    {
+      "type": "select",
+      "id": "text_align",
+      "label": "Text position",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Centre" }
+      ],
+      "default": "left"
+    },
+    { "type": "header", "content": "Rotation" },
+    {
+      "type": "range",
+      "id": "interval",
+      "label": "Seconds per photo",
+      "min": 2,
+      "max": 10,
+      "step": 1,
+      "unit": "s",
+      "default": 3,
+      "info": "The crossfade is one second on top of this. A single slide never animates."
+    },
+    {
+      "type": "range",
+      "id": "height",
+      "label": "Height",
+      "min": 360,
+      "max": 900,
+      "step": 20,
+      "unit": "px",
+      "default": 600
+    },
+    {
+      "type": "range",
+      "id": "overlay",
+      "label": "Photo darkening",
+      "min": 0,
+      "max": 80,
+      "step": 5,
+      "unit": "%",
+      "default": 45,
+      "info": "The headline sits on the photo, so it needs enough of this to stay readable."
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "Width",
+      "options": [
+        { "value": "full-width", "label": "Full" },
+        { "value": "page-width", "label": "Page" }
+      ],
+      "default": "full-width"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Photo",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        {
+          "type": "text",
+          "id": "bundled",
+          "label": "Bundled photo",
+          "info": "Staging only: the name of a photo shipped in assets/, e.g. photo-hero-fans-vegas. Ignored once an image is picked. See docs/tnn-amalgamation-plan.md."
+        },
+        { "type": "text", "id": "alt", "label": "Alt text" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero rotator",
+      "category": "The Nation Network",
+      "blocks": [{ "type": "slide" }, { "type": "slide" }, { "type": "slide" }]
+    }
+  ]
+}
+{% endschema %}

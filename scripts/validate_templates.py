@@ -134,6 +134,7 @@ BUNDLED_FAMILIES = {
     'leadership-grid': ('person', 'team'),
     'story-strand': ('photo', None),
     'feature-tiles': ('tile', None),
+    'hero-rotator': ('slide', None),
 }
 
 
