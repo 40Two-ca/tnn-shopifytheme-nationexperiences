@@ -46,10 +46,9 @@
     {%- for block in section.blocks -%}
       {%- liquid
         assign slide = block.settings
-        assign loading = 'lazy'
-        if forloop.first
-          assign loading = 'eager'
-        endif
+        # Every slide loads eagerly: they are all above the fold and all of them
+        # show within seconds. A lazy slide that has not painted by the time its
+        # turn comes leaves the hero empty mid-crossfade.
         assign delay = forloop.index0 | times: hold
       -%}
       <li
@@ -65,7 +64,7 @@
               widths: '600, 900, 1200, 1600, 2000',
               sizes: '100vw',
               class: 'hero-rotator__image',
-              loading: loading,
+              loading: 'eager',
               alt: slide.alt
           }}
         {%- else -%}
@@ -73,7 +72,7 @@
             key: slide.bundled,
             class: 'hero-rotator__image',
             alt: slide.alt,
-            loading: loading
+            loading: 'eager'
           %}
         {%- endif -%}
       </li>
@@ -119,6 +118,7 @@
     inset: 0;
     margin: 0;
     padding: 0;
+    background: #0b0b0b;
   }
 
   .hero-rotator__slide {
