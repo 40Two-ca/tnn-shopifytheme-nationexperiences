@@ -89,6 +89,15 @@ def check_file(path):
         check_settings(f"{label}/{section_id}({section_type})", schema.get('settings', []), section.get('settings', {}))
         local = {b['type']: b for b in schema.get('blocks', []) if b.get('settings') is not None}
         check_blocks(f"{label}/{section_id}", section.get('blocks', {}), local)
+        # A template carrying more blocks than the section allows is rejected on
+        # sync, and raising max_blocks has to reach the theme before the template
+        # that needs it does.
+        limit = schema.get('max_blocks')
+        count = len(section.get('blocks', {}))
+        if limit and count > limit:
+            errors.append(
+                f"{label}/{section_id}({section_type}): {count} blocks but the section "
+                f"allows {limit}; raise max_blocks and push the section first")
 
 
 for path in sorted(glob.glob(f"{ROOT}/templates/*.json") + glob.glob(f"{ROOT}/sections/*.json")):
@@ -118,6 +127,47 @@ def check_liquid_tags(path):
 for folder in ('sections', 'blocks', 'snippets', 'layout'):
     for liquid_path in sorted(glob.glob(f"{ROOT}/{folder}/*.liquid")):
         check_liquid_tags(liquid_path)
+
+BUNDLED_FAMILIES = {
+    'brand-mosaic': ('tile', 'brand'),
+    'partner-logos': ('logo', 'partner'),
+    'leadership-grid': ('person', 'team'),
+}
+
+
+def check_bundled_images():
+    """Blocks with no picked image fall back to a bundled one keyed on the
+    block's name (see snippets/bundled-image.liquid). Rename the block and the
+    logo quietly turns back into a text placeholder, so flag names that have no
+    bundled image behind them."""
+    snippet = f"{ROOT}/snippets/bundled-image.liquid"
+    if not os.path.exists(snippet):
+        return
+    keys = set(re.findall(r"when '([^']+)'", open(snippet, encoding='utf-8').read()))
+    for template_path in sorted(glob.glob(f"{ROOT}/templates/*.json") + glob.glob(f"{ROOT}/sections/*-group.json")):
+        label = os.path.relpath(template_path, ROOT).replace(os.sep, '/')
+        raw = open(template_path, encoding='utf-8').read()
+        document = json.loads(raw[raw.index('{'):])  # skip any /* comment */ header
+        for section in document.get('sections', {}).values():
+            family = BUNDLED_FAMILIES.get(section.get('type'))
+            if not family:
+                continue
+            block_type, prefix = family
+            for block in section.get('blocks', {}).values():
+                if block.get('type') != block_type:
+                    continue
+                values = block.get('settings', {})
+                if values.get('image'):
+                    continue
+                name = values.get('name', '')
+                handle = re.sub(r'[^a-z0-9]+', '-', name.lower()).strip('-')
+                if f"{prefix}-{handle}" not in keys:
+                    warnings.append(
+                        f"{label}/{section.get('type')}: no bundled image for {name!r} "
+                        f"(expected assets/{prefix}-{handle}.*); it will render as text")
+
+
+check_bundled_images()
 
 settings_schema = json.load(open(f"{ROOT}/config/settings_schema.json", encoding='utf-8'))
 all_settings = [s for group in settings_schema for s in group.get('settings', [])]
