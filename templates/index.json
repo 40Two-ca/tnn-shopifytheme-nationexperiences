@@ -393,80 +393,440 @@
         "padding-block-end": 72
       },
       "blocks": {
-        "dfo": {
+        "tile_daily_faceoff": {
           "type": "tile",
           "settings": {
             "name": "Daily Faceoff",
-            "link": "https://dailyfaceoff.com/",
-            "tile_color": ""
+            "tile_color": "#212e59",
+            "link": "https://dailyfaceoff.com/"
           }
         },
-        "hf": {
+        "tile_hockey_fights": {
           "type": "tile",
           "settings": {
             "name": "Hockey Fights",
-            "link": "https://hockeyfights.com/",
-            "tile_color": ""
+            "tile_color": "#384d6f",
+            "link": "https://hockeyfights.com/"
           }
         },
-        "oilers": {
+        "tile_barn_burner_with_boomer_and_pinder": {
           "type": "tile",
           "settings": {
-            "name": "Oilers Nation",
-            "link": "https://oilersnation.com/",
-            "tile_color": ""
+            "name": "Barn Burner with Boomer and Pinder",
+            "tile_color": "#a33829",
+            "link": ""
           }
         },
-        "flames": {
+        "tile_after_burner": {
           "type": "tile",
           "settings": {
-            "name": "Flames Nation",
-            "link": "https://flamesnation.ca/",
-            "tile_color": ""
+            "name": "After Burner",
+            "tile_color": "#020410",
+            "link": ""
           }
         },
-        "canucks": {
+        "tile_coming_in_hot_with_brent_wallace_and_bobby_ryan": {
           "type": "tile",
           "settings": {
-            "name": "Canucks Army",
-            "link": "https://canucksarmy.com/",
-            "tile_color": ""
+            "name": "Coming In Hot with Brent Wallace and Bobby Ryan",
+            "tile_color": "#e6212b",
+            "link": ""
           }
         },
-        "leafs": {
+        "tile_the_jason_gregor_show": {
           "type": "tile",
           "settings": {
-            "name": "The Leafs Nation",
-            "link": "https://theleafsnation.com/",
-            "tile_color": ""
+            "name": "The Jason Gregor Show",
+            "tile_color": "#ffffff",
+            "link": ""
           }
         },
-        "jays": {
+        "tile_theleafsnation": {
           "type": "tile",
           "settings": {
-            "name": "Blue Jays Nation",
-            "link": "https://bluejaysnation.com/",
-            "tile_color": ""
+            "name": "TheLeafsNation",
+            "tile_color": "#00365e",
+            "link": "https://theleafsnation.com/"
           }
         },
-        "raptors": {
+        "tile_dfo_rundown_with_seravalli_and_gregor": {
+          "type": "tile",
+          "settings": {
+            "name": "DFO Rundown with Seravalli and Gregor",
+            "tile_color": "#ffffff",
+            "link": "https://dailyfaceoff.com/"
+          }
+        },
+        "tile_dfo_rundown_insider_edition": {
+          "type": "tile",
+          "settings": {
+            "name": "DFO Rundown Insider Edition",
+            "tile_color": "#ffffff",
+            "link": "https://dailyfaceoff.com/"
+          }
+        },
+        "tile_the_sheet": {
+          "type": "tile",
+          "settings": {
+            "name": "The Sheet",
+            "tile_color": "#ffffff",
+            "link": ""
+          }
+        },
+        "tile_sunday_league_pundits": {
+          "type": "tile",
+          "settings": {
+            "name": "Sunday League Pundits",
+            "tile_color": "#d93323",
+            "link": ""
+          }
+        },
+        "tile_flamesnation": {
+          "type": "tile",
+          "settings": {
+            "name": "FlamesNation",
+            "tile_color": "#890403",
+            "link": "https://flamesnation.ca/"
+          }
+        },
+        "tile_oilersnation_radio": {
+          "type": "tile",
+          "settings": {
+            "name": "OilersNation Radio",
+            "tile_color": "#000000",
+            "link": "https://oilersnation.com/"
+          }
+        },
+        "tile_canucks_conversation": {
+          "type": "tile",
+          "settings": {
+            "name": "Canucks Conversation",
+            "tile_color": "#000000",
+            "link": "https://canucksarmy.com/"
+          }
+        },
+        "tile_leafs_morning_take": {
+          "type": "tile",
+          "settings": {
+            "name": "Leafs Morning Take",
+            "tile_color": "#08265f",
+            "link": "https://theleafsnation.com/"
+          }
+        },
+        "tile_daily_faceoff_live": {
+          "type": "tile",
+          "settings": {
+            "name": "Daily Faceoff Live",
+            "tile_color": "#10121c",
+            "link": "https://dailyfaceoff.com/"
+          }
+        },
+        "tile_raptors_republic": {
           "type": "tile",
           "settings": {
             "name": "Raptors Republic",
-            "link": "https://raptorsrepublic.com/",
-            "tile_color": ""
+            "tile_color": "#ffffff",
+            "link": "https://www.raptorsrepublic.com/"
+          }
+        },
+        "tile_kicked_back_with_caroline": {
+          "type": "tile",
+          "settings": {
+            "name": "Kicked Back with Caroline",
+            "tile_color": "#fde642",
+            "link": ""
+          }
+        },
+        "tile_bluejaysnation": {
+          "type": "tile",
+          "settings": {
+            "name": "BlueJaysNation",
+            "tile_color": "#ffffff",
+            "link": "https://bluejaysnation.com/"
+          }
+        },
+        "tile_oilersnation_real_life_podcast": {
+          "type": "tile",
+          "settings": {
+            "name": "OilersNation Real Life Podcast",
+            "tile_color": "#ffffff",
+            "link": "https://oilersnation.com/"
+          }
+        },
+        "tile_puck_poolies": {
+          "type": "tile",
+          "settings": {
+            "name": "Puck Poolies",
+            "tile_color": "#eac368",
+            "link": ""
+          }
+        },
+        "tile_oilersnation": {
+          "type": "tile",
+          "settings": {
+            "name": "OilersNation",
+            "tile_color": "#0d1230",
+            "link": "https://oilersnation.com/"
+          }
+        },
+        "tile_daily_faceoff_fantasy_show": {
+          "type": "tile",
+          "settings": {
+            "name": "Daily Faceoff Fantasy Show",
+            "tile_color": "#4da8dd",
+            "link": "https://dailyfaceoff.com/"
+          }
+        },
+        "tile_bluejaysnation_radio_with_cam_tyler": {
+          "type": "tile",
+          "settings": {
+            "name": "BlueJaysNation Radio with Cam & Tyler",
+            "tile_color": "#27345f",
+            "link": "https://bluejaysnation.com/"
+          }
+        },
+        "tile_on_everyday_with_tyler_yaremchuk": {
+          "type": "tile",
+          "settings": {
+            "name": "ON Everyday with Tyler Yaremchuk",
+            "tile_color": "#011a38",
+            "link": "https://oilersnation.com/"
+          }
+        },
+        "tile_better_lait_than_never_with_bagged_milk": {
+          "type": "tile",
+          "settings": {
+            "name": "Better Lait Than Never with Bagged Milk",
+            "tile_color": "#ec008c",
+            "link": "https://oilersnation.com/"
+          }
+        },
+        "tile_pregaming_with_bordzy": {
+          "type": "tile",
+          "settings": {
+            "name": "Pregaming with Bordzy",
+            "tile_color": "#274084",
+            "link": ""
+          }
+        },
+        "tile_oilersnation_after_dark": {
+          "type": "tile",
+          "settings": {
+            "name": "OilersNation After Dark",
+            "tile_color": "#ffffff",
+            "link": "https://oilersnation.com/"
+          }
+        },
+        "tile_wanye_s_world": {
+          "type": "tile",
+          "settings": {
+            "name": "Wanye's World",
+            "tile_color": "#ed5a1f",
+            "link": "https://oilersnation.com/"
+          }
+        },
+        "tile_rink_wide_vancouver": {
+          "type": "tile",
+          "settings": {
+            "name": "Rink Wide Vancouver",
+            "tile_color": "#f2f2f2",
+            "link": "https://canucksarmy.com/"
+          }
+        },
+        "tile_sekeres_price": {
+          "type": "tile",
+          "settings": {
+            "name": "Sekeres & Price",
+            "tile_color": "#2a43e6",
+            "link": "https://canucksarmy.com/"
+          }
+        },
+        "tile_the_starting_goalies_show": {
+          "type": "tile",
+          "settings": {
+            "name": "The Starting Goalies Show",
+            "tile_color": "#fbe017",
+            "link": ""
+          }
+        },
+        "tile_the_slice": {
+          "type": "tile",
+          "settings": {
+            "name": "The Slice",
+            "tile_color": "#3ea748",
+            "link": "https://www.youtube.com/channel/UCiO_r211ysSeA1c4rQVznXA"
+          }
+        },
+        "tile_kevin_karius_show": {
+          "type": "tile",
+          "settings": {
+            "name": "Kevin Karius Show",
+            "tile_color": "#9fa4af",
+            "link": ""
+          }
+        },
+        "tile_bleu_blanc_et_rouge": {
+          "type": "tile",
+          "settings": {
+            "name": "Bleu Blanc et Rouge",
+            "tile_color": "#274084",
+            "link": "https://lapochebleue.com/"
+          }
+        },
+        "tile_canucksarmy": {
+          "type": "tile",
+          "settings": {
+            "name": "CanucksArmy",
+            "tile_color": "#044220",
+            "link": "https://canucksarmy.com/"
+          }
+        },
+        "tile_slangin_the_bizkit_podcast": {
+          "type": "tile",
+          "settings": {
+            "name": "Slangin The Bizkit Podcast",
+            "tile_color": "#ffc0cb",
+            "link": ""
+          }
+        },
+        "tile_morning_cuppa_hockey": {
+          "type": "tile",
+          "settings": {
+            "name": "Morning Cuppa Hockey",
+            "tile_color": "#081640",
+            "link": ""
+          }
+        },
+        "tile_blue_jays_today": {
+          "type": "tile",
+          "settings": {
+            "name": "Blue Jays Today",
+            "tile_color": "#2a43e6",
+            "link": "https://bluejaysnation.com/"
+          }
+        },
+        "tile_lpb_show": {
+          "type": "tile",
+          "settings": {
+            "name": "LPB Show",
+            "tile_color": "#ffffff",
+            "link": "https://lapochebleue.com/"
+          }
+        },
+        "tile_tln_after_dark": {
+          "type": "tile",
+          "settings": {
+            "name": "TLN After Dark",
+            "tile_color": "#000000",
+            "link": "https://theleafsnation.com/"
+          }
+        },
+        "tile_hello_welcome": {
+          "type": "tile",
+          "settings": {
+            "name": "Hello & Welcome",
+            "tile_color": "#2c2b29",
+            "link": "https://hellowelcome.show/"
+          }
+        },
+        "tile_ask_dubey": {
+          "type": "tile",
+          "settings": {
+            "name": "Ask Dubey",
+            "tile_color": "#ffffff",
+            "link": ""
+          }
+        },
+        "tile_6ix_inning_stretch": {
+          "type": "tile",
+          "settings": {
+            "name": "6ix Inning Stretch",
+            "tile_color": "#10121c",
+            "link": ""
+          }
+        },
+        "tile_what_chaos": {
+          "type": "tile",
+          "settings": {
+            "name": "what chaos",
+            "tile_color": "#009afe",
+            "link": ""
+          }
+        },
+        "tile_tri_state_hockey": {
+          "type": "tile",
+          "settings": {
+            "name": "Tri-State Hockey",
+            "tile_color": "#00365e",
+            "link": ""
+          }
+        },
+        "tile_the_sauce": {
+          "type": "tile",
+          "settings": {
+            "name": "The Sauce",
+            "tile_color": "#0d1230",
+            "link": ""
+          }
+        },
+        "tile_off_the_roster": {
+          "type": "tile",
+          "settings": {
+            "name": "Off The Roster",
+            "tile_color": "#ffffff",
+            "link": ""
           }
         }
       },
       "block_order": [
-        "dfo",
-        "hf",
-        "oilers",
-        "flames",
-        "canucks",
-        "leafs",
-        "jays",
-        "raptors"
+        "tile_daily_faceoff",
+        "tile_hockey_fights",
+        "tile_barn_burner_with_boomer_and_pinder",
+        "tile_after_burner",
+        "tile_coming_in_hot_with_brent_wallace_and_bobby_ryan",
+        "tile_the_jason_gregor_show",
+        "tile_theleafsnation",
+        "tile_dfo_rundown_with_seravalli_and_gregor",
+        "tile_dfo_rundown_insider_edition",
+        "tile_the_sheet",
+        "tile_sunday_league_pundits",
+        "tile_flamesnation",
+        "tile_oilersnation_radio",
+        "tile_canucks_conversation",
+        "tile_leafs_morning_take",
+        "tile_daily_faceoff_live",
+        "tile_raptors_republic",
+        "tile_kicked_back_with_caroline",
+        "tile_bluejaysnation",
+        "tile_oilersnation_real_life_podcast",
+        "tile_puck_poolies",
+        "tile_oilersnation",
+        "tile_daily_faceoff_fantasy_show",
+        "tile_bluejaysnation_radio_with_cam_tyler",
+        "tile_on_everyday_with_tyler_yaremchuk",
+        "tile_better_lait_than_never_with_bagged_milk",
+        "tile_pregaming_with_bordzy",
+        "tile_oilersnation_after_dark",
+        "tile_wanye_s_world",
+        "tile_rink_wide_vancouver",
+        "tile_sekeres_price",
+        "tile_the_starting_goalies_show",
+        "tile_the_slice",
+        "tile_kevin_karius_show",
+        "tile_bleu_blanc_et_rouge",
+        "tile_canucksarmy",
+        "tile_slangin_the_bizkit_podcast",
+        "tile_morning_cuppa_hockey",
+        "tile_blue_jays_today",
+        "tile_lpb_show",
+        "tile_tln_after_dark",
+        "tile_hello_welcome",
+        "tile_ask_dubey",
+        "tile_6ix_inning_stretch",
+        "tile_what_chaos",
+        "tile_tri_state_hockey",
+        "tile_the_sauce",
+        "tile_off_the_roster"
       ]
     },
     "upcoming": {
@@ -788,40 +1148,168 @@
     "partners": {
       "type": "partner-logos",
       "blocks": {
-        "logo_1": {
+        "logo_betway": {
           "type": "logo",
           "settings": {
-            "name": "The Nation Network",
-            "link": "https://thenationnetwork.com/?utm_source=nationexperiences&utm_medium=referral&utm_campaign=partner-logos&utm_content=the-nation-network"
+            "name": "Betway",
+            "link": ""
           }
         },
-        "logo_2": {
+        "logo_boston_pizza": {
           "type": "logo",
           "settings": {
-            "name": "jetSet Parking",
-            "link": "https://www.jetsetparking.com/yeg/?utm_source=nationexperiences&utm_medium=referral&utm_campaign=partner-logos&utm_content=jetset-parking"
+            "name": "Boston Pizza",
+            "link": ""
           }
         },
-        "logo_3": {
+        "logo_skip_the_dishes": {
           "type": "logo",
           "settings": {
-            "name": "Expedia Cruises",
-            "link": "https://www.expediacruises.ca/en-CA/200019?utm_source=nationexperiences&utm_medium=referral&utm_campaign=partner-logos&utm_content=expedia-cruises"
+            "name": "Skip The Dishes",
+            "link": ""
           }
         },
-        "logo_4": {
+        "logo_bet365": {
           "type": "logo",
           "settings": {
-            "name": "Fairmont Jasper Park Lodge",
-            "link": "https://www.fairmont.com/en/hotels/jasper/fairmont-jasper-park-lodge.html?utm_source=nationexperiences&utm_medium=referral&utm_campaign=partner-logos&utm_content=fairmont-jasper-park-lodge"
+            "name": "Bet365",
+            "link": ""
+          }
+        },
+        "logo_montanas": {
+          "type": "logo",
+          "settings": {
+            "name": "Montanas",
+            "link": ""
+          }
+        },
+        "logo_adidas": {
+          "type": "logo",
+          "settings": {
+            "name": "Adidas",
+            "link": ""
+          }
+        },
+        "logo_ufc": {
+          "type": "logo",
+          "settings": {
+            "name": "UFC",
+            "link": ""
+          }
+        },
+        "logo_jasper_canada": {
+          "type": "logo",
+          "settings": {
+            "name": "Jasper Canada",
+            "link": ""
+          }
+        },
+        "logo_doordash": {
+          "type": "logo",
+          "settings": {
+            "name": "Doordash",
+            "link": ""
+          }
+        },
+        "logo_wendy_s": {
+          "type": "logo",
+          "settings": {
+            "name": "Wendy's",
+            "link": ""
+          }
+        },
+        "logo_seagrams": {
+          "type": "logo",
+          "settings": {
+            "name": "Seagrams",
+            "link": ""
+          }
+        },
+        "logo_booster_juice": {
+          "type": "logo",
+          "settings": {
+            "name": "Booster Juice",
+            "link": ""
+          }
+        },
+        "logo_telus": {
+          "type": "logo",
+          "settings": {
+            "name": "Telus",
+            "link": ""
+          }
+        },
+        "logo_servus_credit_union": {
+          "type": "logo",
+          "settings": {
+            "name": "Servus Credit Union",
+            "link": ""
+          }
+        },
+        "logo_finning": {
+          "type": "logo",
+          "settings": {
+            "name": "Finning",
+            "link": ""
+          }
+        },
+        "logo_jp_wisers": {
+          "type": "logo",
+          "settings": {
+            "name": "JP Wisers",
+            "link": ""
+          }
+        },
+        "logo_yeti": {
+          "type": "logo",
+          "settings": {
+            "name": "Yeti",
+            "link": ""
+          }
+        },
+        "logo_odd_brewing_company": {
+          "type": "logo",
+          "settings": {
+            "name": "Odd Brewing Company",
+            "link": ""
+          }
+        },
+        "logo_greta": {
+          "type": "logo",
+          "settings": {
+            "name": "Greta",
+            "link": ""
+          }
+        },
+        "logo_fanduel": {
+          "type": "logo",
+          "settings": {
+            "name": "FanDuel",
+            "link": ""
           }
         }
       },
       "block_order": [
-        "logo_1",
-        "logo_2",
-        "logo_3",
-        "logo_4"
+        "logo_betway",
+        "logo_boston_pizza",
+        "logo_skip_the_dishes",
+        "logo_bet365",
+        "logo_montanas",
+        "logo_adidas",
+        "logo_ufc",
+        "logo_jasper_canada",
+        "logo_doordash",
+        "logo_wendy_s",
+        "logo_seagrams",
+        "logo_booster_juice",
+        "logo_telus",
+        "logo_servus_credit_union",
+        "logo_finning",
+        "logo_jp_wisers",
+        "logo_yeti",
+        "logo_odd_brewing_company",
+        "logo_greta",
+        "logo_fanduel"
       ],
       "settings": {
         "heading": "Our advertising partners",
@@ -846,68 +1334,68 @@
         "padding-block-end": 72
       },
       "blocks": {
-        "p1": {
+        "person_jay_downton": {
           "type": "person",
           "settings": {
-            "name": "Name",
-            "title": "Title",
+            "name": "Jay Downton",
+            "title": "Co-Founder and CEO",
             "bio": "",
             "link": ""
           }
         },
-        "p2": {
+        "person_mike_gagnon": {
           "type": "person",
           "settings": {
-            "name": "Name",
-            "title": "Title",
+            "name": "Mike Gagnon",
+            "title": "VP of Content",
             "bio": "",
             "link": ""
           }
         },
-        "p3": {
+        "person_jarrod_sharp": {
           "type": "person",
           "settings": {
-            "name": "Name",
-            "title": "Title",
+            "name": "Jarrod Sharp",
+            "title": "Head of Sales",
             "bio": "",
             "link": ""
           }
         },
-        "p4": {
+        "person_mike_alexander": {
           "type": "person",
           "settings": {
-            "name": "Name",
-            "title": "Title",
+            "name": "Mike Alexander",
+            "title": "Head of IT",
             "bio": "",
             "link": ""
           }
         },
-        "p5": {
+        "person_madisen_rayburn": {
           "type": "person",
           "settings": {
-            "name": "Name",
-            "title": "Title",
+            "name": "Madisen Rayburn",
+            "title": "Head of Marketing and Communications",
             "bio": "",
             "link": ""
           }
         },
-        "p6": {
+        "person_amil_delic": {
           "type": "person",
           "settings": {
-            "name": "Name",
-            "title": "Title",
+            "name": "Amil Delic",
+            "title": "Head of Original Production - Audio Video, Producer",
             "bio": "",
             "link": ""
           }
         }
       },
       "block_order": [
-        "p1",
-        "p2",
-        "p3",
-        "p4",
-        "p5",
-        "p6"
+        "person_jay_downton",
+        "person_mike_gagnon",
+        "person_jarrod_sharp",
+        "person_mike_alexander",
+        "person_madisen_rayburn",
+        "person_amil_delic"
       ]
     },
     "cta": {
@@ -916,29 +1404,29 @@
         "point_1": {
           "type": "point",
           "settings": {
-            "icon": "lock",
-            "text": "Secure checkout, powered by Shopify"
+            "icon": "silhouette",
+            "text": "10+ fan-driven websites across North America"
           }
         },
         "point_2": {
           "type": "point",
           "settings": {
-            "icon": "check_box",
-            "text": "Tickets, transport and stays in one booking"
+            "icon": "chat_bubble",
+            "text": "28+ podcasts and shows, every week"
           }
         },
         "point_3": {
           "type": "point",
           "settings": {
-            "icon": "chat_bubble",
-            "text": "A Nation host on every trip"
+            "icon": "star",
+            "text": "Campaigns and content built with you, not templated"
           }
         },
         "point_4": {
           "type": "point",
           "settings": {
             "icon": "heart",
-            "text": "Fans travelling with fans"
+            "text": "Digital and live events, run end to end"
           }
         }
       },
