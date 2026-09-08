@@ -121,9 +121,31 @@
                 "social": {
                   "type": "social-links",
                   "settings": {
-                    "facebook_url": "https://www.facebook.com/NationGear/",
-                    "instagram_url": "https://www.instagram.com/nationgear/",
-                    "twitter_url": "https://twitter.com/NationGear"
+                    "linkedin_url": "https://www.linkedin.com/company/the-nation-network/"
+                  },
+                  "blocks": {}
+                },
+                "attribution": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Proudly part of Better Collective.</p>",
+                    "width": "100%",
+                    "max_width": "narrow",
+                    "alignment": "left",
+                    "type_preset": "paragraph",
+                    "font": "var(--font-body--family)",
+                    "font_size": "0.75rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
                   },
                   "blocks": {}
                 }
@@ -131,6 +153,7 @@
               "block_order": [
                 "logo",
                 "tagline",
+                "attribution",
                 "social"
               ]
             },
@@ -138,7 +161,7 @@
               "type": "menu",
               "settings": {
                 "menu": "main-menu",
-                "heading": "Experiences",
+                "heading": "Explore",
                 "menu_spacing": 10,
                 "show_as_accordion": false,
                 "accordion_icon": "caret",
@@ -156,7 +179,7 @@
               "type": "menu",
               "settings": {
                 "menu": "footer",
-                "heading": "Help",
+                "heading": "Company",
                 "menu_spacing": 10,
                 "show_as_accordion": false,
                 "accordion_icon": "caret",
@@ -208,7 +231,7 @@
                 "heading": {
                   "type": "text",
                   "settings": {
-                    "text": "<h3>Join the Nation list</h3>",
+                    "text": "<h3>Get the Nation in your inbox</h3>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
@@ -232,7 +255,7 @@
                 "text": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>Presales, new experiences and member perks, straight to your inbox.</p>",
+                    "text": "<p>Breaking news, new shows, and the trips before they sell out.</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
@@ -330,9 +353,7 @@
         "social": {
           "type": "social-links",
           "settings": {
-            "facebook_url": "https://www.facebook.com/NationGear/",
-            "instagram_url": "https://www.instagram.com/nationgear/",
-            "twitter_url": "https://twitter.com/NationGear"
+            "linkedin_url": "https://www.linkedin.com/company/the-nation-network/"
           },
           "blocks": {}
         }
