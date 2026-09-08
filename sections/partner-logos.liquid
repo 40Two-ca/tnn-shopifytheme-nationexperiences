@@ -34,7 +34,16 @@
             | image_tag: widths: '200, 300, 400, 600', class: 'partner-logos__image', loading: 'lazy'
           }}
         {%- else -%}
-          <span class="partner-logos__placeholder">{{ logo.name | default: 'Partner' }}</span>
+          {%- assign bundled_key = logo.name | handleize | prepend: 'partner-' -%}
+          {%- capture bundled -%}
+            {%- render 'bundled-image', key: bundled_key, class: 'partner-logos__image', alt: logo.name -%}
+          {%- endcapture -%}
+          {%- assign bundled = bundled | strip -%}
+          {%- if bundled != blank -%}
+            {{ bundled }}
+          {%- else -%}
+            <span class="partner-logos__placeholder">{{ logo.name | default: 'Partner' }}</span>
+          {%- endif -%}
         {%- endif -%}
         {%- if logo.link != blank -%}
             <span class="visually-hidden">{{ 'accessibility.new_window' | t }}</span>

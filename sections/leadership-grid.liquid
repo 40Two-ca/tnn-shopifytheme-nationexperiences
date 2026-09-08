@@ -48,9 +48,18 @@
                 | image_tag: widths: '200, 300, 400, 600, 800', class: 'leadership-card__image', loading: 'lazy', alt: person.name
               }}
             {%- else -%}
-              <span class="leadership-card__placeholder" aria-hidden="true">
-                {{ person.name | slice: 0, 1 }}
-              </span>
+              {%- assign bundled_key = person.name | handleize | prepend: 'team-' -%}
+              {%- capture bundled -%}
+                {%- render 'bundled-image', key: bundled_key, class: 'leadership-card__image', alt: person.name -%}
+              {%- endcapture -%}
+              {%- assign bundled = bundled | strip -%}
+              {%- if bundled != blank -%}
+                {{ bundled }}
+              {%- else -%}
+                <span class="leadership-card__placeholder" aria-hidden="true">
+                  {{ person.name | slice: 0, 1 }}
+                </span>
+              {%- endif -%}
             {%- endif -%}
           </div>
           <figcaption class="leadership-card__body">

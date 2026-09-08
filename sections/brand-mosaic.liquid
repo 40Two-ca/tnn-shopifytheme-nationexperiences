@@ -68,7 +68,16 @@
               | image_tag: widths: '200, 300, 400, 600, 800', class: 'brand-mosaic__image', loading: 'lazy', alt: tile.name
             }}
           {%- else -%}
-            <span class="brand-mosaic__fallback">{{ tile.name | default: 'Brand' }}</span>
+            {%- assign bundled_key = tile.name | handleize | prepend: 'brand-' -%}
+            {%- capture bundled -%}
+              {%- render 'bundled-image', key: bundled_key, class: 'brand-mosaic__image', alt: tile.name -%}
+            {%- endcapture -%}
+            {%- assign bundled = bundled | strip -%}
+            {%- if bundled != blank -%}
+              {{ bundled }}
+            {%- else -%}
+              <span class="brand-mosaic__fallback">{{ tile.name | default: 'Brand' }}</span>
+            {%- endif -%}
           {%- endif -%}
           {%- if tile.name != blank and tile.link != blank -%}
             <span class="visually-hidden">{{ tile.name }}</span>
