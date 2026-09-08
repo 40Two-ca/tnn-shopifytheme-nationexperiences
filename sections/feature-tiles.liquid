@@ -58,8 +58,16 @@
               loading: 'lazy'
           }}
         {%- else -%}
-          {%- assign fallback_svg = 'hero-apparel-' | append: placeholder_index -%}
-          {% render 'stock-image', key: tile.stock_image, class: 'feature-tile__image', fallback: fallback_svg %}
+          {%- capture bundled -%}
+            {%- render 'bundled-image', key: tile.bundled, class: 'feature-tile__image', alt: tile.heading -%}
+          {%- endcapture -%}
+          {%- assign bundled = bundled | strip -%}
+          {%- if bundled != blank -%}
+            {{ bundled }}
+          {%- else -%}
+            {%- assign fallback_svg = 'hero-apparel-' | append: placeholder_index -%}
+            {% render 'stock-image', key: tile.stock_image, class: 'feature-tile__image', fallback: fallback_svg %}
+          {%- endif -%}
         {%- endif -%}
         <div class="feature-tile__overlay"></div>
         <div class="feature-tile__content">
@@ -249,6 +257,12 @@
           "type": "image_picker",
           "id": "image",
           "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "bundled",
+          "label": "Bundled photo",
+          "info": "Staging only: the name of a photo shipped in assets/, e.g. photo-events-1. Takes precedence over the stock photo below and is ignored once an image is picked. See docs/tnn-amalgamation-plan.md."
         },
         {
           "type": "select",

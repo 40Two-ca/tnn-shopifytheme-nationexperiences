@@ -133,6 +133,7 @@ BUNDLED_FAMILIES = {
     'partner-logos': ('logo', 'partner'),
     'leadership-grid': ('person', 'team'),
     'story-strand': ('photo', None),
+    'feature-tiles': ('tile', None),
 }
 
 
