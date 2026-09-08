@@ -64,8 +64,10 @@
         "text_align": "left",
         "interval": 3,
         "height": 600,
-        "overlay": 45,
-        "section_width": "full-width"
+        "overlay": 50,
+        "section_width": "full-width",
+        "button_2_label": "Beyond the game",
+        "button_2_link": "/pages/beyond-the-game"
       }
     },
     "network_stats": {
