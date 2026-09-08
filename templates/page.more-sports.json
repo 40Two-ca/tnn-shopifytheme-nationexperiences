@@ -1,0 +1,145 @@
+{
+  "sections": {
+    "header": {
+      "type": "section",
+      "blocks": {
+        "title": {
+          "type": "text",
+          "name": "Title",
+          "settings": {
+            "text": "<h1>More Sports</h1>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h1",
+            "font": "var(--font-heading--family)",
+            "line_height": "tight",
+            "letter_spacing": "tight",
+            "case": "uppercase",
+            "wrap": "balance"
+          },
+          "blocks": {}
+        },
+        "intro": {
+          "type": "text",
+          "name": "Intro",
+          "settings": {
+            "text": "<p>Basketball and tennis, with the same approach: give the fans of one team or one circuit somewhere that treats them as the main audience rather than an afterthought.</p>",
+            "width": "100%",
+            "max_width": "narrow",
+            "alignment": "left",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "title",
+        "intro"
+      ],
+      "settings": {
+        "content_direction": "column",
+        "gap": 16,
+        "section_width": "page-width",
+        "padding-block-start": 56,
+        "padding-block-end": 16
+      }
+    },
+    "brands": {
+      "type": "feature-tiles",
+      "blocks": {
+        "tile_raptors": {
+          "type": "tile",
+          "settings": {
+            "heading": "Raptors Republic",
+            "text": "Toronto Raptors editorial, analysis and opinion.",
+            "link": "https://raptorsrepublic.com/",
+            "stock_image": "none",
+            "bundled": "photo-events-1"
+          }
+        },
+        "tile_slice": {
+          "type": "tile",
+          "settings": {
+            "heading": "The Slice",
+            "text": "Tennis, on the network's YouTube channel.",
+            "link": "https://www.youtube.com/channel/UCiO_r211ysSeA1c4rQVznXA",
+            "stock_image": "none",
+            "bundled": "photo-events-4"
+          }
+        }
+      },
+      "block_order": [
+        "tile_raptors",
+        "tile_slice"
+      ],
+      "settings": {
+        "eyebrow": "Beyond the rink",
+        "heading": "Where to start",
+        "subheading": "",
+        "columns": 2,
+        "ratio": "4 / 3",
+        "section_width": "page-width",
+        "padding-block-start": 72,
+        "padding-block-end": 40
+      }
+    },
+    "cta": {
+      "type": "trust-points",
+      "blocks": {
+        "point_1": {
+          "type": "point",
+          "settings": {
+            "icon": "silhouette",
+            "text": "10+ fan-driven websites across North America"
+          }
+        },
+        "point_2": {
+          "type": "point",
+          "settings": {
+            "icon": "chat_bubble",
+            "text": "28+ podcasts and shows, every week"
+          }
+        },
+        "point_3": {
+          "type": "point",
+          "settings": {
+            "icon": "star",
+            "text": "Campaigns and content built with you, not templated"
+          }
+        },
+        "point_4": {
+          "type": "point",
+          "settings": {
+            "icon": "heart",
+            "text": "Digital and live events, run end to end"
+          }
+        }
+      },
+      "block_order": [
+        "point_1",
+        "point_2",
+        "point_3",
+        "point_4"
+      ],
+      "settings": {
+        "eyebrow": "Partner with us",
+        "heading": "Build something with us in a new sport",
+        "text": "<p>10+ fan-driven websites, 28+ unique podcasts, a powerful social presence, and standout digital and live events. We build campaigns around your objectives rather than selling a package.</p>",
+        "button_label": "Start a conversation",
+        "image_position": "right",
+        "section_width": "page-width",
+        "padding-block-start": 40,
+        "padding-block-end": 40,
+        "stock_image": "stadium_seats",
+        "button_link": "/pages/partner-with-us"
+      }
+    }
+  },
+  "order": [
+    "header",
+    "brands",
+    "cta"
+  ]
+}

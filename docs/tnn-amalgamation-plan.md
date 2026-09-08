@@ -128,9 +128,7 @@ mosaic's own limit.
    weight and consent, so the strands ship with copy and screenshots instead.
    The creator and general-enquiry routes ran on Mailgun and reCAPTCHA in the
    Next repo and now point at `/pages/contact` as a placeholder.
-4. **Navigation.** Main menu → Our Brands (dropdown), Beyond The Game,
-   Experiences, Shop, Partner With Us, Contact. Footer → brands, company,
-   legal, LinkedIn, Better Collective attribution.
+4. **Navigation.** Now organised by sport rather than by brand — see below.
 5. **Forms.** The Typeform embeds and the two `work-with-us` API routes
    (Mailgun + reCAPTCHA in the Next repo) have no Shopify equivalent. Either
    keep Typeform or rebuild on Shopify's contact form.
@@ -139,6 +137,72 @@ mosaic's own limit.
    `URL redirects` (bulk CSV import). Non-negotiable: these are indexed pages.
 8. **Analytics.** GA4 + Search Console on the new property; the network runs 15
    GA4 properties, so confirm which one this rolls into.
+
+## Navigation, by sport
+
+The site is organised around the sport a fan follows rather than the brand that
+publishes it. Three landing pages carry it:
+
+| Page | Template | Holds |
+| --- | --- | --- |
+| Hockey | `page.hockey` | The six hockey sites, tiles into Daily Faceoff / Hockey Fights / The Nations, all 36 hockey shows |
+| Baseball | `page.baseball` | BlueJaysNation and its three shows |
+| More Sports | `page.more-sports` | Raptors Republic and The Slice |
+
+The home page's brand row points at these three instead of at Daily Faceoff,
+The Nations and Hockey Fights. Those brand pages are still built and still
+linked, one level down from the sport they belong to.
+
+**The split is lopsided and the design has to admit it.** Of the 48 properties
+on the brand wall, 42 are hockey, four are baseball, one is basketball (Raptors
+Republic) and one is tennis (The Slice). That is why the third slot is "More
+Sports" rather than "Basketball": it reads as deliberate, holds tennis as well,
+and absorbs 90th Minute (soccer, which has numbers in `statistics.ts` but no
+logo in `brands.ts`) or anything new without another navigation change.
+
+The Nations spans three sports — four hockey hubs, BlueJaysNation and Raptors
+Republic — so it stays a cross-sport brand page linked from Hockey and Baseball
+both. Worth revisiting if the sport-led structure sticks.
+
+### The menu to build in admin
+
+Online Store → Navigation, `main-menu`:
+
+```
+Hockey            /pages/hockey
+  Daily Faceoff     /pages/daily-faceoff
+  Hockey Fights     /pages/hockey-fights
+  The Nations       /pages/the-nations
+Baseball          /pages/baseball
+  BlueJaysNation    https://bluejaysnation.com/
+  The Nations       /pages/the-nations
+More Sports       /pages/more-sports
+Beyond The Game   /pages/beyond-the-game
+Experiences       /pages/experiences
+Partner With Us   /pages/partner-with-us
+Work With Us      /pages/work-with-us
+```
+
+`footer`: Company (Beyond The Game, Partner With Us, Work With Us, Contact),
+Sports (Hockey, Baseball, More Sports), Legal (Your Privacy Choices), plus the
+LinkedIn link — `linkedin.com/company/the-nation-network`, the only network
+social account the old repo actually records — and the Better Collective
+attribution.
+
+### Why the sport pages count things instead of reporting reach
+
+Summing `statistics.ts` by sport puts hockey at **171.2M** annual page views and
+**1.88M** followers. The home page claims **166M** and **1.62M** for the whole
+network. The parts cannot exceed the whole, so those rows disagree with the
+site's own headline figures — one of the two is out of date, and it is not
+knowable from here which.
+
+So the sport pages count what the catalogue holds, which is true by
+construction: 6 websites and 36 shows for hockey, 1 and 3 for baseball. Show
+streams are the exception — hockey's 7.8M and baseball's 2.6M sit well inside
+the network's 57M, so they are safe to print. Page views and followers stay off
+the sport pages until the client confirms real numbers, and that confirmation
+should cover the home page's three counters too.
 
 ## The pages need creating in admin
 
@@ -157,15 +221,19 @@ exactly as given so Shopify generates the handle the templates link to, and the
 | Hockey Fights | `hockey-fights` | `page.hockey-fights` |
 | Partner With Us | `partner-with-us` | `page.partner-with-us` |
 | Work With Us | `work-with-us` | `page.work-with-us` |
+| Hockey | `hockey` | `page.hockey` |
+| Baseball | `baseball` | `page.baseball` |
+| More Sports | `more-sports` | `page.more-sports` |
 
 Leave the body content empty: every page's copy is in its template, so anything
 typed here renders as well and would duplicate it. New pages default to
 **Hidden**, so each needs setting to Visible.
 
-The handles matter beyond tidiness — the home page's brand tiles link to
-`/pages/daily-faceoff`, `/pages/the-nations` and `/pages/hockey-fights`, its
-partner CTA to `/pages/partner-with-us`, and Beyond The Game's travel strand to
-`/pages/experiences`. A handle that does not match is a dead link.
+The handles matter beyond tidiness — the home page's sport row links to
+`/pages/hockey`, `/pages/baseball` and `/pages/more-sports`, the hockey page's
+tiles to `/pages/daily-faceoff`, `/pages/hockey-fights` and `/pages/the-nations`,
+every partner CTA to `/pages/partner-with-us`, and Beyond The Game's travel
+strand to `/pages/experiences`. A handle that does not match is a dead link.
 
 All seven templates are confirmed on the live theme — pulled back with
 `shopify theme pull` and compared against the repo section for section — so the

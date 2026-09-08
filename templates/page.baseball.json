@@ -1,0 +1,246 @@
+{
+  "sections": {
+    "header": {
+      "type": "section",
+      "blocks": {
+        "title": {
+          "type": "text",
+          "name": "Title",
+          "settings": {
+            "text": "<h1>Baseball</h1>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h1",
+            "font": "var(--font-heading--family)",
+            "line_height": "tight",
+            "letter_spacing": "tight",
+            "case": "uppercase",
+            "wrap": "balance"
+          },
+          "blocks": {}
+        },
+        "intro": {
+          "type": "text",
+          "name": "Intro",
+          "settings": {
+            "text": "<p>BlueJaysNation and its shows: the same fan-first editorial and daily audio the network built for hockey, pointed at the Blue Jays.</p>",
+            "width": "100%",
+            "max_width": "narrow",
+            "alignment": "left",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "title",
+        "intro"
+      ],
+      "settings": {
+        "content_direction": "column",
+        "gap": 16,
+        "section_width": "page-width",
+        "padding-block-start": 56,
+        "padding-block-end": 16
+      }
+    },
+    "brands": {
+      "type": "feature-tiles",
+      "blocks": {
+        "tile_bjn": {
+          "type": "tile",
+          "settings": {
+            "heading": "BlueJaysNation",
+            "text": "Editorial, analysis and opinion for Blue Jays fans.",
+            "link": "https://bluejaysnation.com/",
+            "stock_image": "none",
+            "bundled": "photo-giving-2"
+          }
+        },
+        "tile_nations": {
+          "type": "tile",
+          "settings": {
+            "heading": "The Nations",
+            "text": "How the team-focused hubs work across the network.",
+            "link": "/pages/the-nations",
+            "stock_image": "none",
+            "bundled": "photo-travel-3"
+          }
+        }
+      },
+      "block_order": [
+        "tile_bjn",
+        "tile_nations"
+      ],
+      "settings": {
+        "eyebrow": "Our baseball brands",
+        "heading": "Where to start",
+        "subheading": "",
+        "columns": 2,
+        "ratio": "4 / 3",
+        "section_width": "page-width",
+        "padding-block-start": 72,
+        "padding-block-end": 40
+      }
+    },
+    "shows": {
+      "type": "brand-mosaic",
+      "settings": {
+        "eyebrow": "Podcasts",
+        "heading": "Every show",
+        "subheading": "",
+        "columns": 3,
+        "columns_mobile": 3,
+        "ratio": "4 / 3",
+        "gap": 0,
+        "open_in_new_tab": true,
+        "button_label": "",
+        "button_link": "",
+        "section_width": "page-width",
+        "background_color": "",
+        "padding-block-start": 40,
+        "padding-block-end": 40
+      },
+      "blocks": {
+        "tile_bluejaysnation_radio_with_cam_tyler": {
+          "type": "tile",
+          "settings": {
+            "name": "BlueJaysNation Radio with Cam & Tyler",
+            "tile_color": "#27345f",
+            "link": "https://bluejaysnation.com/"
+          }
+        },
+        "tile_blue_jays_today": {
+          "type": "tile",
+          "settings": {
+            "name": "Blue Jays Today",
+            "tile_color": "#2a43e6",
+            "link": "https://bluejaysnation.com/"
+          }
+        },
+        "tile_6ix_inning_stretch": {
+          "type": "tile",
+          "settings": {
+            "name": "6ix Inning Stretch",
+            "tile_color": "#10121c",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "tile_bluejaysnation_radio_with_cam_tyler",
+        "tile_blue_jays_today",
+        "tile_6ix_inning_stretch"
+      ]
+    },
+    "audience": {
+      "type": "network-stats",
+      "settings": {
+        "eyebrow": "The catalogue",
+        "heading": "What baseball covers",
+        "subheading": "One team hub and the shows that run off it.",
+        "animate": true,
+        "duration": 1800,
+        "footnote": "",
+        "section_width": "page-width",
+        "background_color": "",
+        "padding-block-start": 88,
+        "padding-block-end": 56
+      },
+      "blocks": {
+        "pageviews": {
+          "type": "stat",
+          "settings": {
+            "value": "1",
+            "suffix": "",
+            "decimals": 0,
+            "label": "Fan-first website"
+          }
+        },
+        "streams": {
+          "type": "stat",
+          "settings": {
+            "value": "3",
+            "suffix": "",
+            "decimals": 0,
+            "label": "Podcasts and shows"
+          }
+        },
+        "social": {
+          "type": "stat",
+          "settings": {
+            "value": "2.6",
+            "suffix": "M+",
+            "decimals": 1,
+            "label": "Annual show streams"
+          }
+        }
+      },
+      "block_order": [
+        "pageviews",
+        "streams",
+        "social"
+      ]
+    },
+    "cta": {
+      "type": "trust-points",
+      "blocks": {
+        "point_1": {
+          "type": "point",
+          "settings": {
+            "icon": "silhouette",
+            "text": "10+ fan-driven websites across North America"
+          }
+        },
+        "point_2": {
+          "type": "point",
+          "settings": {
+            "icon": "chat_bubble",
+            "text": "28+ podcasts and shows, every week"
+          }
+        },
+        "point_3": {
+          "type": "point",
+          "settings": {
+            "icon": "star",
+            "text": "Campaigns and content built with you, not templated"
+          }
+        },
+        "point_4": {
+          "type": "point",
+          "settings": {
+            "icon": "heart",
+            "text": "Digital and live events, run end to end"
+          }
+        }
+      },
+      "block_order": [
+        "point_1",
+        "point_2",
+        "point_3",
+        "point_4"
+      ],
+      "settings": {
+        "eyebrow": "Partner with us",
+        "heading": "Reach baseball fans where they already are",
+        "text": "<p>10+ fan-driven websites, 28+ unique podcasts, a powerful social presence, and standout digital and live events. We build campaigns around your objectives rather than selling a package.</p>",
+        "button_label": "Start a conversation",
+        "image_position": "right",
+        "section_width": "page-width",
+        "padding-block-start": 40,
+        "padding-block-end": 40,
+        "stock_image": "stadium_seats",
+        "button_link": "/pages/partner-with-us"
+      }
+    }
+  },
+  "order": [
+    "header",
+    "brands",
+    "shows",
+    "audience",
+    "cta"
+  ]
+}

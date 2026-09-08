@@ -1,0 +1,632 @@
+{
+  "sections": {
+    "header": {
+      "type": "section",
+      "blocks": {
+        "title": {
+          "type": "text",
+          "name": "Title",
+          "settings": {
+            "text": "<h1>Hockey</h1>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h1",
+            "font": "var(--font-heading--family)",
+            "line_height": "tight",
+            "letter_spacing": "tight",
+            "case": "uppercase",
+            "wrap": "balance"
+          },
+          "blocks": {}
+        },
+        "intro": {
+          "type": "text",
+          "name": "Intro",
+          "settings": {
+            "text": "<p>Six fan-first websites, two national brands and more than thirty shows a week. Hockey is where the network started and where most of it still lives.</p>",
+            "width": "100%",
+            "max_width": "narrow",
+            "alignment": "left",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "title",
+        "intro"
+      ],
+      "settings": {
+        "content_direction": "column",
+        "gap": 16,
+        "section_width": "page-width",
+        "padding-block-start": 56,
+        "padding-block-end": 16
+      }
+    },
+    "sites": {
+      "type": "brand-mosaic",
+      "settings": {
+        "eyebrow": "",
+        "heading": "",
+        "subheading": "",
+        "columns": 6,
+        "columns_mobile": 3,
+        "ratio": "4 / 3",
+        "gap": 0,
+        "open_in_new_tab": true,
+        "button_label": "",
+        "button_link": "",
+        "section_width": "page-width",
+        "background_color": "",
+        "padding-block-start": 24,
+        "padding-block-end": 40
+      },
+      "blocks": {
+        "tile_daily_faceoff": {
+          "type": "tile",
+          "settings": {
+            "name": "Daily Faceoff",
+            "tile_color": "#212e59",
+            "link": "https://dailyfaceoff.com/"
+          }
+        },
+        "tile_hockey_fights": {
+          "type": "tile",
+          "settings": {
+            "name": "Hockey Fights",
+            "tile_color": "#384d6f",
+            "link": "https://hockeyfights.com/"
+          }
+        },
+        "tile_oilersnation": {
+          "type": "tile",
+          "settings": {
+            "name": "OilersNation",
+            "tile_color": "#0d1230",
+            "link": "https://oilersnation.com/"
+          }
+        },
+        "tile_flamesnation": {
+          "type": "tile",
+          "settings": {
+            "name": "FlamesNation",
+            "tile_color": "#890403",
+            "link": "https://flamesnation.ca/"
+          }
+        },
+        "tile_canucksarmy": {
+          "type": "tile",
+          "settings": {
+            "name": "CanucksArmy",
+            "tile_color": "#044220",
+            "link": "https://canucksarmy.com/"
+          }
+        },
+        "tile_theleafsnation": {
+          "type": "tile",
+          "settings": {
+            "name": "TheLeafsNation",
+            "tile_color": "#00365e",
+            "link": "https://theleafsnation.com/"
+          }
+        }
+      },
+      "block_order": [
+        "tile_daily_faceoff",
+        "tile_hockey_fights",
+        "tile_oilersnation",
+        "tile_flamesnation",
+        "tile_canucksarmy",
+        "tile_theleafsnation"
+      ]
+    },
+    "brands": {
+      "type": "feature-tiles",
+      "blocks": {
+        "tile_dfo": {
+          "type": "tile",
+          "settings": {
+            "heading": "Daily Faceoff",
+            "text": "Breaking news, lineups, player updates and fantasy.",
+            "link": "/pages/daily-faceoff",
+            "stock_image": "arena",
+            "bundled": ""
+          }
+        },
+        "tile_hf": {
+          "type": "tile",
+          "settings": {
+            "heading": "Hockey Fights",
+            "text": "The definitive archive of the game's grittiest moments.",
+            "link": "/pages/hockey-fights",
+            "stock_image": "none",
+            "bundled": "photo-events-3"
+          }
+        },
+        "tile_nations": {
+          "type": "tile",
+          "settings": {
+            "heading": "The Nations",
+            "text": "Team-focused hubs for the Oilers, Flames, Canucks and Leafs.",
+            "link": "/pages/the-nations",
+            "stock_image": "none",
+            "bundled": "photo-travel-2"
+          }
+        }
+      },
+      "block_order": [
+        "tile_dfo",
+        "tile_hf",
+        "tile_nations"
+      ],
+      "settings": {
+        "eyebrow": "Our hockey brands",
+        "heading": "Where to start",
+        "subheading": "",
+        "columns": 3,
+        "ratio": "4 / 3",
+        "section_width": "page-width",
+        "padding-block-start": 72,
+        "padding-block-end": 40
+      }
+    },
+    "shows": {
+      "type": "brand-mosaic",
+      "settings": {
+        "eyebrow": "Podcasts",
+        "heading": "Every show",
+        "subheading": "",
+        "columns": 6,
+        "columns_mobile": 3,
+        "ratio": "4 / 3",
+        "gap": 0,
+        "open_in_new_tab": true,
+        "button_label": "",
+        "button_link": "",
+        "section_width": "page-width",
+        "background_color": "",
+        "padding-block-start": 40,
+        "padding-block-end": 40
+      },
+      "blocks": {
+        "tile_barn_burner_with_boomer_and_pinder": {
+          "type": "tile",
+          "settings": {
+            "name": "Barn Burner with Boomer and Pinder",
+            "tile_color": "#a33829",
+            "link": ""
+          }
+        },
+        "tile_after_burner": {
+          "type": "tile",
+          "settings": {
+            "name": "After Burner",
+            "tile_color": "#020410",
+            "link": ""
+          }
+        },
+        "tile_coming_in_hot_with_brent_wallace_and_bobby_ryan": {
+          "type": "tile",
+          "settings": {
+            "name": "Coming In Hot with Brent Wallace and Bobby Ryan",
+            "tile_color": "#e6212b",
+            "link": ""
+          }
+        },
+        "tile_the_jason_gregor_show": {
+          "type": "tile",
+          "settings": {
+            "name": "The Jason Gregor Show",
+            "tile_color": "#ffffff",
+            "link": ""
+          }
+        },
+        "tile_dfo_rundown_with_seravalli_and_gregor": {
+          "type": "tile",
+          "settings": {
+            "name": "DFO Rundown with Seravalli and Gregor",
+            "tile_color": "#ffffff",
+            "link": "https://dailyfaceoff.com/"
+          }
+        },
+        "tile_dfo_rundown_insider_edition": {
+          "type": "tile",
+          "settings": {
+            "name": "DFO Rundown Insider Edition",
+            "tile_color": "#ffffff",
+            "link": "https://dailyfaceoff.com/"
+          }
+        },
+        "tile_the_sheet": {
+          "type": "tile",
+          "settings": {
+            "name": "The Sheet",
+            "tile_color": "#ffffff",
+            "link": ""
+          }
+        },
+        "tile_oilersnation_radio": {
+          "type": "tile",
+          "settings": {
+            "name": "OilersNation Radio",
+            "tile_color": "#000000",
+            "link": "https://oilersnation.com/"
+          }
+        },
+        "tile_canucks_conversation": {
+          "type": "tile",
+          "settings": {
+            "name": "Canucks Conversation",
+            "tile_color": "#000000",
+            "link": "https://canucksarmy.com/"
+          }
+        },
+        "tile_leafs_morning_take": {
+          "type": "tile",
+          "settings": {
+            "name": "Leafs Morning Take",
+            "tile_color": "#08265f",
+            "link": "https://theleafsnation.com/"
+          }
+        },
+        "tile_daily_faceoff_live": {
+          "type": "tile",
+          "settings": {
+            "name": "Daily Faceoff Live",
+            "tile_color": "#10121c",
+            "link": "https://dailyfaceoff.com/"
+          }
+        },
+        "tile_oilersnation_real_life_podcast": {
+          "type": "tile",
+          "settings": {
+            "name": "OilersNation Real Life Podcast",
+            "tile_color": "#ffffff",
+            "link": "https://oilersnation.com/"
+          }
+        },
+        "tile_puck_poolies": {
+          "type": "tile",
+          "settings": {
+            "name": "Puck Poolies",
+            "tile_color": "#eac368",
+            "link": ""
+          }
+        },
+        "tile_daily_faceoff_fantasy_show": {
+          "type": "tile",
+          "settings": {
+            "name": "Daily Faceoff Fantasy Show",
+            "tile_color": "#4da8dd",
+            "link": "https://dailyfaceoff.com/"
+          }
+        },
+        "tile_on_everyday_with_tyler_yaremchuk": {
+          "type": "tile",
+          "settings": {
+            "name": "ON Everyday with Tyler Yaremchuk",
+            "tile_color": "#011a38",
+            "link": "https://oilersnation.com/"
+          }
+        },
+        "tile_better_lait_than_never_with_bagged_milk": {
+          "type": "tile",
+          "settings": {
+            "name": "Better Lait Than Never with Bagged Milk",
+            "tile_color": "#ec008c",
+            "link": "https://oilersnation.com/"
+          }
+        },
+        "tile_pregaming_with_bordzy": {
+          "type": "tile",
+          "settings": {
+            "name": "Pregaming with Bordzy",
+            "tile_color": "#274084",
+            "link": ""
+          }
+        },
+        "tile_oilersnation_after_dark": {
+          "type": "tile",
+          "settings": {
+            "name": "OilersNation After Dark",
+            "tile_color": "#ffffff",
+            "link": "https://oilersnation.com/"
+          }
+        },
+        "tile_wanye_s_world": {
+          "type": "tile",
+          "settings": {
+            "name": "Wanye's World",
+            "tile_color": "#ed5a1f",
+            "link": "https://oilersnation.com/"
+          }
+        },
+        "tile_rink_wide_vancouver": {
+          "type": "tile",
+          "settings": {
+            "name": "Rink Wide Vancouver",
+            "tile_color": "#f2f2f2",
+            "link": "https://canucksarmy.com/"
+          }
+        },
+        "tile_sekeres_price": {
+          "type": "tile",
+          "settings": {
+            "name": "Sekeres & Price",
+            "tile_color": "#2a43e6",
+            "link": "https://canucksarmy.com/"
+          }
+        },
+        "tile_the_starting_goalies_show": {
+          "type": "tile",
+          "settings": {
+            "name": "The Starting Goalies Show",
+            "tile_color": "#fbe017",
+            "link": ""
+          }
+        },
+        "tile_kevin_karius_show": {
+          "type": "tile",
+          "settings": {
+            "name": "Kevin Karius Show",
+            "tile_color": "#9fa4af",
+            "link": ""
+          }
+        },
+        "tile_bleu_blanc_et_rouge": {
+          "type": "tile",
+          "settings": {
+            "name": "Bleu Blanc et Rouge",
+            "tile_color": "#274084",
+            "link": "https://lapochebleue.com/"
+          }
+        },
+        "tile_morning_cuppa_hockey": {
+          "type": "tile",
+          "settings": {
+            "name": "Morning Cuppa Hockey",
+            "tile_color": "#081640",
+            "link": ""
+          }
+        },
+        "tile_lpb_show": {
+          "type": "tile",
+          "settings": {
+            "name": "LPB Show",
+            "tile_color": "#ffffff",
+            "link": "https://lapochebleue.com/"
+          }
+        },
+        "tile_tln_after_dark": {
+          "type": "tile",
+          "settings": {
+            "name": "TLN After Dark",
+            "tile_color": "#000000",
+            "link": "https://theleafsnation.com/"
+          }
+        },
+        "tile_ask_dubey": {
+          "type": "tile",
+          "settings": {
+            "name": "Ask Dubey",
+            "tile_color": "#ffffff",
+            "link": ""
+          }
+        },
+        "tile_tri_state_hockey": {
+          "type": "tile",
+          "settings": {
+            "name": "Tri-State Hockey",
+            "tile_color": "#00365e",
+            "link": ""
+          }
+        },
+        "tile_the_sauce": {
+          "type": "tile",
+          "settings": {
+            "name": "The Sauce",
+            "tile_color": "#0d1230",
+            "link": ""
+          }
+        },
+        "tile_off_the_roster": {
+          "type": "tile",
+          "settings": {
+            "name": "Off The Roster",
+            "tile_color": "#ffffff",
+            "link": ""
+          }
+        },
+        "tile_sunday_league_pundits": {
+          "type": "tile",
+          "settings": {
+            "name": "Sunday League Pundits",
+            "tile_color": "#d93323",
+            "link": ""
+          }
+        },
+        "tile_kicked_back_with_caroline": {
+          "type": "tile",
+          "settings": {
+            "name": "Kicked Back with Caroline",
+            "tile_color": "#fde642",
+            "link": ""
+          }
+        },
+        "tile_slangin_the_bizkit_podcast": {
+          "type": "tile",
+          "settings": {
+            "name": "Slangin The Bizkit Podcast",
+            "tile_color": "#ffc0cb",
+            "link": ""
+          }
+        },
+        "tile_what_chaos": {
+          "type": "tile",
+          "settings": {
+            "name": "what chaos",
+            "tile_color": "#009afe",
+            "link": ""
+          }
+        },
+        "tile_hello_welcome": {
+          "type": "tile",
+          "settings": {
+            "name": "Hello & Welcome",
+            "tile_color": "#2c2b29",
+            "link": "https://hellowelcome.show/"
+          }
+        }
+      },
+      "block_order": [
+        "tile_barn_burner_with_boomer_and_pinder",
+        "tile_after_burner",
+        "tile_coming_in_hot_with_brent_wallace_and_bobby_ryan",
+        "tile_the_jason_gregor_show",
+        "tile_dfo_rundown_with_seravalli_and_gregor",
+        "tile_dfo_rundown_insider_edition",
+        "tile_the_sheet",
+        "tile_oilersnation_radio",
+        "tile_canucks_conversation",
+        "tile_leafs_morning_take",
+        "tile_daily_faceoff_live",
+        "tile_oilersnation_real_life_podcast",
+        "tile_puck_poolies",
+        "tile_daily_faceoff_fantasy_show",
+        "tile_on_everyday_with_tyler_yaremchuk",
+        "tile_better_lait_than_never_with_bagged_milk",
+        "tile_pregaming_with_bordzy",
+        "tile_oilersnation_after_dark",
+        "tile_wanye_s_world",
+        "tile_rink_wide_vancouver",
+        "tile_sekeres_price",
+        "tile_the_starting_goalies_show",
+        "tile_kevin_karius_show",
+        "tile_bleu_blanc_et_rouge",
+        "tile_morning_cuppa_hockey",
+        "tile_lpb_show",
+        "tile_tln_after_dark",
+        "tile_ask_dubey",
+        "tile_tri_state_hockey",
+        "tile_the_sauce",
+        "tile_off_the_roster",
+        "tile_sunday_league_pundits",
+        "tile_kicked_back_with_caroline",
+        "tile_slangin_the_bizkit_podcast",
+        "tile_what_chaos",
+        "tile_hello_welcome"
+      ]
+    },
+    "audience": {
+      "type": "network-stats",
+      "settings": {
+        "eyebrow": "The catalogue",
+        "heading": "What hockey covers",
+        "subheading": "Two national brands, four team hubs and the shows that run off them.",
+        "animate": true,
+        "duration": 1800,
+        "footnote": "",
+        "section_width": "page-width",
+        "background_color": "",
+        "padding-block-start": 88,
+        "padding-block-end": 56
+      },
+      "blocks": {
+        "pageviews": {
+          "type": "stat",
+          "settings": {
+            "value": "6",
+            "suffix": "",
+            "decimals": 0,
+            "label": "Fan-first websites"
+          }
+        },
+        "streams": {
+          "type": "stat",
+          "settings": {
+            "value": "36",
+            "suffix": "",
+            "decimals": 0,
+            "label": "Podcasts and shows"
+          }
+        },
+        "social": {
+          "type": "stat",
+          "settings": {
+            "value": "7.8",
+            "suffix": "M+",
+            "decimals": 1,
+            "label": "Annual show streams"
+          }
+        }
+      },
+      "block_order": [
+        "pageviews",
+        "streams",
+        "social"
+      ]
+    },
+    "cta": {
+      "type": "trust-points",
+      "blocks": {
+        "point_1": {
+          "type": "point",
+          "settings": {
+            "icon": "silhouette",
+            "text": "10+ fan-driven websites across North America"
+          }
+        },
+        "point_2": {
+          "type": "point",
+          "settings": {
+            "icon": "chat_bubble",
+            "text": "28+ podcasts and shows, every week"
+          }
+        },
+        "point_3": {
+          "type": "point",
+          "settings": {
+            "icon": "star",
+            "text": "Campaigns and content built with you, not templated"
+          }
+        },
+        "point_4": {
+          "type": "point",
+          "settings": {
+            "icon": "heart",
+            "text": "Digital and live events, run end to end"
+          }
+        }
+      },
+      "block_order": [
+        "point_1",
+        "point_2",
+        "point_3",
+        "point_4"
+      ],
+      "settings": {
+        "eyebrow": "Partner with us",
+        "heading": "Reach hockey fans where they already are",
+        "text": "<p>10+ fan-driven websites, 28+ unique podcasts, a powerful social presence, and standout digital and live events. We build campaigns around your objectives rather than selling a package.</p>",
+        "button_label": "Start a conversation",
+        "image_position": "right",
+        "section_width": "page-width",
+        "padding-block-start": 40,
+        "padding-block-end": 40,
+        "stock_image": "stadium_seats",
+        "button_link": "/pages/partner-with-us"
+      }
+    }
+  },
+  "order": [
+    "header",
+    "sites",
+    "brands",
+    "shows",
+    "audience",
+    "cta"
+  ]
+}
