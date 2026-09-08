@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "type": "footer",
   "name": "t:names.footer",
@@ -97,7 +106,7 @@
                 "tagline": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>Independent sports media, and everywhere the Nation goes beyond the game.</p>",
+                    "text": "<p>Independent sports media, and everywhere the Nation goes beyond the game.</p><p>Proudly part of Better Collective.</p>",
                     "width": "100%",
                     "max_width": "narrow",
                     "alignment": "left",
@@ -124,36 +133,11 @@
                     "linkedin_url": "https://www.linkedin.com/company/the-nation-network/"
                   },
                   "blocks": {}
-                },
-                "attribution": {
-                  "type": "text",
-                  "settings": {
-                    "text": "<p>Proudly part of Better Collective.</p>",
-                    "width": "100%",
-                    "max_width": "narrow",
-                    "alignment": "left",
-                    "type_preset": "paragraph",
-                    "font": "var(--font-body--family)",
-                    "font_size": "0.75rem",
-                    "line_height": "normal",
-                    "letter_spacing": "normal",
-                    "case": "none",
-                    "wrap": "pretty",
-                    "background": false,
-                    "background_color": "#00000026",
-                    "corner_radius": 0,
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {}
                 }
               },
               "block_order": [
                 "logo",
                 "tagline",
-                "attribution",
                 "social"
               ]
             },
