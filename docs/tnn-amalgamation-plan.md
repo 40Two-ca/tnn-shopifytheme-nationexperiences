@@ -15,9 +15,13 @@ and assets (`assets/config/*.ts`, 266 images under `assets/images/`, and
 live site**, which has drifted.
 
 **This store** is a development store on the 40Two Group Shopify org, password
-protected, primary domain still `.myshopify.com`. Live theme is stock Horizon
-4.1.5; all real work is on the GitHub-connected draft theme. Catalogue is two
-experiences, one collection, two stock pages.
+protected, primary domain still `.myshopify.com`. The GitHub-connected theme
+`tnn-shopifytheme-nationexperiences/main` is **live** (theme id 154580484275);
+stock Horizon 4.1.5 sits unpublished beside it. So a push to `main` reaches the
+live storefront, not a draft — behind the storefront password, but live. Run
+`python scripts/validate_templates.py` and `shopify theme check` before every
+push, and treat the section-before-template rule as a hard rule rather than a
+convenience. Catalogue is two experiences, one collection, two stock pages.
 
 ## Page map
 
@@ -163,12 +167,13 @@ The handles matter beyond tidiness — the home page's brand tiles link to
 partner CTA to `/pages/partner-with-us`, and Beyond The Game's travel strand to
 `/pages/experiences`. A handle that does not match is a dead link.
 
-Two things worth knowing before starting. Shopify builds the Template dropdown
-from the **published** theme, and the GitHub-connected theme here is a draft, so
-the new templates may not be offered until it is published — if they are
-missing, publish first, or expect to come back and set them. And this cannot be
-done from an agent: the current admin is built from web components in shadow
-DOM, and neither typing nor clicking reaches them through browser automation.
+All seven templates are confirmed on the live theme — pulled back with
+`shopify theme pull` and compared against the repo section for section — so the
+Template dropdown offers every one of them. Nothing needs publishing first.
+
+This cannot be done from an agent, though: the current admin is built from web
+components in shadow DOM, and neither typing nor clicking reaches them through
+browser automation.
 
 ## Cutover blockers
 
