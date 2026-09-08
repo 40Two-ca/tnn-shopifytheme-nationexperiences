@@ -246,9 +246,11 @@ def write_identity(source: str, assets: str) -> list:
 
     # The wordmarks are resolved through the snippet so the header can fall back
     # to them; the icon and OG image are referenced by asset_url in the layout.
+    # The third key is the network's own tile on the Experiences partner strip.
     return [
         ("identity-wordmark", "tnn-wordmark.png", "The Nation Network", wordmark.width, wordmark.height),
         ("identity-wordmark-white", "tnn-wordmark-white.png", "The Nation Network", wordmark.width, wordmark.height),
+        ("partner-the-nation-network", "tnn-wordmark.png", "The Nation Network", wordmark.width, wordmark.height),
     ]
 
 
