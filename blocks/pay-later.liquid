@@ -91,8 +91,21 @@
     color: rgb(var(--color-foreground-rgb) / 0.7);
   }
 
+  /* This button takes no payment. On a draft theme a quiet grey footnote was
+     enough; the theme is live now, so the demo status reads as a label rather
+     than something a visitor scrolls past. */
   .pay-later__note {
-    display: block;
+    display: inline-block;
+    margin-block-start: 0.4rem;
+    padding: 0.2rem 0.45rem;
+    border: 1px solid rgb(var(--color-foreground-rgb) / 0.35);
+    border-radius: 4px;
+    font-family: var(--font-subheading--family);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-foreground);
   }
 {% endstylesheet %}
 
@@ -129,8 +142,9 @@
     {
       "type": "text",
       "id": "note",
-      "label": "Small print",
-      "default": "Demo only. Not connected to checkout."
+      "label": "Demo label",
+      "info": "Rendered as a badge, not small print. This block takes no payment: remove it, or replace it with the provider's own app block, before launch.",
+      "default": "Demo only — no payment taken"
     },
     {
       "type": "color",

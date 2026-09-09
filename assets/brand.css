@@ -309,3 +309,37 @@ footer .footer-utilities a {
 .product-information__media .media-gallery__grid > li:first-child .product-media {
   aspect-ratio: var(--ratio, var(--gallery-aspect-ratio, 2/1));
 }
+
+/* ---------------------------------------------------------------------------
+   The announcement bar is one target, not a 12px sliver
+   Horizon stretches the bar's link over its slide with inset: 0, which is
+   right, but the slide is only as tall as the line of text -- the bar's
+   padding sits on the outer element. Measured on the live page, that left a
+   680x12px target on a 32px bar.
+
+   Expanding the link by the bar's own padding variables covers the whole bar
+   without hardcoding a height, and without overshooting into the header.
+   --------------------------------------------------------------------------- */
+
+.announcement-bar__link {
+  inset-block: calc(-1 * var(--padding-block-start, 10px)) calc(-1 * var(--padding-block-end, 10px));
+}
+
+/* ---------------------------------------------------------------------------
+   One primary action on the trip page
+   "Book now" and Shopify's dynamic "Buy it now" both rendered as the same lime
+   button, and the dynamic one is the wider of the two, so the express path
+   out-shouted the considered one. Book now stays primary; Buy it now becomes
+   the outline button it should have been.
+   --------------------------------------------------------------------------- */
+
+.shopify-payment-button__button--unbranded {
+  background: transparent;
+  color: var(--color-foreground);
+  border: 1px solid rgb(var(--color-foreground-rgb) / 0.5);
+}
+
+.shopify-payment-button__button--unbranded:hover:not([disabled]) {
+  background: rgb(var(--color-foreground-rgb) / 0.06);
+  border-color: var(--color-foreground);
+}
