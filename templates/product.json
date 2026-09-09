@@ -261,7 +261,7 @@
                 "provider": "Afterpay",
                 "decal": "Buy now, pay later",
                 "instalments": 4,
-                "note": "Demo only. Not connected to checkout.",
+                "note": "Demo only — no payment taken",
                 "button_background": "#b2fce4",
                 "button_text": "#0a0a0a"
               }
