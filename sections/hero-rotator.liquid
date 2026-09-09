@@ -108,7 +108,7 @@
     position: relative;
     display: flex;
     align-items: center;
-    height: min(var(--rotator-height, 600px), 82svh);
+    height: min(var(--rotator-height, 720px), 90svh);
     overflow: hidden;
     background: #0b0b0b;
     padding-block: 0;
@@ -229,7 +229,7 @@
 
   @media screen and (max-width: 749px) {
     .hero-rotator {
-      height: min(var(--rotator-height, 600px), 74svh);
+      height: min(var(--rotator-height, 720px), 78svh);
     }
 
     .hero-rotator__subheading {
@@ -319,10 +319,11 @@
       "id": "height",
       "label": "Height",
       "min": 360,
-      "max": 900,
+      "max": 1200,
       "step": 20,
       "unit": "px",
-      "default": 600
+      "default": 720,
+      "info": "Capped at 90% of the window height, so a tall setting still leaves a hint of the page below it."
     },
     {
       "type": "range",
