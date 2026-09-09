@@ -319,9 +319,13 @@ footer .footer-utilities a {
 
    Expanding the link by the bar's own padding variables covers the whole bar
    without hardcoding a height, and without overshooting into the header.
+
+   Scoped through .announcement-bar deliberately: Horizon's own `inset: 0`
+   shorthand loads after this file at equal specificity, so a bare
+   .announcement-bar__link rule loses the cascade. Verified on the live page.
    --------------------------------------------------------------------------- */
 
-.announcement-bar__link {
+.announcement-bar .announcement-bar__link {
   inset-block: calc(-1 * var(--padding-block-start, 10px)) calc(-1 * var(--padding-block-end, 10px));
 }
 
@@ -331,15 +335,19 @@ footer .footer-utilities a {
    button, and the dynamic one is the wider of the two, so the express path
    out-shouted the considered one. Book now stays primary; Buy it now becomes
    the outline button it should have been.
+
+   Element-qualified on purpose: Shopify serves the dynamic button's own
+   stylesheet, and a bare class selector here ties with it and loses on order.
+   Verified against the rendered button rather than assumed.
    --------------------------------------------------------------------------- */
 
-.shopify-payment-button__button--unbranded {
+button.shopify-payment-button__button--unbranded {
   background: transparent;
   color: var(--color-foreground);
   border: 1px solid rgb(var(--color-foreground-rgb) / 0.5);
 }
 
-.shopify-payment-button__button--unbranded:hover:not([disabled]) {
+button.shopify-payment-button__button--unbranded:hover:not([disabled]) {
   background: rgb(var(--color-foreground-rgb) / 0.06);
   border-color: var(--color-foreground);
 }
