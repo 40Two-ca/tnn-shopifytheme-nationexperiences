@@ -132,8 +132,8 @@
             "heading": "Daily Faceoff",
             "text": "Breaking news, lineups, player updates and fantasy.",
             "link": "/pages/daily-faceoff",
-            "stock_image": "arena",
-            "bundled": ""
+            "stock_image": "none",
+            "bundled": "photo-hero-studio-two"
           }
         },
         "tile_hf": {

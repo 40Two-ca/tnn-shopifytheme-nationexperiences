@@ -208,7 +208,8 @@
             "heading": "Daily Faceoff",
             "text": "Breaking news, lineups, player updates and fantasy hockey resources for NHL fans.",
             "link": "/pages/daily-faceoff",
-            "stock_image": "arena"
+            "stock_image": "none",
+            "bundled": "photo-hero-studio-two"
           }
         },
         "tile_2": {
@@ -216,8 +217,9 @@
           "settings": {
             "heading": "The Nations",
             "text": "Fan-first digital hubs for the Oilers, Flames, Canucks, Leafs, Blue Jays and Raptors.",
-            "stock_image": "airport",
-            "link": "/pages/the-nations"
+            "stock_image": "none",
+            "link": "/pages/the-nations",
+            "bundled": "photo-hero-fans-vegas"
           }
         },
         "tile_3": {

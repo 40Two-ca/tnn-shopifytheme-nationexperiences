@@ -113,11 +113,9 @@ mosaic's own limit.
 
 ## Still to do
 
-1. **Real photography.** Everything above is the network's own artwork, but the
-   three brand tiles on the home page and the trip pages still use Unsplash
-   placeholders from `assets/stock-*.jpg`. The `beyondthegame`, `casestudies`
-   and `playmaker` folders in the old repo hold 266 images that have not been
-   sorted through yet.
+1. **Real photography — the repo is exhausted.** All 266 images have now been
+   looked at. See the audit below: the network's own photography amounts to four
+   pools, and the placeholders that remain cannot be sourced from this repo.
 2. **Confirm the roster.** The six leadership names, titles and portraits come
    from the old repo, last touched December 2025, and `frontPageOrder` skips a
    slot, so someone has left. The live WordPress site sits behind a bot check
@@ -322,6 +320,57 @@ through, the tag set is down to a/em/h2/li/p/strong/ul, and every tag balances.
 And the longer release mixes straight quotes with curly ones in the original —
 that inconsistency is carried across as-is rather than guessed at, since fixing
 it means deciding which quotes were meant to be which.
+
+## Photography audit
+
+All 266 images in `thenationnetwork-www/assets/images` sorted by what they
+actually are:
+
+| Kind | Count | Used |
+| --- | --- | --- |
+| Brand and show logos | 84 | 48 on the wall |
+| Device screenshots | 43 | 26 across the brand pages |
+| Staff portraits | 38 | 6 leaders |
+| Beyond The Game photos | 36 | 14 |
+| Advertiser logos | 25 | 20 |
+| Case study / sponsored creative | 26 | 0 |
+| Hero rotator photos | 6 | 6 |
+| `hero/` folder | 4 | 1 |
+| Playmaker logos | 3 | 0 |
+| Press release banner | 1 | goes with its article |
+
+**Only four of those are photography**: Beyond The Game (36), the hero rotator
+set (6), one portrait in `hero/`, and the staff headshots. Everything else is
+logos, screenshots or campaign artwork.
+
+The case-study folder looks promising by name and is not: it is sponsored
+campaign creative — Daily Faceoff Survivor for Wendy's, Starting Goalies for
+bet365, Insider Hotline for TELUS, Barn Burner for McLeod Law — plus generic
+licensed stock, including a Pepsi bottle cap and a wall of vintage Coca-Cola
+signage. None of it can be used as general site photography. Of the four files
+in `hero/`, three are Pexels stock; the fourth is a black-and-white portrait of
+someone in a Nation hoodie, which is now the Work With Us creator tile.
+
+### What this cannot fix
+
+Three placeholders stay Unsplash because the network has no photograph of the
+subject anywhere in the repo:
+
+- **Hockey Fights** — no on-ice or fight photography exists at all.
+- **More Sports** — no basketball and no tennis photography.
+- **The trip pages** — no destination photography for Toronto, Edmonton,
+  Calgary or Jasper.
+
+Those need a shoot or a licence, and they are the last thing standing between
+the site and being entirely the network's own imagery.
+
+### The 32 unused portraits
+
+The staff file holds 38 portraits and the leadership grid uses 6. The other 32
+are on-air talent, already sorted by department in `staff.ts` — 34 under
+Podcasts and Shows, 31 under Social, Content and Websites. When the brand pages
+get host grids, `scripts/build_bundled_images.py` picks them up by changing one
+filter, so that is a cheap win rather than new work.
 
 ## Cutover blockers
 
