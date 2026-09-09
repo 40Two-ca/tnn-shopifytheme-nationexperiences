@@ -304,6 +304,64 @@
         "streams",
         "social"
       ]
+    },
+    "hosts": {
+      "type": "leadership-grid",
+      "settings": {
+        "eyebrow": "On air",
+        "heading": "Who you hear",
+        "subheading": "",
+        "columns": 4,
+        "ratio": "1",
+        "section_width": "page-width",
+        "background_color": "{{ settings.color_palette.color3 }}",
+        "padding-block-start": 72,
+        "padding-block-end": 72
+      },
+      "blocks": {
+        "person_frank_seravalli": {
+          "type": "person",
+          "settings": {
+            "name": "Frank Seravalli",
+            "title": "President of Hockey Content, Host",
+            "bio": "<p>Fronts Frankly Speaking and co-hosts the DFO Rundown.</p>",
+            "link": ""
+          }
+        },
+        "person_tyler_yaremchuk": {
+          "type": "person",
+          "settings": {
+            "name": "Tyler Yaremchuk",
+            "title": "Senior Producer/Host, Senior Contributor",
+            "bio": "<p>Hosts Daily Faceoff Live and ON Everyday.</p>",
+            "link": ""
+          }
+        },
+        "person_jason_gregor": {
+          "type": "person",
+          "settings": {
+            "name": "Jason Gregor",
+            "title": "Host",
+            "bio": "<p>The Jason Gregor Show, and the DFO Rundown alongside Frank Seravalli.</p>",
+            "link": ""
+          }
+        },
+        "person_brock_seguin": {
+          "type": "person",
+          "settings": {
+            "name": "Brock Seguin",
+            "title": "Manager of Fantasy, Host, Producer",
+            "bio": "<p>Hosts the DFO Fantasy Podcast.</p>",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "person_frank_seravalli",
+        "person_tyler_yaremchuk",
+        "person_jason_gregor",
+        "person_brock_seguin"
+      ]
     }
   },
   "order": [
@@ -314,6 +372,7 @@
     "frankly",
     "fantasy",
     "cuppa",
+    "hosts",
     "audience"
   ]
 }

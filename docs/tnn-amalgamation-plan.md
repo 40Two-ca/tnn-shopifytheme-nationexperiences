@@ -364,13 +364,37 @@ subject anywhere in the repo:
 Those need a shoot or a licence, and they are the last thing standing between
 the site and being entirely the network's own imagery.
 
-### The 32 unused portraits
+### The portraits, counted properly
 
-The staff file holds 38 portraits and the leadership grid uses 6. The other 32
-are on-air talent, already sorted by department in `staff.ts` — 34 under
-Podcasts and Shows, 31 under Social, Content and Websites. When the brand pages
-get host grids, `scripts/build_bundled_images.py` picks them up by changing one
-filter, so that is a cheap win rather than new work.
+An earlier version of this file said 32 unused portraits were waiting for host
+grids. That was wrong, and the correction matters: `staff.ts` has **93 entries
+but only 37 real portraits** — the other 56 point at `placeholder.jpg`. Of the
+34 people under Podcasts and Shows, 14 have a photograph.
+
+So one host grid was buildable, on the Daily Faceoff page: Frank Seravalli,
+Tyler Yaremchuk, Jason Gregor and Brock Seguin, each fronting a show that page
+covers and each with a real portrait. Their titles are their own from
+`staff.ts`; the shows named under them are the ones the page's strands already
+cover, so the grid asserts nothing the page does not.
+
+**Hockey Fights and The Nations do not get one, on purpose.** Two reasons, both
+in the data rather than in the effort:
+
+- `staff.ts` titles are generic — "Host", "Co-Host" — and carry no brand or
+  show, so a grid built from them is a wall of faces all labelled "Host".
+- The show names in `brands.ts` embed hosts inconsistently: surnames only
+  ("DFO Rundown with Seravalli and Gregor"), first names only ("BlueJaysNation
+  Radio with Cam & Tyler"), or nicknames ("Better Lait Than Never with Bagged
+  Milk"). That cannot be resolved to people reliably.
+
+For Hockey Fights specifically, the plausible hosts are former enforcers — Jay
+Rosehill, Riley Cote, John Scott, Carter Hutton — and only Rosehill has a
+portrait, with nothing in the data tying him to that brand rather than another
+show. A one-person grid labelled "Host" is worse than no grid.
+
+What would unblock the other two: a list from the client of who fronts what,
+and portraits for the 56 people who have none. Both are a short ask, and
+`HOST_PORTRAITS` in `scripts/build_bundled_images.py` is where new names go.
 
 ## Cutover blockers
 
