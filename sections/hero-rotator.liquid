@@ -211,6 +211,22 @@
     margin-block-start: 0.75rem;
   }
 
+  /* The outline button is built for a light page: near-black text and no
+     border at all. Over photography that is a dark label on a dark photo, and
+     on the darker slides it disappeared outright. Two-class selector because
+     the base rule loads after this file. */
+  .hero-rotator__actions .button-secondary {
+    color: #fff;
+    border: 1px solid rgb(255 255 255 / 0.55);
+    background: rgb(255 255 255 / 0.08);
+  }
+
+  .hero-rotator__actions .button-secondary:hover,
+  .hero-rotator__actions .button-secondary:focus-visible {
+    border-color: #fff;
+    background: rgb(255 255 255 / 0.2);
+  }
+
   @media screen and (max-width: 749px) {
     .hero-rotator {
       height: min(var(--rotator-height, 600px), 74svh);
