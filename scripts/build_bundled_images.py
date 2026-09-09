@@ -61,6 +61,18 @@ TEAM_TITLE_FIXES = {
     "Amil Delic": "Head of Original Production - Audio Video, Producer",
 }
 
+# On-air talent for the brand pages' host grids. Only these four are here
+# because only these four clear both bars: they front a show the Daily Faceoff
+# page actually covers, and they have a real portrait. Of 93 staff entries in
+# staff.ts, 56 point at placeholder.jpg -- including Johnny Lazarus and Colby
+# Cohen, who host Morning Cuppa Hockey on that same page.
+HOST_PORTRAITS = [
+    "Frank Seravalli",
+    "Tyler Yaremchuk",
+    "Jason Gregor",
+    "Brock Seguin",
+]
+
 LOGO_MAX = (480, 480)
 PARTNER_MAX = (520, 320)
 PORTRAIT = 560
@@ -234,6 +246,25 @@ def parse_advertisers(source: str) -> list:
         if name and rel and os.path.exists(os.path.join(source, rel)):
             rows.append({"name": name, "source": rel})
     return rows
+
+
+def parse_hosts(source: str) -> list:
+    """The named on-air talent, with whatever portrait staff.ts gives them."""
+    text = read(os.path.join(source, "assets/config/staff.ts"))
+    imports = imports_of(source, "assets/config/staff.ts")
+    wanted = {name: None for name in HOST_PORTRAITS}
+    for block in objects_of(text, "export const staff"):
+        name = field(block, "name")
+        if name in wanted:
+            rel = imports.get(field(block, "image"), "")
+            if rel.endswith("placeholder.jpg"):
+                print("  ! %s has no portrait, only placeholder.jpg" % name)
+                continue
+            wanted[name] = {"name": name, "title": field(block, "title"), "source": rel}
+    missing = [name for name, row in wanted.items() if not row]
+    if missing:
+        print("  ! no usable portrait for: %s" % ", ".join(missing))
+    return [row for row in wanted.values() if row]
 
 
 def parse_team(source: str) -> list:
@@ -499,6 +530,16 @@ def main() -> int:
             entries.append(("%s-%s" % (family, handle), filename, label, width, height))
     print("page imagery: %d photos, %d screenshots, %d hero" % (
         len(PAGE_PHOTOS), len(PAGE_SCREENSHOTS), len(HERO_PHOTOS)))
+
+    hosts = parse_hosts(source)
+    for person in hosts:
+        handle = slug(person["name"])
+        filename = "team-%s.jpg" % handle
+        width, height = write_portrait(
+            os.path.join(source, person["source"]), os.path.join(assets, filename)
+        )
+        entries.append(("team-%s" % handle, filename, person["name"], width, height))
+    print("hosts: %d portraits" % len(hosts))
 
     write_snippet(os.path.join(REPO, "snippets", "bundled-image.liquid"), entries)
 
