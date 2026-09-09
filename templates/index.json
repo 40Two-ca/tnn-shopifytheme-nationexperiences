@@ -1350,9 +1350,9 @@
         "tile_more": {
           "type": "tile",
           "settings": {
-            "heading": "More sports",
+            "heading": "Basketball and More",
             "text": "Basketball and tennis, with room to grow.",
-            "link": "/pages/more-sports",
+            "link": "/pages/basketball-and-more",
             "stock_image": "stadium_seats",
             "bundled": ""
           }

@@ -7,7 +7,7 @@
           "type": "text",
           "name": "Title",
           "settings": {
-            "text": "<h1>More Sports</h1>",
+            "text": "<h1>Basketball and More</h1>",
             "width": "100%",
             "max_width": "normal",
             "alignment": "left",

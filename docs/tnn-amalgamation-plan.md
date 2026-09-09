@@ -147,7 +147,7 @@ publishes it. Three landing pages carry it:
 | --- | --- | --- |
 | Hockey | `page.hockey` | The six hockey sites, tiles into Daily Faceoff / Hockey Fights / The Nations, all 36 hockey shows |
 | Baseball | `page.baseball` | BlueJaysNation and its three shows |
-| More Sports | `page.more-sports` | Raptors Republic and The Slice |
+| Basketball and More | `page.basketball-and-more` | Raptors Republic and The Slice |
 
 The home page's brand row points at these three instead of at Daily Faceoff,
 The Nations and Hockey Fights. Those brand pages are still built and still
@@ -166,25 +166,36 @@ both. Worth revisiting if the sport-led structure sticks.
 
 ### The menu to build in admin
 
-Online Store → Navigation, `main-menu`:
+Content → Menus → Main menu, six items, flat:
 
 ```
-Hockey            /pages/hockey
-  Daily Faceoff     /pages/daily-faceoff
-  Hockey Fights     /pages/hockey-fights
-  The Nations       /pages/the-nations
-Baseball          /pages/baseball
-  BlueJaysNation    https://bluejaysnation.com/
-  The Nations       /pages/the-nations
-More Sports       /pages/more-sports
-Beyond The Game   /pages/beyond-the-game
-Experiences       /pages/experiences
-Partner With Us   /pages/partner-with-us
-Work With Us      /pages/work-with-us
+Home                  /
+Hockey                /pages/hockey
+Baseball              /pages/baseball
+Basketball and More   /pages/basketball-and-more
+Shop                  /collections/all
+Contact               /pages/contact
 ```
+
+**The menu cannot be built before the pages exist.** Shopify's menu link field
+resolves against real resources: typing `/pages/hockey` while that page does not
+exist reverts the field to whatever it held before. Tried it — the label typed
+fine and the link would not stick. So the ten Page records come first, and then
+this menu is a few minutes of clicking.
+
+Two things to decide when building it:
+
+- **Shop** points at `/collections/all`, the trips catalogue, because that is
+  the only catalogue the store has. If Shop is meant to be Nation Gear merch,
+  it wants that external URL instead — and that is the Nation Gear question
+  under Cutover blockers.
+- **Four built pages get no nav entry** in this structure: Beyond The Game,
+  Experiences, Partner With Us and Work With Us. They stay reachable from the
+  home page's tiles, the sport pages and the footer, which may be the intent —
+  worth confirming rather than assuming.
 
 `footer`: Company (Beyond The Game, Partner With Us, Work With Us, Contact),
-Sports (Hockey, Baseball, More Sports), Legal (Your Privacy Choices), plus the
+Sports (Hockey, Baseball, Basketball and More), Legal (Your Privacy Choices), plus the
 LinkedIn link — `linkedin.com/company/the-nation-network`, the only network
 social account the old repo actually records — and the Better Collective
 attribution.
@@ -223,14 +234,14 @@ exactly as given so Shopify generates the handle the templates link to, and the
 | Work With Us | `work-with-us` | `page.work-with-us` |
 | Hockey | `hockey` | `page.hockey` |
 | Baseball | `baseball` | `page.baseball` |
-| More Sports | `more-sports` | `page.more-sports` |
+| Basketball and More | `basketball-and-more` | `page.basketball-and-more` |
 
 Leave the body content empty: every page's copy is in its template, so anything
 typed here renders as well and would duplicate it. New pages default to
 **Hidden**, so each needs setting to Visible.
 
 The handles matter beyond tidiness — the home page's sport row links to
-`/pages/hockey`, `/pages/baseball` and `/pages/more-sports`, the hockey page's
+`/pages/hockey`, `/pages/baseball` and `/pages/basketball-and-more`, the hockey page's
 tiles to `/pages/daily-faceoff`, `/pages/hockey-fights` and `/pages/the-nations`,
 every partner CTA to `/pages/partner-with-us`, and Beyond The Game's travel
 strand to `/pages/experiences`. A handle that does not match is a dead link.
