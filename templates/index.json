@@ -63,11 +63,12 @@
         "button_style": "button",
         "text_align": "left",
         "interval": 3,
-        "height": 600,
+        "height": 820,
         "overlay": 50,
         "section_width": "full-width",
         "button_2_label": "Beyond the game",
-        "button_2_link": "/pages/beyond-the-game"
+        "button_2_link": "/pages/beyond-the-game",
+        "focus": "40%"
       }
     },
     "network_stats": {

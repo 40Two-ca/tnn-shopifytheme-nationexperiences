@@ -32,7 +32,7 @@
           "type": "text",
           "name": "t:names.title",
           "settings": {
-            "text": "<h1>{{ closest.collection.title }}</h1>",
+            "text": "<h1>{{ closest.collection.title | replace: 'Products', 'Experiences' }}</h1>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
@@ -78,7 +78,11 @@
           "blocks": {}
         }
       },
-      "block_order": ["eyebrow", "title", "description"],
+      "block_order": [
+        "eyebrow",
+        "title",
+        "description"
+      ],
       "name": "t:names.heading",
       "settings": {
         "content_direction": "column",
@@ -270,10 +274,20 @@
                   "blocks": {}
                 }
               },
-              "block_order": ["price", "button"]
+              "block_order": [
+                "price",
+                "button"
+              ]
             }
           },
-          "block_order": ["gallery", "badge", "title", "meta", "excerpt", "footer"]
+          "block_order": [
+            "gallery",
+            "badge",
+            "title",
+            "meta",
+            "excerpt",
+            "footer"
+          ]
         }
       },
       "settings": {
@@ -294,5 +308,8 @@
       }
     }
   },
-  "order": ["header", "main"]
+  "order": [
+    "header",
+    "main"
+  ]
 }
