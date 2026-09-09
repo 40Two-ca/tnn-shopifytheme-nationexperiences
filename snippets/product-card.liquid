@@ -87,6 +87,12 @@
     class="product-card__link"
     ref="productCardLink"
     aria-label="{{ product.title | escape }}"
+    {% # The card title and its button already link here. This overlay is an %}
+    {% # empty element that makes the whole card clickable, so it stays for %}
+    {% # pointers and leaves the tab order and the accessibility tree rather %}
+    {% # than announcing the same product a third time. %}
+    tabindex="-1"
+    aria-hidden="true"
   ></a>
   <div
     class="

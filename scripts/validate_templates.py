@@ -143,10 +143,15 @@ def check_bundled_images():
     block's name (see snippets/bundled-image.liquid). Rename the block and the
     logo quietly turns back into a text placeholder, so flag names that have no
     bundled image behind them."""
-    snippet = f"{ROOT}/snippets/bundled-image.liquid"
-    if not os.path.exists(snippet):
+    # The keys live in the per-family snippets; bundled-image.liquid itself is
+    # only a dispatcher, so reading it alone finds five family names and nothing
+    # else -- which reported every block on the site as missing its image.
+    snippets = glob.glob(f"{ROOT}/snippets/bundled-image-*.liquid")
+    if not snippets:
         return
-    keys = set(re.findall(r"when '([^']+)'", open(snippet, encoding='utf-8').read()))
+    keys = set()
+    for path in snippets:
+        keys |= set(re.findall(r"when '([^']+)'", open(path, encoding='utf-8').read()))
     for template_path in sorted(glob.glob(f"{ROOT}/templates/*.json") + glob.glob(f"{ROOT}/sections/*-group.json")):
         label = os.path.relpath(template_path, ROOT).replace(os.sep, '/')
         raw = open(template_path, encoding='utf-8').read()

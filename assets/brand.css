@@ -351,3 +351,21 @@ button.shopify-payment-button__button--unbranded:hover:not([disabled]) {
   background: rgb(var(--color-foreground-rgb) / 0.06);
   border-color: var(--color-foreground);
 }
+
+/* ---------------------------------------------------------------------------
+   Social icons get a thumb-sized target
+   The footer's icons render at 24px, which meets the AA minimum exactly and is
+   still a small thing to hit on a phone. Padding grows the target to 44px
+   without changing how big the icon looks, and the negative margin keeps the
+   row's spacing as it was.
+   --------------------------------------------------------------------------- */
+
+.social-links__list a,
+.social-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  margin: -10px;
+}
