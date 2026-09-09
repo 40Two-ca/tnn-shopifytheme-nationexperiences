@@ -84,6 +84,11 @@ HERO_PHOTOS = [
      "The Sekeres & Price hosts at their desk on set"),
     ("hero-the-sheet-live", "assets/images/design/herospinner/6.jpg",
      "The Sheet recorded live on stage in front of an audience"),
+    # The only usable photograph in the old repo's `hero/` folder -- the other
+    # three there are Pexels stock, which is no better than what the theme
+    # already ships.
+    ("nation-hoodie", "assets/images/hero/hero.jpg",
+     "Someone wearing a Nation hoodie, shot in black and white"),
 ]
 
 # Beyond The Game runs four strands, each beside a small grid of photos. The
