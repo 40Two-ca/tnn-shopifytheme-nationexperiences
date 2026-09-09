@@ -38,9 +38,13 @@ REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # so they depend on the Page records in docs/tnn-amalgamation-plan.md existing.
 REDIRECTS = [
     ("/beyond-the-game", "/pages/beyond-the-game", "same page, rebuilt"),
-    ("/brands/daily-faceoff", "/pages/daily-faceoff", "same page, rebuilt"),
-    ("/brands/hockey-fights", "/pages/hockey-fights", "same page, rebuilt"),
-    ("/brands/the-nations", "/pages/the-nations", "same page, rebuilt"),
+    # The three brand pages were folded into /pages/hockey, one destination per
+    # sport. Shopify wraps each section of a JSON template in
+    # <div id="shopify-section-KEY">, so each old URL still lands on the part of
+    # the page that holds its brand rather than at the top of a long page.
+    ("/brands/daily-faceoff", "/pages/hockey#shopify-section-dfo", "folded into the hockey page"),
+    ("/brands/hockey-fights", "/pages/hockey#shopify-section-hf", "folded into the hockey page"),
+    ("/brands/the-nations", "/pages/hockey#shopify-section-nations", "folded into the hockey page"),
     ("/partner-with-us", "/pages/partner-with-us", "same page, rebuilt"),
     ("/work-with-us", "/pages/work-with-us", "same page, rebuilt"),
     ("/brands/work-with-us", "/pages/work-with-us", "sitemap.ts variant of the same page"),

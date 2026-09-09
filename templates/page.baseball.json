@@ -62,9 +62,9 @@
         "tile_nations": {
           "type": "tile",
           "settings": {
-            "heading": "The Nations",
-            "text": "How the team-focused hubs work across the network.",
-            "link": "/pages/the-nations",
+            "heading": "BlueJaysNation Radio",
+            "text": "The daily audio that runs off the site, with Cam and Tyler.",
+            "link": "https://bluejaysnation.com/",
             "stock_image": "none",
             "bundled": "photo-travel-3"
           }

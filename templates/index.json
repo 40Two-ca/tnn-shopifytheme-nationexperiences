@@ -208,7 +208,7 @@
           "settings": {
             "heading": "Daily Faceoff",
             "text": "Breaking news, lineups, player updates and fantasy hockey resources for NHL fans.",
-            "link": "/pages/daily-faceoff",
+            "link": "/pages/hockey#shopify-section-dfo",
             "stock_image": "none",
             "bundled": "photo-hero-studio-two"
           }
@@ -219,7 +219,7 @@
             "heading": "The Nations",
             "text": "Fan-first digital hubs for the Oilers, Flames, Canucks, Leafs, Blue Jays and Raptors.",
             "stock_image": "none",
-            "link": "/pages/the-nations",
+            "link": "/pages/hockey#shopify-section-nations",
             "bundled": "photo-hero-fans-vegas"
           }
         },
@@ -229,7 +229,7 @@
             "heading": "Hockey Fights",
             "text": "The definitive archive of hockey’s grittiest moments, with stats, video and forums.",
             "stock_image": "fans",
-            "link": "/pages/hockey-fights"
+            "link": "/pages/hockey#shopify-section-hf"
           }
         }
       },

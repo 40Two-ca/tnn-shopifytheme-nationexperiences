@@ -29,9 +29,9 @@ convenience. Catalogue is two experiences, one collection, two stock pages.
 |---|---|---|
 | `/` | `/` | `templates/index.json` — **done** |
 | `/beyond-the-game` | `/pages/beyond-the-game` | `story-strand` × 4 + `product-list` — **done** |
-| `/brands/daily-faceoff` | `/pages/daily-faceoff` | `story-strand` × 6 + `network-stats` — **done** |
-| `/brands/the-nations` | `/pages/the-nations` | `brand-mosaic` + `story-strand` × 3 — **done** |
-| `/brands/hockey-fights` | `/pages/hockey-fights` | `story-strand` + `network-stats` — **done** |
+| `/brands/daily-faceoff` | `/pages/hockey#shopify-section-dfo` | folded into the hockey page — **done** |
+| `/brands/the-nations` | `/pages/hockey#shopify-section-nations` | folded into the hockey page — **done** |
+| `/brands/hockey-fights` | `/pages/hockey#shopify-section-hf` | folded into the hockey page — **done** |
 | `/partner-with-us` | `/pages/partner-with-us` | `story-strand` + `network-stats` + `partner-logos` + Typeform — **done** |
 | `/work-with-us` | `/pages/work-with-us` | three-route `feature-tiles` — **done** |
 | `/work-with-us/creator`, `/inquiry` | `/pages/contact` for now | Shopify contact form or Typeform — undecided |
@@ -145,7 +145,7 @@ publishes it. Three landing pages carry it:
 
 | Page | Template | Holds |
 | --- | --- | --- |
-| Hockey | `page.hockey` | The six hockey sites, tiles into Daily Faceoff / Hockey Fights / The Nations, all 36 hockey shows |
+| Hockey | `page.hockey` | Everything hockey: the six sites, Daily Faceoff with its five shows and host grid, Hockey Fights, the four Nation hubs, all 36 shows |
 | Baseball | `page.baseball` | BlueJaysNation and its three shows |
 | Basketball and More | `page.basketball-and-more` | Raptors Republic and The Slice |
 
@@ -215,6 +215,33 @@ the network's 57M, so they are safe to print. Page views and followers stay off
 the sport pages until the client confirms real numbers, and that confirmation
 should cover the home page's three counters too.
 
+## One page per sport
+
+Daily Faceoff, Hockey Fights and The Nations no longer have pages of their own.
+All three are sections of `/pages/hockey`, which now runs: the six hockey sites
+as a logo wall, Daily Faceoff with its five shows and host grid, Hockey Fights,
+the four Nation hubs with their editorial, podcast and social strands, all 36
+shows, the catalogue counters and the partner CTA. Nineteen sections, against
+Shopify's limit of 25.
+
+This settles the seam The Nations always had: it spanned hockey, baseball and
+basketball, so under a sport-led navigation it belonged to none of them. Its
+hockey half is here; BlueJaysNation is on the baseball page and Raptors Republic
+on Basketball and More, each beside the rest of that sport.
+
+Nothing that pointed at the old pages was left dangling. Shopify wraps every
+section of a JSON template in `<div id="shopify-section-KEY">`, so the home
+page's brand tiles and the three old `/brands/*` redirects land on the part of
+the hockey page that holds their brand rather than at the top of a long page:
+
+| Was | Now |
+| --- | --- |
+| `/pages/daily-faceoff` | `/pages/hockey#shopify-section-dfo` |
+| `/pages/hockey-fights` | `/pages/hockey#shopify-section-hf` |
+| `/pages/the-nations` | `/pages/hockey#shopify-section-nations` |
+
+That drops the Page records to seven.
+
 ## The pages need creating in admin
 
 A page template renders nothing until a Page record points at it, and none of
@@ -227,9 +254,6 @@ exactly as given so Shopify generates the handle the templates link to, and the
 | --- | --- | --- |
 | Experiences | `experiences` | `page.experiences` |
 | Beyond The Game | `beyond-the-game` | `page.beyond-the-game` |
-| The Nations | `the-nations` | `page.the-nations` |
-| Daily Faceoff | `daily-faceoff` | `page.daily-faceoff` |
-| Hockey Fights | `hockey-fights` | `page.hockey-fights` |
 | Partner With Us | `partner-with-us` | `page.partner-with-us` |
 | Work With Us | `work-with-us` | `page.work-with-us` |
 | Hockey | `hockey` | `page.hockey` |
@@ -241,10 +265,10 @@ typed here renders as well and would duplicate it. New pages default to
 **Hidden**, so each needs setting to Visible.
 
 The handles matter beyond tidiness — the home page's sport row links to
-`/pages/hockey`, `/pages/baseball` and `/pages/basketball-and-more`, the hockey page's
-tiles to `/pages/daily-faceoff`, `/pages/hockey-fights` and `/pages/the-nations`,
-every partner CTA to `/pages/partner-with-us`, and Beyond The Game's travel
-strand to `/pages/experiences`. A handle that does not match is a dead link.
+`/pages/hockey`, `/pages/baseball` and `/pages/basketball-and-more`, its brand
+tiles at sections within `/pages/hockey`, every partner CTA at
+`/pages/partner-with-us`, and Beyond The Game's travel strand at
+`/pages/experiences`. A handle that does not match is a dead link.
 
 All seven templates are confirmed on the live theme — pulled back with
 `shopify theme pull` and compared against the repo section for section — so the
