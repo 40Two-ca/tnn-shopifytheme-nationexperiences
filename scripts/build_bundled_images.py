@@ -172,11 +172,19 @@ PAGE_SCREENSHOTS = [
 def slug(text: str) -> str:
     """Reproduce Liquid's `handleize`, which resolves these keys at render time.
 
-    Shopify collapses every run of non-alphanumerics into one hyphen and trims
-    the ends, so "Wendy's" becomes wendy-s and "Hello & Welcome" hello-welcome.
-    Stripping the apostrophe instead would generate keys the theme never asks for.
+    Apostrophes are **dropped**, not turned into a separator: "Wendy's" becomes
+    wendys and "Wanye's World" wanyes-world. Every other run of
+    non-alphanumerics collapses to a single hyphen, so "Hello & Welcome" is
+    hello-welcome.
+
+    This was wrong in the first version -- it hyphenated the apostrophe, which
+    produced keys the theme never asked for, and both affected tiles rendered as
+    text on the live home page. Checking `handleize` against the real storefront
+    is the only way to settle it; the validator re-implements this same rule, so
+    it agreed with the mistake rather than catching it.
     """
-    return re.sub(r"[^a-z0-9]+", "-", text.lower()).strip("-")
+    text = text.lower().replace("'", "").replace("’", "")
+    return re.sub(r"[^a-z0-9]+", "-", text).strip("-")
 
 
 def read(path: str) -> str:

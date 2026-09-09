@@ -172,7 +172,11 @@ def check_bundled_images():
                             f"the frame will fall back to a placeholder")
                     continue
                 name = values.get('name', '')
-                handle = re.sub(r'[^a-z0-9]+', '-', name.lower()).strip('-')
+                # Matches Liquid's handleize: apostrophes are dropped, every
+                # other run of non-alphanumerics becomes one hyphen. Keep this
+                # in step with slug() in build_bundled_images.py.
+                handle = name.lower().replace("'", '').replace('’', '')
+                handle = re.sub(r'[^a-z0-9]+', '-', handle).strip('-')
                 if f"{prefix}-{handle}" not in keys:
                     warnings.append(
                         f"{label}/{section.get('type')}: no bundled image for {name!r} "
