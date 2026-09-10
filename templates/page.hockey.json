@@ -1073,11 +1073,11 @@
           "type": "show",
           "settings": {
             "name": "Barn Burner with Boomer and Pinder",
-            "website": "https://shows.acast.com/barn-burner-boomer-pinder",
             "youtube": "https://www.youtube.com/@FNBarnBurner",
             "x": "https://x.com/barnburnerfn",
             "instagram": "https://www.instagram.com/fnbarnburner/",
-            "tiktok": "https://www.tiktok.com/@fnbarnburner"
+            "tiktok": "https://www.tiktok.com/@fnbarnburner",
+            "acast": "https://shows.acast.com/barn-burner-boomer-pinder"
           }
         },
         "show_coming_in_hot": {
@@ -1102,39 +1102,39 @@
           "type": "show",
           "settings": {
             "name": "DFO Rundown",
-            "website": "https://shows.acast.com/the-dfo-rundown"
+            "acast": "https://shows.acast.com/the-dfo-rundown"
           }
         },
         "show_the_sheet": {
           "type": "show",
           "settings": {
             "name": "The Sheet",
-            "website": "https://shows.acast.com/the-sheet",
             "x": "https://x.com/thesheethockey",
             "instagram": "https://www.instagram.com/thesheethockey/",
-            "tiktok": "https://www.tiktok.com/@thesheethockey"
+            "tiktok": "https://www.tiktok.com/@thesheethockey",
+            "acast": "https://shows.acast.com/the-sheet"
           }
         },
         "show_oilersnation_radio": {
           "type": "show",
           "settings": {
             "name": "OilersNation Radio",
-            "website": "https://shows.acast.com/oilersnation-radio"
+            "acast": "https://shows.acast.com/oilersnation-radio"
           }
         },
         "show_canucks_conversation": {
           "type": "show",
           "settings": {
             "name": "Canucks Conversation",
-            "website": "https://shows.acast.com/canucks-conversation"
+            "acast": "https://shows.acast.com/canucks-conversation"
           }
         },
         "show_leafs_morning_take": {
           "type": "show",
           "settings": {
             "name": "Leafs Morning Take",
-            "website": "https://shows.acast.com/leafs-morning-take",
-            "instagram": "https://www.instagram.com/leafsmorningtake/"
+            "instagram": "https://www.instagram.com/leafsmorningtake/",
+            "acast": "https://shows.acast.com/leafs-morning-take"
           }
         },
         "show_oilersnation_real_life_podcast": {
@@ -1204,7 +1204,7 @@
           "type": "show",
           "settings": {
             "name": "Morning Cuppa Hockey",
-            "website": "https://shows.acast.com/morning-cuppa-hockey-1"
+            "acast": "https://shows.acast.com/morning-cuppa-hockey-1"
           }
         },
         "show_lpb_show": {
@@ -1223,32 +1223,32 @@
           "type": "show",
           "settings": {
             "name": "TLN After Dark",
-            "website": "https://shows.acast.com/theleafsnation-after-dark"
+            "acast": "https://shows.acast.com/theleafsnation-after-dark"
           }
         },
         "show_tri_state_hockey": {
           "type": "show",
           "settings": {
             "name": "Tri-State Hockey",
-            "website": "https://shows.acast.com/tri-state-hockey-podcast"
+            "acast": "https://shows.acast.com/tri-state-hockey-podcast"
           }
         },
         "show_the_sauce": {
           "type": "show",
           "settings": {
             "name": "The Sauce",
-            "website": "https://shows.acast.com/the-sauce-with-ryder-lisa"
+            "acast": "https://shows.acast.com/the-sauce-with-ryder-lisa"
           }
         },
         "show_off_the_roster": {
           "type": "show",
           "settings": {
             "name": "Off The Roster",
-            "website": "https://shows.acast.com/off-the-roster",
             "youtube": "https://www.youtube.com/@OffTheRosterTNN",
             "x": "https://x.com/OffTheRosterPod",
             "instagram": "https://www.instagram.com/offtherosterpod/",
-            "tiktok": "https://www.tiktok.com/@offtherosterpod"
+            "tiktok": "https://www.tiktok.com/@offtherosterpod",
+            "acast": "https://shows.acast.com/off-the-roster"
           }
         },
         "show_slangin_the_bizkit_podcast": {
@@ -1264,11 +1264,11 @@
           "type": "show",
           "settings": {
             "name": "what chaos",
-            "website": "https://shows.acast.com/what-chaos",
             "youtube": "https://www.youtube.com/@WhatChaosShow",
             "x": "https://x.com/WhatChaosShow",
             "instagram": "https://www.instagram.com/whatchaosshow/",
-            "tiktok": "https://www.tiktok.com/@whatchaos"
+            "tiktok": "https://www.tiktok.com/@whatchaos",
+            "acast": "https://shows.acast.com/what-chaos"
           }
         }
       },

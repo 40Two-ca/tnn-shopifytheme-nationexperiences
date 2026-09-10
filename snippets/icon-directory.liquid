@@ -1,0 +1,33 @@
+{% doc %}
+  Icons the theme does not ship, for the show directory. Used inside an `<svg>`,
+  the same way as `icon`, and falls through to it for everything else.
+
+  These two are drawn as strokes rather than filled shapes -- a globe needs its
+  meridians and a broadcast mark needs its arcs, and neither reads as anything
+  at 18px if it is filled in solid. The caller adds
+  `show-directory__icon--stroke`, which sets `fill: none` on paths only, so a
+  `<circle>` in here still fills.
+
+  Acast has no mark in the theme's icon set and none in Simple Icons, and its
+  own pages do not expose one as an SVG. Rather than approximate a trademark
+  from memory, this is the generic broadcast symbol -- a transmitting dot --
+  which says "podcast" without pretending to be Acast's logo. The link's
+  accessible name says Acast.
+
+  @param {string} icon - 'website' or 'acast'; anything else delegates to `icon`.
+{% enddoc %}
+
+{%- case icon -%}
+  {%- when 'website' -%}
+    <circle cx="10" cy="10" r="7.1" fill="none" />
+    <path d="M2.9 10h14.2" />
+    <path d="M10 2.9c1.9 2 3 4.5 3 7.1s-1.1 5.1-3 7.1c-1.9-2-3-4.5-3-7.1s1.1-5.1 3-7.1z" />
+  {%- when 'acast' -%}
+    <circle cx="10" cy="10" r="2.05" />
+    <path d="M6.6 13.4a4.8 4.8 0 0 1 0-6.8" />
+    <path d="M13.4 6.6a4.8 4.8 0 0 1 0 6.8" />
+    <path d="M4.1 15.9a8.35 8.35 0 0 1 0-11.8" />
+    <path d="M15.9 4.1a8.35 8.35 0 0 1 0 11.8" />
+  {%- else -%}
+    {%- render 'icon', icon: icon -%}
+{%- endcase -%}
