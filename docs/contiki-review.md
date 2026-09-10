@@ -98,12 +98,15 @@ log names them:
 
 When a push does not show up, read the sync log: Online Store > Themes, then **View logs** under the live theme. It names the file and the reason. It is the fastest way to find out what was rejected.
 
-- **A section's `{% stylesheet %}` may never reach the storefront.** Shopify
-  aggregates those blocks into `styles.css`. On this theme that bundle stopped
-  rebuilding: fetched past the cache, it still serves the *first* version of
-  rules edited twice since, while the section files themselves pull down
-  current. So a section can be live and correct while its own CSS is not, and
-  the symptom is a fix that "did not work" for no visible reason. Check it:
+- **A section's `{% stylesheet %}` reaches the storefront hours after the
+  section does.** Shopify aggregates those blocks into `styles.css`, and that
+  bundle rebuilds on its own schedule rather than with the push. Observed here:
+  a rule edited twice was still serving its *first* version well after both
+  edits were live in the section file, and had caught up by the next day. So a
+  section can be live and correct while its own CSS is not, and the symptom is
+  a fix that "did not work" for no visible reason -- markup from the same
+  commit is already there, which makes it look like the CSS is wrong rather
+  than absent. Check it:
 
   ```js
   // in the browser console, on the page
@@ -113,9 +116,12 @@ When a push does not show up, read the sync log: Online Store > Themes, then **V
   css.includes('your-new-selector');
   ```
 
-  Put CSS that has to ship in `assets/brand.css`, which is a plain asset and
-  syncs like any other file. `styles.css` loads after it, so write the rule one
-  class deeper than the stale rule it must beat.
+  If it can wait, wait -- the bundle catches up and the section's own
+  stylesheet is the right home. If it cannot (a defect on a live page), put the
+  rule in `assets/brand.css`, which is a plain asset and syncs with the push.
+  `styles.css` loads after it, so write the rule one class deeper than the
+  stale rule it has to beat, and keep the section's copy so the two agree once
+  the bundle lands.
 
 **A rejected file is silent everywhere else.** The push succeeds, GitHub shows
 the commit as synced, and the storefront simply keeps serving the last version

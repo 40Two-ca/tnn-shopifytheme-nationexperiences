@@ -370,12 +370,12 @@ button.shopify-payment-button__button--unbranded:hover:not([disabled]) {
   margin: -10px;
 }
 
-/* --- Fixes that Shopify's section bundle will not carry ------------------
+/* --- Fixes that landed here because the section bundle lagged ------------
    Sections declare their CSS in {% stylesheet %}, which Shopify aggregates
-   into styles.css. That bundle is not rebuilding for edits to these sections:
-   fetched past the cache, it still serves the first version of rules that have
-   since been changed twice. The section files on the theme are current; their
-   CSS is not.
+   into styles.css. That bundle rebuilds on its own schedule, not with the
+   push: these rules were still serving their first version hours after two
+   further edits were live in the section files. It has since caught up, so
+   these now duplicate what the sections say rather than override it.
 
    So the corrections below live here, in a plain asset that ships like any
    other file. styles.css loads after this one, so each rule is written a class
