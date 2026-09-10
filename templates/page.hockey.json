@@ -416,7 +416,8 @@
           "settings": {
             "name": "Colby Cohen",
             "title": "Host",
-            "bio": "<p>Hosts Daily Faceoff Live and Morning Cuppa Hockey.</p>"
+            "bio": "<p>Hosts Daily Faceoff Live and Morning Cuppa Hockey.</p>",
+            "x": "https://x.com/ColbyCohen36"
           }
         },
         "person_jonny_lazarus": {
@@ -424,7 +425,8 @@
           "settings": {
             "name": "Jonny Lazarus",
             "title": "Host",
-            "bio": "<p>Hosts Morning Cuppa Hockey.</p>"
+            "bio": "<p>Hosts Morning Cuppa Hockey.</p>",
+            "x": "https://x.com/JLazzy23"
           }
         }
       },

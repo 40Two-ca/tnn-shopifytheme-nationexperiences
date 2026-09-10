@@ -67,8 +67,25 @@
             {%- endif -%}
           </div>
           <figcaption class="leadership-card__body">
+            {%- comment -%}
+              The name carries the X link when there is one: it is the handle
+              the hosts are actually known by, and it gives a target bigger than
+              the icon. The icon row keeps it too, so nothing moves for people
+              who have several platforms.
+            {%- endcomment -%}
             {%- if person.name != blank -%}
-              <p class="leadership-card__name">{{ person.name }}</p>
+              <p class="leadership-card__name">
+                {%- if person.x != blank -%}
+                  <a
+                    class="leadership-card__name-link"
+                    href="{{ person.x }}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >{{ person.name }}</a>
+                {%- else -%}
+                  {{- person.name -}}
+                {%- endif -%}
+              </p>
             {%- endif -%}
             {%- if person.title != blank -%}
               <p class="leadership-card__title">{{ person.title }}</p>
@@ -187,6 +204,18 @@
     font-weight: 700;
     font-size: 1.0625rem;
     line-height: 1.2;
+  }
+
+  .leadership-card__name-link {
+    color: inherit;
+    text-decoration: none;
+    text-underline-offset: 0.2em;
+    transition: color var(--hover-transition-duration) var(--hover-transition-timing);
+  }
+
+  .leadership-card__name-link:hover {
+    color: var(--brand-accent);
+    text-decoration: underline;
   }
 
   .leadership-card__title {

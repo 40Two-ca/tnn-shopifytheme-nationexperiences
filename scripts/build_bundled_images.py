@@ -107,11 +107,36 @@ PORTRAIT_OVERRIDES = {
     "Bagged Milk": ("assets/images/staff/BaggedMilk.png", "Host"),
 }
 
+# The two Morning Cuppa Hockey hosts have no portrait anywhere in the client's
+# own material -- staff.ts points both at placeholder.jpg, and neither name
+# matches an image file in thenationnetwork-www. Without these the grid drops
+# to a grey initial beside three real headshots, so the theme ships a stand-in
+# cropped from a published photograph of each man. They live in design/ rather
+# than the source repo, the same arrangement LOGO_OVERRIDES uses.
+#
+# THESE ARE STAND-INS, NOT CLEARED ARTWORK. Ask the client for real headshots
+# and delete this block when they arrive; both are lower resolution than the
+# 560px the portrait pipeline wants, and neither is the network's own photo.
+#
+# staff.ts spells him "Johnny Lazarus"; the show, his own account and the
+# templates all say "Jonny", and the portrait key is handleized from the name
+# used here, so this side has to match the template block.
+PORTRAIT_LOCAL = {
+    # ushl.com, 2026-08-13, announcing him as VP of Hockey and Player
+    # Experience -- shot at the ESPN desk for the NCAA selection special.
+    "Colby Cohen": ("design/hosts-2026/colby-cohen.jpg", "Host"),
+    # His own profile photograph on x.com/JLazzy23, which caps at 400px.
+    "Jonny Lazarus": ("design/hosts-2026/jonny-lazarus.jpg", "Host"),
+}
+
 HOST_PORTRAITS = [
     # Daily Faceoff
     "Tyler Yaremchuk",
     "Jason Gregor",
     "Brock Seguin",
+    # Portraits come from PORTRAIT_LOCAL, not from staff.ts.
+    "Colby Cohen",
+    "Jonny Lazarus",
     # The Nations. staff.ts is the client's own headshot library, so these are
     # their photographs rather than anything scraped. Names must match staff.ts
     # exactly -- the portrait key is handleized from this string.
@@ -333,6 +358,10 @@ def parse_hosts(source: str) -> list:
         if name in wanted and not wanted[name] and os.path.exists(os.path.join(source, rel)):
             wanted[name] = {"name": name, "title": title, "source": rel}
             print("  + %s from the override (staff.ts does not reach it)" % name)
+    for name, (rel, title) in PORTRAIT_LOCAL.items():
+        if name in wanted and not wanted[name] and os.path.exists(os.path.join(REPO, rel)):
+            wanted[name] = {"name": name, "title": title, "source": rel, "root": REPO}
+            print("  + %s from design/ (stand-in, not the client's own photo)" % name)
 
     missing = [name for name, row in wanted.items() if not row]
     if missing:
@@ -683,7 +712,8 @@ def main() -> int:
         handle = slug(person["name"])
         filename = "team-%s.jpg" % handle
         width, height = write_portrait(
-            os.path.join(source, person["source"]), os.path.join(assets, filename)
+            os.path.join(person.get("root", source), person["source"]),
+            os.path.join(assets, filename),
         )
         entries.append(("team-%s" % handle, filename, person["name"], width, height))
     print("hosts: %d portraits" % len(hosts))
