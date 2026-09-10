@@ -141,11 +141,7 @@
           <span class="add-to-cart-text__content">
             <span>
               {%- if current_variant.available -%}
-                {%- if product.type == 'Experience' -%}
-                  {{- 'products.product.book_now' | t -}}
-                {%- else -%}
-                  {{- 'products.product.add_to_cart' | t -}}
-                {%- endif -%}
+                {{- 'products.product.add_to_cart' | t -}}
               {%- elsif current_variant == blank -%}
                 {{- 'products.product.unavailable' | t -}}
               {%- else -%}
