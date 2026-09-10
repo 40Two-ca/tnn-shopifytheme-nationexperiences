@@ -365,7 +365,8 @@
         "section_width": "page-width",
         "background_color": "{{ settings.color_palette.color3 }}",
         "padding-block-start": 72,
-        "padding-block-end": 72
+        "padding-block-end": 72,
+        "heading_size": "small"
       },
       "blocks": {
         "person_tyler_yaremchuk": {
@@ -695,7 +696,7 @@
           "settings": {
             "name": "Coming In Hot",
             "tile_color": "#e6212b",
-            "link": ""
+            "link": "https://www.youtube.com/@Cominginhotsens"
           }
         },
         "tile_the_jason_gregor_show": {
@@ -919,7 +920,7 @@
           "settings": {
             "name": "Slangin The Bizkit Podcast",
             "tile_color": "#ffc0cb",
-            "link": ""
+            "link": "https://www.youtube.com/@slanginthebizkitpodcast"
           }
         },
         "tile_what_chaos": {

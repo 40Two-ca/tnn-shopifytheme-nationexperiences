@@ -27,7 +27,11 @@
         <p class="brand-eyebrow">{{ s.eyebrow }}</p>
       {%- endif -%}
       {%- if s.heading != blank -%}
-        <h2 class="leadership-grid__heading">{{ s.heading }}</h2>
+        {%- if s.heading_size == 'small' -%}
+          <h3 class="h3 leadership-grid__heading">{{ s.heading }}</h3>
+        {%- else -%}
+          <h2 class="leadership-grid__heading">{{ s.heading }}</h2>
+        {%- endif -%}
       {%- endif -%}
       {%- if s.subheading != blank -%}
         <p class="brand-subheading">{{ s.subheading }}</p>
@@ -231,6 +235,11 @@
       color var(--hover-transition-duration) var(--hover-transition-timing);
   }
 
+  .leadership-card__link:focus-visible {
+    outline-color: var(--color-foreground);
+    outline-width: max(2px, var(--focus-outline-width));
+  }
+
   .leadership-card__link:hover {
     background: var(--brand-accent);
     color: var(--brand-accent-contrast);
@@ -264,6 +273,17 @@
     { "type": "text", "id": "eyebrow", "label": "Eyebrow" },
     { "type": "text", "id": "heading", "label": "Heading", "default": "Our leadership" },
     { "type": "text", "id": "subheading", "label": "Subheading" },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "label": "Heading size",
+      "info": "Use Small when the grid sits inside a larger section, so its heading does not read as a new one.",
+      "options": [
+        { "value": "large", "label": "Large" },
+        { "value": "small", "label": "Small" }
+      ],
+      "default": "large"
+    },
     {
       "type": "range",
       "id": "columns",

@@ -60,22 +60,12 @@
       {%- if links > 0 -%}
         <li class="show-directory__item" {{ block.shopify_attributes }}>
           {%- comment -%}
-            Most shows here are Acast-only, so the name follows the Acast page
-            when there is no site of its own rather than going flat.
+            The name is not a link. It used to point at the same URL as the
+            first icon, which in eight rows was the entire row: one destination
+            printed twice, and two tab stops for it. The icons carry every
+            destination, and each says which platform it is.
           {%- endcomment -%}
-          {%- assign name_href = show.website | default: show.acast -%}
-          {%- if name_href != blank -%}
-            <a
-              class="show-directory__name show-directory__name--link"
-              href="{{ name_href }}"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {{- show.name -}}
-            </a>
-          {%- else -%}
-            <p class="show-directory__name">{{ show.name }}</p>
-          {%- endif -%}
+          <p class="show-directory__name">{{ show.name }}</p>
 
           {%- if show.note != blank -%}
             <p class="show-directory__note">{{ show.note }}</p>
@@ -170,17 +160,6 @@
     text-wrap: balance;
   }
 
-  a.show-directory__name--link {
-    color: inherit;
-    text-decoration: none;
-  }
-
-  a.show-directory__name--link:hover,
-  a.show-directory__name--link:focus-visible {
-    text-decoration: underline;
-    text-underline-offset: 0.2em;
-  }
-
   .show-directory__note {
     margin: 0;
     font-size: 0.8rem;
@@ -197,14 +176,17 @@
     padding-block-start: 0.35rem;
   }
 
-  /* 44px keeps the tap target usable on a phone even though the mark is 18px. */
+  /* 44px tap target for an 18px mark. The negative margin only pulls the row
+     back level with the text above it -- pulling it in far enough to tighten
+     the spacing made neighbouring targets overlap, so the gap does that. */
   .show-directory__social {
     display: flex;
     align-items: center;
     justify-content: center;
     inline-size: 2.75rem;
     block-size: 2.75rem;
-    margin: -0.6rem;
+    margin-inline: -0.15rem;
+    margin-block: -0.5rem;
     color: inherit;
     transition: opacity var(--hover-transition-duration) var(--hover-transition-timing);
   }

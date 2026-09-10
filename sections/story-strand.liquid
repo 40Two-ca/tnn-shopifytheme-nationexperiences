@@ -35,7 +35,7 @@
         <p class="brand-eyebrow">{{ s.eyebrow }}</p>
       {%- endif -%}
       {%- if s.heading != blank -%}
-        <h2 class="h3 story-strand__heading">{{ s.heading }}</h2>
+        <h3 class="h3 story-strand__heading">{{ s.heading }}</h3>
       {%- endif -%}
       {%- if s.body != blank -%}
         <div class="rte story-strand__body">{{ s.body }}</div>
@@ -146,6 +146,7 @@
     }
 
     .story-strand__media {
+      grid-template-columns: 1fr;
       gap: 12px;
     }
   }
