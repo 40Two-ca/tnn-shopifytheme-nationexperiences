@@ -1,10 +1,11 @@
 /*
- * One-night ticketed events (e.g. RIPNATION). Dark hero, a scrolling marquee, the
- * event description with what's included, a spotlight panel, then FAQs.
- * Event-specific copy lives in product metafields so this one template serves every
- * event: custom.short_description, custom.stats, custom.included, custom.not_included,
- * custom.faqs, custom.marquee and custom.spotlight (see the section files for formats).
- * Assign per product: Template = product.event.
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
  */
 {
   "sections": {
@@ -144,14 +145,14 @@
             "price": {
               "type": "trip-price",
               "settings": {
+                "price_source": "selected",
                 "prefix": "",
                 "suffix": "",
                 "show_compare": true,
                 "compare_label": "Was",
                 "zero_price_text": "Registration only. See details below.",
                 "size": "large",
-                "alignment": "left",
-                "price_source": "selected"
+                "alignment": "left"
               },
               "blocks": {}
             },
@@ -251,7 +252,6 @@
           ]
         }
       },
-      "block_order": [],
       "settings": {
         "content_width": "content-center-aligned",
         "desktop_media_position": "left",
