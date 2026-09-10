@@ -429,6 +429,15 @@ button.shopify-payment-button__button--unbranded:hover:not([disabled]) {
   flex-direction: column;
 }
 
+/* As a column flex child the tile has min-height:auto, so a square logo pushed
+   the tile square and beat its 4/3 aspect-ratio: the one wide logo on the wall
+   sat 180px tall next to five at 240, and the captions stepped down with them.
+   Pinning min-height to 0 hands the height back to aspect-ratio. */
+.brand-mosaic .brand-mosaic__item > .brand-mosaic__tile {
+  flex: 0 0 auto;
+  min-height: 0;
+}
+
 .brand-mosaic .brand-mosaic__caption {
   margin: 0;
   padding: 0.5rem 0.25rem 0.9rem;
