@@ -320,7 +320,7 @@
           "type": "tile",
           "settings": {
             "name": "TheLeafsNation",
-            "tile_color": "#00365e",
+            "tile_color": "#ffffff",
             "link": "https://theleafsnation.com/"
           }
         },
@@ -360,7 +360,7 @@
           "type": "tile",
           "settings": {
             "name": "FlamesNation",
-            "tile_color": "#890403",
+            "tile_color": "#ffffff",
             "link": "https://flamesnation.ca/"
           }
         },
@@ -440,7 +440,7 @@
           "type": "tile",
           "settings": {
             "name": "OilersNation",
-            "tile_color": "#0d1230",
+            "tile_color": "#ffffff",
             "link": "https://oilersnation.com/"
           }
         },
@@ -552,7 +552,7 @@
           "type": "tile",
           "settings": {
             "name": "CanucksArmy",
-            "tile_color": "#044220",
+            "tile_color": "#ffffff",
             "link": "https://canucksarmy.com/"
           }
         },

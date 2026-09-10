@@ -52,10 +52,19 @@ DEFAULT_SOURCE = os.path.join(os.path.dirname(REPO), "thenationnetwork-www")
 # whether the *dominant* mark is light. If you change an entry here, put the
 # candidates on their tile colour in a browser and look at the result.
 LOGO_OVERRIDES = {
-    "OilersNation": "assets/images/logos/sites/oilersnation.webp",
-    "FlamesNation": "assets/images/logos/sites/flamesnation.png",
-    "TheLeafsNation": "assets/images/logos/sites/theleafsnation.png",
-    "CanucksArmy": "assets/images/logos/sites/canucksarmy.png",
+    # The 2026 nation marks: the fist roundel on its own, no wordmark. Taken
+    # from thenationnetwork.com's own 2026/08 uploads (Nations-Edmonton-2026 and
+    # siblings), which is the current brand; brands.ts still points at the older
+    # team-site logos with the name built into the artwork.
+    #
+    # These live in design/, not in the source repo, because they came from the
+    # live site rather than from thenationnetwork-www. design/ is outside the
+    # theme directories Shopify uploads, so the originals stay out of the theme.
+    "OilersNation": "design/logos-2026/oilersnation.png",
+    "FlamesNation": "design/logos-2026/flamesnation.png",
+    "CanucksArmy": "design/logos-2026/canucksarmy.png",
+    "TheLeafsNation": "design/logos-2026/theleafsnation.png",
+    "BlueJaysNation": "design/logos-2026/bluejaysnation.png",
 }
 
 # brands.ts carries two entries named after their logo file rather than the show,
@@ -247,7 +256,13 @@ def parse_brands(source: str) -> list:
         if not name or name in EXCLUDE_BRANDS:
             continue
         rel = LOGO_OVERRIDES.get(name) or imports.get(field(block, "logo"), "")
-        if not rel or not os.path.exists(os.path.join(source, rel)):
+        # An override may name a file in this repo (design/) instead of one in
+        # the source repo; the local copy wins.
+        if rel and os.path.exists(os.path.join(REPO, rel)):
+            rel_root = REPO
+        else:
+            rel_root = source
+        if not rel or not os.path.exists(os.path.join(rel_root, rel)):
             print("  ! no logo file for %s" % name)
             continue
         rows.append({
@@ -255,6 +270,7 @@ def parse_brands(source: str) -> list:
             "colour": field(block, "primaryColor") or "#ffffff",
             "url": field(block, "url"),
             "source": rel,
+            "root": rel_root,
         })
     return rows
 
@@ -581,7 +597,8 @@ def main() -> int:
     for brand in brands:
         handle = slug(brand["name"])
         filename, width, height = write_logo(
-            os.path.join(source, brand["source"]), os.path.join(assets, "brand-%s" % handle), LOGO_MAX
+            os.path.join(brand.get("root", source), brand["source"]),
+            os.path.join(assets, "brand-%s" % handle), LOGO_MAX
         )
         entries.append(("brand-%s" % handle, filename, brand["name"], width, height))
         blocks["mosaic"].append({
