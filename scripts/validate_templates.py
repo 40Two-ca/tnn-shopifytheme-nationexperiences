@@ -211,6 +211,48 @@ def check_mojibake():
 
 check_mojibake()
 
+
+# Shopify validates every `richtext` setting server-side and rejects the whole
+# file if the HTML is not in its allowed subset -- attributes in particular,
+# `href` on a link aside. A rejected file is not reported anywhere: the push
+# succeeds, GitHub is happy, and the store quietly keeps serving the previous
+# version. templates/page.hockey.json sat three commits behind the repo for
+# exactly this reason, after `id="..."` was added to three headings to hang
+# anchors off. Anything caught here would ship as an invisible no-op.
+RICHTEXT_OK_ATTRS = ('href', 'target', 'title', 'rel')
+
+
+def check_richtext_attrs():
+    pattern = re.compile(r'<(\w+)((?:\s+[\w:-]+="[^"]*")+)\s*/?>')
+    attr = re.compile(r'([\w:-]+)="')
+    for path in sorted(glob.glob(f"{ROOT}/templates/*.json") + glob.glob(f"{ROOT}/sections/*.json")):
+        label = os.path.relpath(path, ROOT).replace(os.sep, '/')
+        raw = open(path, encoding='utf-8').read()
+        try:
+            doc = json.loads(raw[raw.index('{'):])
+        except ValueError:
+            continue
+
+        def walk(node, trail):
+            for key, block in (node.get('blocks') or {}).items():
+                for name, value in (block.get('settings') or {}).items():
+                    if not isinstance(value, str) or '<' not in value:
+                        continue
+                    for tag, attrs in pattern.findall(value):
+                        bad = [a for a in attr.findall(attrs) if a not in RICHTEXT_OK_ATTRS]
+                        if bad:
+                            errors.append(
+                                f"{label}/{'/'.join(trail + [key])}: setting '{name}' puts "
+                                f"{', '.join(bad)} on <{tag}>; Shopify rejects the whole file "
+                                f"and keeps serving the last good version, silently")
+                walk(block, trail + [key])
+
+        for key, section in doc.get('sections', {}).items():
+            walk(section, [key])
+
+
+check_richtext_attrs()
+
 settings_schema = json.load(open(f"{ROOT}/config/settings_schema.json", encoding='utf-8'))
 all_settings = [s for group in settings_schema for s in group.get('settings', [])]
 current = json.load(open(f"{ROOT}/config/settings_data.json", encoding='utf-8'))['current']

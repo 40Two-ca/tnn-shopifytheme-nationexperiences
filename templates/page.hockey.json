@@ -130,7 +130,7 @@
           "type": "text",
           "name": "Title",
           "settings": {
-            "text": "<h2 id=\"daily-faceoff\">Daily Faceoff</h2>",
+            "text": "<h2>Daily Faceoff</h2>",
             "width": "100%",
             "max_width": "normal",
             "alignment": "left",
@@ -399,7 +399,7 @@
           "type": "text",
           "name": "Title",
           "settings": {
-            "text": "<h2 id=\"hockey-fights\">Hockey Fights</h2>",
+            "text": "<h2>Hockey Fights</h2>",
             "width": "100%",
             "max_width": "normal",
             "alignment": "left",
@@ -482,7 +482,7 @@
           "type": "text",
           "name": "Title",
           "settings": {
-            "text": "<h2 id=\"the-nations\">The Nations</h2>",
+            "text": "<h2>The Nations</h2>",
             "width": "100%",
             "max_width": "normal",
             "alignment": "left",
