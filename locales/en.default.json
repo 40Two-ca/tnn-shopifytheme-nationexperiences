@@ -356,7 +356,12 @@
   },
   "products": {
     "product": {
-      "add_to_cart": "Add to cart",
+      // This store sells trips, so the buy button reads "Book now".
+      // Overriding the existing key rather than adding a new one is what
+      // keeps the other locale files in parity: a custom key here would be
+      // absent from the 33 that carry a products.product group and fail
+      // MatchingTranslations in every one of them.
+      "add_to_cart": "Book now",
       "adding_to_cart": "Adding...",
       "added_to_cart": "Added to cart",
       "add_to_cart_error": "Error adding to cart",
