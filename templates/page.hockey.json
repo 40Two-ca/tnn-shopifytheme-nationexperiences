@@ -60,7 +60,6 @@
         "button_label": "",
         "button_link": "",
         "section_width": "page-width",
-        "background_color": "",
         "padding-block-start": 24,
         "padding-block-end": 40
       },
@@ -173,7 +172,8 @@
         "gap": 16,
         "section_width": "page-width",
         "padding-block-start": 72,
-        "padding-block-end": 8
+        "padding-block-end": 8,
+        "background_color": "{{ settings.color_palette.color3 }}"
       }
     },
     "dfo_site": {
@@ -210,7 +210,8 @@
         "padding-block-end": 48,
         "button_label": "Visit dailyfaceoff.com",
         "button_link": "https://dailyfaceoff.com/",
-        "button_style": "button"
+        "button_style": "button",
+        "background_color": "{{ settings.color_palette.color3 }}"
       }
     },
     "dfo_live": {
@@ -279,7 +280,8 @@
         "media_fit": "contain",
         "section_width": "page-width",
         "padding-block-start": 48,
-        "padding-block-end": 48
+        "padding-block-end": 48,
+        "background_color": "{{ settings.color_palette.color3 }}"
       }
     },
     "dfo_fantasy": {
@@ -313,7 +315,8 @@
         "media_fit": "contain",
         "section_width": "page-width",
         "padding-block-start": 48,
-        "padding-block-end": 48
+        "padding-block-end": 48,
+        "background_color": "{{ settings.color_palette.color3 }}"
       }
     },
     "dfo_cuppa": {
@@ -544,7 +547,8 @@
         "gap": 16,
         "section_width": "page-width",
         "padding-block-start": 72,
-        "padding-block-end": 8
+        "padding-block-end": 8,
+        "background_color": "{{ settings.color_palette.color3 }}"
       }
     },
     "nations_websites": {
@@ -613,7 +617,8 @@
         "media_fit": "contain",
         "section_width": "page-width",
         "padding-block-start": 56,
-        "padding-block-end": 56
+        "padding-block-end": 56,
+        "background_color": "{{ settings.color_palette.color3 }}"
       }
     },
     "nations_social": {
@@ -665,7 +670,6 @@
         "button_label": "",
         "button_link": "",
         "section_width": "page-width",
-        "background_color": "",
         "padding-block-start": 40,
         "padding-block-end": 40
       },
@@ -972,7 +976,7 @@
         "duration": 1800,
         "footnote": "",
         "section_width": "page-width",
-        "background_color": "",
+        "background_color": "{{ settings.color_palette.color3 }}",
         "padding-block-start": 88,
         "padding-block-end": 56
       },
@@ -1299,7 +1303,6 @@
         "subheading": "Shows that publish through their brand’s own channels rather than their own are not listed separately.",
         "columns": 3,
         "section_width": "page-width",
-        "background_color": "{{ settings.color_palette.color3 }}",
         "padding-block-start": 56,
         "padding-block-end": 72
       }
