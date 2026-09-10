@@ -44,7 +44,15 @@
               data-value="{{ stat.value }}"
               data-decimals="{{ stat.decimals }}"
               data-duration="{{ s.duration }}"
-            >{% if s.animate %}0{% else %}{{ stat.value }}{% endif %}</span>{{ stat.suffix }}
+            {%- comment -%}
+              The real number, even when animating. This used to ship a literal
+              0 and wait for the observer to replace it, which meant anything
+              that did not run the script -- a crawler, a JS error, a
+              background tab -- read "0 Fan-first websites", which is not a
+              missing number but a false one. `run()` animates from 0 anyway,
+              so the placeholder bought nothing.
+            {%- endcomment -%}
+            >{{ stat.value }}</span>{{ stat.suffix }}
           </p>
           {%- if stat.label != blank -%}
             <p class="network-stats__label">{{ stat.label }}</p>
