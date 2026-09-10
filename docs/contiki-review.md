@@ -98,6 +98,25 @@ log names them:
 
 When a push does not show up, read the sync log: Online Store > Themes, then **View logs** under the live theme. It names the file and the reason. It is the fastest way to find out what was rejected.
 
+- **A section's `{% stylesheet %}` may never reach the storefront.** Shopify
+  aggregates those blocks into `styles.css`. On this theme that bundle stopped
+  rebuilding: fetched past the cache, it still serves the *first* version of
+  rules edited twice since, while the section files themselves pull down
+  current. So a section can be live and correct while its own CSS is not, and
+  the symptom is a fix that "did not work" for no visible reason. Check it:
+
+  ```js
+  // in the browser console, on the page
+  const href = [...document.querySelectorAll('link[rel=stylesheet]')]
+    .map(l => l.href).find(h => h.includes('styles.css'));
+  const css = await fetch(href + '&nc=' + Date.now(), {cache: 'reload'}).then(r => r.text());
+  css.includes('your-new-selector');
+  ```
+
+  Put CSS that has to ship in `assets/brand.css`, which is a plain asset and
+  syncs like any other file. `styles.css` loads after it, so write the rule one
+  class deeper than the stale rule it must beat.
+
 **A rejected file is silent everywhere else.** The push succeeds, GitHub shows
 the commit as synced, and the storefront simply keeps serving the last version
 it accepted -- so a page can look "unchanged" for reasons that have nothing to

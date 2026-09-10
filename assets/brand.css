@@ -369,3 +369,44 @@ button.shopify-payment-button__button--unbranded:hover:not([disabled]) {
   min-height: 44px;
   margin: -10px;
 }
+
+/* --- Fixes that Shopify's section bundle will not carry ------------------
+   Sections declare their CSS in {% stylesheet %}, which Shopify aggregates
+   into styles.css. That bundle is not rebuilding for edits to these sections:
+   fetched past the cache, it still serves the first version of rules that have
+   since been changed twice. The section files on the theme are current; their
+   CSS is not.
+
+   So the corrections below live here, in a plain asset that ships like any
+   other file. styles.css loads after this one, so each rule is written a class
+   deeper than the stale rule it has to beat. The section stylesheets carry the
+   same fixes, and agree with these if the bundle ever does catch up.
+   ------------------------------------------------------------------------ */
+
+/* 44px targets pulled together by margin:-0.6rem sat 31px apart, so a tap just
+   right of one glyph opened the next service along. */
+.show-directory .show-directory__socials .show-directory__social {
+  margin-inline: -0.15rem;
+  margin-block: -0.5rem;
+}
+
+/* Tiles with no link render as <div> but the stale hover rule is not scoped to
+   <a>, so they grow and brighten and then do nothing. */
+.brand-mosaic div.brand-mosaic__tile:hover {
+  transform: none;
+  filter: none;
+}
+
+/* A near-white ring, offset outside a near-black chip, onto a near-white band. */
+.leadership-grid .leadership-card__link:focus-visible {
+  outline-color: var(--color-foreground);
+  outline-width: max(2px, var(--focus-outline-width));
+  outline-offset: 0.15em;
+}
+
+/* Two screenshots side by side at 375px is ~161px each. */
+@media screen and (max-width: 749px) {
+  .story-strand .story-strand__media {
+    grid-template-columns: 1fr;
+  }
+}
