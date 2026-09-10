@@ -97,10 +97,35 @@ TEAM_TITLE_FIXES = {
 # page actually covers, and they have a real portrait. Of 93 staff entries in
 # staff.ts, 56 point at placeholder.jpg -- including Johnny Lazarus and Colby
 # Cohen, who host Morning Cuppa Hockey on that same page.
+# Two portraits the client owns but their own config does not reach: staff.ts
+# points Aaron Bordato at placeholder.jpg although AaronBordato.png sits in the
+# same folder, and Baggedmilk -- who is credited only by alias -- has no staff
+# entry at all although BaggedMilk.png exists. Both are their images; this just
+# names the file directly. Worth reporting upstream so the override can go.
+PORTRAIT_OVERRIDES = {
+    "Aaron Bordato": ("assets/images/staff/AaronBordato.png", "Host, Producer"),
+    "Bagged Milk": ("assets/images/staff/BaggedMilk.png", "Host"),
+}
+
 HOST_PORTRAITS = [
+    # Daily Faceoff
     "Tyler Yaremchuk",
     "Jason Gregor",
     "Brock Seguin",
+    # The Nations. staff.ts is the client's own headshot library, so these are
+    # their photographs rather than anything scraped. Names must match staff.ts
+    # exactly -- the portrait key is handleized from this string.
+    "Liam Horrobin",
+    "Bagged Milk",
+    "Jay Downton",
+    "Dan Gallant",
+    "Rick Weidemann",
+    "Aaron Bordato",
+    "Dean Molberg",
+    "Ryan Pike",
+    "David Quadrelli",
+    "Matt Sekeres",
+    "Jay Rosehill",
 ]
 
 LOGO_MAX = (480, 480)
@@ -304,6 +329,11 @@ def parse_hosts(source: str) -> list:
                 print("  ! %s has no portrait, only placeholder.jpg" % name)
                 continue
             wanted[name] = {"name": name, "title": field(block, "title"), "source": rel}
+    for name, (rel, title) in PORTRAIT_OVERRIDES.items():
+        if name in wanted and not wanted[name] and os.path.exists(os.path.join(source, rel)):
+            wanted[name] = {"name": name, "title": title, "source": rel}
+            print("  + %s from the override (staff.ts does not reach it)" % name)
+
     missing = [name for name, row in wanted.items() if not row]
     if missing:
         print("  ! no usable portrait for: %s" % ", ".join(missing))

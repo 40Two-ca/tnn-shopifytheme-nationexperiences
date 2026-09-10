@@ -1308,6 +1308,241 @@
         "padding-block-start": 56,
         "padding-block-end": 72
       }
+    },
+    "nations_hosts": {
+      "type": "leadership-grid",
+      "blocks": {
+        "person_aaron_bordato": {
+          "type": "person",
+          "settings": {
+            "name": "Aaron Bordato",
+            "title": "OilersNation",
+            "bio": "<p>Hosts Pregaming with Bordzy, OilersNation After Dark and ON Everyday with Tyler Yaremchuk.</p>"
+          }
+        },
+        "person_chris_chalmers": {
+          "type": "person",
+          "settings": {
+            "name": "Chris Chalmers",
+            "title": "OilersNation",
+            "bio": "<p>Co-hosts OilersNation Real Life Podcast.</p>"
+          }
+        },
+        "person_jay_downton": {
+          "type": "person",
+          "settings": {
+            "name": "Jay Downton",
+            "title": "OilersNation",
+            "bio": "<p>Hosts OilersNation Real Life Podcast.</p>"
+          }
+        },
+        "person_devan_dubnyk": {
+          "type": "person",
+          "settings": {
+            "name": "Devan Dubnyk",
+            "title": "OilersNation",
+            "bio": "<p>Hosts Ask Dubey.</p>"
+          }
+        },
+        "person_dan_gallant": {
+          "type": "person",
+          "settings": {
+            "name": "Dan Gallant",
+            "title": "OilersNation",
+            "bio": "<p>Co-hosts OilersNation Radio.</p>"
+          }
+        },
+        "person_wanye_gretz": {
+          "type": "person",
+          "settings": {
+            "name": "Wanye Gretz",
+            "title": "OilersNation",
+            "bio": "<p>Hosts Wanye's World and OilersNation Real Life Podcast.</p>"
+          }
+        },
+        "person_liam_horrobin": {
+          "type": "person",
+          "settings": {
+            "name": "Liam Horrobin",
+            "title": "OilersNation",
+            "bio": "<p>Co-hosts ON Everyday with Tyler Yaremchuk and OilersNation Radio.</p>"
+          }
+        },
+        "person_bagged_milk": {
+          "type": "person",
+          "settings": {
+            "name": "Bagged Milk",
+            "title": "OilersNation",
+            "bio": "<p>Hosts Better Lait Than Never with Bagged Milk, OilersNation Radio and OilersNation Real Life Podcast.</p>"
+          }
+        },
+        "person_rick_weidemann": {
+          "type": "person",
+          "settings": {
+            "name": "Rick Weidemann",
+            "title": "OilersNation",
+            "bio": "<p>Co-hosts OilersNation Radio.</p>"
+          }
+        },
+        "person_dean_molberg": {
+          "type": "person",
+          "settings": {
+            "name": "Dean Molberg",
+            "title": "FlamesNation",
+            "bio": "<p>Co-hosts Barn Burner with Boomer and Pinder and After Burner.</p>"
+          }
+        },
+        "person_ryan_pike": {
+          "type": "person",
+          "settings": {
+            "name": "Ryan Pike",
+            "title": "FlamesNation",
+            "bio": "<p>Hosts After Burner.</p>"
+          }
+        },
+        "person_ryan_pinder": {
+          "type": "person",
+          "settings": {
+            "name": "Ryan Pinder",
+            "title": "FlamesNation",
+            "bio": "<p>Co-hosts Barn Burner with Boomer and Pinder and After Burner.</p>"
+          }
+        },
+        "person_rhett_warrener": {
+          "type": "person",
+          "settings": {
+            "name": "Rhett Warrener",
+            "title": "FlamesNation",
+            "bio": "<p>Co-hosts Barn Burner with Boomer and Pinder and After Burner.</p>"
+          }
+        },
+        "person_tyson_cole": {
+          "type": "person",
+          "settings": {
+            "name": "Tyson Cole",
+            "title": "CanucksArmy",
+            "bio": "<p>Co-hosts Canucks Conversation and Blackfish Prospects Show.</p>"
+          }
+        },
+        "person_harman_dayal": {
+          "type": "person",
+          "settings": {
+            "name": "Harman Dayal",
+            "title": "CanucksArmy",
+            "bio": "<p>Co-hosts Canucks Conversation.</p>"
+          }
+        },
+        "person_irfaan_gaffar": {
+          "type": "person",
+          "settings": {
+            "name": "Irfaan Gaffar",
+            "title": "CanucksArmy",
+            "bio": "<p>Co-hosts Rink Wide Vancouver and Canucks Conversation.</p>"
+          }
+        },
+        "person_jeff_paterson": {
+          "type": "person",
+          "settings": {
+            "name": "Jeff Paterson",
+            "title": "CanucksArmy",
+            "bio": "<p>Hosts Rink Wide Vancouver.</p>"
+          }
+        },
+        "person_blake_price": {
+          "type": "person",
+          "settings": {
+            "name": "Blake Price",
+            "title": "CanucksArmy",
+            "bio": "<p>Hosts Sekeres & Price.</p>"
+          }
+        },
+        "person_david_quadrelli": {
+          "type": "person",
+          "settings": {
+            "name": "David Quadrelli",
+            "title": "CanucksArmy",
+            "bio": "<p>Hosts Canucks Conversation.</p>"
+          }
+        },
+        "person_grady_sas": {
+          "type": "person",
+          "settings": {
+            "name": "Grady Sas",
+            "title": "CanucksArmy",
+            "bio": "<p>Produces Sekeres & Price.</p>"
+          }
+        },
+        "person_matt_sekeres": {
+          "type": "person",
+          "settings": {
+            "name": "Matt Sekeres",
+            "title": "CanucksArmy",
+            "bio": "<p>Hosts Sekeres & Price.</p>"
+          }
+        },
+        "person_nick_alberga": {
+          "type": "person",
+          "settings": {
+            "name": "Nick Alberga",
+            "title": "TheLeafsNation",
+            "bio": "<p>Co-hosts Leafs Morning Take.</p>"
+          }
+        },
+        "person_zack_phillips": {
+          "type": "person",
+          "settings": {
+            "name": "Zack Phillips",
+            "title": "TheLeafsNation",
+            "bio": "<p>Hosts TLN After Dark.</p>"
+          }
+        },
+        "person_jay_rosehill": {
+          "type": "person",
+          "settings": {
+            "name": "Jay Rosehill",
+            "title": "TheLeafsNation",
+            "bio": "<p>Co-hosts Leafs Morning Take.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "person_aaron_bordato",
+        "person_chris_chalmers",
+        "person_jay_downton",
+        "person_devan_dubnyk",
+        "person_dan_gallant",
+        "person_wanye_gretz",
+        "person_liam_horrobin",
+        "person_bagged_milk",
+        "person_rick_weidemann",
+        "person_dean_molberg",
+        "person_ryan_pike",
+        "person_ryan_pinder",
+        "person_rhett_warrener",
+        "person_tyson_cole",
+        "person_harman_dayal",
+        "person_irfaan_gaffar",
+        "person_jeff_paterson",
+        "person_blake_price",
+        "person_david_quadrelli",
+        "person_grady_sas",
+        "person_matt_sekeres",
+        "person_nick_alberga",
+        "person_zack_phillips",
+        "person_jay_rosehill"
+      ],
+      "settings": {
+        "eyebrow": "On air",
+        "heading": "Who you hear",
+        "subheading": "",
+        "columns": 4,
+        "ratio": "1",
+        "section_width": "page-width",
+        "background_color": "{{ settings.color_palette.color3 }}",
+        "padding-block-start": 72,
+        "padding-block-end": 72,
+        "heading_size": "small"
+      }
     }
   },
   "order": [
@@ -1326,6 +1561,7 @@
     "nations_websites",
     "nations_podcasts",
     "nations_social",
+    "nations_hosts",
     "shows",
     "show_socials",
     "audience",
