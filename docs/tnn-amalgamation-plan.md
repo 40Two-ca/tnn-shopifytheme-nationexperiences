@@ -406,11 +406,13 @@ grids. That was wrong, and the correction matters: `staff.ts` has **93 entries
 but only 37 real portraits** — the other 56 point at `placeholder.jpg`. Of the
 34 people under Podcasts and Shows, 14 have a photograph.
 
-So one host grid was buildable, on the Daily Faceoff page: Frank Seravalli,
-Tyler Yaremchuk, Jason Gregor and Brock Seguin, each fronting a show that page
-covers and each with a real portrait. Their titles are their own from
-`staff.ts`; the shows named under them are the ones the page's strands already
-cover, so the grid asserts nothing the page does not.
+So one host grid was buildable, on the Daily Faceoff page: Tyler Yaremchuk,
+Jason Gregor and Brock Seguin, each fronting a show that page covers and each
+with a real portrait. Their titles are their own from `staff.ts`; the shows
+named under them are the ones the page's strands already cover, so the grid
+asserts nothing the page does not. It was built four wide, with Frank
+Seravalli; he has since left the network and come off the grid, which is now
+three.
 
 **Hockey Fights and The Nations do not get one, on purpose.** Two reasons, both
 in the data rather than in the effort:

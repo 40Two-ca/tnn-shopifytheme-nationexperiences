@@ -350,7 +350,7 @@
         "eyebrow": "On air",
         "heading": "Who you hear",
         "subheading": "",
-        "columns": 4,
+        "columns": 3,
         "ratio": "1",
         "section_width": "page-width",
         "background_color": "{{ settings.color_palette.color3 }}",
@@ -358,15 +358,6 @@
         "padding-block-end": 72
       },
       "blocks": {
-        "person_frank_seravalli": {
-          "type": "person",
-          "settings": {
-            "name": "Frank Seravalli",
-            "title": "President of Hockey Content, Host",
-            "bio": "<p>Co-hosts the DFO Rundown with Jason Gregor.</p>",
-            "link": ""
-          }
-        },
         "person_tyler_yaremchuk": {
           "type": "person",
           "settings": {
@@ -381,7 +372,7 @@
           "settings": {
             "name": "Jason Gregor",
             "title": "Host",
-            "bio": "<p>The Jason Gregor Show, and the DFO Rundown alongside Frank Seravalli.</p>",
+            "bio": "<p>Hosts The Jason Gregor Show and the DFO Rundown.</p>",
             "link": ""
           }
         },
@@ -396,7 +387,6 @@
         }
       },
       "block_order": [
-        "person_frank_seravalli",
         "person_tyler_yaremchuk",
         "person_jason_gregor",
         "person_brock_seguin"
