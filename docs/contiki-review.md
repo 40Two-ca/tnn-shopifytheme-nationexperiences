@@ -86,9 +86,33 @@ log names them:
   it, so the settings changes riding along in that push are lost too. Put the
   content in a setting on an existing block, or add the block in the theme
   editor and let the sync commit it back.
+- **A `richtext` setting may not carry HTML attributes.** Shopify filters that
+  subset server-side and rejects the whole file when it does not match --
+  `<h2 id="daily-faceoff">` was enough. This one is nastier than the rest,
+  because the rejection is *sticky*: the offending value stays in the tree, so
+  every later push of that file is rejected too. `templates/page.hockey.json`
+  sat three commits behind the store before anyone noticed. The validator now
+  catches it. When you need raw HTML -- an anchor, say -- use a `custom-liquid`
+  block, whose `liquid` setting is passed through untouched.
 - **Inside a `{% liquid %}` block every line is its own tag.** A `render` with its arguments spread over several lines is a syntax error there, reported as "Unknown tag" for the first argument name. Theme check does not catch it. Keep such tags outside the `liquid` block.
 
 When a push does not show up, read the sync log: Online Store > Themes, then **View logs** under the live theme. It names the file and the reason. It is the fastest way to find out what was rejected.
+
+**A rejected file is silent everywhere else.** The push succeeds, GitHub shows
+the commit as synced, and the storefront simply keeps serving the last version
+it accepted -- so a page can look "unchanged" for reasons that have nothing to
+do with caching or the template you edited. To find out what the store actually
+holds, pull the live theme into a throwaway directory and diff it against
+history:
+
+```bash
+mkdir -p /tmp/livecheck
+shopify theme pull --path /tmp/livecheck --store tnn-nationexperiences.myshopify.com   --theme 154580484275 --only templates/page.hockey.json
+```
+
+Then compare that file against `git log` for the same path. The commit it
+matches is the last one the store accepted, and the one after it is what broke.
+This is worth doing after any push you cannot see the result of.
 
 ## Stock photos
 
