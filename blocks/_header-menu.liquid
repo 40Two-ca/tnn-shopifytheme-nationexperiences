@@ -676,6 +676,11 @@
     aspect-ratio: 16 / 9;
     margin-bottom: var(--padding-sm);
     object-fit: cover;
+
+    /* Garment shots are square or portrait, so the 16:9 crop drops most of their
+       height. Anchor it to the top: a collar tells you a polo from a crew tee,
+       a hem tells you nothing. */
+    object-position: top;
     border-radius: var(--menu-image-border-radius);
   }
 
