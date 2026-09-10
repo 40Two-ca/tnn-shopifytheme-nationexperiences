@@ -78,6 +78,10 @@ NAME_FIXES = {
     # is what the mosaic handleizes into its logo key, so this renames the
     # asset too.
     "DFO Rundown with Seravalli and Gregor": "DFO Rundown",
+    # Bobby Ryan is no longer on this show -- it is now Wallace, York and
+    # Nichols. Naming the hosts in the tile is what made it go stale, and the
+    # artwork itself just says "COMING IN HOT", so the tile says that too.
+    "Coming In Hot with Brent Wallace and Bobby Ryan": "Coming In Hot",
 }
 
 # Dark artwork on a near-black tile; no colour combination makes it legible.
