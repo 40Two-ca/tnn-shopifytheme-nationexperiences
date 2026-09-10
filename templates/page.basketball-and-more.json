@@ -24,7 +24,7 @@
           "type": "text",
           "name": "Intro",
           "settings": {
-            "text": "<p>Basketball and tennis, with the same approach: give the fans of one team or one circuit somewhere that treats them as the main audience rather than an afterthought.</p>",
+            "text": "<p>One independent Toronto Raptors publication, a basketball podcast that also plays live, and a tennis strand with a weekly show of its own. This is where the network's coverage goes once hockey and baseball are accounted for.</p><p>A smaller catalogue than hockey's, and deliberately so. Each brand here keeps its own name, its own editors and its own audience rather than becoming a section of somebody else's site.</p>",
             "width": "100%",
             "max_width": "narrow",
             "alignment": "left",
@@ -46,44 +46,538 @@
         "padding-block-end": 16
       }
     },
-    "brands": {
-      "type": "feature-tiles",
+    "sites": {
+      "type": "brand-mosaic",
+      "settings": {
+        "eyebrow": "",
+        "heading": "",
+        "subheading": "",
+        "columns": 3,
+        "columns_mobile": 3,
+        "ratio": "4 / 3",
+        "gap": 0,
+        "open_in_new_tab": true,
+        "button_label": "",
+        "button_link": "",
+        "section_width": "page-width",
+        "background_color": "",
+        "padding-block-start": 24,
+        "padding-block-end": 40
+      },
       "blocks": {
-        "tile_raptors": {
+        "tile_raptors_republic": {
           "type": "tile",
           "settings": {
-            "heading": "Raptors Republic",
-            "text": "Toronto Raptors editorial, analysis and opinion.",
-            "link": "https://raptorsrepublic.com/",
-            "stock_image": "none",
-            "bundled": "photo-events-1"
+            "name": "Raptors Republic",
+            "tile_color": "#ffffff",
+            "link": "https://raptorsrepublic.com/"
           }
         },
-        "tile_slice": {
+        "tile_hello_welcome": {
           "type": "tile",
           "settings": {
-            "heading": "The Slice",
-            "text": "Tennis, on the network's YouTube channel.",
-            "link": "https://www.youtube.com/channel/UCiO_r211ysSeA1c4rQVznXA",
-            "stock_image": "none",
-            "bundled": "photo-events-4"
+            "name": "Hello & Welcome",
+            "tile_color": "#2c2b29",
+            "link": "https://hellowelcome.show/"
+          }
+        },
+        "tile_the_slice": {
+          "type": "tile",
+          "settings": {
+            "name": "The Slice",
+            "tile_color": "#3ea748",
+            "link": "https://www.theslicetennis.com/"
           }
         }
       },
       "block_order": [
-        "tile_raptors",
-        "tile_slice"
+        "tile_raptors_republic",
+        "tile_hello_welcome",
+        "tile_the_slice"
+      ]
+    },
+    "rr": {
+      "type": "section",
+      "blocks": {
+        "title": {
+          "type": "text",
+          "name": "Title",
+          "settings": {
+            "text": "<h2>Raptors Republic</h2>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h2",
+            "font": "var(--font-heading--family)",
+            "line_height": "tight",
+            "letter_spacing": "tight",
+            "case": "uppercase",
+            "wrap": "balance"
+          },
+          "blocks": {}
+        },
+        "intro": {
+          "type": "text",
+          "name": "Intro",
+          "settings": {
+            "text": "<p>An independent Toronto Raptors publication: news, analysis, podcasts, editorials and video. It joined The Nation Network in October 2024 and kept its own name, its own editors and its own way of covering the team.</p>",
+            "width": "100%",
+            "max_width": "narrow",
+            "alignment": "left",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)"
+          },
+          "blocks": {}
+        },
+        "anchor": {
+          "type": "custom-liquid",
+          "settings": {
+            "custom_liquid": "<span id=\"raptors-republic\" style=\"display:block;scroll-margin-top:7rem\"></span><style>div:has(> #raptors-republic){display:contents}</style>"
+          }
+        }
+      },
+      "block_order": [
+        "anchor",
+        "title",
+        "intro"
       ],
       "settings": {
-        "eyebrow": "Beyond the rink",
-        "heading": "Where to start",
-        "subheading": "",
-        "columns": 2,
-        "ratio": "4 / 3",
+        "content_direction": "column",
+        "gap": 16,
         "section_width": "page-width",
         "padding-block-start": 72,
-        "padding-block-end": 40
+        "padding-block-end": 8
       }
+    },
+    "rr_site": {
+      "type": "trust-points",
+      "blocks": {
+        "point_1": {
+          "type": "point",
+          "settings": {
+            "icon": "star",
+            "text": "No paywall: the whole site is open to every reader"
+          }
+        },
+        "point_2": {
+          "type": "point",
+          "settings": {
+            "icon": "silhouette",
+            "text": "Its own editors and writers, kept in place"
+          }
+        },
+        "point_3": {
+          "type": "point",
+          "settings": {
+            "icon": "stopwatch",
+            "text": "Quick Reaction, filed before the arena empties"
+          }
+        },
+        "point_4": {
+          "type": "point",
+          "settings": {
+            "icon": "chat_bubble",
+            "text": "The Rapcast, a newsletter and a Discord between games"
+          }
+        }
+      },
+      "block_order": [
+        "point_1",
+        "point_2",
+        "point_3",
+        "point_4"
+      ],
+      "settings": {
+        "eyebrow": "raptorsrepublic.com",
+        "heading": "Toronto Raptors news, stats and analysis",
+        "text": "<p>Raptors Republic has long been regarded as a leading destination for high-quality Raptors analysis, commentary and fan engagement, built on a philosophy of community through sports. Its content and operations team stayed in place when it joined the network, and the paywall came down, so the whole site is open to every reader.</p><p>Around the game itself sit editorials, film breakdowns and roster analysis, plus <a href=\"https://podcasts.apple.com/ca/podcast/the-rapcast/id736333342\" target=\"_blank\" rel=\"noopener noreferrer\">The Rapcast</a>, <a href=\"https://www.youtube.com/raptorsrepublic\" target=\"_blank\" rel=\"noopener noreferrer\">a YouTube channel</a> and <a href=\"https://discord.gg/QvqPA2xjm6\" target=\"_blank\" rel=\"noopener noreferrer\">a Discord</a> where the argument carries on between games.</p>",
+        "button_label": "Visit raptorsrepublic.com",
+        "button_link": "https://raptorsrepublic.com/",
+        "image_position": "left",
+        "section_width": "page-width",
+        "padding-block-start": 48,
+        "padding-block-end": 48,
+        "stock_image": "crowd"
+      }
+    },
+    "rr_beats": {
+      "type": "feature-tiles",
+      "blocks": {
+        "tile_raptors_905": {
+          "type": "tile",
+          "settings": {
+            "heading": "Raptors 905",
+            "text": "The G League affiliate, followed all season.",
+            "link": "https://raptorsrepublic.com/category/raptors905/",
+            "stock_image": "fans",
+            "bundled": ""
+          }
+        },
+        "tile_tempo": {
+          "type": "tile",
+          "settings": {
+            "heading": "Tempo",
+            "text": "Toronto's WNBA team, from roster moves to results.",
+            "link": "https://raptorsrepublic.com/category/tempo/",
+            "stock_image": "toronto",
+            "bundled": ""
+          }
+        },
+        "tile_can_ball": {
+          "type": "tile",
+          "settings": {
+            "heading": "Can Ball",
+            "text": "Canada Basketball, covered as a beat of its own.",
+            "link": "https://raptorsrepublic.com/category/canada-basketball/",
+            "stock_image": "airport",
+            "bundled": ""
+          }
+        }
+      },
+      "block_order": [
+        "tile_raptors_905",
+        "tile_tempo",
+        "tile_can_ball"
+      ],
+      "settings": {
+        "eyebrow": "Coverage",
+        "heading": "More than the first team",
+        "subheading": "",
+        "columns": 3,
+        "ratio": "4 / 3",
+        "section_width": "page-width",
+        "background_color": "{{ settings.color_palette.color3 }}",
+        "padding-block-start": 64,
+        "padding-block-end": 64
+      }
+    },
+    "hw": {
+      "type": "section",
+      "blocks": {
+        "title": {
+          "type": "text",
+          "name": "Title",
+          "settings": {
+            "text": "<h2>Hello and Welcome</h2>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h2",
+            "font": "var(--font-heading--family)",
+            "line_height": "tight",
+            "letter_spacing": "tight",
+            "case": "uppercase",
+            "wrap": "balance"
+          },
+          "blocks": {}
+        },
+        "intro": {
+          "type": "text",
+          "name": "Intro",
+          "settings": {
+            "text": "<p>A podcast and a live show, hosted by Will Lou and Alex Wong with Jerome Cheng producing. Basketball generally and the Toronto Raptors particularly, for people who have followed the sport for years and people who picked it up last season.</p>",
+            "width": "100%",
+            "max_width": "narrow",
+            "alignment": "left",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)"
+          },
+          "blocks": {}
+        },
+        "anchor": {
+          "type": "custom-liquid",
+          "settings": {
+            "custom_liquid": "<span id=\"hello-and-welcome\" style=\"display:block;scroll-margin-top:7rem\"></span><style>div:has(> #hello-and-welcome){display:contents}</style>"
+          }
+        }
+      },
+      "block_order": [
+        "anchor",
+        "title",
+        "intro"
+      ],
+      "settings": {
+        "content_direction": "column",
+        "gap": 16,
+        "section_width": "page-width",
+        "padding-block-start": 72,
+        "padding-block-end": 8
+      }
+    },
+    "hw_show": {
+      "type": "story-strand",
+      "blocks": {
+        "photo_1": {
+          "type": "photo",
+          "settings": {
+            "bundled": "photo-events-4",
+            "alt": "Hello and Welcome recorded in front of an audience"
+          }
+        }
+      },
+      "block_order": [
+        "photo_1"
+      ],
+      "settings": {
+        "eyebrow": "With Will Lou and Alex Wong",
+        "heading": "A podcast and a live show",
+        "body": "<p>Pre- and post-game analysis, watch-alongs, insider stories, game recaps and interviews with players and coaches. Video on YouTube, audio wherever you get podcasts, and a voicemail line on the show's own site for anyone with something to say back.</p><p>It does not all happen in a studio. Hello and Welcome is a live show as well as a podcast, recorded in front of an audience.</p>",
+        "media_position": "right",
+        "ratio": "4 / 3",
+        "media_fit": "cover",
+        "section_width": "page-width",
+        "padding-block-start": 56,
+        "padding-block-end": 56
+      }
+    },
+    "hw_where": {
+      "type": "story-strand",
+      "blocks": {
+        "photo_1": {
+          "type": "photo",
+          "settings": {
+            "bundled": "brand-hello-welcome",
+            "alt": "The Hello and Welcome logo"
+          }
+        },
+        "photo_2": {
+          "type": "photo",
+          "settings": {
+            "bundled": "photo-show-hello-and-welcome",
+            "alt": "Hello and Welcome on a phone"
+          }
+        }
+      },
+      "block_order": [
+        "photo_1",
+        "photo_2"
+      ],
+      "settings": {
+        "eyebrow": "Follow the show",
+        "heading": "Where to find Hello and Welcome",
+        "body": "<p>Everything the show puts out has a home, and the merch has one too.</p><ul><li><a href=\"https://youtube.com/@hellowelcomepod\" target=\"_blank\" rel=\"noopener noreferrer\">YouTube</a></li><li><a href=\"https://shows.acast.com/hello-and-welcome\" target=\"_blank\" rel=\"noopener noreferrer\">Acast</a></li><li><a href=\"https://nationgear.ca/collections/hello-and-welcome\" target=\"_blank\" rel=\"noopener noreferrer\">Nation Gear</a></li></ul>",
+        "media_position": "left",
+        "ratio": "4 / 3",
+        "media_fit": "contain",
+        "section_width": "page-width",
+        "padding-block-start": 56,
+        "padding-block-end": 56,
+        "button_label": "Visit hellowelcome.show",
+        "button_link": "https://hellowelcome.show/",
+        "button_style": "button",
+        "background_color": "{{ settings.color_palette.color3 }}"
+      }
+    },
+    "slice": {
+      "type": "section",
+      "blocks": {
+        "title": {
+          "type": "text",
+          "name": "Title",
+          "settings": {
+            "text": "<h2>The Slice</h2>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h2",
+            "font": "var(--font-heading--family)",
+            "line_height": "tight",
+            "letter_spacing": "tight",
+            "case": "uppercase",
+            "wrap": "balance"
+          },
+          "blocks": {}
+        },
+        "intro": {
+          "type": "text",
+          "name": "Intro",
+          "settings": {
+            "text": "<p>Tennis, covered from Canada. Editorials on the ATP and WTA tours, a Canadian news desk, equipment reviews, and a weekly podcast past its hundredth episode.</p>",
+            "width": "100%",
+            "max_width": "narrow",
+            "alignment": "left",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)"
+          },
+          "blocks": {}
+        },
+        "anchor": {
+          "type": "custom-liquid",
+          "settings": {
+            "custom_liquid": "<span id=\"the-slice\" style=\"display:block;scroll-margin-top:7rem\"></span><style>div:has(> #the-slice){display:contents}</style>"
+          }
+        }
+      },
+      "block_order": [
+        "anchor",
+        "title",
+        "intro"
+      ],
+      "settings": {
+        "content_direction": "column",
+        "gap": 16,
+        "section_width": "page-width",
+        "padding-block-start": 72,
+        "padding-block-end": 8
+      }
+    },
+    "slice_site": {
+      "type": "story-strand",
+      "blocks": {
+        "photo_1": {
+          "type": "photo",
+          "settings": {
+            "bundled": "brand-the-slice",
+            "alt": "The Slice Tennis logo"
+          }
+        }
+      },
+      "block_order": [
+        "photo_1"
+      ],
+      "settings": {
+        "eyebrow": "theslicetennis.com",
+        "heading": "Canadian tennis, and the tours around it",
+        "body": "<p>The Slice brings tennis fans closer to the action with exclusive interviews, original web shows, news and more. ATP and WTA writing sits beside a dedicated Canadian news desk, an opinion column, and racquet, shoe and string reviews for people who actually play.</p><p>Three shows run off it. <strong>The Slice Tennis Podcast</strong> is weekly, hosted by Stephen Boughton and J.P. Hovey, and looks at the game from a different perspective. <strong>North of the Net</strong> is Canadian tennis, with Crina Mustafa, Brendan McCarthy and Stephen Boughton. And the interviews are recorded on the road at ATP tournaments, with Milos Raonic, Dan Evans and Thanasi Kokkinakis among the players who have sat down with the show.</p><ul><li><a href=\"https://shows.acast.com/the-slice-tennis-podcast\" target=\"_blank\" rel=\"noopener noreferrer\">The Slice Tennis Podcast</a></li><li><a href=\"https://www.youtube.com/channel/UCiO_r211ysSeA1c4rQVznXA\" target=\"_blank\" rel=\"noopener noreferrer\">The Slice Tennis on YouTube</a></li></ul>",
+        "media_position": "right",
+        "ratio": "4 / 3",
+        "media_fit": "contain",
+        "section_width": "page-width",
+        "padding-block-start": 56,
+        "padding-block-end": 56,
+        "button_label": "Visit theslicetennis.com",
+        "button_link": "https://www.theslicetennis.com/",
+        "button_style": "button"
+      }
+    },
+    "channels": {
+      "type": "distribution-channels",
+      "settings": {
+        "eyebrow": "Distribution",
+        "heading": "Where to watch and listen",
+        "show_labels": true,
+        "icon_size": 56,
+        "section_width": "page-width",
+        "background_color": "",
+        "padding-block-start": 72,
+        "padding-block-end": 56
+      },
+      "blocks": {
+        "youtube": {
+          "type": "channel",
+          "settings": {
+            "platform": "youtube",
+            "label": "YouTube",
+            "link": ""
+          }
+        },
+        "apple": {
+          "type": "channel",
+          "settings": {
+            "platform": "apple",
+            "label": "Apple Podcasts",
+            "link": ""
+          }
+        },
+        "spotify": {
+          "type": "channel",
+          "settings": {
+            "platform": "spotify",
+            "label": "Spotify",
+            "link": ""
+          }
+        },
+        "instagram": {
+          "type": "channel",
+          "settings": {
+            "platform": "instagram",
+            "label": "Instagram",
+            "link": ""
+          }
+        },
+        "tiktok": {
+          "type": "channel",
+          "settings": {
+            "platform": "tiktok",
+            "label": "TikTok",
+            "link": ""
+          }
+        },
+        "x": {
+          "type": "channel",
+          "settings": {
+            "platform": "x",
+            "label": "X",
+            "link": ""
+          }
+        },
+        "bluesky": {
+          "type": "channel",
+          "settings": {
+            "platform": "bluesky",
+            "label": "Bluesky",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "youtube",
+        "apple",
+        "spotify",
+        "instagram",
+        "tiktok",
+        "x",
+        "bluesky"
+      ]
+    },
+    "audience": {
+      "type": "network-stats",
+      "settings": {
+        "eyebrow": "The catalogue",
+        "heading": "What Basketball and More covers",
+        "subheading": "One independent team publication, four shows, and the two sports the network runs outside hockey and baseball.",
+        "animate": true,
+        "duration": 1800,
+        "footnote": "",
+        "section_width": "page-width",
+        "background_color": "",
+        "padding-block-start": 88,
+        "padding-block-end": 56
+      },
+      "blocks": {
+        "pageviews": {
+          "type": "stat",
+          "settings": {
+            "value": "1",
+            "suffix": "",
+            "decimals": 0,
+            "label": "Fan-first website"
+          }
+        },
+        "streams": {
+          "type": "stat",
+          "settings": {
+            "value": "4",
+            "suffix": "",
+            "decimals": 0,
+            "label": "Podcasts and shows"
+          }
+        },
+        "social": {
+          "type": "stat",
+          "settings": {
+            "value": "2",
+            "suffix": "",
+            "decimals": 0,
+            "label": "Sports covered here"
+          }
+        }
+      },
+      "block_order": [
+        "pageviews",
+        "streams",
+        "social"
+      ]
     },
     "cta": {
       "type": "trust-points",
@@ -125,7 +619,7 @@
       ],
       "settings": {
         "eyebrow": "Partner with us",
-        "heading": "Build something with us in a new sport",
+        "heading": "Reach basketball and tennis fans where they already are",
         "text": "<p>10+ fan-driven websites, 28+ unique podcasts, a powerful social presence, and standout digital and live events. We build campaigns around your objectives rather than selling a package.</p>",
         "button_label": "Start a conversation",
         "image_position": "right",
@@ -139,7 +633,17 @@
   },
   "order": [
     "header",
-    "brands",
+    "sites",
+    "rr",
+    "rr_site",
+    "rr_beats",
+    "hw",
+    "hw_show",
+    "hw_where",
+    "slice",
+    "slice_site",
+    "channels",
+    "audience",
     "cta"
   ]
 }
