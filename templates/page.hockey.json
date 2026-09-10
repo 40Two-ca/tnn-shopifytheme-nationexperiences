@@ -238,7 +238,7 @@
         "photo_2"
       ],
       "settings": {
-        "eyebrow": "With Tyler Yaremchuk",
+        "eyebrow": "With Tyler Yaremchuk and Colby Cohen",
         "heading": "Daily Faceoff Live",
         "body": "<p>This show digs into the latest news, analysis and storylines from the world of professional hockey. Each episode features expert guests, player interviews and in-depth conversations covering everything from game previews and recaps to player performances and trade rumours.</p>",
         "media_position": "left",
@@ -361,7 +361,7 @@
         "eyebrow": "On air",
         "heading": "Who you hear",
         "subheading": "",
-        "columns": 3,
+        "columns": 5,
         "ratio": "1",
         "section_width": "page-width",
         "background_color": "{{ settings.color_palette.color3 }}",
@@ -401,12 +401,30 @@
             "link": "https://ca.linkedin.com/in/brock-seguin-0000907b",
             "x": "https://x.com/Brock_Seguin"
           }
+        },
+        "person_colby_cohen": {
+          "type": "person",
+          "settings": {
+            "name": "Colby Cohen",
+            "title": "Host",
+            "bio": "<p>Hosts Daily Faceoff Live and Morning Cuppa Hockey.</p>"
+          }
+        },
+        "person_jonny_lazarus": {
+          "type": "person",
+          "settings": {
+            "name": "Jonny Lazarus",
+            "title": "Host",
+            "bio": "<p>Hosts Morning Cuppa Hockey.</p>"
+          }
         }
       },
       "block_order": [
         "person_tyler_yaremchuk",
         "person_jason_gregor",
-        "person_brock_seguin"
+        "person_brock_seguin",
+        "person_colby_cohen",
+        "person_jonny_lazarus"
       ]
     },
     "hf": {
