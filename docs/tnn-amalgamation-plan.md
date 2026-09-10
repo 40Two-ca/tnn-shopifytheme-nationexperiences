@@ -145,7 +145,7 @@ publishes it. Three landing pages carry it:
 
 | Page | Template | Holds |
 | --- | --- | --- |
-| Hockey | `page.hockey` | Everything hockey: the six sites, Daily Faceoff with its five shows and host grid, Hockey Fights, the four Nation hubs, all 36 shows |
+| Hockey | `page.hockey` | Everything hockey: the six sites, Daily Faceoff with its four shows and host grid, Hockey Fights, the four Nation hubs, all 33 hockey shows |
 | Baseball | `page.baseball` | BlueJaysNation and its three shows |
 | Basketball and More | `page.basketball-and-more` | Raptors Republic and The Slice |
 
@@ -209,7 +209,7 @@ site's own headline figures — one of the two is out of date, and it is not
 knowable from here which.
 
 So the sport pages count what the catalogue holds, which is true by
-construction: 6 websites and 36 shows for hockey, 1 and 3 for baseball. Show
+construction: 6 websites and 33 shows for hockey, 1 and 3 for baseball. Show
 streams are the exception — hockey's 7.8M and baseball's 2.6M sit well inside
 the network's 57M, so they are safe to print. Page views and followers stay off
 the sport pages until the client confirms real numbers, and that confirmation
@@ -219,10 +219,14 @@ should cover the home page's three counters too.
 
 Daily Faceoff, Hockey Fights and The Nations no longer have pages of their own.
 All three are sections of `/pages/hockey`, which now runs: the six hockey sites
-as a logo wall, Daily Faceoff with its five shows and host grid, Hockey Fights,
-the four Nation hubs with their editorial, podcast and social strands, all 36
-shows, the catalogue counters and the partner CTA. Nineteen sections, against
-Shopify's limit of 25.
+as a logo wall, Daily Faceoff with its four shows and host grid, Hockey Fights,
+the four Nation hubs with their editorial, podcast and social strands, all 33
+hockey shows, the catalogue counters and the partner CTA. Eighteen sections,
+against Shopify's limit of 25.
+
+The show wall counts hockey only. Hello & Welcome is basketball and lives on
+`/pages/basketball-and-more`; Sunday League Pundits and Kicked Back with
+Caroline belong to 90th Minute, which is soccer and has no page yet.
 
 This settles the seam The Nations always had: it spanned hockey, baseball and
 basketball, so under a sport-led navigation it belonged to none of them. Its

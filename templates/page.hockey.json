@@ -913,22 +913,6 @@
             "link": ""
           }
         },
-        "tile_sunday_league_pundits": {
-          "type": "tile",
-          "settings": {
-            "name": "Sunday League Pundits",
-            "tile_color": "#d93323",
-            "link": ""
-          }
-        },
-        "tile_kicked_back_with_caroline": {
-          "type": "tile",
-          "settings": {
-            "name": "Kicked Back with Caroline",
-            "tile_color": "#fde642",
-            "link": ""
-          }
-        },
         "tile_slangin_the_bizkit_podcast": {
           "type": "tile",
           "settings": {
@@ -943,14 +927,6 @@
             "name": "what chaos",
             "tile_color": "#009afe",
             "link": ""
-          }
-        },
-        "tile_hello_welcome": {
-          "type": "tile",
-          "settings": {
-            "name": "Hello & Welcome",
-            "tile_color": "#2c2b29",
-            "link": "https://hellowelcome.show/"
           }
         }
       },
@@ -986,11 +962,8 @@
         "tile_tri_state_hockey",
         "tile_the_sauce",
         "tile_off_the_roster",
-        "tile_sunday_league_pundits",
-        "tile_kicked_back_with_caroline",
         "tile_slangin_the_bizkit_podcast",
-        "tile_what_chaos",
-        "tile_hello_welcome"
+        "tile_what_chaos"
       ]
     },
     "audience": {
@@ -1020,7 +993,7 @@
         "streams": {
           "type": "stat",
           "settings": {
-            "value": "36",
+            "value": "33",
             "suffix": "",
             "decimals": 0,
             "label": "Podcasts and shows"
