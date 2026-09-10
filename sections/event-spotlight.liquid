@@ -1,0 +1,397 @@
+{%- comment -%}
+  Event spotlight: one bold panel for the thing that makes an event different
+  (RIPNATION's ball drive, for example).
+
+  Content comes from the product metafield custom.spotlight, one "key: value" per line:
+
+    eyebrow: Ball drive for SportCentral
+    heading: Bring your balls.
+    text: A sentence or two. Repeat the key to add another paragraph.
+    point: One short line with an icon. Repeat for more.
+    button: Button label | https://example.com
+    image: fans
+
+  "image" is optional and takes a stock photo key (crowd, arena, fans, stadium_seats and
+  so on); an image picked in the section settings wins over it. The section renders
+  nothing when the metafield is empty, so the event template can include it for every
+  event.
+{%- endcomment -%}
+
+{%- liquid
+  assign s = section.settings
+  assign product = closest.product
+
+  assign raw = ''
+  if product != blank
+    assign raw = product.metafields.custom.spotlight | strip
+  endif
+
+  assign eyebrow = ''
+  assign heading = ''
+  assign paragraphs = ''
+  assign points = ''
+  assign button_label = ''
+  assign button_link = ''
+  assign stock_key = s.stock_image
+
+  assign lines = raw | newline_to_br | split: '<br />'
+  for line in lines
+    assign row = line | strip_html | strip
+    if row == blank
+      continue
+    endif
+
+    assign key_raw = row | split: ':' | first
+    assign key = key_raw | strip | downcase
+    assign value = row | remove_first: key_raw | remove_first: ':' | strip
+
+    case key
+      when 'eyebrow'
+        assign eyebrow = value
+      when 'heading', 'title'
+        assign heading = value
+      when 'text'
+        assign paragraphs = paragraphs | append: value | append: '||'
+      when 'point'
+        assign points = points | append: value | append: '||'
+      when 'button'
+        assign button_parts = value | split: '|'
+        assign button_label = button_parts[0] | strip
+        assign button_link = button_parts[1] | strip
+      when 'image'
+        assign stock_key = value | downcase
+      else
+        # A line with no known key is treated as body text.
+        assign paragraphs = paragraphs | append: row | append: '||'
+    endcase
+  endfor
+
+  assign paragraph_list = paragraphs | split: '||'
+  assign point_list = points | split: '||'
+
+  assign has_content = false
+  if heading != blank or paragraph_list.size > 0
+    assign has_content = true
+  endif
+
+  assign link_ok = false
+  if button_link contains 'http://' or button_link contains 'https://' or button_link contains 'mailto:'
+    assign link_ok = true
+  else
+    assign first_char = button_link | slice: 0
+    if first_char == '/' or first_char == '#'
+      assign link_ok = true
+    endif
+  endif
+
+  assign has_media = false
+  if s.image != blank
+    assign has_media = true
+  elsif stock_key != blank and stock_key != 'none'
+    assign has_media = true
+  endif
+
+  if s.background_color != blank
+    render 'contrast-override', background_color: s.background_color, section_id: section.id
+  endif
+-%}
+
+{%- if has_content -%}
+  <div
+    class="section-background{% if s.background_color != blank %} color-custom-{{ section.id }}{% endif %}"
+  ></div>
+  <div
+    class="section section--{{ s.section_width }} spacing-style event-spotlight{% if s.background_color != blank %} color-custom-{{ section.id }}{% endif %}"
+    style="{% render 'spacing-style', settings: s %}"
+  >
+    <div class="event-spotlight__inner event-spotlight__inner--image-{{ s.image_position }}{% unless has_media %} event-spotlight__inner--no-image{% endunless %}">
+      <div class="event-spotlight__content">
+        {%- if eyebrow != blank -%}
+          <p class="brand-eyebrow event-spotlight__eyebrow">{{ eyebrow | escape }}</p>
+        {%- endif -%}
+        {%- if heading != blank -%}
+          <h2 class="event-spotlight__heading">{{ heading | escape }}</h2>
+        {%- endif -%}
+        {%- for paragraph in paragraph_list -%}
+          <p class="event-spotlight__text">{{ paragraph | escape }}</p>
+        {%- endfor -%}
+
+        {%- if point_list.size > 0 -%}
+          <ul class="event-spotlight__points list-unstyled">
+            {%- for point in point_list -%}
+              <li class="event-spotlight__point">
+                <span class="event-spotlight__icon" aria-hidden="true">
+                  <svg viewBox="0 0 20 20" fill="currentColor" focusable="false">
+                    {%- render 'icon', icon: s.point_icon -%}
+                  </svg>
+                </span>
+                <span>{{ point | escape }}</span>
+              </li>
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+
+        {%- if button_label != blank and link_ok -%}
+          <a
+            class="button event-spotlight__button"
+            href="{{ button_link | escape }}"
+            {% if button_link contains '://' %}
+              target="_blank" rel="noopener"
+            {% endif %}
+          >
+            {{- button_label | escape -}}
+          </a>
+        {%- endif -%}
+      </div>
+
+      {%- if s.image != blank -%}
+        <div class="event-spotlight__media">
+          {{
+            s.image
+            | image_url: width: 1400
+            | image_tag:
+              widths: '400, 600, 800, 1000, 1400',
+              sizes: '(min-width: 990px) 45vw, 100vw',
+              class: 'event-spotlight__image',
+              loading: 'lazy'
+          }}
+        </div>
+      {%- elsif has_media -%}
+        <div class="event-spotlight__media">
+          {% render 'stock-image', key: stock_key, class: 'event-spotlight__image' %}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+{%- elsif request.design_mode -%}
+  <div class="section section--page-width event-spotlight event-spotlight--empty">
+    <p>
+      Event spotlight: add the product metafield <code>custom.spotlight</code> to show a panel here
+      (lines like <code>heading: Bring your balls.</code>). Hidden on the live store until then.
+    </p>
+  </div>
+{%- endif -%}
+
+{% stylesheet %}
+  .event-spotlight__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+    gap: clamp(2rem, 5vw, 4.5rem);
+    align-items: center;
+  }
+
+  .event-spotlight__inner--image-left .event-spotlight__content {
+    order: 2;
+  }
+
+  .event-spotlight__inner--no-image {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 52rem;
+  }
+
+  .event-spotlight__content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+  }
+
+  .event-spotlight__eyebrow {
+    margin: 0;
+  }
+
+  .event-spotlight__heading {
+    margin: 0;
+    font-family: var(--font-heading--family);
+    font-weight: var(--font-heading--weight, 700);
+    font-size: clamp(2.5rem, 7vw, 5rem);
+    line-height: 0.95;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    text-wrap: balance;
+  }
+
+  .event-spotlight__text {
+    max-width: 38rem;
+    margin: 0;
+    font-size: 1.0625rem;
+    line-height: 1.55;
+    color: rgb(var(--color-foreground-rgb) / 0.8);
+    text-wrap: pretty;
+  }
+
+  .event-spotlight__points {
+    display: grid;
+    gap: 0.8rem;
+    margin: 0.25rem 0 0;
+    padding: 0;
+  }
+
+  .event-spotlight__point {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-family: var(--font-subheading--family);
+    font-weight: 600;
+    font-size: 1rem;
+  }
+
+  .event-spotlight__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: none;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 50%;
+    background: var(--brand-accent);
+    color: var(--brand-accent-contrast);
+  }
+
+  .event-spotlight__icon svg {
+    width: 1.1rem;
+    height: 1.1rem;
+  }
+
+  .event-spotlight__button {
+    margin-block-start: 0.5rem;
+  }
+
+  .event-spotlight__media {
+    overflow: hidden;
+    aspect-ratio: 4 / 5;
+    max-height: 600px;
+    border-radius: calc(var(--brand-card-radius, 12px) * 2);
+  }
+
+  .event-spotlight__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .event-spotlight--empty {
+    padding-block: 2rem;
+    opacity: 0.7;
+  }
+
+  @media screen and (max-width: 989px) {
+    .event-spotlight__inner {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .event-spotlight__inner--image-left .event-spotlight__content {
+      order: 0;
+    }
+
+    .event-spotlight__media {
+      aspect-ratio: 16 / 10;
+      max-height: 360px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Event spotlight",
+  "tag": "section",
+  "class": "section-wrapper",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Content comes from the product metafield custom.spotlight, one \"key: value\" per line (eyebrow, heading, text, point, button, image). Hidden when the metafield is empty."
+    },
+    {
+      "type": "select",
+      "id": "point_icon",
+      "label": "Point icon",
+      "options": [
+        { "value": "heart", "label": "Heart" },
+        { "value": "star", "label": "Star" },
+        { "value": "check_box", "label": "Check" },
+        { "value": "fire", "label": "Fire" },
+        { "value": "lightning_bolt", "label": "Lightning" }
+      ],
+      "default": "heart"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image",
+      "info": "Overrides the metafield's image line and the stock photo."
+    },
+    {
+      "type": "select",
+      "id": "stock_image",
+      "label": "Stock photo",
+      "options": [
+        { "value": "none", "label": "None" },
+        { "value": "crowd", "label": "Fans cheering" },
+        { "value": "arena", "label": "Hockey arena" },
+        { "value": "fans", "label": "Friends celebrating" },
+        { "value": "stadium_seats", "label": "Stadium seats" },
+        { "value": "edmonton", "label": "Edmonton" },
+        { "value": "calgary", "label": "Calgary" },
+        { "value": "toronto", "label": "Toronto" }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Image position",
+      "options": [
+        { "value": "right", "label": "Right" },
+        { "value": "left", "label": "Left" }
+      ],
+      "default": "right"
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "Width",
+      "options": [
+        { "value": "page-width", "label": "Page" },
+        { "value": "full-width", "label": "Full" }
+      ],
+      "default": "page-width"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    }
+  ],
+  "presets": [
+    {
+      "name": "Event spotlight",
+      "category": "Nation Experiences"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,230 @@
+{%- comment -%}
+  Scrolling ticker for event pages ("RIP OILERSNATION LOGO ★ ONE NIGHT ONLY ★ ...").
+
+  Phrases come from the product metafield custom.marquee, one per line. When that is
+  empty the strip shows the product title plus the section's own fallback phrases, so
+  every event still gets one. Renders nothing when there is nothing to say.
+  Motion stops for visitors who prefer reduced motion, and pauses on hover.
+{%- endcomment -%}
+
+{%- liquid
+  assign s = section.settings
+  assign product = closest.product
+
+  assign raw = ''
+  if product != blank
+    assign raw = product.metafields.custom.marquee | strip
+  endif
+
+  assign phrase_list = ''
+  if raw == blank
+    if product != blank and s.include_title
+      assign phrase_list = product.title | append: '||'
+    endif
+    assign raw = s.fallback_text | strip
+  endif
+
+  assign lines = raw | newline_to_br | split: '<br />'
+  for line in lines
+    assign phrase = line | strip_html | strip
+    if phrase != blank
+      assign phrase_list = phrase_list | append: phrase | append: '||'
+    endif
+  endfor
+  assign phrases = phrase_list | split: '||'
+
+  if s.background_color != blank
+    render 'contrast-override', background_color: s.background_color, section_id: section.id
+  endif
+-%}
+
+{%- if phrases.size > 0 -%}
+  <div
+    class="section-background{% if s.background_color != blank %} color-custom-{{ section.id }}{% endif %}"
+  ></div>
+  <div
+    class="section section--full-width spacing-style event-marquee event-marquee--{{ s.size }}{% if s.reverse %} event-marquee--reverse{% endif %}{% if s.background_color != blank %} color-custom-{{ section.id }}{% endif %}"
+    style="{% render 'spacing-style', settings: s %} --event-marquee-duration: {{ s.speed }}s;"
+  >
+    <div class="event-marquee__track">
+      {%- for copy in (1..2) -%}
+        <ul class="event-marquee__group list-unstyled"{% if forloop.index == 2 %} aria-hidden="true"{% endif %}>
+          {%- comment -%} Repeat the phrases so one group is always wider than the screen. {%- endcomment -%}
+          {%- for repeat in (1..4) -%}
+            {%- for phrase in phrases -%}
+              <li class="event-marquee__item"{% if forloop.parentloop.index > 1 %} aria-hidden="true"{% endif %}>
+                {{- phrase | escape -}}
+              </li>
+              <li class="event-marquee__separator" aria-hidden="true">{{ s.separator | escape }}</li>
+            {%- endfor -%}
+          {%- endfor -%}
+        </ul>
+      {%- endfor -%}
+    </div>
+  </div>
+{%- endif -%}
+
+{% stylesheet %}
+  .event-marquee {
+    overflow: hidden;
+    --event-marquee-gap: clamp(1rem, 2.5vw, 2rem);
+  }
+
+  .event-marquee__track {
+    display: flex;
+    width: max-content;
+    animation: event-marquee-scroll var(--event-marquee-duration, 30s) linear infinite;
+  }
+
+  .event-marquee--reverse .event-marquee__track {
+    animation-direction: reverse;
+  }
+
+  .event-marquee:hover .event-marquee__track {
+    animation-play-state: paused;
+  }
+
+  .event-marquee__group {
+    display: flex;
+    align-items: center;
+    gap: var(--event-marquee-gap);
+    margin: 0;
+    padding: 0 var(--event-marquee-gap) 0 0;
+  }
+
+  .event-marquee__item {
+    font-family: var(--font-heading--family);
+    font-weight: var(--font-heading--weight, 700);
+    line-height: 1;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .event-marquee__separator {
+    line-height: 1;
+    opacity: 0.85;
+  }
+
+  .event-marquee--small .event-marquee__item,
+  .event-marquee--small .event-marquee__separator {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+  }
+
+  .event-marquee--medium .event-marquee__item,
+  .event-marquee--medium .event-marquee__separator {
+    font-size: clamp(1.375rem, 3vw, 2.25rem);
+  }
+
+  .event-marquee--large .event-marquee__item,
+  .event-marquee--large .event-marquee__separator {
+    font-size: clamp(2rem, 5vw, 3.75rem);
+  }
+
+  @keyframes event-marquee-scroll {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .event-marquee__track {
+      animation: none;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Event marquee",
+  "tag": "section",
+  "class": "section-wrapper",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Phrases come from the product metafield custom.marquee, one per line. Without it, the product title and the fallback phrases below are used."
+    },
+    {
+      "type": "checkbox",
+      "id": "include_title",
+      "label": "Show product title in fallback",
+      "default": true
+    },
+    {
+      "type": "textarea",
+      "id": "fallback_text",
+      "label": "Fallback phrases",
+      "info": "One per line.",
+      "default": "One night only"
+    },
+    {
+      "type": "text",
+      "id": "separator",
+      "label": "Separator",
+      "default": "★"
+    },
+    {
+      "type": "select",
+      "id": "size",
+      "label": "Text size",
+      "options": [
+        { "value": "small", "label": "Small" },
+        { "value": "medium", "label": "Medium" },
+        { "value": "large", "label": "Large" }
+      ],
+      "default": "medium"
+    },
+    {
+      "type": "range",
+      "id": "speed",
+      "label": "Seconds per loop",
+      "min": 10,
+      "max": 90,
+      "step": 5,
+      "unit": "s",
+      "default": 40
+    },
+    {
+      "type": "checkbox",
+      "id": "reverse",
+      "label": "Scroll left to right",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Top",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Bottom",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    }
+  ],
+  "presets": [
+    {
+      "name": "Event marquee",
+      "category": "Nation Experiences"
+    }
+  ]
+}
+{% endschema %}

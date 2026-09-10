@@ -1,6 +1,9 @@
 /*
- * One-night ticketed events (e.g. RIPNATION). Same look as the trip page, with
- * trip-only wording removed: no "per person", no itinerary, event FAQs.
+ * One-night ticketed events (e.g. RIPNATION). Dark hero, a scrolling marquee, the
+ * event description with what's included, a spotlight panel, then FAQs.
+ * Event-specific copy lives in product metafields so this one template serves every
+ * event: custom.short_description, custom.stats, custom.included, custom.not_included,
+ * custom.faqs, custom.marquee and custom.spotlight (see the section files for formats).
  * Assign per product: Template = product.event.
  */
 {
@@ -110,6 +113,12 @@
               },
               "blocks": {}
             },
+            "stats": {
+              "type": "trip-stats",
+              "settings": {
+                "size": "medium"
+              }
+            },
             "excerpt": {
               "type": "product-excerpt",
               "settings": {
@@ -125,7 +134,7 @@
               "settings": {
                 "thickness": 1,
                 "corner_radius": "square",
-                "divider_color": "{{ settings.color_palette.color2 }}",
+                "divider_color": "#3a3a3a",
                 "width_percent": 100,
                 "padding-block-start": 4,
                 "padding-block-end": 4
@@ -146,46 +155,20 @@
               },
               "blocks": {}
             },
-            "note": {
-              "type": "text",
-              "name": "t:names.text",
-              "settings": {
-                "text": "<p>Prices in CAD. Secure checkout powered by Shopify.</p>",
-                "width": "100%",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "custom",
-                "font": "var(--font-body--family)",
-                "font_size": "0.875rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "text_color": "",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 4,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
             "variant_picker": {
               "type": "variant-picker",
               "settings": {
                 "variant_style": "buttons",
                 "show_swatches": false,
                 "option_label_text_color": "",
-                "variant_style_class": "default",
-                "custom_variant_background": "{{ settings.color_palette.background }}",
-                "custom_variant_text": "{{ settings.color_palette.foreground }}",
-                "custom_variant_border": "{{ settings.color_palette.foreground }}",
-                "selected_variant_style_class": "default",
-                "custom_selected_variant_background": "{{ settings.color_palette.foreground }}",
-                "custom_selected_variant_text": "{{ settings.color_palette.background }}",
-                "custom_selected_variant_border": "{{ settings.color_palette.foreground }}",
+                "variant_style_class": "custom",
+                "custom_variant_background": "rgba(0,0,0,0)",
+                "custom_variant_text": "#ffffff",
+                "custom_variant_border": "rgba(255,255,255,0.45)",
+                "selected_variant_style_class": "custom",
+                "custom_selected_variant_background": "{{ settings.color_palette.color1 }}",
+                "custom_selected_variant_text": "{{ settings.color_palette.foreground }}",
+                "custom_selected_variant_border": "{{ settings.color_palette.color1 }}",
                 "alignment": "left",
                 "padding-block-start": 0,
                 "padding-block-end": 0,
@@ -253,30 +236,18 @@
                 }
               },
               "block_order": []
-            },
-            "pay_later": {
-              "type": "pay-later",
-              "settings": {
-                "provider": "Afterpay",
-                "decal": "Buy now, pay later",
-                "instalments": 4,
-                "note": "Demo only — no payment taken",
-                "button_background": "#b2fce4",
-                "button_text": "#0a0a0a"
-              }
             }
           },
           "block_order": [
             "badge",
             "title",
             "meta",
+            "stats",
             "excerpt",
             "divider_top",
             "price",
-            "note",
             "variant_picker",
-            "buy_buttons",
-            "pay_later"
+            "buy_buttons"
           ]
         }
       },
@@ -288,9 +259,71 @@
         "limit_details_width": false,
         "gap": 40,
         "enable_sticky_add_to_cart": true,
-        "background_color": "{{ settings.color_palette.background }}",
+        "background_color": "{{ settings.color_palette.foreground }}",
         "padding-block-start": 24,
+        "padding-block-end": 56
+      }
+    },
+    "marquee": {
+      "type": "event-marquee",
+      "settings": {
+        "include_title": true,
+        "fallback_text": "One night only",
+        "separator": "★",
+        "size": "medium",
+        "speed": 40,
+        "reverse": false,
+        "background_color": "{{ settings.color_palette.color1 }}",
+        "padding-block-start": 18,
+        "padding-block-end": 18
+      }
+    },
+    "overview": {
+      "type": "trip-overview",
+      "settings": {
+        "eyebrow": "The event",
+        "heading": "About this event",
+        "included_heading": "What's included",
+        "excluded_heading": "What's not included",
+        "section_width": "page-width",
+        "padding-block-start": 48,
         "padding-block-end": 48
+      }
+    },
+    "spotlight": {
+      "type": "event-spotlight",
+      "settings": {
+        "point_icon": "heart",
+        "stock_image": "fans",
+        "image_position": "right",
+        "section_width": "page-width",
+        "background_color": "{{ settings.color_palette.foreground }}",
+        "padding-block-start": 72,
+        "padding-block-end": 72
+      }
+    },
+    "faqs": {
+      "type": "trip-faqs",
+      "blocks": {
+        "faq_contact": {
+          "type": "faq",
+          "settings": {
+            "question": "How do I reach a real person?",
+            "answer": "<p>Use the contact page and the Nation Experiences team will get back to you. We would rather answer a question before you book than after.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_contact"
+      ],
+      "settings": {
+        "eyebrow": "Good to know",
+        "trip_heading": "Event FAQs",
+        "general_heading": "General FAQs",
+        "button_label": "",
+        "section_width": "page-width",
+        "padding-block-start": 56,
+        "padding-block-end": 40
       }
     },
     "trust": {
@@ -318,12 +351,12 @@
       "settings": {
         "eyebrow": "",
         "heading": "Book with confidence",
-        "text": "<p>Every experience is run by the Nation team. If plans change you talk to us, not a call centre.</p>",
+        "text": "<p>Tickets are sold by the Nation team. Questions before the night? You talk to us, not a call centre.</p>",
         "button_label": "",
         "image_position": "right",
         "section_width": "page-width",
-        "padding-block-start": 16,
-        "padding-block-end": 40
+        "padding-block-start": 8,
+        "padding-block-end": 48
       }
     },
     "recommendations": {
@@ -527,49 +560,15 @@
         "padding-block-start": 40,
         "padding-block-end": 72
       }
-    },
-    "faqs": {
-      "type": "trip-faqs",
-      "blocks": {
-        "faq_contact": {
-          "type": "faq",
-          "settings": {
-            "question": "How do I reach a real person?",
-            "answer": "<p>Use the contact page and the Nation Experiences team will get back to you. We would rather answer a question before you book than after.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "faq_contact"
-      ],
-      "settings": {
-        "eyebrow": "Good to know",
-        "trip_heading": "Event FAQs",
-        "general_heading": "General FAQs",
-        "button_label": "",
-        "section_width": "page-width",
-        "padding-block-start": 40,
-        "padding-block-end": 56
-      }
-    },
-    "overview": {
-      "type": "trip-overview",
-      "settings": {
-        "eyebrow": "The event",
-        "heading": "About this event",
-        "included_heading": "What's included",
-        "excluded_heading": "What's not included",
-        "section_width": "page-width",
-        "padding-block-start": 24,
-        "padding-block-end": 24
-      }
     }
   },
   "order": [
     "main",
+    "marquee",
     "overview",
-    "trust",
+    "spotlight",
     "faqs",
+    "trust",
     "recommendations"
   ]
 }
