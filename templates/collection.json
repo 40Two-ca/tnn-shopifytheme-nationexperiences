@@ -1,3 +1,7 @@
+/*
+ * Default collection grid: the standard shop layout (Nation Gear collections and anything new).
+ * The Experiences collection uses collection.experiences.
+ */
 {
   "sections": {
     "header": {
@@ -7,7 +11,7 @@
           "type": "text",
           "name": "t:names.text",
           "settings": {
-            "text": "<p>Experiences</p>",
+            "text": "<p>Nation Gear</p>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
@@ -32,7 +36,7 @@
           "type": "text",
           "name": "t:names.title",
           "settings": {
-            "text": "<h1>{{ closest.collection.title | replace: 'Products', 'Experiences' }}</h1>",
+            "text": "<h1>{{ closest.collection.title }}</h1>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
@@ -154,7 +158,7 @@
             "gallery": {
               "type": "_product-card-gallery",
               "settings": {
-                "image_ratio": "landscape",
+                "image_ratio": "square",
                 "border": "none",
                 "border_width": 1,
                 "border_opacity": 100,
@@ -163,15 +167,6 @@
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
                 "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "badge": {
-              "type": "trip-badge",
-              "settings": {
-                "label_override": "",
-                "style": "accent",
-                "placement": "on_image"
               },
               "blocks": {}
             },
@@ -199,100 +194,39 @@
               },
               "blocks": {}
             },
-            "meta": {
-              "type": "trip-meta",
+            "price": {
+              "type": "price",
+              "name": "t:names.product_price",
               "settings": {
-                "show_duration": true,
-                "show_location": true,
-                "show_dates": true,
-                "show_group": false,
-                "size": "small"
-              },
-              "blocks": {}
-            },
-            "excerpt": {
-              "type": "product-excerpt",
-              "settings": {
-                "max_words": 22,
-                "clamp": true,
-                "lines": 2
-              },
-              "blocks": {}
-            },
-            "footer": {
-              "type": "_product-card-group",
-              "name": "t:names.group",
-              "settings": {
-                "content_direction": "row",
-                "vertical_on_mobile": false,
-                "horizontal_alignment": "space-between",
-                "vertical_alignment": "flex-end",
-                "align_baseline": false,
-                "horizontal_alignment_flex_direction_column": "flex-start",
-                "vertical_alignment_flex_direction_column": "center",
-                "gap": 12,
-                "width": "fill",
-                "custom_width": 100,
-                "width_mobile": "fill",
-                "custom_width_mobile": 100,
-                "height": "fit",
-                "custom_height": 100,
-                "background_media": "none",
-                "video_position": "cover",
-                "background_image_position": "cover",
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 100,
-                "border_radius": 0,
-                "padding-block-start": 8,
+                "show_sale_price_first": true,
+                "show_installments": false,
+                "show_tax_info": false,
+                "type_preset": "h6",
+                "width": "100%",
+                "alignment": "left",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "padding-block-start": 0,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
                 "padding-inline-end": 0
               },
-              "blocks": {
-                "price": {
-                  "type": "trip-price",
-                  "settings": {
-                    "prefix": "From",
-                    "suffix": "",
-                    "show_compare": true,
-                    "compare_label": "Was",
-                    "zero_price_text": "See details",
-                    "size": "medium",
-                    "alignment": "left"
-                  },
-                  "blocks": {}
-                },
-                "button": {
-                  "type": "product-link-button",
-                  "settings": {
-                    "label": "View trip",
-                    "sold_out_label": "Sold out",
-                    "style_class": "button",
-                    "full_width": false
-                  },
-                  "blocks": {}
-                }
-              },
-              "block_order": [
-                "price",
-                "button"
-              ]
+              "blocks": {}
             }
           },
           "block_order": [
             "gallery",
-            "badge",
             "title",
-            "meta",
-            "excerpt",
-            "footer"
+            "price"
           ]
         }
       },
       "settings": {
         "layout_type": "grid",
-        "product_card_size": "large",
+        "product_card_size": "medium",
         "mobile_product_card_size": "large",
         "enable_infinite_scroll": true,
         "products_per_page": 24,
