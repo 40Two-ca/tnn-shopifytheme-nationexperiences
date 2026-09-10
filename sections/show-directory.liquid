@@ -118,7 +118,8 @@
                       aria-label="{% if key == 'website' %}{{ show.name }} website{% else %}{{ show.name }} on {{ label }}{% endif %}"
                     >
                       <svg
-                        class="show-directory__icon{% if stroked %} show-directory__icon--stroke{% endif %}"
+                        class="show-directory__icon"
+                        {%- if stroked %} style="fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round"{% endif %}
                         aria-hidden="true"
                         focusable="false"
                         xmlns="http://www.w3.org/2000/svg"
@@ -217,19 +218,6 @@
     inline-size: 1.125rem;
     block-size: 1.125rem;
     fill: currentcolor;
-  }
-
-  /* `path` only, so a <circle> in a stroked icon still fills. */
-  .show-directory__icon--stroke path {
-    fill: none;
-    stroke: currentcolor;
-    stroke-width: 1.5;
-    stroke-linecap: round;
-  }
-
-  .show-directory__icon--stroke circle[fill='none'] {
-    stroke: currentcolor;
-    stroke-width: 1.5;
   }
 
   @media screen and (max-width: 989px) {
