@@ -1,8 +1,8 @@
 Redirect from,Redirect to
 /beyond-the-game,/pages/beyond-the-game
-/brands/daily-faceoff,/pages/hockey#shopify-section-dfo
-/brands/hockey-fights,/pages/hockey#shopify-section-hf
-/brands/the-nations,/pages/hockey#shopify-section-nations
+/brands/daily-faceoff,/pages/hockey#daily-faceoff
+/brands/hockey-fights,/pages/hockey#hockey-fights
+/brands/the-nations,/pages/hockey#the-nations
 /partner-with-us,/pages/partner-with-us
 /work-with-us,/pages/work-with-us
 /brands/work-with-us,/pages/work-with-us

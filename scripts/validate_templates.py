@@ -235,7 +235,14 @@ def check_richtext_attrs():
 
         def walk(node, trail):
             for key, block in (node.get('blocks') or {}).items():
+                # Only `richtext` is filtered. A `liquid` setting is passed
+                # through untouched, which is why the anchors on this page are
+                # custom-liquid blocks rather than ids on the headings.
+                schema = block_schemas.get(block.get('type')) or {}
+                kinds = {s.get('id'): s.get('type') for s in schema.get('settings', [])}
                 for name, value in (block.get('settings') or {}).items():
+                    if kinds.get(name) not in ('richtext', 'inline_richtext'):
+                        continue
                     if not isinstance(value, str) or '<' not in value:
                         continue
                     for tag, attrs in pattern.findall(value):

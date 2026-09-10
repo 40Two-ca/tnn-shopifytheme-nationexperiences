@@ -155,9 +155,16 @@
             "font": "var(--font-body--family)"
           },
           "blocks": {}
+        },
+        "anchor": {
+          "type": "custom-liquid",
+          "settings": {
+            "custom_liquid": "<span id=\"daily-faceoff\" style=\"display:block;scroll-margin-top:7rem\"></span><style>div:has(> #daily-faceoff){display:contents}</style>"
+          }
         }
       },
       "block_order": [
+        "anchor",
         "title",
         "intro"
       ],
@@ -424,9 +431,16 @@
             "font": "var(--font-body--family)"
           },
           "blocks": {}
+        },
+        "anchor": {
+          "type": "custom-liquid",
+          "settings": {
+            "custom_liquid": "<span id=\"hockey-fights\" style=\"display:block;scroll-margin-top:7rem\"></span><style>div:has(> #hockey-fights){display:contents}</style>"
+          }
         }
       },
       "block_order": [
+        "anchor",
         "title",
         "intro"
       ],
@@ -507,9 +521,16 @@
             "font": "var(--font-body--family)"
           },
           "blocks": {}
+        },
+        "anchor": {
+          "type": "custom-liquid",
+          "settings": {
+            "custom_liquid": "<span id=\"the-nations\" style=\"display:block;scroll-margin-top:7rem\"></span><style>div:has(> #the-nations){display:contents}</style>"
+          }
         }
       },
       "block_order": [
+        "anchor",
         "title",
         "intro"
       ],
