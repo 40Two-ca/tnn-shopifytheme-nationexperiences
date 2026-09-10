@@ -371,7 +371,10 @@
             "name": "Tyler Yaremchuk",
             "title": "Senior Producer/Host, Senior Contributor",
             "bio": "<p>Hosts Daily Faceoff Live and ON Everyday.</p>",
-            "link": ""
+            "link": "https://www.linkedin.com/in/tyler-yaremchuk-4b7739112/",
+            "x": "https://x.com/tyleryaremchuk",
+            "instagram": "https://www.instagram.com/ty89yar/",
+            "tiktok": "https://www.tiktok.com/@tyleryaremchuk"
           }
         },
         "person_jason_gregor": {
@@ -380,7 +383,8 @@
             "name": "Jason Gregor",
             "title": "Host",
             "bio": "<p>Hosts The Jason Gregor Show and the DFO Rundown.</p>",
-            "link": ""
+            "link": "https://www.linkedin.com/in/jason-gregor-6293a379/",
+            "x": "https://x.com/JasonGregor"
           }
         },
         "person_brock_seguin": {
@@ -389,7 +393,8 @@
             "name": "Brock Seguin",
             "title": "Manager of Fantasy, Host, Producer",
             "bio": "<p>Hosts the DFO Fantasy Podcast.</p>",
-            "link": ""
+            "link": "https://ca.linkedin.com/in/brock-seguin-0000907b",
+            "x": "https://x.com/Brock_Seguin"
           }
         }
       },
@@ -670,7 +675,7 @@
           "settings": {
             "name": "Barn Burner with Boomer and Pinder",
             "tile_color": "#a33829",
-            "link": ""
+            "link": "https://shows.acast.com/barn-burner-boomer-pinder"
           }
         },
         "tile_after_burner": {
@@ -694,7 +699,7 @@
           "settings": {
             "name": "The Jason Gregor Show",
             "tile_color": "#ffffff",
-            "link": ""
+            "link": "https://www.jasongregor.com/"
           }
         },
         "tile_dfo_rundown": {
@@ -718,7 +723,7 @@
           "settings": {
             "name": "The Sheet",
             "tile_color": "#ffffff",
-            "link": ""
+            "link": "https://shows.acast.com/the-sheet"
           }
         },
         "tile_oilersnation_radio": {
@@ -841,14 +846,6 @@
             "link": ""
           }
         },
-        "tile_kevin_karius_show": {
-          "type": "tile",
-          "settings": {
-            "name": "Kevin Karius Show",
-            "tile_color": "#9fa4af",
-            "link": ""
-          }
-        },
         "tile_bleu_blanc_et_rouge": {
           "type": "tile",
           "settings": {
@@ -862,7 +859,7 @@
           "settings": {
             "name": "Morning Cuppa Hockey",
             "tile_color": "#081640",
-            "link": ""
+            "link": "https://shows.acast.com/morning-cuppa-hockey-1"
           }
         },
         "tile_lpb_show": {
@@ -894,7 +891,7 @@
           "settings": {
             "name": "Tri-State Hockey",
             "tile_color": "#00365e",
-            "link": ""
+            "link": "https://shows.acast.com/tri-state-hockey-podcast"
           }
         },
         "tile_the_sauce": {
@@ -902,7 +899,7 @@
           "settings": {
             "name": "The Sauce",
             "tile_color": "#0d1230",
-            "link": ""
+            "link": "https://shows.acast.com/the-sauce-with-ryder-lisa"
           }
         },
         "tile_off_the_roster": {
@@ -910,7 +907,7 @@
           "settings": {
             "name": "Off The Roster",
             "tile_color": "#ffffff",
-            "link": ""
+            "link": "https://shows.acast.com/off-the-roster"
           }
         },
         "tile_slangin_the_bizkit_podcast": {
@@ -926,7 +923,7 @@
           "settings": {
             "name": "what chaos",
             "tile_color": "#009afe",
-            "link": ""
+            "link": "https://shows.acast.com/what-chaos"
           }
         }
       },
@@ -953,7 +950,6 @@
         "tile_rink_wide_vancouver",
         "tile_sekeres_price",
         "tile_the_starting_goalies_show",
-        "tile_kevin_karius_show",
         "tile_bleu_blanc_et_rouge",
         "tile_morning_cuppa_hockey",
         "tile_lpb_show",
@@ -993,7 +989,7 @@
         "streams": {
           "type": "stat",
           "settings": {
-            "value": "33",
+            "value": "32",
             "suffix": "",
             "decimals": 0,
             "label": "Podcasts and shows"
@@ -1065,6 +1061,248 @@
         "stock_image": "stadium_seats",
         "button_link": "/pages/partner-with-us"
       }
+    },
+    "show_socials": {
+      "type": "show-directory",
+      "blocks": {
+        "show_barn_burner_with_boomer_and_pinder": {
+          "type": "show",
+          "settings": {
+            "name": "Barn Burner with Boomer and Pinder",
+            "website": "https://shows.acast.com/barn-burner-boomer-pinder",
+            "youtube": "https://www.youtube.com/@FNBarnBurner",
+            "x": "https://x.com/barnburnerfn",
+            "instagram": "https://www.instagram.com/fnbarnburner/",
+            "tiktok": "https://www.tiktok.com/@fnbarnburner"
+          }
+        },
+        "show_coming_in_hot": {
+          "type": "show",
+          "settings": {
+            "name": "Coming In Hot",
+            "youtube": "https://www.youtube.com/@Cominginhotsens",
+            "x": "https://x.com/ComingInHotSens",
+            "instagram": "https://www.instagram.com/cominginhotsens/"
+          }
+        },
+        "show_the_jason_gregor_show": {
+          "type": "show",
+          "settings": {
+            "name": "The Jason Gregor Show",
+            "website": "https://www.jasongregor.com/",
+            "instagram": "https://www.instagram.com/thejasongregorshow/",
+            "facebook": "https://www.facebook.com/p/The-Jason-Gregor-Show-100028262057493/"
+          }
+        },
+        "show_dfo_rundown": {
+          "type": "show",
+          "settings": {
+            "name": "DFO Rundown",
+            "website": "https://shows.acast.com/the-dfo-rundown"
+          }
+        },
+        "show_the_sheet": {
+          "type": "show",
+          "settings": {
+            "name": "The Sheet",
+            "website": "https://shows.acast.com/the-sheet",
+            "x": "https://x.com/thesheethockey",
+            "instagram": "https://www.instagram.com/thesheethockey/",
+            "tiktok": "https://www.tiktok.com/@thesheethockey"
+          }
+        },
+        "show_oilersnation_radio": {
+          "type": "show",
+          "settings": {
+            "name": "OilersNation Radio",
+            "website": "https://shows.acast.com/oilersnation-radio"
+          }
+        },
+        "show_canucks_conversation": {
+          "type": "show",
+          "settings": {
+            "name": "Canucks Conversation",
+            "website": "https://shows.acast.com/canucks-conversation"
+          }
+        },
+        "show_leafs_morning_take": {
+          "type": "show",
+          "settings": {
+            "name": "Leafs Morning Take",
+            "website": "https://shows.acast.com/leafs-morning-take",
+            "instagram": "https://www.instagram.com/leafsmorningtake/"
+          }
+        },
+        "show_oilersnation_real_life_podcast": {
+          "type": "show",
+          "settings": {
+            "name": "OilersNation Real Life Podcast",
+            "website": "https://oilersnation.com/category/real-life-podcast",
+            "x": "https://x.com/NationRealLife",
+            "instagram": "https://www.instagram.com/nationreallife/"
+          }
+        },
+        "show_daily_faceoff_fantasy_show": {
+          "type": "show",
+          "settings": {
+            "name": "Daily Faceoff Fantasy Show",
+            "x": "https://x.com/DFOPodcast"
+          }
+        },
+        "show_on_everyday_with_tyler_yaremchuk": {
+          "type": "show",
+          "settings": {
+            "name": "ON Everyday with Tyler Yaremchuk",
+            "website": "https://oilersnation.com/category/oilersnation-everyday",
+            "instagram": "https://www.instagram.com/oilersnationeveryday/"
+          }
+        },
+        "show_better_lait_than_never_with_bagged_milk": {
+          "type": "show",
+          "settings": {
+            "name": "Better Lait Than Never with Bagged Milk",
+            "website": "https://oilersnation.com/category/better-lait-than-never"
+          }
+        },
+        "show_rink_wide_vancouver": {
+          "type": "show",
+          "settings": {
+            "name": "Rink Wide Vancouver",
+            "youtube": "https://www.youtube.com/@rinkwidevancouver",
+            "x": "https://x.com/RinkWideVAN",
+            "instagram": "https://www.instagram.com/rinkwidevancouver/",
+            "facebook": "https://www.facebook.com/RinkWidePodcast/"
+          }
+        },
+        "show_sekeres_price": {
+          "type": "show",
+          "settings": {
+            "name": "Sekeres & Price",
+            "website": "https://www.sekeresandprice.com/",
+            "youtube": "https://www.youtube.com/sekeresprice",
+            "x": "https://twitter.com/sekeresandprice",
+            "instagram": "https://www.instagram.com/sekeresandprice",
+            "tiktok": "https://www.tiktok.com/@sekeresandprice",
+            "facebook": "https://www.facebook.com/SekeresandPrice/"
+          }
+        },
+        "show_bleu_blanc_et_rouge": {
+          "type": "show",
+          "settings": {
+            "name": "Bleu Blanc et Rouge",
+            "website": "https://lapochebleue.com/podcast-la-poche-bleue-blanc-rouge/",
+            "x": "https://x.com/lapochebbr",
+            "instagram": "https://www.instagram.com/pochebleueblancrouge/",
+            "facebook": "https://www.facebook.com/lapochebleueblancrouge/"
+          }
+        },
+        "show_morning_cuppa_hockey": {
+          "type": "show",
+          "settings": {
+            "name": "Morning Cuppa Hockey",
+            "website": "https://shows.acast.com/morning-cuppa-hockey-1"
+          }
+        },
+        "show_lpb_show": {
+          "type": "show",
+          "settings": {
+            "name": "LPB Show",
+            "website": "https://lapochebleue.com/",
+            "youtube": "https://www.youtube.com/@LaPocheBleue",
+            "x": "https://x.com/lapochebleue",
+            "instagram": "https://www.instagram.com/lapochebleue/",
+            "tiktok": "https://www.tiktok.com/@lapochebleue",
+            "facebook": "https://www.facebook.com/lapochebleueqc/"
+          }
+        },
+        "show_tln_after_dark": {
+          "type": "show",
+          "settings": {
+            "name": "TLN After Dark",
+            "website": "https://shows.acast.com/theleafsnation-after-dark"
+          }
+        },
+        "show_tri_state_hockey": {
+          "type": "show",
+          "settings": {
+            "name": "Tri-State Hockey",
+            "website": "https://shows.acast.com/tri-state-hockey-podcast"
+          }
+        },
+        "show_the_sauce": {
+          "type": "show",
+          "settings": {
+            "name": "The Sauce",
+            "website": "https://shows.acast.com/the-sauce-with-ryder-lisa"
+          }
+        },
+        "show_off_the_roster": {
+          "type": "show",
+          "settings": {
+            "name": "Off The Roster",
+            "website": "https://shows.acast.com/off-the-roster",
+            "youtube": "https://www.youtube.com/@OffTheRosterTNN",
+            "x": "https://x.com/OffTheRosterPod",
+            "instagram": "https://www.instagram.com/offtherosterpod/",
+            "tiktok": "https://www.tiktok.com/@offtherosterpod"
+          }
+        },
+        "show_slangin_the_bizkit_podcast": {
+          "type": "show",
+          "settings": {
+            "name": "Slangin The Bizkit Podcast",
+            "youtube": "https://www.youtube.com/@slanginthebizkitpodcast",
+            "instagram": "https://www.instagram.com/slanginthebizkitpodcast/",
+            "tiktok": "https://www.tiktok.com/@slanginthebizkitpod"
+          }
+        },
+        "show_what_chaos": {
+          "type": "show",
+          "settings": {
+            "name": "what chaos",
+            "website": "https://shows.acast.com/what-chaos",
+            "youtube": "https://www.youtube.com/@WhatChaosShow",
+            "x": "https://x.com/WhatChaosShow",
+            "instagram": "https://www.instagram.com/whatchaosshow/",
+            "tiktok": "https://www.tiktok.com/@whatchaos"
+          }
+        }
+      },
+      "block_order": [
+        "show_barn_burner_with_boomer_and_pinder",
+        "show_coming_in_hot",
+        "show_the_jason_gregor_show",
+        "show_dfo_rundown",
+        "show_the_sheet",
+        "show_oilersnation_radio",
+        "show_canucks_conversation",
+        "show_leafs_morning_take",
+        "show_oilersnation_real_life_podcast",
+        "show_daily_faceoff_fantasy_show",
+        "show_on_everyday_with_tyler_yaremchuk",
+        "show_better_lait_than_never_with_bagged_milk",
+        "show_rink_wide_vancouver",
+        "show_sekeres_price",
+        "show_bleu_blanc_et_rouge",
+        "show_morning_cuppa_hockey",
+        "show_lpb_show",
+        "show_tln_after_dark",
+        "show_tri_state_hockey",
+        "show_the_sauce",
+        "show_off_the_roster",
+        "show_slangin_the_bizkit_podcast",
+        "show_what_chaos"
+      ],
+      "settings": {
+        "eyebrow": "Follow",
+        "heading": "Where to follow the shows",
+        "subheading": "Shows that publish through their brand’s own channels rather than their own are not listed separately.",
+        "columns": 3,
+        "section_width": "page-width",
+        "background_color": "{{ settings.color_palette.color3 }}",
+        "padding-block-start": 56,
+        "padding-block-end": 72
+      }
     }
   },
   "order": [
@@ -1084,6 +1322,7 @@
     "nations_podcasts",
     "nations_social",
     "shows",
+    "show_socials",
     "audience",
     "cta"
   ]
