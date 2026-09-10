@@ -9,7 +9,7 @@
           "type": "_announcement",
           "settings": {
             "text": "The Nation travels together. New experiences now booking.",
-            "link": "shopify://collections/all",
+            "link": "shopify://collections/experiences",
             "font": "var(--font-subheading--family)",
             "font_size": "0.75rem",
             "weight": "700",

@@ -982,7 +982,7 @@
           "name": "t:names.button",
           "settings": {
             "label": "View all experiences",
-            "link": "shopify://collections/all",
+            "link": "shopify://collections/experiences",
             "open_in_new_tab": false,
             "style_class": "button-secondary",
             "custom_button_background": "{{ settings.color_palette.foreground }}",
@@ -1001,7 +1001,7 @@
       ],
       "name": "t:names.product_list",
       "settings": {
-        "collection": "all",
+        "collection": "experiences",
         "layout_type": "carousel",
         "carousel_on_mobile": true,
         "max_products": 8,

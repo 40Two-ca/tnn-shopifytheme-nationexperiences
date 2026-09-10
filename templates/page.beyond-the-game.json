@@ -142,7 +142,7 @@
         "heading": "Gear",
         "body": "<p>Nation Gear takes fan merchandise to the next level with a range of unique and exclusive products fans cannot find anywhere else. Whether it is a limited-edition garment or a special edition item commemorating a significant moment for the team, the merchandise reflects the passion and dedication shared by fans.</p>",
         "button_label": "Shop Nation Gear",
-        "button_link": "/collections/all",
+        "button_link": "/collections/nation-gear",
         "button_style": "button-secondary",
         "media_position": "left",
         "ratio": "1",
@@ -516,7 +516,7 @@
           "name": "t:names.button",
           "settings": {
             "label": "View all experiences",
-            "link": "shopify://collections/all",
+            "link": "shopify://collections/experiences",
             "open_in_new_tab": false,
             "style_class": "button-secondary",
             "custom_button_background": "{{ settings.color_palette.foreground }}",
@@ -535,7 +535,7 @@
       ],
       "name": "t:names.product_list",
       "settings": {
-        "collection": "all",
+        "collection": "experiences",
         "layout_type": "carousel",
         "carousel_on_mobile": true,
         "max_products": 8,

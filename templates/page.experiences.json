@@ -122,7 +122,7 @@
               "name": "t:names.button",
               "settings": {
                 "label": "View experiences",
-                "link": "shopify://collections/all",
+                "link": "shopify://collections/experiences",
                 "open_in_new_tab": false,
                 "style_class": "button",
                 "custom_button_background": "{{ settings.color_palette.color1 }}",
@@ -220,7 +220,7 @@
           "settings": {
             "heading": "Game days, road trips and once-in-a-lifetime events",
             "text": "From Rogers Place to Toronto and Jasper, the Nation goes where the story is.",
-            "link": "shopify://collections/all",
+            "link": "shopify://collections/experiences",
             "stock_image": "arena"
           }
         },
@@ -535,7 +535,7 @@
           "name": "t:names.button",
           "settings": {
             "label": "View all experiences",
-            "link": "shopify://collections/all",
+            "link": "shopify://collections/experiences",
             "open_in_new_tab": false,
             "style_class": "button-secondary",
             "custom_button_background": "{{ settings.color_palette.foreground }}",
@@ -554,7 +554,7 @@
       ],
       "name": "t:names.product_list",
       "settings": {
-        "collection": "all",
+        "collection": "experiences",
         "layout_type": "carousel",
         "carousel_on_mobile": true,
         "max_products": 8,
@@ -651,7 +651,7 @@
             "title": "Edmonton",
             "subtitle": "Home games",
             "stock_image": "edmonton",
-            "link": "shopify://collections/all"
+            "link": "shopify://collections/experiences"
           }
         },
         "calgary": {
@@ -660,7 +660,7 @@
             "title": "Calgary",
             "subtitle": "Battle of Alberta",
             "stock_image": "calgary",
-            "link": "shopify://collections/all"
+            "link": "shopify://collections/experiences"
           }
         },
         "jasper": {
@@ -728,7 +728,7 @@
         "padding-block-start": 40,
         "padding-block-end": 40,
         "stock_image": "stadium_seats",
-        "button_link": "shopify://collections/all"
+        "button_link": "shopify://collections/experiences"
       }
     },
     "partners": {
