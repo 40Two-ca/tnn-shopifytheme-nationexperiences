@@ -13,7 +13,7 @@
   if s.background_color != blank
     render 'contrast-override', background_color: s.background_color, section_id: section.id
   endif
-  assign platforms = 'youtube,x,instagram,tiktok,facebook,bluesky,linkedin'
+  assign platforms = 'website,youtube,x,instagram,tiktok,facebook,bluesky,linkedin'
 -%}
 
 <div
@@ -57,7 +57,7 @@
         Nothing to link to means nothing to list. The name alone would read as
         a broken row rather than as information.
       {%- endcomment -%}
-      {%- if links > 0 or show.website != blank -%}
+      {%- if links > 0 -%}
         <li class="show-directory__item" {{ block.shopify_attributes }}>
           {%- if show.website != blank -%}
             <a
@@ -82,12 +82,23 @@
                 {%- assign url = show[key] -%}
                 {%- if url != blank -%}
                   {%- liquid
-                    assign label = key
-                    if key == 'x'
-                      assign label = 'X'
-                    else
-                      assign label = key | capitalize
-                    endif
+                    # `capitalize` would give Youtube, Tiktok and Linkedin, which
+                    # are the platforms' names spelled wrong.
+                    assign label = key | capitalize
+                    assign icon_name = key
+                    case key
+                      when 'website'
+                        assign label = 'Website'
+                        assign icon_name = 'arrow'
+                      when 'x'
+                        assign label = 'X'
+                      when 'youtube'
+                        assign label = 'YouTube'
+                      when 'tiktok'
+                        assign label = 'TikTok'
+                      when 'linkedin'
+                        assign label = 'LinkedIn'
+                    endcase
                   -%}
                   <li>
                     <a
@@ -104,7 +115,7 @@
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 20 20"
                       >
-                        {%- render 'icon', icon: key -%}
+                        {%- render 'icon', icon: icon_name -%}
                       </svg>
                     </a>
                   </li>

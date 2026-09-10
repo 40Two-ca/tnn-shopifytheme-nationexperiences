@@ -84,10 +84,18 @@
                   if key == 'linkedin'
                     assign url = person.link
                   endif
+                  # `capitalize` would give Youtube, Tiktok and Linkedin.
                   assign platform_label = key | capitalize
-                  if key == 'x'
-                    assign platform_label = 'X'
-                  endif
+                  case key
+                    when 'x'
+                      assign platform_label = 'X'
+                    when 'youtube'
+                      assign platform_label = 'YouTube'
+                    when 'tiktok'
+                      assign platform_label = 'TikTok'
+                    when 'linkedin'
+                      assign platform_label = 'LinkedIn'
+                  endcase
                 -%}
                 {%- if url != blank -%}
                   <li>
