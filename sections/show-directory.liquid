@@ -1,0 +1,288 @@
+{%- comment -%}
+  Where to follow each show. The mosaic above is a visual index and its tiles
+  carry one link each; this is the same catalogue as a list, so every show can
+  offer all of its accounts.
+
+  A show with no confirmed account of its own is left out rather than shown as
+  an empty row. Several shows publish under their parent brand and have no
+  handle to give, which is a fact about the network rather than a gap to fill.
+{%- endcomment -%}
+
+{%- liquid
+  assign s = section.settings
+  if s.background_color != blank
+    render 'contrast-override', background_color: s.background_color, section_id: section.id
+  endif
+  assign platforms = 'youtube,x,instagram,tiktok,facebook,bluesky,linkedin'
+-%}
+
+<div
+  class="section-background{% if s.background_color != blank %} color-custom-{{ section.id }}{% endif %}"
+></div>
+<div
+  class="section section--{{ s.section_width }} spacing-style show-directory{% if s.background_color != blank %} color-custom-{{ section.id }}{% endif %}"
+  style="
+    {% render 'spacing-style', settings: s %}
+    --directory-columns: {{ s.columns }};
+  "
+>
+  {%- if s.eyebrow != blank or s.heading != blank or s.subheading != blank -%}
+    <div class="brand-section-header">
+      {%- if s.eyebrow != blank -%}
+        <p class="brand-eyebrow">{{ s.eyebrow }}</p>
+      {%- endif -%}
+      {%- if s.heading != blank -%}
+        <h2 class="show-directory__heading">{{ s.heading }}</h2>
+      {%- endif -%}
+      {%- if s.subheading != blank -%}
+        <p class="brand-subheading">{{ s.subheading }}</p>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+
+  <ul class="show-directory__grid list-unstyled">
+    {%- for block in section.blocks -%}
+      {%- assign show = block.settings -%}
+      {%- liquid
+        assign links = 0
+        assign keys = platforms | split: ','
+        for key in keys
+          if show[key] != blank
+            assign links = links | plus: 1
+          endif
+        endfor
+      -%}
+
+      {%- comment -%}
+        Nothing to link to means nothing to list. The name alone would read as
+        a broken row rather than as information.
+      {%- endcomment -%}
+      {%- if links > 0 or show.website != blank -%}
+        <li class="show-directory__item" {{ block.shopify_attributes }}>
+          {%- if show.website != blank -%}
+            <a
+              class="show-directory__name show-directory__name--link"
+              href="{{ show.website }}"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {{- show.name -}}
+            </a>
+          {%- else -%}
+            <p class="show-directory__name">{{ show.name }}</p>
+          {%- endif -%}
+
+          {%- if show.note != blank -%}
+            <p class="show-directory__note">{{ show.note }}</p>
+          {%- endif -%}
+
+          {%- if links > 0 -%}
+            <ul class="show-directory__socials list-unstyled">
+              {%- for key in keys -%}
+                {%- assign url = show[key] -%}
+                {%- if url != blank -%}
+                  {%- liquid
+                    assign label = key
+                    if key == 'x'
+                      assign label = 'X'
+                    else
+                      assign label = key | capitalize
+                    endif
+                  -%}
+                  <li>
+                    <a
+                      class="show-directory__social"
+                      href="{{ url }}"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="{{ show.name }} on {{ label }}"
+                    >
+                      <svg
+                        class="show-directory__icon"
+                        aria-hidden="true"
+                        focusable="false"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                      >
+                        {%- render 'icon', icon: key -%}
+                      </svg>
+                    </a>
+                  </li>
+                {%- endif -%}
+              {%- endfor -%}
+            </ul>
+          {%- endif -%}
+        </li>
+      {%- endif -%}
+    {%- endfor -%}
+  </ul>
+</div>
+
+{% stylesheet %}
+  .show-directory__heading {
+    margin: 0;
+  }
+
+  .show-directory__grid {
+    display: grid;
+    grid-template-columns: repeat(var(--directory-columns, 3), minmax(0, 1fr));
+    gap: 1.75rem 2.5rem;
+    margin: 0;
+    padding: 0;
+  }
+
+  .show-directory__item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding-block-end: 1.25rem;
+    border-block-end: 1px solid rgb(var(--color-foreground-rgb) / 0.12);
+  }
+
+  .show-directory__name {
+    margin: 0;
+    font-family: var(--font-subheading--family);
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    text-wrap: balance;
+  }
+
+  a.show-directory__name--link {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  a.show-directory__name--link:hover,
+  a.show-directory__name--link:focus-visible {
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+
+  .show-directory__note {
+    margin: 0;
+    font-size: 0.8rem;
+    color: rgb(var(--color-foreground-rgb) / 0.6);
+  }
+
+  .show-directory__socials {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin: 0;
+    padding: 0;
+    margin-block-start: auto;
+    padding-block-start: 0.35rem;
+  }
+
+  /* 44px keeps the tap target usable on a phone even though the mark is 18px. */
+  .show-directory__social {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    inline-size: 2.75rem;
+    block-size: 2.75rem;
+    margin: -0.6rem;
+    color: inherit;
+    transition: opacity var(--hover-transition-duration) var(--hover-transition-timing);
+  }
+
+  .show-directory__social:hover,
+  .show-directory__social:focus-visible {
+    opacity: 0.55;
+  }
+
+  .show-directory__icon {
+    inline-size: 1.125rem;
+    block-size: 1.125rem;
+    fill: currentcolor;
+  }
+
+  @media screen and (max-width: 989px) {
+    .show-directory__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.5rem;
+    }
+  }
+
+  @media screen and (max-width: 599px) {
+    .show-directory__grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Show directory",
+  "tag": "section",
+  "class": "section-wrapper",
+  "max_blocks": 48,
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Where to follow" },
+    { "type": "text", "id": "subheading", "label": "Subheading" },
+    {
+      "type": "range",
+      "id": "columns",
+      "label": "Columns",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "Width",
+      "options": [
+        { "value": "page-width", "label": "Page" },
+        { "value": "full-width", "label": "Full" }
+      ],
+      "default": "page-width"
+    },
+    { "type": "color", "id": "background_color", "label": "Background color" },
+    { "type": "header", "content": "Padding" },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 56
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 72
+    }
+  ],
+  "blocks": [
+    {
+      "type": "show",
+      "name": "Show",
+      "settings": [
+        { "type": "text", "id": "name", "label": "Name" },
+        { "type": "text", "id": "note", "label": "Note", "info": "Shown under the name, for example the brand it publishes under." },
+        { "type": "url", "id": "website", "label": "Website" },
+        { "type": "url", "id": "youtube", "label": "YouTube" },
+        { "type": "url", "id": "x", "label": "X" },
+        { "type": "url", "id": "instagram", "label": "Instagram" },
+        { "type": "url", "id": "tiktok", "label": "TikTok" },
+        { "type": "url", "id": "facebook", "label": "Facebook" },
+        { "type": "url", "id": "bluesky", "label": "Bluesky" },
+        { "type": "url", "id": "linkedin", "label": "LinkedIn" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Show directory" }]
+}
+{% endschema %}

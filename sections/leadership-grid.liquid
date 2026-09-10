@@ -72,19 +72,44 @@
             {%- if person.bio != blank -%}
               <div class="leadership-card__bio">{{ person.bio }}</div>
             {%- endif -%}
-            {%- if person.link != blank -%}
-              <a class="leadership-card__link" href="{{ person.link }}" target="_blank" rel="noopener noreferrer">
-                <svg
-                  class="leadership-card__icon"
-                  aria-hidden="true"
-                  focusable="false"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                >
-                  {%- render 'icon', icon: 'linkedin' -%}
-                </svg>
-                <span class="visually-hidden">{{ person.name }} on LinkedIn</span>
-              </a>
+            {%- comment -%}
+              `link` was the LinkedIn field before anyone else was linked, so it
+              stays the LinkedIn field rather than becoming a second one.
+            {%- endcomment -%}
+            {%- assign social_keys = 'linkedin,x,instagram,bluesky,youtube,tiktok' | split: ',' -%}
+            {%- capture person_socials -%}
+              {%- for key in social_keys -%}
+                {%- liquid
+                  assign url = person[key]
+                  if key == 'linkedin'
+                    assign url = person.link
+                  endif
+                  assign platform_label = key | capitalize
+                  if key == 'x'
+                    assign platform_label = 'X'
+                  endif
+                -%}
+                {%- if url != blank -%}
+                  <li>
+                    <a class="leadership-card__link" href="{{ url }}" target="_blank" rel="noopener noreferrer">
+                      <svg
+                        class="leadership-card__icon"
+                        aria-hidden="true"
+                        focusable="false"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                      >
+                        {%- render 'icon', icon: key -%}
+                      </svg>
+                      <span class="visually-hidden">{{ person.name }} on {{ platform_label }}</span>
+                    </a>
+                  </li>
+                {%- endif -%}
+              {%- endfor -%}
+            {%- endcapture -%}
+            {%- assign person_socials = person_socials | strip -%}
+            {%- if person_socials != blank -%}
+              <ul class="leadership-card__socials list-unstyled">{{ person_socials }}</ul>
             {%- endif -%}
           </figcaption>
         </figure>
@@ -177,13 +202,20 @@
     margin-block-end: 0;
   }
 
+  .leadership-card__socials {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin: 0.5rem 0 0;
+    padding: 0;
+  }
+
   .leadership-card__link {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     width: 2rem;
     height: 2rem;
-    margin-block-start: 0.5rem;
     border-radius: 50%;
     background: var(--color-foreground);
     color: var(--color-background);
@@ -286,7 +318,12 @@
         { "type": "text", "id": "name", "label": "Name" },
         { "type": "text", "id": "title", "label": "Title" },
         { "type": "richtext", "id": "bio", "label": "Bio" },
-        { "type": "url", "id": "link", "label": "LinkedIn" }
+        { "type": "url", "id": "link", "label": "LinkedIn" },
+        { "type": "url", "id": "x", "label": "X" },
+        { "type": "url", "id": "instagram", "label": "Instagram" },
+        { "type": "url", "id": "bluesky", "label": "Bluesky" },
+        { "type": "url", "id": "youtube", "label": "YouTube" },
+        { "type": "url", "id": "tiktok", "label": "TikTok" }
       ]
     }
   ],
