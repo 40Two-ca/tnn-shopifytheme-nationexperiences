@@ -36,14 +36,25 @@ except ImportError:  # pragma: no cover
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DEFAULT_SOURCE = os.path.join(os.path.dirname(REPO), "thenationnetwork-www")
 
-# Logo art has to read against the tile colour it sits on. The `_new.png` nation
-# marks are dark-on-transparent and vanish on their own dark brand colour, so
-# these four take a different file than brands.ts names. Checked on a contact
-# sheet of every logo over its tile colour.
+# Logo art has to read against the tile colour it sits on, and every nation
+# mosaic tile is a dark brand colour (#0d1230, #890403, #044220, #00365e). Both
+# the `_new.png` marks and the `.svg` ones are dark-on-transparent and disappear
+# on those tiles, so these four take a different file than brands.ts names.
+#
+# The four below are the same piece of artwork in four liveries: a white roundel
+# holding the fist, with the wordmark on a coloured bar underneath. Being mostly
+# white, they read on any dark tile, and the mosaic looks like one set rather
+# than four unrelated logos.
+#
+# VERIFIED BY RENDERING, not by reading `fill:` values. A previous pass picked
+# the .svg variants by reasoning about the colours declared in the file and
+# shipped three invisible tiles: a file containing #FFFFFF says nothing about
+# whether the *dominant* mark is light. If you change an entry here, put the
+# candidates on their tile colour in a browser and look at the result.
 LOGO_OVERRIDES = {
-    "OilersNation": "assets/images/logos/sites/oilersnation.svg",
-    "FlamesNation": "assets/images/logos/sites/flamesnation.svg",
-    "TheLeafsNation": "assets/images/logos/sites/theleafsnation.svg",
+    "OilersNation": "assets/images/logos/sites/oilersnation.webp",
+    "FlamesNation": "assets/images/logos/sites/flamesnation.png",
+    "TheLeafsNation": "assets/images/logos/sites/theleafsnation.png",
     "CanucksArmy": "assets/images/logos/sites/canucksarmy.png",
 }
 
