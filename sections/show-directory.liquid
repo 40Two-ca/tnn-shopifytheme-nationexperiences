@@ -106,7 +106,7 @@
                       href="{{ url }}"
                       target="_blank"
                       rel="noopener noreferrer"
-                      aria-label="{{ show.name }} on {{ label }}"
+                      aria-label="{% if key == 'website' %}{{ show.name }} website{% else %}{{ show.name }} on {{ label }}{% endif %}"
                     >
                       <svg
                         class="show-directory__icon"
