@@ -275,41 +275,6 @@
         "padding-block-end": 48
       }
     },
-    "dfo_frankly": {
-      "type": "story-strand",
-      "blocks": {
-        "photo_1": {
-          "type": "photo",
-          "settings": {
-            "bundled": "photo-show-frankly-speaking",
-            "alt": "Frankly Speaking on a laptop"
-          }
-        },
-        "photo_2": {
-          "type": "photo",
-          "settings": {
-            "bundled": "photo-show-frankly-speaking-mobile",
-            "alt": "Frankly Speaking on a phone"
-          }
-        }
-      },
-      "block_order": [
-        "photo_1",
-        "photo_2"
-      ],
-      "settings": {
-        "eyebrow": "With Frank Seravalli",
-        "heading": "Frankly Speaking",
-        "body": "<p>Frank Seravalli built his media career on always wanting to know more than what is on the surface. Every week Frank is joined by someone from around the hockey world who shares their story: no set questions, no time frame, just an honest conversation about life, the sport and whatever else comes up.</p>",
-        "media_position": "left",
-        "ratio": "4 / 3",
-        "media_fit": "contain",
-        "section_width": "page-width",
-        "padding-block-start": 48,
-        "padding-block-end": 48,
-        "background_color": "{{ settings.color_palette.color3 }}"
-      }
-    },
     "dfo_fantasy": {
       "type": "story-strand",
       "blocks": {
@@ -398,7 +363,7 @@
           "settings": {
             "name": "Frank Seravalli",
             "title": "President of Hockey Content, Host",
-            "bio": "<p>Fronts Frankly Speaking and co-hosts the DFO Rundown.</p>",
+            "bio": "<p>Co-hosts the DFO Rundown with Jason Gregor.</p>",
             "link": ""
           }
         },
@@ -1125,7 +1090,6 @@
     "dfo_site",
     "dfo_live",
     "dfo_rundown",
-    "dfo_frankly",
     "dfo_fantasy",
     "dfo_cuppa",
     "dfo_hosts",

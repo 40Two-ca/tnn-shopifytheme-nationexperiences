@@ -156,8 +156,6 @@ PAGE_SCREENSHOTS = [
     ("show-dfo-live-mobile", "assets/images/design/laptopwidget/cellphone/dfo-live.png", "Daily Faceoff Live on a phone"),
     ("show-dfo-rundown", "assets/images/design/laptopwidget/laptop/dfo-rundown.png", "The DFO Rundown on a laptop"),
     ("show-dfo-rundown-mobile", "assets/images/design/laptopwidget/cellphone/dfo-rundown.png", "The DFO Rundown on a phone"),
-    ("show-frankly-speaking", "assets/images/design/laptopwidget/laptop/frankly-speaking.png", "Frankly Speaking on a laptop"),
-    ("show-frankly-speaking-mobile", "assets/images/design/laptopwidget/cellphone/frankly-speaking.png", "Frankly Speaking on a phone"),
     ("show-dfo-fantasy", "assets/images/design/laptopwidget/laptop/dfo-fantasy.png", "The DFO Fantasy Podcast on a laptop"),
     ("show-dfo-fantasy-mobile", "assets/images/design/laptopwidget/cellphone/dfo-fantasy.png", "The DFO Fantasy Podcast on a phone"),
     ("show-morning-cuppa-hockey", "assets/images/design/laptopwidget/laptop/morning-cuppa-hockey.png", "Morning Cuppa Hockey on a laptop"),
