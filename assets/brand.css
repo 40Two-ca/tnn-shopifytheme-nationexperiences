@@ -457,3 +457,12 @@ button.shopify-payment-button__button--unbranded:hover:not([disabled]) {
     flex-basis: calc(100% / var(--mosaic-columns-mobile, 3));
   }
 }
+
+/* A card whose portrait has not arrived yet draws its monogram on
+   --brand-surface, which on a tinted band is near enough the band's own colour
+   that the card loses its edge and reads as a hole in the grid. A hairline
+   keeps every card a card. Photographs cover it, so only the placeholders show
+   it. */
+.leadership-grid .leadership-card__media {
+  box-shadow: inset 0 0 0 1px rgb(var(--color-foreground-rgb) / 0.1);
+}
