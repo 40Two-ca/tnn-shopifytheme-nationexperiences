@@ -79,10 +79,16 @@
               <span class="brand-mosaic__fallback">{{ tile.name | default: 'Brand' }}</span>
             {%- endif -%}
           {%- endif -%}
-          {%- if tile.name != blank and tile.link != blank -%}
-            <span class="visually-hidden">{{ tile.name }}</span>
-          {%- endif -%}
         </{{ tag }}>
+        {%- comment -%}
+          Four of the nation marks are the same fist recoloured, so on a wall of
+          them the logo alone does not say which brand a tile is. The caption is
+          aria-hidden because the image alt has already named the link -- it is
+          here for eyes, not for a second announcement.
+        {%- endcomment -%}
+        {%- if s.show_names and tile.name != blank -%}
+          <p class="brand-mosaic__caption" aria-hidden="true">{{ tile.name }}</p>
+        {%- endif -%}
       </li>
     {%- endfor -%}
   </ul>
@@ -95,6 +101,9 @@
 </div>
 
 {% stylesheet %}
+  /* The grid layout and the caption live in assets/brand.css: Shopify's
+     aggregated styles.css has stopped rebuilding for this section, so rules
+     added here would not reach the storefront. */
   .brand-mosaic__heading {
     margin: 0;
   }
@@ -213,6 +222,13 @@
       "default": 0
     },
     { "type": "checkbox", "id": "open_in_new_tab", "label": "Open links in a new tab", "default": true },
+    {
+      "type": "checkbox",
+      "id": "show_names",
+      "label": "Show names under tiles",
+      "info": "For walls where the logos alone do not identify the brand.",
+      "default": false
+    },
     { "type": "text", "id": "button_label", "label": "Button label" },
     { "type": "url", "id": "button_link", "label": "Button link" },
     {

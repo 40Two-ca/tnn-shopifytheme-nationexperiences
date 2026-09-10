@@ -410,3 +410,41 @@ button.shopify-payment-button__button--unbranded:hover:not([disabled]) {
     grid-template-columns: 1fr;
   }
 }
+
+/* --- Brand mosaic: centred last row, and optional names ------------------
+   The grid was `repeat(columns, 1fr)`, which left an incomplete last row
+   hard against the left edge -- 32 tiles over 6 columns ended with two tiles
+   and four empty cells. Flex wrapping with `justify-content: center` fills
+   every full row edge to edge exactly as the grid did (5 x 20% = 100%, and
+   every wall here uses gap 0) while centring whatever is left over.
+   ------------------------------------------------------------------------ */
+.brand-mosaic .brand-mosaic__grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.brand-mosaic .brand-mosaic__item {
+  flex: 0 0 calc(100% / var(--mosaic-columns, 6));
+  flex-direction: column;
+}
+
+.brand-mosaic .brand-mosaic__caption {
+  margin: 0;
+  padding: 0.5rem 0.25rem 0.9rem;
+  font-family: var(--font-subheading--family);
+  font-weight: 700;
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
+  line-height: 1.3;
+  text-align: center;
+  text-transform: uppercase;
+  text-wrap: balance;
+  color: rgb(var(--color-foreground-rgb) / 0.7);
+}
+
+@media screen and (max-width: 989px) {
+  .brand-mosaic .brand-mosaic__item {
+    flex-basis: calc(100% / var(--mosaic-columns-mobile, 3));
+  }
+}

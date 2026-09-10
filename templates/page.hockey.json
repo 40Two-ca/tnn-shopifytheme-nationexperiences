@@ -61,7 +61,8 @@
         "button_link": "",
         "section_width": "page-width",
         "padding-block-start": 24,
-        "padding-block-end": 40
+        "padding-block-end": 40,
+        "show_names": true
       },
       "blocks": {
         "tile_daily_faceoff": {
@@ -663,7 +664,7 @@
         "eyebrow": "Podcasts",
         "heading": "Every show",
         "subheading": "",
-        "columns": 6,
+        "columns": 5,
         "columns_mobile": 3,
         "ratio": "4 / 3",
         "gap": 0,
