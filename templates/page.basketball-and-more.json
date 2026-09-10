@@ -60,7 +60,6 @@
         "button_label": "",
         "button_link": "",
         "section_width": "page-width",
-        "background_color": "",
         "padding-block-start": 24,
         "padding-block-end": 40
       },
@@ -146,7 +145,8 @@
         "gap": 16,
         "section_width": "page-width",
         "padding-block-start": 72,
-        "padding-block-end": 8
+        "padding-block-end": 8,
+        "background_color": "{{ settings.color_palette.color3 }}"
       }
     },
     "rr_site": {
@@ -197,7 +197,8 @@
         "section_width": "page-width",
         "padding-block-start": 48,
         "padding-block-end": 48,
-        "stock_image": "crowd"
+        "stock_image": "crowd",
+        "background_color": "{{ settings.color_palette.color3 }}"
       }
     },
     "rr_beats": {
@@ -364,8 +365,7 @@
         "padding-block-end": 56,
         "button_label": "Visit hellowelcome.show",
         "button_link": "https://hellowelcome.show/",
-        "button_style": "button",
-        "background_color": "{{ settings.color_palette.color3 }}"
+        "button_style": "button"
       }
     },
     "slice": {
@@ -418,7 +418,8 @@
         "gap": 16,
         "section_width": "page-width",
         "padding-block-start": 72,
-        "padding-block-end": 8
+        "padding-block-end": 8,
+        "background_color": "{{ settings.color_palette.color3 }}"
       }
     },
     "slice_site": {
@@ -447,7 +448,8 @@
         "padding-block-end": 56,
         "button_label": "Visit theslicetennis.com",
         "button_link": "https://www.theslicetennis.com/",
-        "button_style": "button"
+        "button_style": "button",
+        "background_color": "{{ settings.color_palette.color3 }}"
       }
     },
     "channels": {
@@ -458,7 +460,7 @@
         "show_labels": true,
         "icon_size": 56,
         "section_width": "page-width",
-        "background_color": "",
+        "background_color": "{{ settings.color_palette.color3 }}",
         "padding-block-start": 72,
         "padding-block-end": 56
       },
@@ -540,7 +542,6 @@
         "duration": 1800,
         "footnote": "",
         "section_width": "page-width",
-        "background_color": "",
         "padding-block-start": 88,
         "padding-block-end": 56
       },
@@ -627,7 +628,65 @@
         "padding-block-start": 40,
         "padding-block-end": 40,
         "stock_image": "stadium_seats",
-        "button_link": "/pages/partner-with-us"
+        "button_link": "/pages/partner-with-us",
+        "background_color": "{{ settings.color_palette.color3 }}"
+      }
+    },
+    "show_socials": {
+      "type": "show-directory",
+      "blocks": {
+        "show_hello_and_welcome": {
+          "type": "show",
+          "settings": {
+            "name": "Hello and Welcome",
+            "website": "https://hellowelcome.show/",
+            "youtube": "https://www.youtube.com/@hellowelcomepod",
+            "x": "https://x.com/hellowelcomepod",
+            "instagram": "https://www.instagram.com/hellowelcomepod/",
+            "tiktok": "https://www.tiktok.com/@hellowelcomepod",
+            "facebook": "https://www.facebook.com/profile.php?id=61560263570082"
+          }
+        },
+        "show_the_slice": {
+          "type": "show",
+          "settings": {
+            "name": "The Slice",
+            "website": "https://www.theslicetennis.com/",
+            "youtube": "https://www.youtube.com/@theslicetennis",
+            "x": "https://x.com/theslicetennis",
+            "instagram": "https://www.instagram.com/theslicetennis/",
+            "tiktok": "https://www.tiktok.com/@theslicetennis"
+          }
+        },
+        "show_north_of_the_net": {
+          "type": "show",
+          "settings": {
+            "name": "North of the Net",
+            "website": "https://www.theslicetennis.com/shows"
+          }
+        },
+        "show_the_rapcast": {
+          "type": "show",
+          "settings": {
+            "name": "The Rapcast",
+            "website": "https://raptorsrepublic.com/category/podcast/"
+          }
+        }
+      },
+      "block_order": [
+        "show_hello_and_welcome",
+        "show_the_slice",
+        "show_north_of_the_net",
+        "show_the_rapcast"
+      ],
+      "settings": {
+        "eyebrow": "Follow",
+        "heading": "Where to follow the shows",
+        "subheading": "Shows that publish through their brand’s own channels rather than their own are not listed separately.",
+        "columns": 3,
+        "section_width": "page-width",
+        "padding-block-start": 56,
+        "padding-block-end": 72
       }
     }
   },
@@ -642,6 +701,7 @@
     "hw_where",
     "slice",
     "slice_site",
+    "show_socials",
     "channels",
     "audience",
     "cta"

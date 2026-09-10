@@ -82,7 +82,8 @@
         "ratio": "4 / 3",
         "section_width": "page-width",
         "padding-block-start": 72,
-        "padding-block-end": 40
+        "padding-block-end": 40,
+        "background_color": "{{ settings.color_palette.color3 }}"
       }
     },
     "shows": {
@@ -99,7 +100,6 @@
         "button_label": "",
         "button_link": "",
         "section_width": "page-width",
-        "background_color": "",
         "padding-block-start": 40,
         "padding-block-end": 40
       },
@@ -145,7 +145,7 @@
         "duration": 1800,
         "footnote": "",
         "section_width": "page-width",
-        "background_color": "",
+        "background_color": "{{ settings.color_palette.color3 }}",
         "padding-block-start": 88,
         "padding-block-end": 56
       },
@@ -234,12 +234,50 @@
         "stock_image": "stadium_seats",
         "button_link": "/pages/partner-with-us"
       }
+    },
+    "show_socials": {
+      "type": "show-directory",
+      "blocks": {
+        "show_blue_jays_today": {
+          "type": "show",
+          "settings": {
+            "name": "Blue Jays Today",
+            "acast": "https://shows.acast.com/blue-jays-today",
+            "youtube": "https://www.youtube.com/@BlueJaysToday",
+            "x": "https://x.com/TodayJays",
+            "instagram": "https://www.instagram.com/bluejaystodaypodcast/"
+          }
+        },
+        "show_6ix_inning_stretch": {
+          "type": "show",
+          "settings": {
+            "name": "6ix Inning Stretch",
+            "acast": "https://shows.acast.com/6ix-inning-stretch",
+            "x": "https://x.com/6ixinningpod",
+            "instagram": "https://www.instagram.com/6ixinningpod/"
+          }
+        }
+      },
+      "block_order": [
+        "show_blue_jays_today",
+        "show_6ix_inning_stretch"
+      ],
+      "settings": {
+        "eyebrow": "Follow",
+        "heading": "Where to follow the shows",
+        "subheading": "BlueJaysNation Radio is not listed: the show ended and its podcast feed now carries a different programme.",
+        "columns": 3,
+        "section_width": "page-width",
+        "padding-block-start": 56,
+        "padding-block-end": 72
+      }
     }
   },
   "order": [
     "header",
     "brands",
     "shows",
+    "show_socials",
     "audience",
     "cta"
   ]
