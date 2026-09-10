@@ -556,7 +556,7 @@
       "settings": {
         "eyebrow": "Editorial",
         "heading": "Fan first websites",
-        "body": "<p>Our collection of NHL, MLB and NBA team-focused websites offers thought-provoking and insightful perspectives on the teams fans follow. Authored by knowledgeable writers and passionate fans, the sites carry in-depth analysis, opinion, player evaluations and game reviews, and give fans somewhere to argue about all of it.</p>",
+        "body": "<p>Our collection of NHL, MLB and NBA team-focused websites offers thought-provoking and insightful perspectives on the teams fans follow. Authored by knowledgeable writers and passionate fans, the sites carry in-depth analysis, opinion, player evaluations and game reviews, and give fans somewhere to argue about all of it.</p><p>Four of those sites cover hockey:</p><ul><li><a href=\"https://oilersnation.com/\" target=\"_blank\" rel=\"noopener noreferrer\">OilersNation</a> for the Edmonton Oilers</li><li><a href=\"https://flamesnation.ca/\" target=\"_blank\" rel=\"noopener noreferrer\">FlamesNation</a> for the Calgary Flames</li><li><a href=\"https://canucksarmy.com/\" target=\"_blank\" rel=\"noopener noreferrer\">CanucksArmy</a> for the Vancouver Canucks</li><li><a href=\"https://theleafsnation.com/\" target=\"_blank\" rel=\"noopener noreferrer\">TheLeafsNation</a> for the Toronto Maple Leafs</li></ul>",
         "media_position": "right",
         "ratio": "4 / 3",
         "media_fit": "contain",
