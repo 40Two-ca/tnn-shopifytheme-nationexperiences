@@ -676,10 +676,10 @@
             "link": ""
           }
         },
-        "tile_dfo_rundown_with_seravalli_and_gregor": {
+        "tile_dfo_rundown": {
           "type": "tile",
           "settings": {
-            "name": "DFO Rundown with Seravalli and Gregor",
+            "name": "DFO Rundown",
             "tile_color": "#ffffff",
             "link": "https://dailyfaceoff.com/"
           }
@@ -938,7 +938,7 @@
         "tile_after_burner",
         "tile_coming_in_hot_with_brent_wallace_and_bobby_ryan",
         "tile_the_jason_gregor_show",
-        "tile_dfo_rundown_with_seravalli_and_gregor",
+        "tile_dfo_rundown",
         "tile_dfo_rundown_insider_edition",
         "tile_the_sheet",
         "tile_oilersnation_radio",

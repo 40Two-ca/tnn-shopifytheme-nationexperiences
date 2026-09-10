@@ -58,10 +58,17 @@ LOGO_OVERRIDES = {
     "CanucksArmy": "assets/images/logos/sites/canucksarmy.png",
 }
 
-# brands.ts carries two entries named after their logo file rather than the show.
+# brands.ts carries two entries named after their logo file rather than the show,
+# and one named after the hosts it had at the time.
 NAME_FIXES = {
     "TSH Primary": "Tri-State Hockey",
     "Primary Blk": "Off The Roster",
+    # Frank Seravalli has left the network. The show is "DFO Rundown" on the
+    # old site's own brand page and on the story strand next to this tile, so
+    # the mosaic matches them rather than the stale brands.ts label. The name
+    # is what the mosaic handleizes into its logo key, so this renames the
+    # asset too.
+    "DFO Rundown with Seravalli and Gregor": "DFO Rundown",
 }
 
 # Dark artwork on a near-black tile; no colour combination makes it legible.
@@ -78,7 +85,6 @@ TEAM_TITLE_FIXES = {
 # staff.ts, 56 point at placeholder.jpg -- including Johnny Lazarus and Colby
 # Cohen, who host Morning Cuppa Hockey on that same page.
 HOST_PORTRAITS = [
-    "Frank Seravalli",
     "Tyler Yaremchuk",
     "Jason Gregor",
     "Brock Seguin",
